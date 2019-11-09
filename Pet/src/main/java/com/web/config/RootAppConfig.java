@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -60,5 +61,13 @@ public class RootAppConfig {
         properties.put("default_batch_fetch_size", 10);
         properties.put("hibernate.hbm2ddl.auto", "update");
         return properties;
+    }
+    
+    // 06_JdbcTemplate需要的bean 借我放><
+    @Bean
+    public JdbcTemplate jdbctemplate() {
+    	JdbcTemplate jdbcTemplate = new JdbcTemplate();
+    	jdbcTemplate.setDataSource(dataSource());
+    	return jdbcTemplate;
     }
 }
