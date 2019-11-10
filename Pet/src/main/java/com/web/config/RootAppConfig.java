@@ -9,6 +9,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -22,13 +24,13 @@ public class RootAppConfig {
     public DataSource dataSource() {
         ComboPooledDataSource ds = new ComboPooledDataSource();
         ds.setUser("sa");
-        ds.setPassword("P@ssw0rd");
+        ds.setPassword("password");
         try {
             ds.setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
-        ds.setJdbcUrl("jdbc:sqlserver://MSI:1433;databaseName=PetDB");
+        ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=PetDB");
         ds.setInitialPoolSize(4);
         ds.setMaxPoolSize(8);
         return ds;
@@ -39,7 +41,7 @@ public class RootAppConfig {
         LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
         factory.setDataSource(dataSource());
         factory.setPackagesToScan(new String[] {
-                    "com.web.model"
+                    "com.web"
                 });
         factory.setHibernateProperties(additionalProperties());
         return factory;
@@ -60,5 +62,14 @@ public class RootAppConfig {
         properties.put("default_batch_fetch_size", 10);
         properties.put("hibernate.hbm2ddl.auto", "update");
         return properties;
+    }
+    
+    // 06_JdbcTemplate需要的bean 借我放><
+    @Bean
+    public JdbcTemplate jdbctemplate() {
+    	JdbcTemplate jdbcTemplate = new JdbcTemplate();
+    	jdbcTemplate.setDataSource(dataSource());
+    	return jdbcTemplate;
+
     }
 }

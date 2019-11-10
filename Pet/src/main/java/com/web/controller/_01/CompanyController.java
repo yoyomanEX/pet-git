@@ -25,13 +25,13 @@ public class CompanyController {
 		
 	}
 
-	@RequestMapping(value = "/")
+//	@RequestMapping(value = "/")
 	public String home(Model model) {
 		model.addAttribute("CompanyBean", new CompanyBean());
 		// 註冊廠商
-		//return "_01/companyinsert";
+		return "_01/companyinsert";
 		// 廠商登入
-		return "_01/companylogin";
+//		return "_01/companylogin";
 //		return null;
 	}
 
@@ -45,7 +45,7 @@ public class CompanyController {
 		System.out.println("password:" + password);
 		CompanyBean c1 = companyService.checkIDPassword(userId, password);
 		System.out.println(c1);
-
+		
 		if (c1 != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("CompanyLoginOK", c1);
@@ -62,7 +62,8 @@ public class CompanyController {
 		CompanyBean loginToken = (CompanyBean) session.getAttribute("CompanyLoginOK");
 		String n1 = loginToken.getCompany_name();
 		System.out.println("n1:" + n1);
-		return "/_07/companyManagement";
+		return "_01/ttt";
+
 	}
 
 	// 登入失敗

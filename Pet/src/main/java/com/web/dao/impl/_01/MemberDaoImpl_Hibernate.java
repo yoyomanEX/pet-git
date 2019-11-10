@@ -97,4 +97,21 @@ public class MemberDaoImpl_Hibernate implements MemberDao {
 	public void setConnection(Connection conn) {
 		throw new RuntimeException("不支援setConnection(Connection con)方法...");
 	}
+
+	@Override
+	public int deleteMember(MemberBean mb) {
+		int n = 0;
+		getSession().delete(mb);
+		n++;
+		return n;
+	}
+
+	@Override
+	public int updataMember(MemberBean mb) {
+		int n = 0;
+		getSession().update(mb);
+		n++;
+		return n;
+	}
+
 }

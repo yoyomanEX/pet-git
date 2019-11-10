@@ -32,6 +32,7 @@ public class CompanyDaoImpl_Hibernate implements CompanyDao {
 	@Override
 	public int saveCompany(CompanyBean cb) {
 		int n = 0;
+		cb.setStatus(0);
 		getSession().save(cb);
 		n++;
 		return n;
@@ -41,7 +42,7 @@ public class CompanyDaoImpl_Hibernate implements CompanyDao {
 	public CompanyBean checkIDPassword(String userId, String password) {
 		System.out.println("1");
 		CompanyBean cb = null;
-		String hql = "FROM CompanyBean c WHERE c.company_id = :cid and c.company_password = :pswd";
+		String hql = "FROM CompanyBean c WHERE c.company_id = :cid and c.company_password = :pswd and status=1";
 		System.out.println("hql:"+hql);
 		try {
 			System.out.println("2");
@@ -88,6 +89,23 @@ public class CompanyDaoImpl_Hibernate implements CompanyDao {
 	public void setConnection(Connection con) {
 		throw new RuntimeException("不支援setConnection(Connection con)方法...");
 		
+	}
+
+	@Override
+	public int deleteCompany(CompanyBean cb) {
+		int n = 0;
+		getSession().delete(cb);
+		n++;
+		return n;
+	}
+
+	@Override
+	public int updataCompany(CompanyBean cb) {
+		int n = 0;
+		getSession().update(cb);
+		n++;
+		return n;
+
 	}
 
 }

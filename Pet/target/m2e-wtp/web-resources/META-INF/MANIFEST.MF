@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 Manifest-Version: 1.0
 Built-By: User
 Build-Jdk: 11.0.4-ojdkbuild
 Created-By: Maven Integration for Eclipse
 
+=======
+Manifest-Version: 1.0
+Built-By: User
+Build-Jdk: 1.8.0_222
+Created-By: Maven Integration for Eclipse
+
+>>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
