@@ -221,7 +221,9 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 	public List<OrderBean> confirmOrderDetail(OrderBean orderBean, String[] product_ids, String[] product_names, String[] amounts, String[] prices) throws SQLException {
 		String setOrderDeatil = "Insert into member_order_detail(product_id,product_name," + "amount,total,order_id) values(?,?,?,?,?) ";
 		for (int i = 0; i < product_ids.length; i++) {
-			jdbcTemplate.update(setOrderDeatil, product_ids[i], product_names[i], amounts[i], prices[i], orderBean.getOrder_id());
+			//價格*數量正確金額
+			int p = Integer.parseInt(prices[i]) * Integer.parseInt(amounts[i]);
+			jdbcTemplate.update(setOrderDeatil, product_ids[i], product_names[i], amounts[i],p, orderBean.getOrder_id());
 		}
 		return null;
 	}
@@ -311,6 +313,7 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 			OrderDetailBean o = new OrderDetailBean();
 			orderDetail.add(o);
 			o.setOrder_id(String.valueOf(row.get("order_id")));
+			o.setProduct_id((int)row.get("product_id"));
 			o.setProduct_name((String) row.get("product_name"));
 			o.setAmount((int) row.get("amount"));
 			o.setTotal((int) row.get("total"));

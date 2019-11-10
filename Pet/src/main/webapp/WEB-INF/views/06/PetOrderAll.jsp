@@ -47,6 +47,11 @@
 	background-color: #F2FFF2;
 	text-align: center;
 }
+
+.productImg {
+	width: 90px;
+	height: 50px
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
 	
@@ -141,40 +146,50 @@
 	<div id="sidebar_left"></div>
 	<div id="sidebar_right"></div>
 	<div id="content">
-		<h2>會員訂單資料</h2>
+		<h2>會員訂單明細</h2>
 		HI!${userName},您好! 您的訂單如下:
 		<br>
-		<table style="text-align: center; width: 800px; font-family: Microsoft JhengHei; font-size: 18px; font-weight: bold;" border=1">
+		<table style="text-align: center; width: 850px; font-family: Microsoft JhengHei; font-size: 18px; font-weight: bold;" border=1">
+			<c:forEach var='list' items='${orderList}'>
 			<tr>
 				<th>訂單日期</th>
 				<th>訂單編號</th>
 				<th>總額</th>
 				<th>出貨狀態</th>
 				<th>訂單明細</th>
-				<c:forEach var='list' items='${orderList}'>
+				
 					<tr>
 						<td>${list.order_date}</td>
 						<td>${list.order_id}</td>
 						<td>${list.total}$</td>
 						<td>尚未出貨</td>
 						<td>
-							<input type="button" class="showDetail" orderid="${list.order_id}" value="check meʕ•ᴥ•ʔ " />
+							<input type="button" class="showDetail" orderid="${list.order_id}" value="checkʕ•ᴥ•ʔ " />
 						</td>
 						<c:forEach var='detailList' items='${orderListDetail}'>
 							<c:if test='${list.order_id == detailList.order_id}'>
 								<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
-									<td>產品名稱
-									<td>數量
-									<td>合計
-									<td>
-									<td>
+									<td>商品圖片</td>
+									<td>商品名稱</td>
+									<td>數量</td>
+									<td>合計金額</td>
+									<td>是否免運</td>
 								</tr>
 								<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
+									<td>
+										<img alt="ʕ•ᴥ•ʔ" class='productImg' src="${pageContext.request.contextPath}/06/downloadFile/${detailList.product_id}.jpg">
+									</td>
 									<td>${detailList.product_name}</td>
 									<td>${detailList.amount}</td>
 									<td>${detailList.total}$</td>
-									<td>
-									<td>
+									<c:choose>
+										<c:when test="${list.total < 299}">
+											<td>N</td>
+										</c:when>
+										<c:otherwise>
+											<td>Y</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 							</c:if>
 						</c:forEach>

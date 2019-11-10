@@ -30,8 +30,6 @@ import com.web.model._06.PetProductListBean;
 import com.web.service.impl._06.PetProductListDao;
 import com.web.service.impl._06.Pet_UserDao;
 
-
-
 //@Controller 表示該類別是一個控制器
 @Controller
 @RequestMapping("/06")
@@ -47,6 +45,7 @@ public class ProductInfoController {
 	@RequestMapping("/")
 	public String PetLogin() {
 		return "06/index";
+
 	}
 
 	@RequestMapping("/ProductInfoCat")
@@ -202,6 +201,7 @@ public class ProductInfoController {
 	public String petOrderDetail(HttpServletRequest request, Model model, HttpSession session) throws Exception {
 		petProductDao.createConn();
 		PetBean petBean = (PetBean) session.getAttribute("emp");
+		List<PetProductListBean> shoppingCar = (List<PetProductListBean>) session.getAttribute("productsInCar");
 
 		// 接收傳回資料
 		String[] productIds = request.getParameterValues("productId");
@@ -230,6 +230,9 @@ public class ProductInfoController {
 
 		// 更新商品資料庫存
 		petProductDao.confirmbBuy(productIds, amounts);
+
+		// 移除購物車
+		shoppingCar.removeAll(shoppingCar);
 
 		String orderN = orderBean.getOrder_id();
 		model.addAttribute("orderNumber", orderN);

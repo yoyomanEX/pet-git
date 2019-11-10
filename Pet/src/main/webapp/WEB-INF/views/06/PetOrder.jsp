@@ -45,6 +45,8 @@
 				var minusTotal = minus * $(this).attr("price");
 				$(this).parent().next().next().children("span.totalVal").attr("value", minusTotal);
 				$(this).parent().next().next().children("span.totalVal").text(minusTotal);
+				$("#totalVal").attr("value", minusTotal);
+				console.log($("#totalVal").val());
 				totalPrice();
 				endPrice();
 			}
@@ -62,6 +64,8 @@
 				var addTotal = add * $(this).attr("price");
 				$(this).parent().next().next().children("span.totalVal").attr("value", addTotal);
 				$(this).parent().next().next().children("span.totalVal").text(addTotal);
+				$("#totalVal").attr("value", addTotal);
+				console.log($("#totalVal").val());
 				totalPrice();
 				endPrice();
 			}
@@ -75,14 +79,21 @@
 			})
 			$("#sum").text(newSum);
 		}
-		
+
 		function endPrice() {
 			var endSum = 0;
 			$(".totalVal").each(function() {
 				var endTotal = $(this).attr("value");
 				endSum += parseInt(endTotal);
-			})
+			});
+			if (endSum < 299) {
+				endSum += 60;
+				$("#freight").text("60");
+			} else {
+				$("#freight").text("0");
+			}
 			$("#endAmount").text(endSum);
+			$("#finalAmount").attr("value", parseInt(endSum));
 		}
 
 	})
@@ -215,9 +226,11 @@ fieldset {
 	</header>
 	<div id="sidebar_left">
 		<h3>pETʕ•ᴥ•ʔ 陪你購物</h3>
-		<p>唧唧復唧唧，木蘭當戶織。不聞機杼聲，惟聞女嘆息。 問女何所思，問女何所憶。女亦無所思，女亦無所憶。昨夜見軍帖，可汗大點兵，軍書十二卷，卷卷有爺名。阿爺無大兒，木蘭無長兄，願爲市鞍馬，從此替爺徵。 東市買駿馬，西市買鞍韉，南市買轡頭，北市買長鞭。旦辭爺孃去，暮宿黃河邊，不聞爺孃喚女聲，但聞黃河流水鳴濺濺。旦辭黃河去，暮至黑山頭，不聞爺孃喚女聲，但聞燕山胡騎鳴啾啾。
-			萬里赴戎機，關山度若飛。朔氣傳金柝，寒光照鐵衣。將軍百戰死，壯士十年歸。 歸來見天子，天子坐明堂。策勳十二轉，賞賜百千強。可汗問所欲，木蘭不用尚書郎，願馳千里足，送兒還故鄉。 爺孃聞女來，出郭相扶將；阿姊聞妹來，當戶理紅妝；小弟聞姊來，磨刀霍霍向豬羊。開我東閣門，坐我西閣牀，脫我戰時袍，著我舊時裳。當窗理雲鬢，對鏡貼花黃。出門看火伴，火伴皆驚忙：同行十二年，不知木蘭是女郎。（貼 通：帖；驚忙
-			一作：惶） 雄兔腳撲朔，雌兔眼迷離；雙兔傍地走，安能辨我是雄雌？</p>
+		<p >
+		<h2 style = "color: red">注意！！！！！</h2>
+		<img src="img/noImg.jpg" style="width: 220px; height: 220px">
+		<h4>感謝你的注意(๑´ڡ`๑)</h4>
+		</p>
 	</div>
 	<div id='content'>
 		<h2>購買商品清單</h2>
@@ -234,19 +247,18 @@ fieldset {
 						<c:forEach var="product" items="${products}">
 							<input type="hidden" name="productId" value="${product.product_id}">
 							<input type="hidden" name="productName" value="${product.product_name}">
-							<input type="hidden" name="amount" value="${product.amount}">
-							<input type="hidden" name="price" value="${product.price*product.amount}">
+							<input type="hidden" name="price" value="${product.price}">
 							<tr>
 								<td>
 									<img alt="ʕ•ᴥ•ʔ" class='productImg' src="${pageContext.request.contextPath}/06/downloadFile/${product.product_id}.jpg">
 								<td>${product.product_name}
 								<td>
 									<input type="button" name="minus" class='buttonMinus' value='-' price="${product.price}">
-									<input type="number" value="${product.amount}" readonly min="0" max="10" class="textNum" style="text-align: center">
+									<input type="number" name="amount" value="${product.amount}" readonly min="0" max="10" class="textNum" style="text-align: center">
 									<input type="button" name="add" class='buttonAdd' value='+' amount="${pro.amount}" price="${product.price}">
 								<td>${product.price}
 								<td>
-									<span class="totalVal" value="${product.price*product.amount}">${product.price*product.amount}</span>
+									<span class="totalVal" id="totalVal" value="${product.price*product.amount}">${product.price*product.amount}</span>
 									<!-- 設置sum累加 等於sum=sum+product.price*product.quantity -->
 									<c:set var="sum" value="${sum+product.price*product.amount}" />
 						</c:forEach>
@@ -257,7 +269,7 @@ fieldset {
 				元
 			</h2>
 			<c:choose>
-				<c:when test="${sum < 199}">
+				<c:when test="${sum < 299}">
 					<h2>
 						運費:
 						<c:set var="sum" value="${sum+60}"></c:set>
@@ -278,12 +290,12 @@ fieldset {
 			<h2>
 				金額合計:
 				<span id="endAmount">${sum}</span>
+				<input type="hidden" id="finalAmount" name="total" value="${sum}">
 				元
 			</h2>
 			<br>
 			<fieldset>
 				<legend>請填寫寄件資料</legend>
-				<input type="hidden" name="total" value="${sum}">
 				收件人地址：
 				<input type="text" name="address">
 				<br>
