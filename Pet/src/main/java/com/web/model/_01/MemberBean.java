@@ -4,21 +4,17 @@ import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.Timestamp;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import com.web.model._02.ArticleBean;
 
 @XmlRootElement(name="memberBean")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -46,8 +42,6 @@ public class MemberBean implements Serializable {
 	@XmlElement(name = "memberPet")
 	private int memberPet;
 	
-//	@OneToMany(mappedBy = "author")
-//	private Set<ArticleBean> article;  // B, O2M
 	
 	@Column(name = "member_Id")
 	public String getMember_Id() {
@@ -120,15 +114,6 @@ public class MemberBean implements Serializable {
 	public void setMemberPet(int memberPet) {
 		this.memberPet = memberPet;
 	}
-	
-//	public Set<ArticleBean> getArticle() {
-//		return article;
-//	}
-//	public void setArticle(Set<ArticleBean> article) {
-//		this.article = article;
-//	}
-	
-	
-	
+
 		
 }

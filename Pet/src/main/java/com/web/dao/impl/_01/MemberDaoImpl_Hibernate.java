@@ -45,7 +45,8 @@ public class MemberDaoImpl_Hibernate implements MemberDao {
 	@Override
 	public boolean idExists(String id) {
 		boolean exist = false;
-		String hql = "FROM MemberBean m WHERE m.memberId = :mid";
+
+		String hql = "FROM MemberBean m WHERE m.member_Id = :mid";
 		try {
 			MemberBean mb = (MemberBean) getSession().createQuery(hql).setParameter("mid", id).uniqueResult();
 			if (mb != null) {
@@ -97,4 +98,21 @@ public class MemberDaoImpl_Hibernate implements MemberDao {
 	public void setConnection(Connection conn) {
 		throw new RuntimeException("不支援setConnection(Connection con)方法...");
 	}
+
+	@Override
+	public int deleteMember(MemberBean mb) {
+		int n = 0;
+		getSession().delete(mb);
+		n++;
+		return n;
+	}
+
+	@Override
+	public int updataMember(MemberBean mb) {
+		int n = 0;
+		getSession().update(mb);
+		n++;
+		return n;
+	}
+
 }
