@@ -114,5 +114,6 @@ public class MemberBean implements Serializable {
 	public void setMemberPet(int memberPet) {
 		this.memberPet = memberPet;
 	}
+
 		
 }

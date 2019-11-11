@@ -9,7 +9,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -19,7 +18,32 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @EnableTransactionManagement
+//@PropertySource("classpath:db.properties")
 public class RootAppConfig {
+	
+//	Environment env;
+//	@Autowired
+//	public void setEnv(Environment env) {
+//		this.env = env;
+//	}
+//
+//	@Bean
+//	public DataSource dataSource() {
+//		ComboPooledDataSource ds = new ComboPooledDataSource();	
+//			ds.setUser(env.getProperty("spring.database.user"));
+//			ds.setPassword(env.getProperty("spring.database.password"));
+//			try {
+//				ds.setDriverClass(env.getProperty("spring.database.driverclass"));
+//			} catch (PropertyVetoException e) {
+//				e.printStackTrace();
+//			}
+//			ds.setJdbcUrl(env.getProperty("spring.database.url"));
+//			ds.setInitialPoolSize(4);
+//			ds.setMaxPoolSize(8);
+//			return ds;
+//	
+//	}
+	
 	@Bean
     public DataSource dataSource() {
         ComboPooledDataSource ds = new ComboPooledDataSource();

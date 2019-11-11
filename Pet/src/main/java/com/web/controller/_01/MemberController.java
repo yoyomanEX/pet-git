@@ -1,4 +1,6 @@
+
 package com.web.controller._01;
+
 
 import java.util.List;
 
@@ -150,6 +152,7 @@ public class MemberController {
 		mb.setMember_Id(id);
 		List<PetBean> list = petService.queryAllPet(mb);
 		return list;
+
 	}
 
 	//進入修改會員頁面
@@ -166,4 +169,5 @@ public class MemberController {
 
 		return "_01/ttt";
 	}
+
 }

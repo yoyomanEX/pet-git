@@ -26,6 +26,7 @@ $(document).ready(function(){
 </head>
 <body>
 <div style="width:300px;margin:10% auto;">
+
 <form:form modelAttribute="MemberBean" action='_01.loginMember'
 			method='POST'>
 		<table>

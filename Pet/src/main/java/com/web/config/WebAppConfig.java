@@ -20,7 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 
 @Configuration
@@ -98,6 +98,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 		return viewResolver;
 	}
 
+	
+	//加這行後，不用寫外掛套件
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
@@ -115,6 +117,25 @@ public class WebAppConfig implements WebMvcConfigurer {
 			resolver.setDefaultEncoding("UTF-8");
 			resolver.setMaxUploadSize(81920000);
 			return resolver;
+		}
+		
+		
+		@Bean
+		public MappingJackson2JsonView jsonView() {
+			 MappingJackson2JsonView view = new MappingJackson2JsonView();
+			    view.setPrettyPrint(true);
+			    return view;
+		}
+		
+		@Bean
+		public ViewResolver contentNeogViewResolver(ContentNegotiationManager manager) {
+			 ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
+			resolver.setContentNegotiationManager(manager);
+			ArrayList views = new ArrayList<>();
+			views.add(jsonView());
+			resolver.setDefaultViews(views);
+			return resolver;
+			
 		}
 	
 
