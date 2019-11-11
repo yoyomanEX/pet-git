@@ -20,8 +20,9 @@ public class AdminController {
 	public void setMemberService(AdminService adminService) {
 		this.adminService = adminService;
 	}
-	
-//	@RequestMapping(value = "/")
+
+	@RequestMapping(value = "/")
+
 	public String home(Model model) {
 		model.addAttribute("AdminBean", new AdminBean());
 		//註冊管理員
@@ -64,7 +65,10 @@ public class AdminController {
 	// 登入失敗
 	@RequestMapping(value = "adminloginErr")
 	public String adminloginErr() {
-		return "_01/login";
+
+		return "_01/adminlogin";
+
+
 	}
 
 	// 註冊管理員

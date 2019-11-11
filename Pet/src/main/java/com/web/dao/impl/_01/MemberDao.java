@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 import com.web.model._01.MemberBean;
 
+
 public interface MemberDao {
 	//新增會員
 	int saveMember(MemberBean mb);
@@ -19,5 +20,6 @@ public interface MemberDao {
 	MemberBean queryMember(String id);
 	
 	void setConnection(Connection con);
+
 
 }

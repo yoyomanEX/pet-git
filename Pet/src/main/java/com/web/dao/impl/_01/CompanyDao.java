@@ -5,6 +5,7 @@ import java.sql.Connection;
 import com.web.model._01.CompanyBean;
 
 public interface CompanyDao {
+
 	//新增廠商
 	int saveCompany(CompanyBean cb);
 	//刪除廠商
@@ -20,4 +21,5 @@ public interface CompanyDao {
 
 	void setConnection(Connection con);
 	
+
 }

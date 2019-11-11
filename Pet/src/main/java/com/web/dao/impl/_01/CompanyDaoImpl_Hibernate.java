@@ -31,7 +31,10 @@ public class CompanyDaoImpl_Hibernate implements CompanyDao {
 
 	@Override
 	public int saveCompany(CompanyBean cb) {
+
 		int n = 0;
+		cb.setStatus(0);
+
 		getSession().save(cb);
 		n++;
 		return n;
@@ -104,6 +107,7 @@ public class CompanyDaoImpl_Hibernate implements CompanyDao {
 		getSession().update(cb);
 		n++;
 		return n;
+
 	}
 
 }

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import com.web.model._01.AdminBean;
 
 public interface AdminDao {
+
 	//新增管理員
 	int saveAdmin(AdminBean ad);
 	//刪除管理員
@@ -19,5 +20,6 @@ public interface AdminDao {
 	AdminBean queryAdmin(String id);
 
 	void setConnection(Connection con);
+
 
 }

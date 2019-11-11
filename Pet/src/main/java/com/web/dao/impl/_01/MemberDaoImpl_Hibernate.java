@@ -113,4 +113,5 @@ public class MemberDaoImpl_Hibernate implements MemberDao {
 		n++;
 		return n;
 	}
+
 }

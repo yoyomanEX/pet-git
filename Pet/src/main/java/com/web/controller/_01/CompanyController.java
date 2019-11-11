@@ -25,7 +25,9 @@ public class CompanyController {
 		
 	}
 
-	@RequestMapping(value = "/")
+
+//	@RequestMapping(value = "/")
+
 	public String home(Model model) {
 		model.addAttribute("CompanyBean", new CompanyBean());
 		// 註冊廠商
@@ -63,6 +65,7 @@ public class CompanyController {
 		String n1 = loginToken.getCompany_name();
 		System.out.println("n1:" + n1);
 		return "_01/ttt";
+
 	}
 
 	// 登入失敗

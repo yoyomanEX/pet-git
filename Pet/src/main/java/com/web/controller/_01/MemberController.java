@@ -1,5 +1,9 @@
 package com.web.controller._01;
 
+
+import java.util.List;
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -136,6 +140,19 @@ public class MemberController {
 		String id = loginToken.getMember_Id();
 		pb.setMember_id(id);
 		petService.updataPet(pb);
-		return "";
+
+		return "_01/ttt";
+	}
+	
+	//查詢全部寵物
+	public List<PetBean> queryAllPet(HttpServletRequest request,MemberBean mb){
+		HttpSession session = request.getSession();
+		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+		String id = loginToken.getMember_Id();
+		mb.setMember_Id(id);
+		List<PetBean> list = petService.queryAllPet(mb);
+		return list;
+
+
 	}
 }
