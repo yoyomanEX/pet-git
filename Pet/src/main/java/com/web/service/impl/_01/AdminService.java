@@ -15,5 +15,9 @@ public interface AdminService {
 
 	AdminBean queryAdmin(String id);
 
+	
+	int updataAdmin(AdminBean ad);
+
+
 	void setConnection(Connection con);
 }

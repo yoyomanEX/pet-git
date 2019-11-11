@@ -3,6 +3,7 @@
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Clob;
+
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -114,5 +115,6 @@ public class MemberBean implements Serializable {
 	public void setMemberPet(int memberPet) {
 		this.memberPet = memberPet;
 	}
+
 		
 }

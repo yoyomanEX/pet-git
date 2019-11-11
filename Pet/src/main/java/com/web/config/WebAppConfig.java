@@ -21,6 +21,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
+
 
 @Configuration
 @EnableWebMvc
@@ -97,7 +99,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 		return viewResolver;
 	}
 
-//
+	
+	//加這行後，不用寫外掛套件
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
@@ -107,36 +110,57 @@ public class WebAppConfig implements WebMvcConfigurer {
 //	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
 //		converters.add(new MemberConverter());
 //	}
-	// 07 圖片上傳需要的
-	@Bean
-	public CommonsMultipartResolver multipartResolver() {
-		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-		resolver.setDefaultEncoding("UTF-8");
-		resolver.setMaxUploadSize(81920000);
-		return resolver;
-	}
+	
+	//07 圖片上傳需要的
+		@Bean
+		public CommonsMultipartResolver multipartResolver() {
+			CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+			resolver.setDefaultEncoding("UTF-8");
+			resolver.setMaxUploadSize(81920000);
+			return resolver;
+		}
+		
+		
+		@Bean
+		public MappingJackson2JsonView jsonView() {
+			 MappingJackson2JsonView view = new MappingJackson2JsonView();
+			    view.setPrettyPrint(true);
+			    return view;
+		}
+		
+		@Bean
+		public ViewResolver contentNeogViewResolver(ContentNegotiationManager manager) {
+			 ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
+			resolver.setContentNegotiationManager(manager);
+			ArrayList views = new ArrayList<>();
+			views.add(jsonView());
+			resolver.setDefaultViews(views);
+			return resolver;
+			
+		}
 
-	  @Override
-	  public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	   registry.addResourceHandler("/css/**")
-	                 .addResourceLocations("/WEB-INF/resources/css/");
-	   registry.addResourceHandler("/fonts/**")
-	                 .addResourceLocations("/WEB-INF/resources/fonts/");
-	   registry.addResourceHandler("/img/**")
-	     .addResourceLocations("/WEB-INF/resources/img/");
-	   registry.addResourceHandler("/js/**")
-	           .addResourceLocations("/WEB-INF/resources/js/");
-	   registry.addResourceHandler("/**")
-	                 .addResourceLocations("/WEB-INF/resources/"); 
-	   registry.addResourceHandler("/sass/**")
-	     .addResourceLocations("/WEB-INF/resources/sass/");
-	   registry.addResourceHandler("/scss/**")
-	           .addResourceLocations("/WEB-INF/resources/scss/");
-	   registry.addResourceHandler("/vendor/**")
-	           .addResourceLocations("/WEB-INF/resources/vendor/");
-	   registry.addResourceHandler("/.sass-cache/**")
-	         .addResourceLocations("/WEB-INF/resources/.sass-cache/");
-	     
-	  }
-
+		
+		@Override
+		public void addResourceHandlers(ResourceHandlerRegistry registry) {
+			registry.addResourceHandler("/css/**")
+	                .addResourceLocations("/WEB-INF/resources/css/");
+			registry.addResourceHandler("/fonts/**")
+	                .addResourceLocations("/WEB-INF/resources/fonts/");
+			registry.addResourceHandler("/img/**")
+					.addResourceLocations("/WEB-INF/resources/img/");
+			registry.addResourceHandler("/js/**")
+			        .addResourceLocations("/WEB-INF/resources/js/");
+			registry.addResourceHandler("/**")
+	                .addResourceLocations("/WEB-INF/resources/");	
+			registry.addResourceHandler("/sass/**")
+					.addResourceLocations("/WEB-INF/resources/sass/");
+			registry.addResourceHandler("/scss/**")
+			        .addResourceLocations("/WEB-INF/resources/scss/");
+			registry.addResourceHandler("/vendor/**")
+			        .addResourceLocations("/WEB-INF/resources/vendor/");
+			registry.addResourceHandler("/.sass-cache/**")
+	        .addResourceLocations("/WEB-INF/resources/.sass-cache/");
+	    
+		}
+	
 }

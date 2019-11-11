@@ -1,4 +1,7 @@
+
+
 package com.web.controller._01;
+
 
 import java.util.List;
 
@@ -37,14 +40,14 @@ public class MemberController {
 
 	}
 
-//	@RequestMapping(value = "/")
+	@RequestMapping(value = "/")
 	public String home(Model model) {
-//		model.addAttribute("MemberBean", new MemberBean());
+		model.addAttribute("MemberBean", new MemberBean());
 		// 註冊會員
 //		return "_01/memberinsert";
 		// 會員登入
 		return "_01/login";
-//	return null;
+//		return null;
 	}
 
 	// 會員登入
@@ -74,7 +77,7 @@ public class MemberController {
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String n1 = loginToken.getName();
 		System.out.println("n1:" + n1);
-		return "_01/ttt";
+		return "redirect:/article";
 	}
 
 	// 登入失敗
@@ -116,7 +119,7 @@ public class MemberController {
 		String id = loginToken.getMember_Id();
 		pb.setMember_id(id);
 		petService.savePet(pb);
-		return "_01/ttt";
+		return "";
 	}
 
 	// 刪除寵物
@@ -127,7 +130,7 @@ public class MemberController {
 		String id = loginToken.getMember_Id();
 		pb.setMember_id(id);
 		petService.deletePet(pb);
-		return "_01/ttt";
+		return "";
 	}
 
 	// 修改寵物
@@ -138,11 +141,12 @@ public class MemberController {
 		String id = loginToken.getMember_Id();
 		pb.setMember_id(id);
 		petService.updataPet(pb);
+
 		return "_01/ttt";
 	}
-	
-	//查詢全部寵物
-	public List<PetBean> queryAllPet(HttpServletRequest request,MemberBean mb){
+
+	// 查詢全部寵物
+	public List<PetBean> queryAllPet(HttpServletRequest request, MemberBean mb) {
 		HttpSession session = request.getSession();
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String id = loginToken.getMember_Id();
@@ -151,4 +155,21 @@ public class MemberController {
 		return list;
 
 	}
+
+	//進入修改會員頁面
+	@RequestMapping(value = "/_01.updataMemberPage")
+	public String updataMemberPage() {
+		
+		return "_01/login";
+	}
+
+	// 修改會員
+	@RequestMapping(value = "/_01.updataMember", method = RequestMethod.POST)
+	public String updataMember(MemberBean mb) {
+		memberService.updataMember(mb);
+
+		return "_01/ttt";
+	}
+
+
 }

@@ -31,8 +31,11 @@ public class CompanyDaoImpl_Hibernate implements CompanyDao {
 
 	@Override
 	public int saveCompany(CompanyBean cb) {
+
+
 		int n = 0;
 		cb.setStatus(0);
+
 		getSession().save(cb);
 		n++;
 		return n;
@@ -42,7 +45,8 @@ public class CompanyDaoImpl_Hibernate implements CompanyDao {
 	public CompanyBean checkIDPassword(String userId, String password) {
 		System.out.println("1");
 		CompanyBean cb = null;
-		String hql = "FROM CompanyBean c WHERE c.company_id = :cid and c.company_password = :pswd and status=1";
+		String hql = "FROM CompanyBean c WHERE c.company_id = :cid and c.company_password = :pswd";
+
 		System.out.println("hql:"+hql);
 		try {
 			System.out.println("2");

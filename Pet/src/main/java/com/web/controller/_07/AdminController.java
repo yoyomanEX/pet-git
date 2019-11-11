@@ -13,16 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.web.model._01.AdminBean;
-import com.web.service.impl._07.AdminService07;
+
+import com.web.service.impl._07.AdminService;
 
 
 //站方後台管理部分
 @Controller(value = "AdminController")
 public class AdminController {
-	AdminService07 service;
+	AdminService service;
 
 	@Autowired
-	public void setService(AdminService07 service) {
+	public void setService(AdminService service) {
+
 		this.service = service;
 	}
 

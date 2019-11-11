@@ -18,7 +18,7 @@ import com.web.model._01.PetActivityBean;
 import com.web.service.impl._01.ActivityPeopleService;
 import com.web.service.impl._01.PetActivityService;
 
-@Controller
+//@Controller
 public class ActivityController {
 	PetActivityService petActivityService;
 	
@@ -36,26 +36,21 @@ public class ActivityController {
 	
 	//新增活動
 	@RequestMapping(value = "/_01.savePetActivity", method = RequestMethod.POST)
-	public String savePetActivity(HttpServletRequest request,PetActivityBean pab) {
-		HttpSession session = request.getSession();
-		AdminBean loginToken = (AdminBean) session.getAttribute("AdminLoginOK");
-		String id = loginToken.getAdmin_Id();
-		pab.setAdmin_Id(id);
+	public String savePetActivity(PetActivityBean pab) {
 		petActivityService.savePetActivity(pab);
-		System.out.println("987654321");
 		return "";
 	}
 	//刪除活動
 	@RequestMapping(value = "/_01.deletePetActivity", method = RequestMethod.POST)
 	public String deletePetActivity(PetActivityBean pab) {
 		petActivityService.deletePetActivity(pab);
-		return "_01/ttt";
+		return "";
 	}
 	//修改活動
 	@RequestMapping(value = "/_01.updataActivity", method = RequestMethod.POST)
 	public String updataActivity(PetActivityBean pab) {
 		petActivityService.updataActivity(pab);
-		return "_01/ttt";
+		return "";
 	}
 	//查詢管理員新增的活動
 	@RequestMapping(value="/_01.queryAdminPetActivity",method = RequestMethod.GET
@@ -89,13 +84,14 @@ public class ActivityController {
 	@RequestMapping(value = "/_01.saveActivityPeople", method = RequestMethod.POST)
 	public String saveActivityPeople(ActivityPeopleBean apb) {
 		activityPeopleService.saveActivityPeople(apb);
-		return "_01/ttt";
+		return "";
 	}
 	//取消已參加的活動
 	@RequestMapping(value = "/_01.deleteActivityPeople", method = RequestMethod.POST)
 	public String deleteActivityPeople(ActivityPeopleBean apb) {
 		activityPeopleService.deleteActivityPeople(apb);
-		return "_01/ttt";
+		return "";
+
 	}
 	
 	//查詢參加活動的會員

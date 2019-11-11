@@ -19,18 +19,43 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @EnableTransactionManagement
+//@PropertySource("classpath:db.properties")
 public class RootAppConfig {
+	
+//	Environment env;
+//	@Autowired
+//	public void setEnv(Environment env) {
+//		this.env = env;
+//	}
+//
+//	@Bean
+//	public DataSource dataSource() {
+//		ComboPooledDataSource ds = new ComboPooledDataSource();	
+//			ds.setUser(env.getProperty("spring.database.user"));
+//			ds.setPassword(env.getProperty("spring.database.password"));
+//			try {
+//				ds.setDriverClass(env.getProperty("spring.database.driverclass"));
+//			} catch (PropertyVetoException e) {
+//				e.printStackTrace();
+//			}
+//			ds.setJdbcUrl(env.getProperty("spring.database.url"));
+//			ds.setInitialPoolSize(4);
+//			ds.setMaxPoolSize(8);
+//			return ds;
+//	
+//	}
+	
 	@Bean
     public DataSource dataSource() {
         ComboPooledDataSource ds = new ComboPooledDataSource();
-        ds.setUser("sa");
-        ds.setPassword("P@ssw0rd");
+        ds.setUser("sasa");
+        ds.setPassword("word");
         try {
             ds.setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
-        ds.setJdbcUrl("jdbc:sqlserver://MSI:1433;databaseName=PetDB");
+        ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=PetDB");
         ds.setInitialPoolSize(4);
         ds.setMaxPoolSize(8);
         return ds;

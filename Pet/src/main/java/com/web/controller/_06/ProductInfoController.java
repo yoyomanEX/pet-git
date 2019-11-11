@@ -42,7 +42,7 @@ public class ProductInfoController {
 	@Autowired
 	private PetProductListDao petProductDao;
 
-	@RequestMapping("/")
+//	@RequestMapping("/")
 	public String PetLogin() {
 		return "06/index";
 
@@ -76,7 +76,8 @@ public class ProductInfoController {
 		return "06/PetProductSale";
 	}
 
-	@RequestMapping("/login")
+//	@RequestMapping("/login")
+
 	public String Petlogin() {
 		return "06/PetLogin";
 	}
