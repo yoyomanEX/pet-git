@@ -1,8 +1,8 @@
+
 package com.web.controller._01;
 
 
 import java.util.List;
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -39,7 +39,7 @@ public class MemberController {
 
 	}
 
-//	@RequestMapping(value = "/")
+	@RequestMapping(value = "/")
 	public String home(Model model) {
 		model.addAttribute("MemberBean", new MemberBean());
 		// 註冊會員
@@ -143,9 +143,9 @@ public class MemberController {
 
 		return "_01/ttt";
 	}
-	
-	//查詢全部寵物
-	public List<PetBean> queryAllPet(HttpServletRequest request,MemberBean mb){
+
+	// 查詢全部寵物
+	public List<PetBean> queryAllPet(HttpServletRequest request, MemberBean mb) {
 		HttpSession session = request.getSession();
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String id = loginToken.getMember_Id();
@@ -153,6 +153,21 @@ public class MemberController {
 		List<PetBean> list = petService.queryAllPet(mb);
 		return list;
 
-
 	}
+
+	//進入修改會員頁面
+	@RequestMapping(value = "/_01.updataMemberPage")
+	public String updataMemberPage() {
+		
+		return "_01/login";
+	}
+
+	// 修改會員
+	@RequestMapping(value = "/_01.updataMember", method = RequestMethod.POST)
+	public String updataMember(MemberBean mb) {
+		memberService.updataMember(mb);
+
+		return "_01/ttt";
+	}
+
 }

@@ -14,6 +14,8 @@ public interface MemberService {
 	boolean idExists(String id);
 
 	MemberBean queryMember(String id);
+	
+	int updataMember(MemberBean mb);
 
 	void setConnection(Connection con);
 }

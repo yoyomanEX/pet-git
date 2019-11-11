@@ -44,6 +44,12 @@ public class MemberServiceImpl implements MemberService {
 	public void setConnection(Connection con) {
 		
 	}
+
+	@Override
+	public int updataMember(MemberBean mb) {
+		// TODO Auto-generated method stub
+		return memberDao.updataMember(mb);
+	}
 	
 
 }

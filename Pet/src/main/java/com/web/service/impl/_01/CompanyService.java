@@ -12,6 +12,8 @@ public interface CompanyService {
 	boolean idExists(String id);
 
 	CompanyBean queryCompany(String id);
+	
+	int updataCompany(CompanyBean cb);
 
 	void setConnection(Connection con);
 }
