@@ -21,7 +21,7 @@ public class AdminController {
 		this.adminService = adminService;
 	}
 
-	@RequestMapping(value = "/")
+//	@RequestMapping(value = "/")
 
 	public String home(Model model) {
 		model.addAttribute("AdminBean", new AdminBean());

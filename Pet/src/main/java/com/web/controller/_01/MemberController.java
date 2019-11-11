@@ -41,12 +41,12 @@ public class MemberController {
 
 //	@RequestMapping(value = "/")
 	public String home(Model model) {
-//		model.addAttribute("MemberBean", new MemberBean());
+		model.addAttribute("MemberBean", new MemberBean());
 		// 註冊會員
 //		return "_01/memberinsert";
 		// 會員登入
-//		return "_01/login";
-		return null;
+		return "_01/login";
+//		return null;
 	}
 
 	// 會員登入
@@ -76,7 +76,7 @@ public class MemberController {
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String n1 = loginToken.getName();
 		System.out.println("n1:" + n1);
-		return "_01/ttt";
+		return "redirect:/article";
 	}
 
 	// 登入失敗

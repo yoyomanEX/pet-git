@@ -122,10 +122,10 @@ function myFunction() {
                                
                                  <c:choose>
                                    <c:when test="${empty LoginOK}">
-                                   <button style="padding:3px" class="btn btn-primary" onclick="myFunction()">檢舉</button>
+                                   <button style="font-size:16px;padding:6px" class="btn btn-danger" onclick="myFunction()">檢舉</button>
                                    </c:when>
                                    <c:when test="${!empty LoginOK}">
-                                   <button style="padding:3px" class="btn btn-primary" onclick="document.getElementById('id01').style.display='block'" >檢舉</button>
+                                   <button style="font-size:16px;padding:6px" class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" >檢舉</button>
                                    </c:when>
                                  </c:choose>
                                  
@@ -136,10 +136,10 @@ function myFunction() {
                                  
                                  <c:choose>
                                  <c:when test="${empty LoginOK}">
-                                 <button id="like" name="like" value="like" style="padding:8px" class="btn btn-primary fa fa-thumbs-up" aria-hidden="true" type="submit" onclick="myFunction()">&nbsp&nbsp${art.likeCount}</button>
+                                 <button id="like" name="like" value="like" style="font-size:16px;padding:10px" class="btn btn-danger fa fa-thumbs-up" aria-hidden="true" type="submit" onclick="myFunction()">&nbsp&nbsp${art.likeCount}</button>
                                  </c:when>
                                  <c:otherwise>
-                                 <button id="like" name="like" value="like" style="padding:8px" class="btn btn-primary fa fa-thumbs-up" aria-hidden="true" type="submit">&nbsp&nbsp${art.likeCount}</button>
+                                 <button id="like" name="like" value="like" style="font-size:16px;padding:10px" class="btn btn-danger fa fa-thumbs-up" aria-hidden="true" type="submit">&nbsp&nbsp${art.likeCount}</button>
                                  </c:otherwise>
                                  </c:choose>
                                  </form>

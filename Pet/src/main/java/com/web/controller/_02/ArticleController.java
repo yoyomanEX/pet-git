@@ -54,7 +54,13 @@ public class ArticleController {
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}
+	
+	@RequestMapping("/")
+	public String petIndex() {
+		return "index";
 
+	}
+	
 	// 管理者後台，顯示所有會員的發文@RequestMapping("/adminarticle")
 
 //	@RequestMapping("/")   

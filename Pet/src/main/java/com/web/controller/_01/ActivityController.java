@@ -18,7 +18,7 @@ import com.web.model._01.PetActivityBean;
 import com.web.service.impl._01.ActivityPeopleService;
 import com.web.service.impl._01.PetActivityService;
 
-@Controller
+//@Controller
 public class ActivityController {
 	PetActivityService petActivityService;
 	
