@@ -14,6 +14,8 @@ public interface AdminService {
 	boolean idExists(String id);
 
 	AdminBean queryAdmin(String id);
+	
+	int updataAdmin(AdminBean ad);
 
 	void setConnection(Connection con);
 }

@@ -21,13 +21,12 @@ public class AdminController {
 		this.adminService = adminService;
 	}
 
-	@RequestMapping(value = "/")
-
+//	@RequestMapping(value = "/")
 	public String home(Model model) {
 		model.addAttribute("AdminBean", new AdminBean());
-		//註冊管理員
+		// 註冊管理員
 //		return "_01/admininsert";
-		//管理員登入
+		// 管理員登入
 		return "_01/adminlogin";
 //		return null;
 	}
@@ -68,7 +67,6 @@ public class AdminController {
 
 		return "_01/adminlogin";
 
-
 	}
 
 	// 註冊管理員
@@ -94,5 +92,20 @@ public class AdminController {
 	@RequestMapping(value = "adminErr")
 	public String adminErr() {
 		return "_01/admininsert";
+	}
+
+	// 進入修改管理員頁面
+	@RequestMapping(value = "/_01.updataAdminPage")
+	public String updataAdminPage() {
+
+		return "_01/login";
+	}
+
+	// 修改管理員
+	@RequestMapping(value = "/_01.updataAdmin", method = RequestMethod.POST)
+	public String updataAdmin(AdminBean ab) {
+		adminService.updataAdmin(ab);
+
+		return "_01/ttt";
 	}
 }

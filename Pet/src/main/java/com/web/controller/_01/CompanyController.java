@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.web.model._01.AdminBean;
 import com.web.model._01.CompanyBean;
 import com.web.service.impl._01.CompanyService;
 
@@ -20,14 +21,12 @@ public class CompanyController {
 	public void setCompanyService(CompanyService companyService) {
 		this.companyService = companyService;
 	}
-	
+
 	public CompanyController() {
-		
+
 	}
 
-
 //	@RequestMapping(value = "/")
-
 	public String home(Model model) {
 		model.addAttribute("CompanyBean", new CompanyBean());
 		// 註冊廠商
@@ -97,6 +96,21 @@ public class CompanyController {
 	@RequestMapping(value = "companyErr")
 	public String companyErr() {
 		return "_01/companyinsert";
+	}
+
+	// 進入修改廠商頁面
+	@RequestMapping(value = "/_01.updataCompanyPage")
+	public String updataCompanyPage() {
+
+		return "_01/login";
+	}
+
+	// 修改廠商
+	@RequestMapping(value = "/_01.updataCompany", method = RequestMethod.POST)
+	public String updataCompany(CompanyBean cb) {
+		companyService.updataCompany(cb);
+
+		return "_01/ttt";
 	}
 
 }
