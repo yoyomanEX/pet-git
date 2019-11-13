@@ -40,9 +40,9 @@ public class FriendController {
 	public FriendController() {
 	}
 	
-	@RequestMapping("/404")
+	@RequestMapping("/index")
 	public String test() {
-		return "_03/404";
+		return "index";
 	}
 
 	@RequestMapping("/friendlist")

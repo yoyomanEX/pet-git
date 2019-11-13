@@ -26,7 +26,7 @@ public class CompanyController {
 
 	}
 
-	@RequestMapping(value = "/")
+//	@RequestMapping(value = "/")
 	public String home(Model model) {
 		model.addAttribute("CompanyBean", new CompanyBean());
 		// 註冊廠商

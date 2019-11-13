@@ -83,7 +83,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.html"> <!--         <div class="sidebar-brand-icon rotate-n-15"> -->
+				href="index"> <!--         <div class="sidebar-brand-icon rotate-n-15"> -->
 				<!--           <i class="fas fa-laugh-wink"></i> --> <!--         </div> -->
 				<div class="sidebar-brand-text mx-3">pET ʕ•ᴥ•ʔ 陪你</div>
 			</a>
@@ -150,6 +150,10 @@
 							PET聊天室</a>
 					</div>
 				</div></li>
+				
+						<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"> <i
+					class="fas fa-paw"></i> <span>會員訂單</span></a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
