@@ -1,5 +1,4 @@
 
-
 package com.web.controller._01;
 
 
@@ -40,14 +39,15 @@ public class MemberController {
 
 	}
 
-//	@RequestMapping(value = "/")
+	@RequestMapping(value = "/")
 	public String home(Model model) {
 		model.addAttribute("MemberBean", new MemberBean());
 		// 註冊會員
 //		return "_01/memberinsert";
 		// 會員登入
-		return "_01/memberlogin";
+//		return "_01/memberlogin";
 //		return null;
+		return "index";
 	}
 	
 	//會員登入頁面
@@ -85,8 +85,7 @@ public class MemberController {
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String n1 = loginToken.getName();
 		System.out.println("n1:" + n1);
-//		return "redirect:/article";
-		return "redirect:/_01.updataMemberPage";
+		return "index";
 	}
 
 	// 登入失敗
@@ -189,6 +188,5 @@ public class MemberController {
 
 		return "_01/ttt";
 	}
-
 
 }

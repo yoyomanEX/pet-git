@@ -46,6 +46,7 @@ public class MemberDaoImpl_Hibernate implements MemberDao {
 	public boolean idExists(String id) {
 		boolean exist = false;
 
+
 		String hql = "FROM MemberBean m WHERE m.member_Id = :mid";
 		try {
 			MemberBean mb = (MemberBean) getSession().createQuery(hql).setParameter("mid", id).uniqueResult();
@@ -114,5 +115,6 @@ public class MemberDaoImpl_Hibernate implements MemberDao {
 		n++;
 		return n;
 	}
+
 
 }

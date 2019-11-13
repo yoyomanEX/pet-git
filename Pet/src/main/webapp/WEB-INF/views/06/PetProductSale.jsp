@@ -11,19 +11,19 @@
 <title>leopet || Home</title>
 <link rel="icon" href="img/favicon.png">
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <!-- animate CSS -->
-<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
 <!-- owl carousel CSS -->
-<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css">
 <!-- themify CSS -->
-<link rel="stylesheet" href="css/themify-icons.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/themify-icons.css">
 <!-- flaticon CSS -->
-<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/flaticon.css">
 <!-- font awesome CSS -->
-<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css">
 <!-- style CSS -->
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
 	
 </script>
