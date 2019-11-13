@@ -40,7 +40,7 @@ public class MemberController {
 
 	}
 
-	@RequestMapping(value = "/")
+//	@RequestMapping(value = "/")
 	public String home(Model model) {
 		model.addAttribute("MemberBean", new MemberBean());
 		// 註冊會員

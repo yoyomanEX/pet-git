@@ -26,13 +26,13 @@ public class CompanyController {
 
 	}
 
-//	@RequestMapping(value = "/")
+	@RequestMapping(value = "/")
 	public String home(Model model) {
 		model.addAttribute("CompanyBean", new CompanyBean());
 		// 註冊廠商
-		return "_01/companyinsert";
+//		return "_01/companyinsert";
 		// 廠商登入
-//		return "_01/companylogin";
+		return "_01/companylogin";
 //		return null;
 	}
 
@@ -63,7 +63,7 @@ public class CompanyController {
 		CompanyBean loginToken = (CompanyBean) session.getAttribute("CompanyLoginOK");
 		String n1 = loginToken.getCompany_name();
 		System.out.println("n1:" + n1);
-		return "_01/ttt";
+		return "_07/companyManagement";
 
 	}
 

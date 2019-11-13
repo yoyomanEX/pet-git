@@ -23,7 +23,7 @@ public class MemberOrderDetailServiceImpl implements MemberOrderDetailService {
 	}
 	@Override
 	@Transactional
-	public ArrayList<MemberOrderDetailBean> queryByOrderId(MemberOrderDetailBean p1) {
-		return eDao.queryByOrderId(p1);
+	public void queryByOrderId(MemberOrderDetailBean p1) {
+		 eDao.queryByOrderId(p1);
 	}
 }

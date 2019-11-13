@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>PET陪你廠商後台管理</title>
+<title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
 
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -92,37 +92,36 @@
     			type:"post",
     			success:function (data){
     				alert(data);
-     				showEmp(data);
+     				unprocessedOrder(data);
     			}
     		});
 		});
     });
-   function showEmp(data) {
+   function unprocessedOrder(data) {
   	 	
-			var empss=JSON.parse(data);
-			var txt ="<th>訂單日期<th>訂單編號<th>訂購人<th>收貨人<th>地址<th>出貨日期<th>訂單狀態<th><button class=\"b4\">新增</button>";
-			for(i=0;i<empss.length;i++){
+			var unprocess=JSON.parse(data);
+			var txt ="<th>訂單日期<th>訂單編號<th>訂購人<th>收貨人<th>地址<th>出貨日期<th>接受訂單";
+			for(i=0;i<unprocess.length;i++){
 				var order_date = "";
-				if(empss[i].order_date != '' && typeof empss[i].order_date != 'undefined'){
-					var v1 = new Date(empss[i].order_date);
+				if(unprocess[i].order_date != '' && typeof unprocess[i].order_date != 'undefined'){
+					var v1 = new Date(unprocess[i].order_date);
 					order_date = v1.getFullYear()+"-"+(v1.getMonth()+1)+"-"+addZero(v1.getDate(),2)+" "+addZero(v1.getHours(),2)+":"+addZero(v1.getMinutes(),2)+":"+addZero(v1.getSeconds(),2);
 				}
 				
 				var ship_date = "";
-				if(empss[i].ship_date){
-					var v1 = new Date(empss[i].ship_date);
+				if(unprocess[i].ship_date){
+					var v1 = new Date(unprocess[i].ship_date);
 					ship_date = v1.getFullYear()+"-"+(v1.getMonth()+1)+"-"+addZero(v1.getDate(),2)+" "+addZero(v1.getHours(),2)+":"+addZero(v1.getMinutes(),2)+":"+addZero(v1.getSeconds(),2);
 				}
 				txt +="<tr><td>"+ order_date;
-				txt +="<td><a onclick='queryDetail(" +i+ ")'><input type='hidden' id='order_id"+i+"' value=\""+empss[i].order_id+"\">"+empss[i].order_id+"</a>";
-				txt +="<td>"+empss[i].member_id;
-				txt +="<td>"+empss[i].recipient;
-				txt +="<td>"+empss[i].address;
+				txt +="<td><a onclick='queryDetail(" +i+ ")'><input type='hidden' id='order_id"+i+"' value=\""+unprocess[i].order_id+"\">"+unprocess[i].order_id+"</a>";
+				txt +="<td>"+unprocess[i].member_id;
+				txt +="<td>"+unprocess[i].recipient;
+				txt +="<td>"+unprocess[i].address;
 				txt +="<td>"+ship_date;
-				txt +="<td><button class=\"b1\" value=\""+empss[i].empno+"\" onclick=\"showEmp2("+empss[i].empno+")\">修改</button>";
-				txt +="<td><button class=\"b2\" value=\""+empss[i].empno+"\">明細</button>";
-<<<<<<< HEAD
-				txt +="<tr><td id='t1'>";
+				txt +="<td><button onclick='accept(" +i+ ");'><input type='hidden' id='status1"+i+"' value='1'><input type='hidden' id='company_id1"+i+"' value=\""+unprocess[i].company_id+"\">接受</button>";
+				txt +="<tr><th id='t1"+i+"'>";
+				txt +="<tr>";
 			}
 			document.getElementById("dataTable").innerHTML=txt;
 		}
@@ -139,7 +138,6 @@
 		}
   	
 	}
-   
 
 </script>
 <script>
@@ -148,7 +146,6 @@
 			url:"queryDetail",
 			data:{
 				key1:jq1("#order_id"+p).val(),
-				    				
 			},
 			type:"post",
 			success:function (data){
@@ -161,67 +158,15 @@
 function showDetail(data) {
  	 	
 		var empss=JSON.parse(data);
-		var txt ="<tr>產品編號<tr>產品名稱<tr>數量";
+		var txt ="<th>產品編號<th>產品名稱<th>數量";
 		for(i=0;i<empss.length;i++){
-			
-			txt += "<td>"+empss[i].product_id;
-			txt += "<td>"+empss[i].product_name;
-			txt += "<td>"+empss[i].amount;
-			txt += "<td>"+empss[i].total;
-=======
-				
+			txt += "<tr><td>"+empss[i].product_id;
+			txt += "<tr><td>"+empss[i].product_name;
+			txt += "<tr><td>"+empss[i].amount;
+			txt += "<tr><td>"+empss[i].total;	
 			}
-			txt +="<tr><td id='t1'>";
-			document.getElementById("dataTable").innerHTML=txt;
+			document.getElementById("t1"+i).innerHTML=txt;
 		}
-		
-   function addZero(p,n) {
-  	 var s = p.toString();
-  
-		for(var i=0;i<s.length;i++){
-			 if(s.length<n){
-					s="0"+s;
-				}else{
-					return s;
-				}
-		}
-  	
-	}
-   
-
-</script>
-<script>
-	function queryDetail(p) {
-		jq1.ajax({
-			url:"queryDetail",
-			data:{
-				key1:jq1("#order_id"+p).val(),
-				    				
-			},
-			type:"post",
-			success:function (data){
-				alert(data);
- 				showDetail(data);
-			}
-		});
-	}
-
-function showDetail(data) {
- 	 	
-		var empss=JSON.parse(data);
-		var txt ="<th>產品編號</th><th>產品名稱</th><th>數量</th>";
-		for(i=0;i<empss.length;i++){
-			
-			txt +="<tr><td>"+empss[i].product_id;
-			txt +="<td>"+empss[i].product_name;
-			txt +="<td>"+empss[i].amount;
-			txt +="<td>"+empss[i].total;
->>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
-		}
-		document.getElementById("t1").innerHTML=txt;
-	}
-   
-
 </script>
 
 

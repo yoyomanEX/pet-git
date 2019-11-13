@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>PET陪你廠商後台管理</title>
+<title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
 
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -35,75 +35,13 @@
 
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+<link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- 判斷日期格式 -->
-<script>
-  var jq1=$.noConflict();
-  jq1( function() {
-    var dateFormat = "yy-mm-dd",
-      from = jq1( "#from" )
-        .datepicker({
-          dateFormat: 'yy-mm-dd',
-          defaultDate: "+1w",
-          changeMonth: true,
-          numberOfMonths: 2
-        })
-        .on( "change", function() {
-          to.datepicker( "option", "minDate", getDate( this ) );
-        }),
-      to = jq1( "#to" ).datepicker({
-     	dateFormat: 'yy-mm-dd',
-        defaultDate: "+1w",
-        changeMonth: true,
-        numberOfMonths: 2
-      })
-      .on( "change", function() {
-        from.datepicker( "option", "maxDate", getDate( this ) );
-      });
- 
-    function getDate( element ) {
-      var date;
-      try {
-        date = jq1.datepicker.parseDate(dateFormat, element.value );
-      } catch( error ) {
-        date = null;
-      }
- 
-      return date;
-    }
-  } );
-
-  jq1(document).ready(function(){
-		
-		var company_id =jq1("#company_id").val();  
-		jq1("#clickmeS").click(function() {
-			jq1.ajax({
-    			url:"queryOrderByStatus",
-    			data:{
-    				key1:jq1("#from").val(),
-    				key2:jq1("#to").val(),
-    				key3:company_id,
-    				key4:jq1("#status1").val()      				
-    			},
-//     			dataType:"json",
-    			type:"post",
-    			success:function (data){
-    				  for(var i=0;i<data.length;i++){    //遍历data数组
-                          var ls = data[i];  
-    				  alert(ls[i]);
-    			};
-    		}
-		});
-    });
-  });
-</script>
-
-
-
 
 </head>
+<body>
 <body id="page-top">
 	<div id="wrapper">
 		<!-- Sidebar -->
@@ -119,7 +57,7 @@
 					<i class=""></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-					Pet陪你<br> 廠商後台系統
+					pET ʕ•ᴥ•ʔ<br> 廠商後台管理
 				</div>
 			</a>
 			<!-- Divider -->
@@ -390,60 +328,47 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">查詢訂單</h1>
+					<h1 class="h3 mb-2 text-gray-800">已出貨訂單列表</h1>
 					<p class="mb-4">
-						<a>ORDER QUERY</a>.
+						<a>SHIPPED ORDER</a>.
 					</p>
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<a> <label for="from">訂單起日</label> 
-					<input type="text" id="from" name="startdate"> 
-					<input type="hidden" value='${CompanyLoginOK.company_id}' name='company_id' id='company_id'> 
-					<label for="to">~訂單迄日</label> 
-					<input type="text" id="to" name="enddate">
-					</a> 
-					<a style='padding-right: 100px;'>
-					 <label for="" class="t1">商品狀態</label>
-					 <select name='status' id='status1'>
-							<option value='1'>未處理</option>
-							<option value="2">已處理未出貨</option>
-							<option value="3">已處理已出貨</option>
-					</select>
-						<button id='clickmeS'>查詢
-						
-						
-						</button>
-					</a> 
-					<a href="orderManagement">返回訂單管理</a> 
+							<h6 class="m-0 font-weight-bold text-primary">
+									 <a href="orderManagement">返回訂單管理</a> 
+							</h6>
 						</div>
 					<!-- DataTales Example -->
-			<div id = 'dataInsert'>
-			<div id='test123'>
-			<div class="card shadow mb-4">
-			<div class="card-body">
-              <div class="table-responsive">  
-                <table class="table table-bordered" id="dataTable" width="100%" scellspacing="0">
-					<thead>
-						<tr>
-						<th>訂購日期<th>訂單編號<th>會員ID<th>收件人<th>售價
-						<th>出貨日期<th>訂單狀態
-						</tr>
-					</thead>
-							<tr>
-								<td>
-								<td>
-								<td>
-								<td>
-								<td>
-								<td>
-								<td>
-				</table>  
-				</div>
-              </div>
+
+					<div class="card shadow mb-4">
+
+						            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>訂購日期</th><th>訂單編號</th><th>訂購人</th><th>收件人</th>
+                      <th>寄送地址</th><th>售價</th><th>出貨日期</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <c:forEach items="${shippedOrder}" var="p1" varStatus="s">
+								<tr><td>${p1.order_date}
+									<td>${p1.order_id}
+									<td>${p1.member_id}
+									<td>${p1.recipient}
+									<td>${p1.address}
+									<td>${p1.total}
+									<td>${p1.ship_date}
+									<c:set var="count" value="${s.count}" />
+					</c:forEach>
+							</tbody>
+				</table>
+				<h3 class="count1">共${count}筆商品資料</h3>      
               </div>
             </div>
           </div>
-		</div>
+				</div>
 				<!-- /.container-fluid -->
 
 			</div>

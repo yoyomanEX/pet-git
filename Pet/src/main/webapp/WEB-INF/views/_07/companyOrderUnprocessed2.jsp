@@ -35,13 +35,55 @@
 
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- 判斷日期格式 -->
 
+<script>
+var jq1=$.noConflict();
+// function push1() {
+// 		$("#title1").click(function() {
+// 			$("#panel").slideToggle("slow");
+		
+// 	});
+// }
+</script>
+
+<script>
+	function detail() {
+		jq1.ajax({
+			url:"queryDetail",
+			data:{
+				key1:jq1("#order_id").val()    				
+			},
+			type:"post",
+			success:function (data){
+				alert(data);
+ 				showDetail(data);
+			}
+		});
+	}
+	function showDetail(data) {
+		var empss=JSON.parse(data);
+		var txt ="<th>產品編號<th>產品名稱<th>數量";
+		for(i=0;i<empss.length;i++){	
+			txt +="<tr><td>"+empss[i].product_id;
+			txt +="<td>"+empss[i].product_name;
+			txt +="<td>"+empss[i].amount;
+			txt +="<td>"+empss[i].total;
+		}
+		document.getElementById("t1").innerHTML=txt;
+	}
+
+
+</script>
+
+
+
+
+
 </head>
-<body>
 <body id="page-top">
 	<div id="wrapper">
 		<!-- Sidebar -->
@@ -57,7 +99,7 @@
 					<i class=""></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-					pET ʕ•ᴥ•ʔ<br> 廠商後台管理
+				pET ʕ•ᴥ•ʔ<br> 廠商後台管理
 				</div>
 			</a>
 			<!-- Divider -->
@@ -328,9 +370,9 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">未出貨訂單列表</h1>
+					<h1 class="h3 mb-2 text-gray-800">未處理訂單列表</h1>
 					<p class="mb-4">
-						<a>UNSHIPPED ORDER</a>.
+						<a>UNPROCESSED ORDER</a>.
 					</p>
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
@@ -345,33 +387,50 @@
 						            <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <tr>
                   <thead>
                     <tr>
-                      <th>訂購日期</th><th>訂單編號</th><th>訂購人</th><th>收件人</th>
-                      <th>寄送地址</th><th>售價</th><th>出貨</th>
+                      <th>訂單編號</th><th>訂單日期</th><th>訂購人</th><th>收件人</th>
+                      <th>寄送地址</th><th>售價</th><th>出貨日期</th><th>接單</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <c:forEach items="${unshippedOrder}" var="p1" varStatus="s">
-								<tr>
-									<form method="post" action="${pageContext.request.contextPath}/changeToShipped">
-									<td><input type="hidden" id='order_date' name='order_date' value="${p1.ship_date}">${p1.order_date}
-									<td><input type="hidden" id='order_id' name='order_id' value="${p1.order_id}">${p1.order_id}
-									<td><input type="hidden" id='member_id' name='member_id' value="${p1.member_id}}">${p1.member_id}
-									<td><input type="hidden" id='recipient' name='recipient' value="${p1.recipient}}">${p1.recipient}
-									<td><input type="hidden" id='address' name='address' value="${p1.address}}">${p1.address}
-									<td><input type="hidden" id='total' name='total' value="${p1.total}}">${p1.total}
+                    <c:forEach items="${unprocessedOrder}" var="p1" varStatus="s">
+								<tr style="background-color: #F0F0F0;" id='title1'>
+									<td>${p1.order_id}
+									<td>${p1.order_date}
+									<td>${p1.member_id}
+									<td>${p1.recipient}
+									<td>${p1.address}
+									<td>${p1.total}
+									<td><input type="text" value='${p1.ship_date}'> 
 									<td>
-									<input type="submit" value='出貨'>
+									<form method="post" action="${pageContext.request.contextPath}/processed">
+									<input type="submit" value='接單'>
 									<input type="hidden" name="order_id" value="${p1.order_id}"> 
 									<input type="hidden" value="${p1.status}" name='status'>
 									<input type="hidden" value="${p1.company_id}" name='company_id'>							
 									</form>
 									<c:set var="count" value="${s.count}" />
-								
-							</c:forEach>
-							</tbody>
+								<tr>	
+								<th><th>訂購明細<th>產品編號<th>產品名稱<th>數量<th><th><th><th>
+								<c:set var="d" scope="session" value="${p1.order_id}"/>
+								<c:forEach items="${orderDetail}" var="p2" varStatus="s">
+								<c:if test="${d eq p2.order_id}">
+								<tr class='panel'><td>
+									<td>
+									<td>${p2.product_id}
+									<td>${p2.product_name}
+									<td>${p2.amount}
+									<td>
+									<td>
+									<td>
+									<td>
+								</c:if>
+								</c:forEach>
+						</c:forEach>
 				</table>
+			
+				
 				<h3 class="count1">共${count}筆商品資料</h3>      
               </div>
             </div>

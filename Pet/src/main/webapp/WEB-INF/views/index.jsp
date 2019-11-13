@@ -358,7 +358,7 @@
 					class="col-xl-2 col-sm-6 col-md-3 mb-4 mb-xl-0 single-footer-widget">
 					<h4>XXXX</h4>
 					<ul>
-						<li><a href="#">XXXX</a></li>
+						<li><a href="companyloginErr">XXXX</a></li>
 						<li><a href="#">XXXXX</a></li>
 					</ul>
 				</div>

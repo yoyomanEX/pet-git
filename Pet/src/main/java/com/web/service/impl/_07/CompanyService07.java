@@ -21,6 +21,8 @@ public interface CompanyService07 {
 	void acceptByCompanyId(CompanyBean p1);
 
 	ArrayList<CompanyBean> obtainedCompany();
+	
+	ArrayList<CompanyBean> rejectCompany();
 
 	void obtainedByCompanyId(CompanyBean p1);
 

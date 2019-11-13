@@ -82,7 +82,7 @@ public class MemberOrderDaoImpl implements MemberOrderDao{
 				@Override
 				public void processedShippedOrder(MemberOrderBean p1) {
 					Session session = factory.getCurrentSession();
-					String hql = "update MemberOrderBean m set m.status=3 WHERE m.order_id ="+p1.getOrder_id()+"and m.company_id="+p1.getCompany_id();
+					String hql = "update MemberOrderBean m set m.status=3, m.ship_date='"+p1.getShip_date()+"' WHERE m.order_id ="+p1.getOrder_id()+"and m.company_id="+p1.getCompany_id();
 					Query query = session.createQuery(hql);
 					query.executeUpdate();
 					

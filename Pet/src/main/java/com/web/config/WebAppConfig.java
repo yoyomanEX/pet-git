@@ -139,7 +139,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 			
 		}
 
-		
+//		
 		@Override
 		public void addResourceHandlers(ResourceHandlerRegistry registry) {
 			registry.addResourceHandler("/css/**")

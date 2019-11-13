@@ -24,13 +24,14 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
-var jq1=$.noConflict();
-jq1(document).ready(function(){
-	jq1('#reviewCompany').click(function() {
-		jq1.ajax({
+// var jq1=$.noConflict();
+
+//待審核廠商列表
+$(document).ready(function(){
+	$('#reviewCompany').click(function() {
+		$.ajax({
     			url:"reviewCompany",
     			success:function (data){
-    				alert(data);
     				showCompany(data);
     			}
     		});
@@ -38,7 +39,7 @@ jq1(document).ready(function(){
     });
    function showCompany(data) {
 			var c1=JSON.parse(data);
-			var txt ="<th>編號<th>廠商統編<th>廠商名稱<th>Email<th>地址<th>連絡電話<th>聯絡人";
+			var txt ="<th>編號<th>廠商統編<th>廠商名稱<th>Email<th>地址<th>連絡電話<th>聯絡人<th>接受申請<th>拒絕申請";
 			for(i=0;i<c1.length;i++){
 				txt +="<tr><td>"+c1[i].id;
 				txt +="<td>"+c1[i].company_id;
@@ -47,20 +48,185 @@ jq1(document).ready(function(){
 				txt +="<td>"+c1[i].company_add;
 				txt +="<td>"+c1[i].company_tel;
 				txt +="<td>"+c1[i].contact_name;
-				txt +="<td><button class=\"b1\" value=\""+c1[i].company_id+"\" onclick=\"showEmp2("+c1[i].company_id+")\">接受</button>";
-				txt +="<td><button class=\"b2\" value=\""+c1[i].company_id+"\">婉拒</button>";
+				txt +="<td><button onclick='accept(" +i+ ");'><input type='hidden' id='status1"+i+"' value='1'><input type='hidden' id='company_id1"+i+"' value=\""+c1[i].company_id+"\">接受</button>";
+				txt +="<td><button onclick='reject(" +i+ ");'><input type='hidden' id='status2"+i+"' value='9'><input type='hidden' id='company_id2"+i+"' value=\""+c1[i].company_id+"\">拒絕</button>";
 			}
 			document.getElementById("dataTable").innerHTML=txt;
 		}
+   
+	//接受審核
+	 function accept(p){
+// 		 $(this).hide();	
+		 if (confirm("是否通過審核呢？")) {
+			$.ajax({
+  			url:"acceptByCompanyId",
+  			data:{
+  				key1:$("#company_id1"+p).val(),
+  				key2:$("#status1"+p).val()
+  			},
+  			type:"post",
+  			success:function (){
+  				$("#company_id1"+p).parent().parent().parent().hide();	
+				
+			}
+  		});
+		 }
+	 };
 
+	//拒絕申請
+	 function reject(p){
+// 		 $(this).hide();	
+		 if (confirm("是否確定拒絕申請呢？")) {
+			$.ajax({
+  			url:"rejectByCompanyId",
+  			data:{
+  				key1:$("#company_id2"+p).val(),
+  				key2:$("#status2"+p).val()
+  			},
+  			type:"post",
+  			success:function (){
+  				$("#company_id2"+p).parent().parent().parent().hide();	
+				
+			}
+  		});
+		 }
+	 };
+	 
 
+   
+//    上架廠商列表
+   $(document).ready(function(){
+		$('#onsaleCompany').click(function() {
+			$.ajax({
+	    			url:"adminCompanyList",
+	    			success:function (data){
+	    				showOnsaleCompany(data);
+	    			}
+	    		});
+			});
+	    });
+	   function showOnsaleCompany(data) {
+				var c1=JSON.parse(data);
+				var txt ="<th>編號<th>廠商統編<th>廠商名稱<th>Email<th>地址<th>連絡電話<th>聯絡人<th>廠商下架";
+				for(i=0;i<c1.length;i++){
+					txt +="<tr><td>"+c1[i].id;
+					txt +="<td>"+c1[i].company_id;
+					txt +="<td>"+c1[i].company_name;
+					txt +="<td>"+c1[i].company_email;
+					txt +="<td>"+c1[i].company_add;
+					txt +="<td>"+c1[i].company_tel;
+					txt +="<td>"+c1[i].contact_name;
+					txt +="<td><button onclick='nonsale(" +i+ ");'><input type='hidden' id='status1"+i+"' value='2'><input type='hidden' id='company_id1"+i+"' value=\""+c1[i].company_id+"\">廠商下架</button>";
+				}
+				document.getElementById("dataTable").innerHTML=txt;
+			}
+	 //廠商狀態改下架
+		 function nonsale(p){	
+			 if (confirm("是否確定要下架廠商呢？")) {
+				$.ajax({
+	  			url:"obtainedByCompanyId",
+	  			data:{
+	  				key1:$("#company_id1"+p).val(),
+	  				key2:$("#status1"+p).val()
+	  			},
+	  			type:"post",
+	  			success:function (){
+	  				$("#company_id1"+p).parent().parent().parent().hide();	
+					
+				}
+	  		});
+			 }
+		 };
 
-
-
+	   
+//	   下架廠商列表
+	   $(document).ready(function(){
+			$('#obtainedCompany').click(function() {
+				$.ajax({
+		    			url:"obtainedCompany",
+		    			success:function (data){
+		    				showObtainedCompany(data);
+		    			}
+		    		});
+				});
+		    });
+		   function showObtainedCompany(data) {
+					var c1=JSON.parse(data);
+					var txt ="<th>編號<th>廠商統編<th>廠商名稱<th>Email<th>地址<th>連絡電話<th>聯絡人<th>重新上架";
+					for(i=0;i<c1.length;i++){
+						txt +="<tr><td>"+c1[i].id;
+						txt +="<td>"+c1[i].company_id;
+						txt +="<td>"+c1[i].company_name;
+						txt +="<td>"+c1[i].company_email;
+						txt +="<td>"+c1[i].company_add;
+						txt +="<td>"+c1[i].company_tel;
+						txt +="<td>"+c1[i].contact_name;
+						txt +="<td><button onclick='onsale(" +i+ ");'><input type='hidden' id='status1"+i+"' value='1'><input type='hidden' id='company_id1"+i+"' value=\""+c1[i].company_id+"\">重新上架</button>";
+					}
+					document.getElementById("dataTable").innerHTML=txt;
+				}
+		
+		 //廠商狀態重新上架
+			 function onsale(p){	
+				 if (confirm("是否確定要重新上架廠商呢？")) {
+					$.ajax({
+		  			url:"acceptByCompanyId1",
+		  			data:{
+		  				key1:$("#company_id1"+p).val(),
+		  				key2:$("#status1"+p).val()
+		  			},
+		  			type:"post",
+		  			success:function (){
+		  				$("#company_id1"+p).parent().parent().parent().hide();	
+						
+					}
+		  		});
+				 }
+			 };
+//			   拒絕廠商列表
+			   $(document).ready(function(){
+					$('#rejectCompany').click(function() {
+						$.ajax({
+				    			url:"rejectCompany",
+				    			success:function (data){
+				    				showRejectCompany(data);
+				    			}
+				    		});
+						});
+				    });
+				   function showRejectCompany(data) {
+							var c1=JSON.parse(data);
+							var txt ="<th>編號<th>廠商統編<th>廠商名稱<th>Email<th>地址<th>連絡電話<th>聯絡人<th>再次審核";
+							for(i=0;i<c1.length;i++){
+								txt +="<tr><td>"+c1[i].id;
+								txt +="<td>"+c1[i].company_id;
+								txt +="<td>"+c1[i].company_name;
+								txt +="<td>"+c1[i].company_email;
+								txt +="<td>"+c1[i].company_add;
+								txt +="<td>"+c1[i].company_tel;
+								txt +="<td>"+c1[i].contact_name;
+								txt +="<td><button onclick='onsale(" +i+ ");'><input type='hidden' id='status1"+i+"' value='1'><input type='hidden' id='company_id1"+i+"' value=\""+c1[i].company_id+"\">通過申請</button>";
+							}
+							document.getElementById("dataTable").innerHTML=txt;
+						}
+				   //廠商狀態重新審核
+					 function onsale(p){	
+						 if (confirm("確定要通過申請嗎？")) {
+							$.ajax({
+				  			url:"acceptByCompanyId1",
+				  			data:{
+				  				key1:$("#company_id1"+p).val(),
+				  				key2:$("#status1"+p).val()
+				  			},
+				  			type:"post",
+				  			success:function (){
+				  				$("#company_id1"+p).parent().parent().parent().hide();	
+								
+							}
+				  		});
+						 }
+					 };
 </script>
-
-
-
 </head>
 
 <body class="">
@@ -309,7 +475,7 @@ jq1(document).ready(function(){
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">ONSALE COMPANY</h5>
                       <span class="h2 font-weight-bold mb-0">
-                      	<a href='${pageContext.request.contextPath}/adminCompanyList'>在架廠商</a></span>
+                      	<a id='onsaleCompany' href='#'>上架廠商</a></span>
                     </div>
                     <div class="col-auto">
                      
@@ -326,7 +492,7 @@ jq1(document).ready(function(){
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">NONSALE COMPANY</h5>
                       <span class="h2 font-weight-bold mb-0">
-                      	<a href='${pageContext.request.contextPath}/obtainedCompany'>下架廠商</a></span>
+                      	<a id='obtainedCompany' href='#'>下架廠商</a></span>
                     </div>
                     <div class="col-auto">
                       
@@ -341,8 +507,9 @@ jq1(document).ready(function(){
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">???</h5>
-                      <span class="h2 font-weight-bold mb-0">????</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">REJECT COMPANY</h5>
+                      <span class="h2 font-weight-bold mb-0">
+                      	<a id='rejectCompany' href='#'>未通過廠商</a></span>
                     </div>
                     <div class="col-auto">
                       
