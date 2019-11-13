@@ -92,7 +92,21 @@ public class AdminDaoImpl_Hibernate implements AdminDao {
 		
 	}
 
-	
+	@Override
+	public int deleteAdmin(AdminBean ad) {
+		int n = 0;
+		getSession().delete(ad);
+		n++;
+		return n;
+	}
+
+	@Override
+	public int updataAdmin(AdminBean ad) {
+		int n = 0;
+		getSession().update(ad);
+		n++;
+		return n;
+	}
 
 	
 }

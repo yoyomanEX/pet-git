@@ -15,5 +15,11 @@ public interface MemberService {
 
 	MemberBean queryMember(String id);
 
+
+	
+	int updataMember(MemberBean mb);
+
+
+
 	void setConnection(Connection con);
 }

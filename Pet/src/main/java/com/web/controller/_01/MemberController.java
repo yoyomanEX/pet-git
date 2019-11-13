@@ -1,4 +1,6 @@
+
 package com.web.controller._01;
+
 
 import java.util.List;
 
@@ -10,138 +12,181 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.web.model._01.MemberBean;
+import com.web.model._01.PetBean;
 import com.web.service.impl._01.MemberService;
-import com.web.service.impl._03.FriendService;
+import com.web.service.impl._01.PetService;
 
 @Controller
 public class MemberController {
-	
+
 	MemberService memberService;
-	FriendService friendService;
+
 	@Autowired
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
 
+	PetService petService;
+
 	@Autowired
-	public void setFriendService(FriendService friendService) {
-		this.friendService = friendService;
+	public void setPetService(PetService petService) {
+		this.petService = petService;
 	}
 
 	public MemberController() {
-		
+
 	}
-	
-	@RequestMapping(value = "/")
+
+//	@RequestMapping(value = "/")
 	public String home(Model model) {
 		model.addAttribute("MemberBean", new MemberBean());
-		//註冊會員
+		// 註冊會員
 //		return "_01/memberinsert";
-		//會員登入
-		return "_01/login";
-
-//		return null;	
+		// 會員登入
+		return "_01/memberlogin";
+//		return null;
 	}
-	//會員登入
+	
+	//會員登入頁面
+	@RequestMapping(value = "/_01.memberloginPage")
+	public String memberloginPage(Model model) {
+		model.addAttribute("MemberBean", new MemberBean());
+		
+		return "_01/memberlogin";
+	}
+
+	// 會員登入
 	@RequestMapping(value = "/_01.loginMember", method = RequestMethod.POST)
-	public String loginMember(MemberBean memberBean,HttpServletRequest request ) {
+	public String loginMember(MemberBean memberBean, HttpServletRequest request) {
 		System.out.println("qwe");
 		String userId = memberBean.getMember_Id();
-		System.out.println("userId:"+userId);
+		System.out.println("userId:" + userId);
 		String password = memberBean.getPassword();
-		System.out.println("password:"+password);
+		System.out.println("password:" + password);
 		MemberBean b1 = memberService.checkIDPassword(userId, password);
 		System.out.println(b1);
-		
-		if(b1!=null) {
+
+		if (b1 != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("LoginOK", b1);
-			return "redirect: login";//登入成功
-		}else {
-			return "forward: loginErr";//登入失敗
+			return "redirect: login";// 登入成功
+		} else {
+			return "forward: loginErr";// 登入失敗
 		}
 	}
-	//登入成功
+
+	// 登入成功
 	@RequestMapping(value = "login")
 	public String login(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String n1 = loginToken.getName();
-		System.out.println("n1:"+n1);
-		return "_03/index";
+		System.out.println("n1:" + n1);
+//		return "redirect:/article";
+		return "redirect:/_01.updataMemberPage";
 	}
-	//登入失敗
+
+	// 登入失敗
 	@RequestMapping(value = "loginErr")
 	public String loginErr() {
 		return "_01/login";
 	}
-	//註冊會員
+	
+	// 註冊會員頁面
+	@RequestMapping(value = "/_01.saveMemberPage")
+	public String saveMemberPage(Model model) {
+		model.addAttribute("MemberBean", new MemberBean());
+		
+		return "_01/memberinsert";
+	}
+
+	// 註冊會員
 	@RequestMapping(value = "/_01.saveMember", method = RequestMethod.POST)
 	public String saveMember(MemberBean memberBean) {
-		//判斷會員帳號是否註冊過
+		// 判斷會員帳號是否註冊過
 		boolean f1 = memberService.idExists(memberBean.getMember_Id());
-		if(f1!=true) {
+		if (f1 != true) {
 			memberService.saveMember(memberBean);
-			return "redirect: member";//註冊成功
-		}else {
-			return "forward: memberErr";//註冊失敗
+			return "redirect: member";// 註冊成功
+		} else {
+			return "forward: memberErr";// 註冊失敗
 		}
 	}
-	//註冊成功
+
+	// 註冊成功
 	@RequestMapping(value = "member")
 	public String member() {
-		return "_01/ttt";
+		return "redirect: _01.memberloginPage";
 	}
-	//註冊失敗
+
+	// 註冊失敗
 	@RequestMapping(value = "memberErr")
 	public String memberErr() {
+		return "_01/memberinsert";
+	}
+
+	// 新增寵物
+	@RequestMapping(value = "/_01.savePet", method = RequestMethod.POST)
+	public String savePet(HttpServletRequest request, PetBean pb) {
+		HttpSession session = request.getSession();
+		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+		String id = loginToken.getMember_Id();
+		pb.setMember_id(id);
+		petService.savePet(pb);
+		return "";
+	}
+
+	// 刪除寵物
+	@RequestMapping(value = "/_01.deletePet", method = RequestMethod.POST)
+	public String deletePet(HttpServletRequest request, PetBean pb) {
+		HttpSession session = request.getSession();
+		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+		String id = loginToken.getMember_Id();
+		pb.setMember_id(id);
+		petService.deletePet(pb);
+		return "";
+	}
+
+	// 修改寵物
+	@RequestMapping(value = "/_01.updataPet", method = RequestMethod.POST)
+	public String updataPet(HttpServletRequest request, PetBean pb) {
+		HttpSession session = request.getSession();
+		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+		String id = loginToken.getMember_Id();
+		pb.setMember_id(id);
+		petService.updataPet(pb);
+
 		return "_01/ttt";
 	}
-	@RequestMapping(value = "dogroom")
-	public String dogroom(MemberBean memberBean,HttpServletRequest request,Model model) {
+
+	// 查詢全部寵物
+	public List<PetBean> queryAllPet(HttpServletRequest request, MemberBean mb) {
 		HttpSession session = request.getSession();
-		
-		session.setAttribute("name", memberBean.getName());
-		session.setAttribute("room", memberBean.getTel());
-//		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
-		return "_05/dogroom";
+		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+		String id = loginToken.getMember_Id();
+		mb.setMember_Id(id);
+		List<PetBean> list = petService.queryAllPet(mb);
+		return list;
+
 	}
-	@RequestMapping(value = "catroom")
-	public String catroom(MemberBean memberBean,HttpServletRequest request,Model model) {
+
+	//進入修改會員頁面
+	@RequestMapping(value = "/_01.updataMemberPage")
+	public String updataMemberPage(Model model) {
+		model.addAttribute("MemberBean", new MemberBean());
+		return "_01/memberupdate";
+	}
+
+	// 修改會員
+	@RequestMapping(value = "/_01.updataMember", method = RequestMethod.POST)
+	public String updataMember(MemberBean mb, HttpServletRequest request) {
+		memberService.updataMember(mb);
 		HttpSession session = request.getSession();
-		
-		session.setAttribute("name", memberBean.getName());
-		session.setAttribute("room", memberBean.getTel());
-//		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
-		return "_05/catroom";
+		session.setAttribute("LoginOK", mb);
+
+		return "_01/ttt";
 	}
-	@RequestMapping(value = "petroom")
-	public String prtroom(MemberBean memberBean,HttpServletRequest request,Model model) {
-		HttpSession session = request.getSession();
-		
-		session.setAttribute("name", memberBean.getName());
-		session.setAttribute("room", memberBean.getTel());
-//		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
-		return "_05/petroom";
-	}
-	
-	@RequestMapping(value = "onebyonechat",params = {"friendid"})
-	public String onebyonechat(MemberBean memberBean,HttpServletRequest request,Model model,@RequestParam(value ="friendid" ) String fid) {
-		HttpSession session = request.getSession();
-		MemberBean mid = (MemberBean) session.getAttribute("LoginOK");
-		System.out.println(fid);
-		List<MemberBean> friendData = friendService.getName(fid);
-		System.out.println("11 : " + friendData.get(0));
-//		String friendName = friendData.get(0).getName();
-		session.setAttribute("name", mid.getName());
-		session.setAttribute("friends", friendData.get(0));
-		model.addAttribute("LoginOK", session.getAttribute("LoginOK"));
-		model.addAttribute("name", session.getAttribute("name"));
-		model.addAttribute("friends", session.getAttribute("friends"));
-//		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
-		return "_05/onebyonechat";
-	}
+
 }
