@@ -292,6 +292,7 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 			o.setOrder_id(String.valueOf(row.get("order_id")));
 			o.setOrder_date((Date) row.get("order_date"));
 			o.setTotal((int) row.get("total"));
+			o.setShip_date((Date) row.get("ship_date"));
 		}
 		return orderList;
 	}

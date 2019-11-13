@@ -28,36 +28,21 @@
 	
 </script>
 <script>
+	var sum = 0;
+	var buycar = new Object();
+
 	$(function() {
-		$("#cartSubmit").click(function() {
-			$.ajax({
-				url : '${request.contextPath}/api/ajaxShoppingCar',
-				type : 'post',
-				data : $("#shoppingCart").serialize(),
-				success : function(data) {
-					$("#shoppingCart").empty();
-					$("#shoppingCart").append(JSON.stringify(data));
-				}
-			})
-		})
-	})
-	
-	
-	
-		$(function() {
-		$("#addToCar").click(function() {
-			$('#orderSubmit').attr('action', "${pageContext.request.contextPath}/06/addProductToCar");
-			$('#orderSubmit').submit();
-		});
-		$("#clearCar").click(function(){
-			$("#orderSubmit").attr("action","${pageContext.request.contextPath}/06/productDetail");
-			$("#orderSubmit").submit();
-		})
+
+		totalName();
+		totalNum();
+		totalPrice();
+
 		//商品數量+號button執行動作 把更新的值塞到數目欄
 		$("#buttonAdd").click(function() {
 			var addTotal = $(this).siblings(".textNum").val();
 			if (addTotal >= 10) {
 				alert("最大購買數量為10件，如有大量購買需求可以聯絡客服唷ʕ•ᴥ•ʔ");
+				return;
 			} else {
 				var amountTotal = $(this).attr("amount");
 				addTotal++;
@@ -81,9 +66,122 @@
 				$(this).siblings(".textNum").val(minusTotal);
 			}
 		});
+
 	});
-	
-	
+
+	function totalName() {
+		var productNames = '';
+		$(".productName").each(function() {
+			var productId = $(this).attr('productId');
+			var addTotal = $(this).siblings(".textNum").val();
+			var productName = $(this).attr("text");
+			//判斷購買數量
+			if (addTotal > 0) {
+				productNames += productName + '數量x' + addTotal;
+			}
+			//將畫面上的購物車資料清空
+			$("#textProducts").text(productNames);
+		});
+	}
+
+	function totalNum() {
+		var sumNum = 0;
+		$(".textNum").each(function() {
+			var all = parseInt($(this).val());
+			sumNum += all;
+		});
+		$("#cartSumNumber").text(sumNum);
+	}
+
+	function totalPrice() {
+		var zong = 0;
+		$(".cartProductItemSumPrice").each(function() {
+			var productPrice = $(this).attr("price");
+			var addTotal = $(this).siblings(".textNum").val();
+			var productTotal = productPrice * addTotal;
+			zong += productTotal;
+		})
+		$("#Sum").text(zong);
+	}
+	//AJAX不更新頁面搜尋貓咪分類商品
+	$(function() {
+		$("#buttonCat").click(function() {
+			$.ajax({
+				url : '${pageContext.request.contextPath}/06/ProductInfoCat',
+				type : 'post',
+				headers : {
+					Accept : "text/html, application/xhtml+xml, */*"
+				},
+				success : function(data) {
+					$("#detailContent").empty();
+					$("#detailContent").append(data);
+				}
+
+			});
+		});
+
+		//AJAX不更新頁面搜尋狗狗分類商品
+		$("#buttonDog").click(function() {
+			$.ajax({
+				url : '${pageContext.request.contextPath}/06/ProductInfoDog',
+				type : 'post',
+				headers : {
+					Accept : "text/html, application/xhtml+xml, */*"
+				},
+				success : function(data) {
+					$("#detailContent").empty();
+					$("#detailContent").append(data);
+				}
+			});
+		});
+
+		//AJAX不更新頁面搜尋全部分類商品
+		$("#allProducts").click(function() {
+			$.ajax({
+				url : '${pageContext.request.contextPath}/06/productInfoAll',
+				type : 'post',
+				headers : {
+					Accept : "text/html, application/xhtml+xml, */*"
+				},
+				success : function(data) {
+					$("#detailContent").empty();
+					$("#detailContent").append(data);
+				}
+			});
+		});
+	});
+
+	$(function() {
+		//點選商品頁超連結執行SUBMIT動作
+		$(".checkPro").click(function() {
+			event.preventDefault();
+			var productId = $(this).attr("productId");
+			$('#selectPrdId').val(productId);
+			$('#orderSubmit').attr('action', "${pageContext.request.contextPath}/06/productDetail");
+			$('#orderSubmit').submit();
+		});
+		//點選商品加入購物車
+		$("#addToCar").click(function() {
+			$('#orderSubmit').attr('action', "${pageContext.request.contextPath}/06/addProductsToCar");
+			$('#orderSubmit').submit();
+		});
+		//清空購物車
+		$("#clearCar").click(function() {
+			$("#orderSubmit").attr("action", "${pageContext.request.contextPath}/06/petClearCar");
+			$("#orderSubmit").submit();
+
+		});
+		//判斷購物車有商品才可跳至結帳頁面
+		$("#goBuy").click(function() {
+			var carTotal = $(this).attr("carTotal");
+			if (carTotal <= 0) {
+				alert("請先選購商品在結帳唷!");
+				return;
+			} else {
+				$('#orderSubmit').submit();
+			}
+		})
+	});
 </script>
 <style type="text/css">
 #shoppingCart {
@@ -105,7 +203,7 @@
 	float: left;
 }
 
-#content {
+#detailContent {
 	margin-left: 260px;
 	margin-right: 260px;
 	/* 	background-color: #F2FFF2; */
@@ -113,8 +211,14 @@
 	width: 850px;
 }
 
+#content {
+	margin-left: 260px;
+	/* 	background-color: #F2FFF2; */
+	text-align: center;
+}
+
 #pageBackground {
-	background-image: url(/img/aa.png);
+	background-image: url('${pageContext.request.contextPath}/06/img/aa.png');
 }
 
 .button {
@@ -157,10 +261,15 @@
 	right: 0;
 }
 
-.productImg {
+#productImg {
 	width: 300px;
 	height: 400px;
 	float: left;
+}
+
+.productImg {
+	width: 130px;
+	height: 90px;
 }
 </style>
 </head>
@@ -173,7 +282,7 @@
 					<div class="col-4 col-md-4 col-xl-6">
 						<div id="logo">
 							<a href="index.html">
-								<img src="img/Logo.png" alt="" title="" />
+								<!-- 	<img src="img/Logo.png" alt="" title="" /> -->
 							</a>
 						</div>
 					</div>
@@ -221,7 +330,7 @@
 	<div id="pageBackground">
 		<div id="sidebar_left">
 			<h3>pETʕ•ᴥ•ʔ 陪你購物</h3>
-			<button type='submit' class="button" id='buttonALL' style="vertical-align: middle">
+			<button type='submit' class="button" id='allProducts' style="vertical-align: middle">
 				<span>全部商品</span>
 			</button>
 			<button type='submit' class="button" id='buttonCat' style="vertical-align: middle">
@@ -234,32 +343,31 @@
 				<span>其他商品 </span>
 			</button>
 		</div>
-		<div id="content">
+		<div id="detailContent">
 			<form method="post" id="orderSubmit" action="${pageContext.request.contextPath}/06/petOrder">
 				<input type="hidden" name="productId" value="${product.product_id}">
 				<h1>${product.product_name}</h1>
 				<hr>
 				<br>
-				<img alt="ʕ•ᴥ•ʔ" class='productImg' src="${pageContext.request.contextPath}/06/downloadFile/${product.product_id}.jpg">
+				<img alt="ʕ•ᴥ•ʔ" id='productImg' src="${pageContext.request.contextPath}/06/downloadFile/${product.product_id}.jpg">
 				<h3>${product.describe}</h3>
 				<br>
 				<br>
 				<br>
 				<h3>價格:${product.price}$</h3>
-								<c:choose>
-									<c:when test="${product.amount==0}">
-										<input type="hidden" name="amount" value="0" class="textNum" style="text-align: center;" />
-										<h4>商品目前補貨中ʕ•ᴥ•ʔ</h4>
-									</c:when>
-									<c:otherwise>
-										<input type="button" name="minus" id='buttonMinus' value='-'>
-										<input type="number" readonly name="amount" value="0" min="0" max="10" class="textNum" style="text-align: center;" />
-										<input type="button" name="add" id='buttonAdd' value='+' amount="${product.amount}">
-										<input type='hidden' class='cartProductItemSumPrice' price="${product.price}">
-<%-- 										<input type='hidden' productId="${product.product_id}" class='productName' text="${product.product_name}"> --%>
-									</c:otherwise>
-								</c:choose>
-						
+				<c:choose>
+					<c:when test="${product.amount==0}">
+						<input type="hidden" name="amount" value="0" class="textNum" style="text-align: center;" />
+						<h4>商品目前補貨中ʕ•ᴥ•ʔ</h4>
+					</c:when>
+					<c:otherwise>
+						<input type="button" name="minus" id='buttonMinus' value='-'>
+						<input type="number" readonly name="amount" value="0" min="0" max="10" class="textNum" style="text-align: center;" />
+						<input type="button" name="add" id='buttonAdd' value='+' amount="${product.amount}">
+						<input type='hidden' class='cartProductItemSumPrice' price="${product.price}">
+						<%-- 										<input type='hidden' productId="${product.product_id}" class='productName' text="${product.product_name}"> --%>
+					</c:otherwise>
+				</c:choose>
 				<h3>pETʕ•ᴥ•ʔ 陪你購物</h3>
 				<div id="shoppingCart">
 					<button type='button' class="button" id='addToCar' style="vertical-align: middle">
