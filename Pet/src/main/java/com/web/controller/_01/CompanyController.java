@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.web.model._01.AdminBean;
 import com.web.model._01.CompanyBean;
 import com.web.service.impl._01.CompanyService;
 
@@ -26,16 +25,25 @@ public class CompanyController {
 
 	}
 
-//	@RequestMapping(value = "/")
+	@RequestMapping(value = "/")
 	public String home(Model model) {
 		model.addAttribute("CompanyBean", new CompanyBean());
 		// 註冊廠商
-		return "_01/companyinsert";
+//		return "_01/companyinsert";
 		// 廠商登入
-//		return "_01/companylogin";
+		return "_01/companylogin";
 //		return null;
 	}
-
+	
+	//廠商登入頁面
+	@RequestMapping(value = "/_01.loginCompanyPage")
+	public String loginCompanyPage(Model model) {
+		model.addAttribute("CompanyBean", new CompanyBean());
+		
+		// 廠商登入
+		return "_01/companylogin";
+	}
+	
 	// 廠商登入
 	@RequestMapping(value = "/_01.loginCompany", method = RequestMethod.POST)
 	public String loginMember(CompanyBean companyBean, HttpServletRequest request) {
@@ -63,7 +71,8 @@ public class CompanyController {
 		CompanyBean loginToken = (CompanyBean) session.getAttribute("CompanyLoginOK");
 		String n1 = loginToken.getCompany_name();
 		System.out.println("n1:" + n1);
-		return "_01/ttt";
+//		return "_01/ttt";
+		return "redirect:/_01.updataCompanyPage";
 
 	}
 
@@ -73,6 +82,14 @@ public class CompanyController {
 		return "_01/companylogin";
 	}
 
+	//註冊廠商頁面
+	@RequestMapping(value = "/_01.saveCompanyPage")
+	public String saveCompanyPage(Model model) {
+		model.addAttribute("CompanyBean", new CompanyBean());
+		// 註冊廠商
+		return "_01/companyinsert";
+	}
+	
 	// 註冊廠商
 	@RequestMapping(value = "/_01.saveCompany", method = RequestMethod.POST)
 	public String saveCompany(CompanyBean companyBean) {
@@ -89,7 +106,7 @@ public class CompanyController {
 	// 註冊成功
 	@RequestMapping(value = "company")
 	public String company() {
-		return "_01/ttt";
+		return "redirect: _01.loginCompanyPage";
 	}
 
 	// 註冊失敗
@@ -100,16 +117,17 @@ public class CompanyController {
 
 	// 進入修改廠商頁面
 	@RequestMapping(value = "/_01.updataCompanyPage")
-	public String updataCompanyPage() {
-
-		return "_01/login";
+	public String updataCompanyPage(Model model) {
+		model.addAttribute("CompanyBean", new CompanyBean());
+		return "_01/companyupdate";
 	}
 
 	// 修改廠商
 	@RequestMapping(value = "/_01.updataCompany", method = RequestMethod.POST)
-	public String updataCompany(CompanyBean cb) {
+	public String updataCompany(CompanyBean cb, HttpServletRequest request) {
 		companyService.updataCompany(cb);
-
+		HttpSession session = request.getSession();
+		session.setAttribute("CompanyLoginOK", cb);
 		return "_01/ttt";
 	}
 

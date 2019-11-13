@@ -1,14 +1,9 @@
 ﻿package com.web.model._01;
 
 import java.io.Serializable;
-import java.sql.Blob;
-import java.sql.Clob;
-import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;

@@ -55,7 +55,7 @@ public class ArticleController {
 		this.context = context;
 	}
 	
-	@RequestMapping("/")
+//	@RequestMapping("/")
 	public String petIndex() {
 		return "index";
 

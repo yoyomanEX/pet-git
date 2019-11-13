@@ -1,65 +1,94 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix='form' uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<style type="text/css">
 
-	
-</style>
-<script type="text/javascript">
+  <meta charset="utf-8">
+  
 
+  <title>SB Admin 2 - Register</title>
 
-$(document).ready(function(){
-	$("button").click(function(){
-		
-			$("form").submit();
-		
-	});
-});
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-</script>
 </head>
-<body>
-<div style="width:300px;margin:10% auto;">
-<form:form modelAttribute="CompanyBean" action='_01.saveCompany'
-			method='POST'>
-		<table>
-			<tr>
-				<td>company_id</td>
-				<td><form:input path='company_id' /><span id="sp1"></span></td>
-			</tr>
-			<tr>
-				<td>company_name</td>
-				<td><form:input path='company_name' /></span></td>
-			</tr>
-			<tr>
-				<td>company_password</td>
-				<td><form:input path='company_password' /></span></td>
-			</tr>
-			<tr>
-				<td>company_tel</td>
-				<td><form:input path='company_tel' /></span></td>
-			</tr>
-			<tr>
-				<td>company_add</td>
-				<td><form:input path='company_add' /><span id="sp5"></span></td>
-			</tr>
-			<tr>
-				<td>company_email</td>
-				<td><form:input path='company_email' /><span id="sp6"></span></td>
-			</tr>
-			<tr>
-				<td>contact_name</td>
-				<td><form:input path='contact_name' /><span id="sp7"></span></td>
-			</tr>
-		</table>
-	</form:form>
-	<button id="b1">確定</button>
-	</div>
+
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+              </div>
+              <form:form modelAttribute="CompanyBean" action='_01.saveCompany' method='POST' class="user">
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <form:input path='company_id' class="form-control form-control-user" placeholder="帳號"/><span id="sp1"></span>
+                  </div>
+                  <div class="col-sm-6">
+                  	<form:input path='company_name' class="form-control form-control-user" placeholder="暱稱"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                   <form:input path='company_email' type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address"/>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                  	<form:input path='company_password' type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password"/>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                  </div>
+                </div>
+                <div class="form-group">
+                   <form:input path='company_add'  class="form-control form-control-user"  placeholder="住址"/>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <form:input path='contact_name' class="form-control form-control-user" placeholder="聯絡人"/>
+                  </div>
+                  <div class="col-sm-6">
+                  	<form:input path='company_tel' class="form-control form-control-user" placeholder="電話"/>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-user btn-block">
+                  Register Account
+               	</button>
+                <hr>
+                <a href="index.html" class="btn btn-google btn-user btn-block">
+                  <i class="fab fa-google fa-fw"></i> Register with Google
+                </a>
+                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                  <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                </a>
+              </form:form>
+              <hr>
+              <div class="text-center">
+                <a class="small" href="forgot-password.html">Forgot Password?</a>
+              </div>
+              <div class="text-center">
+                <a class="small" href="login.html">Already have an account? Login!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  
+
 </body>
+
 </html>
