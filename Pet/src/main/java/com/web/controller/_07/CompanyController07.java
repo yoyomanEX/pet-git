@@ -1,21 +1,22 @@
 package com.web.controller._07;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import com.google.gson.Gson;
 import com.web.model._01.CompanyBean;
-
-import com.web.service.impl._07.CompanyService;
+import com.web.service.impl._07.CompanyService07;
 
 
 
@@ -23,10 +24,10 @@ import com.web.service.impl._07.CompanyService;
 @Controller(value = "CompanyController")
 public class CompanyController07 {
 
-	CompanyService service;
+	CompanyService07 service;
 
 	@Autowired
-	public void setService(CompanyService service) {
+	public void setService(CompanyService07 service) {
 		this.service = service;
 	}
 
@@ -46,10 +47,15 @@ public class CompanyController07 {
 
 	// (站方)審核過廠商列表
 	@RequestMapping("/adminCompanyList")
-	public String companyList(Model model) {
+	public void companyList(Model model,HttpServletResponse response) throws IOException {
 		List<CompanyBean> list = service.queryAllCompany();
-		model.addAttribute("adminCompanyList", list);
-		return "/_07/adminCompanyList";
+		
+		Gson gson = new Gson();
+		String data = gson.toJson(list);
+		response.getWriter().print(data);
+		System.out.println("資料="+data);
+		
+		
 	}
 
 	// 廠商登入頁面
@@ -127,10 +133,14 @@ public class CompanyController07 {
 
 	// (站方)待審核廠商
 	@RequestMapping("/reviewCompany")
-	public String ReviewCompany(Model model) {
+	public void ReviewCompany(Model model,HttpServletRequest request,HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		List<CompanyBean> list = service.reviewCompany();
-		model.addAttribute("checkCompany", list);
-		return "/_07/adminCheckCompany";
+		Gson gson = new Gson();
+		String json = gson.toJson(list);
+		response.getWriter().print(json);
+		System.out.println("廠商資料"+json);
 	}
 
 	// (站方)廠商狀態變更(拒絕申請)

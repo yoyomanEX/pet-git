@@ -162,6 +162,5 @@ public class WebAppConfig implements WebMvcConfigurer {
 	        .addResourceLocations("/WEB-INF/resources/.sass-cache/");
 	    
 		}
-		
-
+	
 }

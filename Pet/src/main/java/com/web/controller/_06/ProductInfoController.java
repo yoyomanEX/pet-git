@@ -77,6 +77,7 @@ public class ProductInfoController {
 	}
 
 //	@RequestMapping("/login")
+
 	public String Petlogin() {
 		return "06/PetLogin";
 	}

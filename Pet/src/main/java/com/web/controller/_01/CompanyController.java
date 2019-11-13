@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.web.model._01.AdminBean;
 import com.web.model._01.CompanyBean;
 import com.web.service.impl._01.CompanyService;
 
@@ -129,6 +130,7 @@ public class CompanyController {
 		HttpSession session = request.getSession();
 		session.setAttribute("CompanyLoginOK", cb);
 		return "_01/ttt";
+
 	}
 
 }

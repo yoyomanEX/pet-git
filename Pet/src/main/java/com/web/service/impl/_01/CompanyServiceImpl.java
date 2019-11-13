@@ -45,10 +45,10 @@ public class CompanyServiceImpl implements CompanyService{
 		
 	}
 
+
 	@Override
 	public int updataCompany(CompanyBean cb) {
 		// TODO Auto-generated method stub
 		return companyDao.updataCompany(cb);
 	}
-
 }

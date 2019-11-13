@@ -91,6 +91,7 @@ public class ActivityController {
 	public String deleteActivityPeople(ActivityPeopleBean apb) {
 		activityPeopleService.deleteActivityPeople(apb);
 		return "";
+
 	}
 	
 	//查詢參加活動的會員

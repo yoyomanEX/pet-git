@@ -121,6 +121,54 @@
 				txt +="<td>"+ship_date;
 				txt +="<td><button class=\"b1\" value=\""+empss[i].empno+"\" onclick=\"showEmp2("+empss[i].empno+")\">修改</button>";
 				txt +="<td><button class=\"b2\" value=\""+empss[i].empno+"\">明細</button>";
+<<<<<<< HEAD
+				txt +="<tr><td id='t1'>";
+			}
+			document.getElementById("dataTable").innerHTML=txt;
+		}
+		
+   function addZero(p,n) {
+  	 var s = p.toString();
+  
+		for(var i=0;i<s.length;i++){
+			 if(s.length<n){
+					s="0"+s;
+				}else{
+					return s;
+				}
+		}
+  	
+	}
+   
+
+</script>
+<script>
+	function queryDetail(p) {
+		jq1.ajax({
+			url:"queryDetail",
+			data:{
+				key1:jq1("#order_id"+p).val(),
+				    				
+			},
+			type:"post",
+			success:function (data){
+				alert(data);
+ 				showDetail(data);
+			}
+		});
+	}
+
+function showDetail(data) {
+ 	 	
+		var empss=JSON.parse(data);
+		var txt ="<tr>產品編號<tr>產品名稱<tr>數量";
+		for(i=0;i<empss.length;i++){
+			
+			txt += "<td>"+empss[i].product_id;
+			txt += "<td>"+empss[i].product_name;
+			txt += "<td>"+empss[i].amount;
+			txt += "<td>"+empss[i].total;
+=======
 				
 			}
 			txt +="<tr><td id='t1'>";
@@ -168,6 +216,7 @@ function showDetail(data) {
 			txt +="<td>"+empss[i].product_name;
 			txt +="<td>"+empss[i].amount;
 			txt +="<td>"+empss[i].total;
+>>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
 		}
 		document.getElementById("t1").innerHTML=txt;
 	}

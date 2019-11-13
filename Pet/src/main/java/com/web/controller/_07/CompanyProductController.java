@@ -32,16 +32,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.web.model._01.CompanyBean;
 import com.web.model._07.CompanyProductBean;
-import com.web.service.impl._07.CompanyProductService;
+
+import com.web.service.impl._07.CompanyProductService07;
 
 //廠商端操作後台的商品管理
 @Controller(value = "CompanyProductController")
 public class CompanyProductController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	CompanyProductService service;
+	CompanyProductService07 service;
 
 	@Autowired
-	public void setService(CompanyProductService service) {
+	public void setService(CompanyProductService07 service) {
 		this.service = service;
 	}
 

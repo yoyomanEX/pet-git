@@ -21,7 +21,6 @@ public class AdminController {
 		this.adminService = adminService;
 	}
 
-
 //	@RequestMapping(value = "/")
 	public String home(Model model) {
 		model.addAttribute("AdminBean", new AdminBean());
@@ -126,5 +125,6 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		session.setAttribute("AdminLoginOK", ab);
 		return "_01/ttt";
+
 	}
 }
