@@ -30,41 +30,34 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-              <form:form modelAttribute="AdminBean" action='_01.saveAdmin' method='POST' class="user">
+              <form:form modelAttribute="MemberBean" action='_01.updataMember' method='POST' class="user">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <form:input path='admin_Id' class="form-control form-control-user" placeholder="帳號"/><span id="sp1"></span>
+                    <form:input path='member_Id' type="text" class="form-control form-control-user" value="${LoginOK.member_Id }" readonly="readonly"/><span id="sp1"></span>
                   </div>
                   <div class="col-sm-6">
-                  	<form:input path='name' class="form-control form-control-user" placeholder="暱稱"/>
+                  	<form:input path='name' class="form-control form-control-user" placeholder="暱稱"  value="${LoginOK.name }"/>
                   </div>
+                </div>
+                <div class="form-group">
+                   <form:input path='email' type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="email" value="${LoginOK.email }"/>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                  	<form:input path='password' type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password"/>
+                  	<form:input path='password' type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="password" value="${LoginOK.password }"/>
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                    <form:input path='tel'  class="form-control form-control-user"  placeholder="電話"  value="${LoginOK.tel }"/>
                   </div>
+                </div>
+                <div class="form-group">
+                   <form:input path='address'  class="form-control form-control-user"  placeholder="住址" value="${LoginOK.address }"/>
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block">
-                  Register Account
+                  	確定
                	</button>
-                <hr>
-                <a href="index.html" class="btn btn-google btn-user btn-block">
-                  <i class="fab fa-google fa-fw"></i> Register with Google
-                </a>
-                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                  <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                </a>
+                
               </form:form>
-              <hr>
-              <div class="text-center">
-                <a class="small" href="forgot-password.html">Forgot Password?</a>
-              </div>
-              <div class="text-center">
-                <a class="small" href="login.html">Already have an account? Login!</a>
-              </div>
             </div>
           </div>
         </div>

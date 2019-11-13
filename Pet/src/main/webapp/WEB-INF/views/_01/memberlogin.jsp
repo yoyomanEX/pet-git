@@ -33,9 +33,9 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form:form modelAttribute="AdminBean" action='_01.loginAdmin' method='POST' class="user">
+                  <form:form modelAttribute="MemberBean" action='_01.loginMember' method='POST' class="user">
                     <div class="form-group">
-                      <form:input path='admin_Id'  class="form-control form-control-user" placeholder="Enter Email Address..."/>
+                      <form:input path='member_Id'  class="form-control form-control-user" placeholder="Enter Email Address..."/>
                     </div>
                     <div class="form-group">
                       <form:input path='password'  class="form-control form-control-user"  placeholder="Password"/>
