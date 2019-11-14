@@ -385,8 +385,12 @@ $(document).ready(function(){
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
+<<<<<<< HEAD
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="${pageContext.request.contextPath}/index.jsp">Dashboard</a>
+=======
         <a style='font-size: 30px;' class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="${pageContext.request.contextPath}/index.jsp">廠商管理</a>
         <p>COMPANY MANAGEMENT</p>
+>>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">

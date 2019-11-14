@@ -94,6 +94,7 @@ public class CompanyProductController {
 		service.addProduct(bean);
 		if(!file1.isEmpty()) {
 			byte[] byte1 = file1.getBytes();
+
 			Path path = Paths.get("C:\\photo\\"+bean.getProduct_id()+".jpg");
 			Files.write(path, byte1);
 		}

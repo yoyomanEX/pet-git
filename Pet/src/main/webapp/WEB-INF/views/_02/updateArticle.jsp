@@ -359,6 +359,11 @@ $(document).ready(function(){
           <br>  
           <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="postTime" id="time" value="${arts.postTime}">
           <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="like" id="like" value="${arts.likeCount}">
+<<<<<<< HEAD
+=======
+          <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="message" id="message" value="${arts.report}">
+          <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="lock" id="lock" value="${arts.available}">
+>>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
           </div>
           
           <textarea id="editor" name="content">${arts.content}</textarea>

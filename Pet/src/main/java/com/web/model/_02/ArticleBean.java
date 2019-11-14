@@ -41,14 +41,15 @@ public class ArticleBean implements Serializable{
 //	private Blob articleImage;
 	private Boolean available;
 	
-	@Transient
-	private String noString;
-	@Transient
-	private String postTimeString;
-	@Transient
-	private String likeCountString;
-	@Transient
-	private String authorString;
+
+//	@Transient
+//	private String noString;
+//	@Transient
+//	private String postTimeString;
+//	@Transient
+//	private String likeCountString;
+//	@Transient
+//	private String authorString;
 	
 	
 //	@OneToMany(mappedBy = "article",fetch = FetchType.EAGER)
@@ -115,30 +116,6 @@ public class ArticleBean implements Serializable{
 //	}
 	
 	
-	public String getNoString() {
-		return noString;
-	}
-	public void setNoString(String noString) {
-		this.noString = noString;
-	}
-	public String getPostTimeString() {
-		return postTimeString;
-	}
-	public void setPostTimeString(String postTimeString) {
-		this.postTimeString = postTimeString;
-	}
-	public String getLikeCountString() {
-		return likeCountString;
-	}
-	public void setLikeCountString(String likeCountString) {
-		this.likeCountString = likeCountString;
-	}
-	public String getAuthorString() {
-		return authorString;
-	}
-	public void setAuthorString(String authorString) {
-		this.authorString = authorString;
-	}
 	public Boolean getReport() {
 		return report;
 	}
@@ -154,22 +131,23 @@ public class ArticleBean implements Serializable{
 	
 	
 	//有toString會列印內容， 沒toString只會印出路徑位置 ->方便抓bug
-//	@Override
-//	public String toString() {
-//		StringBuilder builder = new StringBuilder();
-//		builder.append("ArticleBean [no=");
-//		builder.append(no);
-//		builder.append(", title=");
-//		builder.append(title);
-//		builder.append(", content=");
-//		builder.append(content);
-//		builder.append(", likeCount=");
-//		builder.append(likeCount);
-//		builder.append(", postTime=");
-//		builder.append(postTime);
-//		builder.append("]");
-//		return builder.toString();
-//	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ArticleBean [no=");
+		builder.append(no);
+		builder.append(", title=");
+		builder.append(title);
+		builder.append(", content=");
+		builder.append(content);
+		builder.append(", likeCount=");
+		builder.append(likeCount);
+		builder.append(", postTime=");
+		builder.append(postTime);
+		builder.append("]");
+		return builder.toString();
+	}
+
 		
 	
 	

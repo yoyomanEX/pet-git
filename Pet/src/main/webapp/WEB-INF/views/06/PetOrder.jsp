@@ -34,6 +34,8 @@
 			$("#submitData").submit();
 		});
 
+
+		//商品數量+號button執行動作 把更新的值塞到數目欄
 		$(".buttonMinus").click(function() {
 			var minus = $(this).siblings(".textNum").val();
 			if (minus <= 0) {
@@ -45,14 +47,15 @@
 				var minusTotal = minus * $(this).attr("price");
 				$(this).parent().next().next().children("span.totalVal").attr("value", minusTotal);
 				$(this).parent().next().next().children("span.totalVal").text(minusTotal);
-				$("#totalVal").attr("value", minusTotal);
-				console.log($("#totalVal").val());
+// 				$("#totalVal").attr("value", minusTotal);
+// 				console.log($("#").val());
 				totalPrice();
 				endPrice();
 			}
 
 		})
 
+		//商品數量-號button執行動作 把更新的值塞到數目欄
 		$(".buttonAdd").click(function() {
 			var add = $(this).siblings(".textNum").val();
 			if (addTotal >= 10) {
@@ -64,13 +67,14 @@
 				var addTotal = add * $(this).attr("price");
 				$(this).parent().next().next().children("span.totalVal").attr("value", addTotal);
 				$(this).parent().next().next().children("span.totalVal").text(addTotal);
-				$("#totalVal").attr("value", addTotal);
-				console.log($("#totalVal").val());
+				//$("#totalVal").attr("value", addTotal);
+				//console.log($("#totalVal").val());
 				totalPrice();
 				endPrice();
 			}
 		})
 
+		//跑商品合計的金額 ,$(".totalVal").each跑商品合計迴圈
 		function totalPrice() {
 			var newSum = 0;
 			$(".totalVal").each(function() {
@@ -79,13 +83,14 @@
 			})
 			$("#sum").text(newSum);
 		}
-
+		////跑總合計的金額 (加上運費條件判斷,商品合計未滿299需加收運費,滿299則不用),$(".totalVal").each跑商品合計迴圈
 		function endPrice() {
 			var endSum = 0;
 			$(".totalVal").each(function() {
 				var endTotal = $(this).attr("value");
 				endSum += parseInt(endTotal);
 			});
+			//#freight 運費欄
 			if (endSum < 299) {
 				endSum += 60;
 				$("#freight").text("60");
@@ -258,7 +263,8 @@ fieldset {
 									<input type="button" name="add" class='buttonAdd' value='+' amount="${pro.amount}" price="${product.price}">
 								<td>${product.price}
 								<td>
-									<span class="totalVal" id="totalVal" value="${product.price*product.amount}">${product.price*product.amount}</span>
+									<span class="totalVal"  value="${product.price*product.amount}">${product.price*product.amount}</span>
+
 									<!-- 設置sum累加 等於sum=sum+product.price*product.quantity -->
 									<c:set var="sum" value="${sum+product.price*product.amount}" />
 						</c:forEach>
