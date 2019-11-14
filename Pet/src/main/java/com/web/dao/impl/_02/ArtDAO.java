@@ -54,7 +54,6 @@ public interface ArtDAO {
 	public String getLikeByMemberAndArticle(String memberNo,int articleno);
 	
 	
-
 	
 
 }

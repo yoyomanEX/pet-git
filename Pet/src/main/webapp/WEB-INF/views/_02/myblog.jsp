@@ -9,8 +9,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>pet你 || blog</title>
-    <link rel="icon" href="..${pageContext.request.contextPath}/img/favicon.png">
+    <title>pET ʕ•ᴥ•ʔ 陪你</title>
+    <link rel="icon" href="img/about_icon.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <!-- animate CSS -->
@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
     
      <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
 </head>
@@ -43,8 +45,8 @@
                     <img src="img/core-img/breadcrumb-line.png" alt="">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Blog Archive</li>
+<!--                             <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li> -->
+<!--                             <li class="breadcrumb-item active" aria-current="page">Blog Archive</li> -->
                         </ol>
                     </nav>
                 </div>
@@ -77,12 +79,11 @@
 
 
 
-
-
-
                         <!-- Single Blog Post -->
                         <div class="single-blog-post d-flex flex-wrap mt-50">
                             <!-- Thumbnail -->
+                            
+                            
                             
                             <c:forEach items="${arts }" var="art" varStatus="s">
                             
@@ -345,12 +346,7 @@
 
                         </div>
 
-                        <!-- ##### Single Widget Area ##### -->
-                        <div class="single-widget-area">
-                            <!-- Adds -->
-                            <a href="#"><img src="img/blog-img/add.png" alt=""></a>
-                        </div>
-
+                       
                         <!-- ##### Single Widget Area ##### -->
                         <div class="single-widget-area">
                             <!-- Title -->
@@ -467,6 +463,25 @@
     <script src="${pageContext.request.contextPath}/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="${pageContext.request.contextPath}/js/active.js"></script>
+    
+    <!-- popper js -->
+	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+	<!-- bootstrap js -->
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<!-- counterup js -->
+	<script src="${pageContext.request.contextPath}/js/jquery.counterup.min.js"></script>
+	<!-- waypoints js -->
+	<script src="${pageContext.request.contextPath}/js/waypoints.min.js"></script>
+	<!-- easing js -->
+	<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.js"></script>
+	<!-- particles js -->
+	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+	<!-- custom js -->
+	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<!-- 瀑布流 js -->
+	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
 </body>
 
 </html>
