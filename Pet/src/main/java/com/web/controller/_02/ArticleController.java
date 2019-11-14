@@ -492,7 +492,7 @@ public class ArticleController {
 	}
 
 //站方文章後台adminarticle
-	@RequestMapping("/")
+//	@RequestMapping("/")
 	public String list(Model model, HttpServletRequest request) {
 		List<ArticleBean> art = service.getAll();
 
