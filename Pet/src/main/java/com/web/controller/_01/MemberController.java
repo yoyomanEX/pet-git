@@ -9,6 +9,7 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.sql.rowset.serial.SerialBlob;
@@ -100,6 +101,7 @@ public class MemberController {
 		String n1 = loginToken.getName();
 		System.out.println("n1:" + n1);
 		return "index";
+//		return "redirect: _01.updataMemberPage";
 	}
 
 	// 登入失敗
@@ -231,6 +233,8 @@ public class MemberController {
 		return "_01/ttt";
 	}
 	
+	String noImage = "/images/NoImage.png";
+	
 	//讀取會員大頭貼
 	//<img width='60' height='72' src='getPicture' />
 	@RequestMapping(value = "/getPicture", method = RequestMethod.GET)
@@ -245,10 +249,34 @@ public class MemberController {
 		Blob blob = loginToken.getMemberImage();
 		if(blob!=null) {
 			body = blobToByteArray(blob);
-			re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
+			
+		}else {
+			String path = null;
+			path = noImage;
+			body = fileToByteArray(path);
+			
 		}
-		
+		re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
 		return re;
+	}
+	
+	@Autowired
+	ServletContext context;
+	
+	private byte[] fileToByteArray(String path) {
+		byte[] result = null;
+		try (InputStream is = context.getResourceAsStream(path);
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();) {
+			byte[] b = new byte[819200];
+			int len = 0;
+			while ((len = is.read(b)) != -1) {
+				baos.write(b, 0, len);
+			}
+			result = baos.toByteArray();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 	public byte[] blobToByteArray(Blob blob) {
