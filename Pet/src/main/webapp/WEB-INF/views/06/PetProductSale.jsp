@@ -44,6 +44,8 @@
 				alert("最大購買數量為10件，如有大量購買需求可以聯絡客服唷ʕ•ᴥ•ʔ");
 				return;
 			} else {
+
+				//判斷庫存數量是否小於客人點選數量,如小於則跳出庫存不足提醒
 				var amountTotal = $(this).attr("amount");
 				addTotal++;
 				if (addTotal > amountTotal) {
@@ -68,6 +70,8 @@
 		});
 
 	});
+
+	//跑商品名稱
 	function totalName() {
 		var productNames = '';
 		$(".productName").each(function() {
@@ -83,6 +87,7 @@
 		});
 	}
 
+	//跑商品總數量合計
 	function totalNum() {
 		var sumNum = 0;
 		$(".textNum").each(function() {
@@ -92,6 +97,7 @@
 		$("#cartSumNumber").text(sumNum);
 	}
 
+	//跑商品總金額合計
 	function totalPrice() {
 		var zong = 0;
 		$(".cartProductItemSumPrice").each(function() {
@@ -108,6 +114,9 @@
 			$.ajax({
 				url : '${pageContext.request.contextPath}/06/ProductInfoCat',
 				type : 'post',
+				headers : {
+					Accept : "text/html, application/xhtml+xml, */*"
+				},
 				success : function(data) {
 					$("#content").empty();
 					$("#content").append(data);
@@ -115,13 +124,15 @@
 
 			});
 		});
-	});
-	//AJAX不更新頁面搜尋狗狗分類商品
-	$(function() {
+
+		//AJAX不更新頁面搜尋狗狗分類商品
 		$("#buttonDog").click(function() {
 			$.ajax({
 				url : '${pageContext.request.contextPath}/06/ProductInfoDog',
 				type : 'post',
+				headers : {
+					Accept : "text/html, application/xhtml+xml, */*"
+				},
 				success : function(data) {
 					$("#content").empty();
 					$("#content").append(data);
@@ -129,44 +140,43 @@
 			});
 		});
 
-	});
-
-	$(function() {
+		//AJAX不更新頁面搜尋全部分類商品
 		$("#allProducts").click(function() {
 			$.ajax({
 				url : '${pageContext.request.contextPath}/06/productInfoAll',
 				type : 'post',
+				headers : {
+					Accept : "text/html"
+				},
 				success : function(data) {
 					$("#content").empty();
 					$("#content").append(data);
 				}
 			});
 		});
-
 	});
 
-	//點選商品頁超連結執行SUBMIT動作
 	$(function() {
-		$(".checkCar").click(function() {
+		//點選商品頁超連結 執行SUBMIT動作 傳到該商品詳細資料頁面
+		$(".checkPro").click(function() {
 			event.preventDefault();
 			var productId = $(this).attr("productId");
 			$('#selectPrdId').val(productId);
 			$('#orderSubmit').attr('action', "${pageContext.request.contextPath}/06/productDetail");
 			$('#orderSubmit').submit();
 		});
-	});
-
-	$(function() {
+		//點選商品加入購物車
 		$("#addToCar").click(function() {
 			$('#orderSubmit').attr('action', "${pageContext.request.contextPath}/06/addProductsToCar");
 			$('#orderSubmit').submit();
 		});
+		//清空購物車
 		$("#clearCar").click(function() {
 			$("#orderSubmit").attr("action", "${pageContext.request.contextPath}/06/petClearCar");
 			$("#orderSubmit").submit();
 
-		})
-
+		});
+		//判斷購物車有商品才可跳至結帳頁面
 		$("#goBuy").click(function() {
 			var carTotal = $(this).attr("carTotal");
 			if (carTotal <= 0) {
@@ -176,7 +186,7 @@
 				$('#orderSubmit').submit();
 			}
 		})
-	})
+	});
 </script>
 <style type="text/css">
 #shoppingCart {
@@ -206,7 +216,8 @@
 }
 
 #pageBackground {
-	background-image: url(img/aa.png);
+	background-image:
+		url('${pageContext.request.contextPath}/06/img/aa.png');
 }
 
 .button {
@@ -251,7 +262,7 @@
 
 .productImg {
 	width: 130px;
-	height: 90px
+	height: 90px;
 }
 </style>
 </head>
@@ -264,7 +275,7 @@
 					<div class="col-4 col-md-4 col-xl-6">
 						<div id="logo">
 							<a href="index.html">
-								<img src="img/logo.png" alt="" title="" />
+								<img src="img/Logo.png" alt="" title="" />
 							</a>
 						</div>
 					</div>
@@ -272,9 +283,10 @@
 						<div class="sub_header_social_icon float-right">
 							<a href="#">
 								<i class="flaticon-phone"></i>
-								+02 213 - 256 (365)
+								02
 							</a>
-							<a href="#" class="btn_1 d-none d-md-inline-block">Become a Volunteer</a>
+							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">Longin</a>
+							<a href="friendlist" class="btn_1 d-none d-md-inline-block">account</a>
 						</div>
 					</div>
 				</div>
@@ -292,26 +304,26 @@
 							<div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
 								<ul class="navbar-nav">
 									<li class="nav-item active">
-										<a class="nav-link active" href="index.html">Home</a>
+										<a class="nav-link active" href="index.jsp">Home</a>
 									</li>
 									<li class="nav-item">
-										<a href="about.html" class="nav-link">About</a>
+										<a href="travel.jsp" class="nav-link">𨑨迌 食飯</a>
 									</li>
 									<li class="nav-item">
-										<a href="services.html" class="nav-link">services</a>
+										<a href="#" class="nav-link">交朋友</a>
 									</li>
 									<li class="nav-item">
-										<a href="gallery.html" class="nav-link">gallery</a>
+										<a href="${pageContext.request.contextPath}/06/petProductSale" class="nav-link">PET陪你購物</a>
+									</li>
+									<li>
+										<a href="<spring:url value='/blogIndex'/>" class="nav-link">blog</a>
 									</li>
 									<li class="nav-item dropdown">
-										<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ʕ•ᴥ•ʔ陪你購物 </a>
+										<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> PET PET 醫療站 </a>
 										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-											<a class="dropdown-item" href="${pageContext.request.contextPath}/06/petProductSale">購物中心</a>
-											<a class="dropdown-item" href="${pageContext.request.contextPath}/06/PetOrderAll">會員訂單明細</a>
+											<a class="dropdown-item" href="hospital.jsp">醫院資訊</a>
+											<a class="dropdown-item" href="question.jsp">PET PET Q&A</a>
 										</div>
-									</li>
-									<li class="nav-item">
-										<a href="blog.html" class="nav-link">blog</a>
 									</li>
 									<li class="nav-item">
 										<a href="contact.html" class="nav-link">Contact</a>
@@ -353,7 +365,8 @@
 								<img alt="ʕ•ᴥ•ʔ" class='productImg' src="${pageContext.request.contextPath}/06/downloadFile/${pro.product_id}.jpg">
 							</td>
 							<td>
-								<a class="checkCar" productId="${pro.product_id}" href="">${pro.product_name}</a>
+								<a class="checkPro" productId="${pro.product_id}" href="">${pro.product_name}</a>
+
 							</td>
 							<td>${pro.price}$</td>
 							<td>

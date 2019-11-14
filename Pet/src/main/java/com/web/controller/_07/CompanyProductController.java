@@ -94,7 +94,9 @@ public class CompanyProductController {
 		service.addProduct(bean);
 		if(!file1.isEmpty()) {
 			byte[] byte1 = file1.getBytes();
+
 			Path path = Paths.get("C:\\petuse\\"+bean.getProduct_id()+".jpg");
+
 			Files.write(path, byte1);
 		}
 		System.out.println("抓到的商品編號："+bean.getProduct_id());//測試有沒有抓到商品編號

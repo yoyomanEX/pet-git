@@ -48,6 +48,8 @@
 		});
 
 	});
+
+	
 	function totalName() {
 		var productNames = '';
 		$(".productName").each(function() {
@@ -82,63 +84,22 @@
 		})
 		$("#Sum").text(zong);
 	}
-	//AJAX不更新頁面搜尋貓咪分類商品
-	$(function() {
-		$("#buttonCat").click(function() {
-			$.ajax({
-				url : '${pageContext.request.contextPath}/06/ProductInfoCat',
-				type : 'post',
-				success : function(data) {
-					$("#content").empty();
-					$("#content").append(data);
-				}
-
-			});
-		});
-	});
-	//AJAX不更新頁面搜尋狗狗分類商品
-	$(function() {
-		$("#buttonDog").click(function() {
-			$.ajax({
-				url : '${pageContext.request.contextPath}/06/ProductInfoDog',
-				type : 'post',
-				success : function(data) {
-					$("#content").empty();
-					$("#content").append(data);
-				}
-			});
-		});
-
-	});
 	
-	$(function() {
-		$("#allProducts").click(function() {
-			$.ajax({
-				url : '${pageContext.request.contextPath}/06/productInfoAll',
-				type : 'post',
-				success : function(data) {
-					$("#content").empty();
-					$("#content").append(data);
-				}
-			});
-		});
-
-	});
-
 	//點選商品頁超連結執行SUBMIT動作
 	$(function() {
-		$(".checkCar").click(function() {
+		$(".checkPro").click(function() {
 			event.preventDefault();
 			var productId = $(this).attr("productId");
+			console.log("productI="+productId);
 			$('#selectPrdId').val(productId);
-			$('#orderSubmit').attr('action', "${pageContext.request.contextPath}/06/petProductDetail");
+			$('#orderSubmit').attr('action', "${pageContext.request.contextPath}/06/productDetail");
 			$('#orderSubmit').submit();
 		});
 	});
 
 	$(function() {
 		$("#addToCar").click(function() {
-			$('#orderSubmit').attr('action', "${pageContext.request.contextPath}/06/petProductCarJoin");
+			$('#orderSubmit').attr('action', "${pageContext.request.contextPath}/06/addProductToCar");
 			$('#orderSubmit').submit();
 		});
 		$("#clearCar").click(function(){
@@ -170,7 +131,8 @@
 							<img alt="ʕ•ᴥ•ʔ" class='productImg' src="${pageContext.request.contextPath}/06/downloadFile/${pro.product_id}.jpg">
 						</td>
 						<td>
-							<a class="checkCar" productId="${pro.product_id}" href="">${pro.product_name}</a>
+							<a class="checkPro" productId="${pro.product_id}" href="">${pro.product_name}</a>
+
 						</td>
 						<td>${pro.price}$</td>
 						<td>

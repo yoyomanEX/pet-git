@@ -9,6 +9,7 @@
 				<div class="row align-items-center">
 					<div class="col-4 col-md-4 col-xl-6">
 						<div id="logo">
+<<<<<<< HEAD
 							<a href="index.html"><img
 								src="${pageContext.request.contextPath}/img/Logo.png" alt=""
 								title="" /></a>
@@ -60,6 +61,62 @@
 <!--                                         <a href="blog.html" class="nav-link">blog</a> -->
 										 <a href="<spring:url value='/blogIndex'/>" class="nav-link">blog</a>
 									</li>
+=======
+							<a href="index.html"><img src="img/Logo.png" alt="" title="" /></a>
+						</div>
+					</div>
+					<div class="col-8 col-md-8 col-xl-6 ">
+						<div class="sub_header_social_icon float-right">
+							<a href="#"><i class="flaticon-phone"></i>+02 213 - 256 (365)</a>
+							<a href="#" class="btn_1 d-none d-md-inline-block">Become a
+								Volunteer</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="main_menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<nav class="navbar navbar-expand-lg navbar-light">
+							<button class="navbar-toggler" type="button"
+								data-toggle="collapse" data-target="#navbarSupportedContent"
+								aria-controls="navbarSupportedContent" aria-expanded="false"
+								aria-label="Toggle navigation">
+								<i class="ti-menu"></i>
+							</button>
+
+							<div class="collapse navbar-collapse justify-content-center"
+								id="navbarSupportedContent">
+								<ul class="navbar-nav">
+									<li class="nav-item active"><a class="nav-link active"
+										href="index.jsp">Home</a></li>
+									<li class="nav-item"><a href="travel.jsp" class="nav-link">𨑨迌
+											食飯</a></li>
+									<li class="nav-item"><a href="#" class="nav-link">交朋友</a>
+									</li>
+									<li class="nav-item dropdown"><a
+										class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+										role="button" data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false"> PET PET 購物樂 </a>
+										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="#">購物樂-1</a> <a
+												class="dropdown-item" href="#">購物樂-2</a>
+										</div></li>
+									<li class="nav-item">
+<!--                                         <a href="blog.html" class="nav-link">blog</a> -->
+										 <a href="<spring:url value='/blogIndex'/>" class="nav-link">blog</a>
+									</li>
+									<li class="nav-item dropdown"><a
+										class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+										role="button" data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false"> PET PET 醫療站 </a>
+										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="qryHospital.jsp">醫院資訊</a> <a
+												class="dropdown-item" href="question.jsp">PET PET Q&A</a>
+										</div></li>
+>>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
 									<li class="nav-item"><a href="contact.html"
 										class="nav-link">Contact</a></li>
 								</ul>
