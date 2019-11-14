@@ -45,8 +45,17 @@ public class MemberController {
 		// 註冊會員
 //		return "_01/memberinsert";
 		// 會員登入
-		return "_01/login";
+//		return "_01/memberlogin";
 //		return null;
+		return "index";
+	}
+	
+	//會員登入頁面
+	@RequestMapping(value = "/_01.memberloginPage")
+	public String memberloginPage(Model model) {
+		model.addAttribute("MemberBean", new MemberBean());
+		
+		return "_01/memberlogin";
 	}
 
 	// 會員登入
@@ -76,13 +85,21 @@ public class MemberController {
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String n1 = loginToken.getName();
 		System.out.println("n1:" + n1);
-		return "redirect:/article";
+		return "index";
 	}
 
 	// 登入失敗
 	@RequestMapping(value = "loginErr")
 	public String loginErr() {
 		return "_01/login";
+	}
+	
+	// 註冊會員頁面
+	@RequestMapping(value = "/_01.saveMemberPage")
+	public String saveMemberPage(Model model) {
+		model.addAttribute("MemberBean", new MemberBean());
+		
+		return "_01/memberinsert";
 	}
 
 	// 註冊會員
@@ -101,7 +118,7 @@ public class MemberController {
 	// 註冊成功
 	@RequestMapping(value = "member")
 	public String member() {
-		return "_01/ttt";
+		return "redirect: _01.memberloginPage";
 	}
 
 	// 註冊失敗
@@ -157,15 +174,17 @@ public class MemberController {
 
 	//進入修改會員頁面
 	@RequestMapping(value = "/_01.updataMemberPage")
-	public String updataMemberPage() {
-		
-		return "_01/login";
+	public String updataMemberPage(Model model) {
+		model.addAttribute("MemberBean", new MemberBean());
+		return "_01/memberupdate";
 	}
 
 	// 修改會員
 	@RequestMapping(value = "/_01.updataMember", method = RequestMethod.POST)
-	public String updataMember(MemberBean mb) {
+	public String updataMember(MemberBean mb, HttpServletRequest request) {
 		memberService.updataMember(mb);
+		HttpSession session = request.getSession();
+		session.setAttribute("LoginOK", mb);
 
 		return "_01/ttt";
 	}

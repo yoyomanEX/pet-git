@@ -31,18 +31,18 @@ public class MemberOrderDetailDaoImpl implements MemberOrderDetailDao {
 		return (ArrayList<MemberOrderDetailBean>) query.list();
 	}
 	
-	public ArrayList<MemberOrderDetailBean> queryByOrderId(MemberOrderDetailBean p1) {
+	public void  queryByOrderId(MemberOrderDetailBean p1) {
 		Session session = factory.getCurrentSession();
 		Query query = session.createQuery("from MemberOrderDetailBean where order_id="+p1.getOrder_id());
-		return (ArrayList<MemberOrderDetailBean>) query.list();
-//		for(MemberOrderDetailBean b1: list) {
-//			p1.setCompany_id(b1.getCompany_id());
-//			p1.setOrder_id(b1.getOrder_id());
-//			p1.setProduct_id(b1.getProduct_id());
-//			p1.setProduct_name(b1.getProduct_name());
-//			p1.setAmount(b1.getAmount());
-//			p1.setTotal(b1.getTotal());
-//		}
+		ArrayList<MemberOrderDetailBean> list= (ArrayList<MemberOrderDetailBean>) query.list();
+		for(MemberOrderDetailBean b1: list) {
+			p1.setCompany_id(b1.getCompany_id());
+			p1.setOrder_id(b1.getOrder_id());
+			p1.setProduct_id(b1.getProduct_id());
+			p1.setProduct_name(b1.getProduct_name());
+			p1.setAmount(b1.getAmount());
+			p1.setTotal(b1.getTotal());
+		}
 		
 	}
 

@@ -45,11 +45,15 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+
+
 	@Override
 	public int updataMember(MemberBean mb) {
 		// TODO Auto-generated method stub
 		return memberDao.updataMember(mb);
 	}
+
+
 	
 
 }

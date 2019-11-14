@@ -21,9 +21,7 @@ public class AdminController {
 		this.adminService = adminService;
 	}
 
-
 //	@RequestMapping(value = "/")
-
 	public String home(Model model) {
 		model.addAttribute("AdminBean", new AdminBean());
 		// 註冊管理員
@@ -31,6 +29,14 @@ public class AdminController {
 		// 管理員登入
 		return "_01/adminlogin";
 //		return null;
+	}
+	
+	// 進入管理員登入頁面
+	@RequestMapping(value = "/_01.loginAdminPage")
+	public String loginAdminPage(Model model) {
+		model.addAttribute("AdminBean", new AdminBean());
+		
+		return "_01/adminlogin";
 	}
 
 	// 管理員登入
@@ -60,7 +66,9 @@ public class AdminController {
 		AdminBean loginToken = (AdminBean) session.getAttribute("AdminLoginOK");
 		String n1 = loginToken.getName();
 		System.out.println("n1:" + n1);
-		return "_01/ttt";
+
+		return "/_07/adminCompanyManagement";
+
 	}
 
 	// 登入失敗
@@ -69,6 +77,15 @@ public class AdminController {
 
 		return "_01/adminlogin";
 
+	}
+	
+	// 進入註冊管理員頁面
+	@RequestMapping(value = "/_01.saveAdminPage")
+	public String saveAdminPage(Model model) {
+		model.addAttribute("AdminBean", new AdminBean());
+		// 註冊管理員
+		return "_01/admininsert";
+		
 	}
 
 	// 註冊管理員
@@ -87,7 +104,7 @@ public class AdminController {
 	// 註冊成功
 	@RequestMapping(value = "admin")
 	public String admin() {
-		return "_01/ttt";
+		return "redirect: _01.loginAdminPage";
 	}
 
 	// 註冊失敗
@@ -98,16 +115,18 @@ public class AdminController {
 
 	// 進入修改管理員頁面
 	@RequestMapping(value = "/_01.updataAdminPage")
-	public String updataAdminPage() {
-
-		return "_01/login";
+	public String updataAdminPage(Model model) {
+		model.addAttribute("AdminBean", new AdminBean());
+		return "_01/adminupdate";
 	}
 
 	// 修改管理員
 	@RequestMapping(value = "/_01.updataAdmin", method = RequestMethod.POST)
-	public String updataAdmin(AdminBean ab) {
+	public String updataAdmin(AdminBean ab, HttpServletRequest request) {
 		adminService.updataAdmin(ab);
-
+		HttpSession session = request.getSession();
+		session.setAttribute("AdminLoginOK", ab);
 		return "_01/ttt";
+
 	}
 }

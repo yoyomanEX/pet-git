@@ -14,7 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>PET陪你廠商後台管理</title>
+<title>pET ʕ•ᴥ•ʔ廠商後台管理你廠商後台管理</title>
 
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -51,7 +51,7 @@
 					<i class=""></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-				Pet陪你<br> 廠商後台系統
+				pET ʕ•ᴥ•ʔ<br> 廠商後台管理
 				</div>
 				
 			</a>

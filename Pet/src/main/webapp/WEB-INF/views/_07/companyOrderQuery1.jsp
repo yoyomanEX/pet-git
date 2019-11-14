@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -11,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>PET陪你廠商後台管理</title>
+<title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
 
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -74,32 +75,6 @@
       return date;
     }
   } );
-  
-  
-  
-  jq1(document).ready(function(){
-		
-		var company_id =jq1("#company_id").val();  
-		jq1("#clickmeS").click(function() {
-			jq1.ajax({
-    			url:"queryOrderByStatus",
-    			data:{
-    				key1:jq1("#from").val(),
-    				key2:jq1("#to").val(),
-    				key3:company_id,
-    				key4:jq1("#status1").val()      				
-    			},
-//     			dataType:"json",
-    			type:"post",
-    			success:function (data){
-    				  for(var i=0;i<data.length;i++){    //遍历data数组
-                          var ls = data[i];  
-    				  alert(ls[i]);
-    			};
-    		}
-		});
-    });
-  });
 </script>
 
 
@@ -396,6 +371,7 @@
 					<p class="mb-4">
 						<a>ORDER QUERY</a>.
 					</p>
+					<form:form action="${pageContext.request.contextPath}/processed" method="POST">
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<a> <label for="from">訂單起日</label> 
@@ -411,40 +387,64 @@
 							<option value="2">已處理未出貨</option>
 							<option value="3">已處理已出貨</option>
 					</select>
-						<button id='clickmeS'>查詢
-						
-						
-						</button>
+						<button id='clickmeS'>查詢</button>
 					</a> 
+					</form:form>
 					<a href="orderManagement">返回訂單管理</a> 
 						</div>
 					<!-- DataTales Example -->
-			<div id='test123'>
+
 			<div class="card shadow mb-4">
 			<div class="card-body">
-              <div class="table-responsive">  
-                <table class="table table-bordered" id="dataTable" width="100%" scellspacing="0">
-					<thead>
-						<tr>
-						<th>訂購日期<th>訂單編號<th>會員ID<th>收件人<th>售價
-						<th>出貨日期<th>訂單狀態
-						</tr>
-					</thead>
-							<tr>
-								<td>
-								<td>
-								<td>
-								<td>
-								<td>
-								<td>
-								<td>
-				</table>  
-				</div>
-              </div>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <tr>
+                  <thead>
+                    <tr>
+                      <th>訂單編號</th><th>訂單日期</th><th>訂購人</th><th>收件人</th>
+                      <th>寄送地址</th><th>售價</th><th>出貨日期</th><th>接單</th>
+                    </tr>
+                  </thead>
+                    <c:forEach items="${unprocessedOrder}" var="p1" varStatus="s">
+								<tr style="background-color: #F0F0F0;" id='title1'>
+									<td>${p1.order_id}
+									<td>${p1.order_date}
+									<td>${p1.member_id}
+									<td>${p1.recipient}
+									<td>${p1.address}
+									<td>${p1.total}
+									<td><input type="text" value='${p1.ship_date}'> 
+									<td>
+									<form method="post" action="${pageContext.request.contextPath}/processed">
+									<input type="submit" value='接單'>
+									<input type="hidden" name="order_id" value="${p1.order_id}"> 
+									<input type="hidden" value="${p1.status}" name='status'>
+									<input type="hidden" value="${p1.company_id}" name='company_id'>							
+									</form>
+									<c:set var="count" value="${s.count}" />
+								<tr>	
+								<th><th>訂購明細<th>產品編號<th>產品名稱<th>數量<th><th><th><th>
+								<c:set var="d" scope="session" value="${p1.order_id}"/>
+								<c:forEach items="${orderDetail}" var="p2" varStatus="s">
+								<c:if test="${d eq p2.order_id}">
+								<tr class='panel'><td>
+									<td>
+									<td>${p2.product_id}
+									<td>${p2.product_name}
+									<td>${p2.amount}
+									<td>
+									<td>
+									<td>
+									<td>
+								</c:if>
+								</c:forEach>
+						</c:forEach>
+				</table>
+					<h3 class="count1">共${count}筆商品資料</h3>    
               </div>
             </div>
           </div>
-		</div>
+				</div>
 				<!-- /.container-fluid -->
 
 			</div>

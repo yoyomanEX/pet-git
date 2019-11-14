@@ -77,6 +77,7 @@ public class ProductInfoController {
 	}
 
 //	@RequestMapping("/login")
+
 	public String Petlogin() {
 		return "06/PetLogin";
 	}
@@ -275,6 +276,7 @@ public class ProductInfoController {
 	@RequestMapping("/productDetail")
 	public String petProductDetail(Model model, HttpSession session, HttpServletRequest request) throws Exception {
 		String selectPrdId = request.getParameter("selectPrdId");
+		logger.info(selectPrdId);
 		PetProductListBean productDeatail = petProductDao.findProductId(Integer.parseInt(selectPrdId));
 		model.addAttribute("product", productDeatail);
 		return "06/PetProductDetail";

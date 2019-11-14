@@ -50,11 +50,15 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 
+
+
 	@Override
 	public int updataAdmin(AdminBean ad) {
 		// TODO Auto-generated method stub
 		return adminDao.updataAdmin(ad);
 	}
+
+
 	
 	
 	

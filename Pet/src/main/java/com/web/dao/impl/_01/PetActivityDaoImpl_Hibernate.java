@@ -25,6 +25,7 @@ public class PetActivityDaoImpl_Hibernate implements PetActivityDao {
 		return factory.getCurrentSession();
 	}
 	
+
 	@Override
 	public int savePetActivity(PetActivityBean pab) {
 		int n = 0;

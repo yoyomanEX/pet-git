@@ -109,6 +109,4 @@ public class AdminDaoImpl_Hibernate implements AdminDao {
 	}
 
 	
-
-	
 }

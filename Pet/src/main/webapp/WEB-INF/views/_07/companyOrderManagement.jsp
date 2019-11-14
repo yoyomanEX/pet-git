@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>PET陪你廠商後台管理</title>
+<title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
 
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -43,7 +43,7 @@
 					<i class=""></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-				Pet陪你<br> 廠商後台系統
+				pET ʕ•ᴥ•ʔ<br>廠商後台管理
 				</div>
 			</a>
 			<!-- Divider -->
@@ -372,7 +372,7 @@
                         <div class="col-auto">
                           <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
                           		<form method="post" action='unshippedOrder' id='unshipped'>
-                          		<a onclick="unshipped();" href='#'>訂單未出貨</a>
+                          		<a onclick="unshipped();" href='#'>未出貨訂單</a>
                           		<input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
                           		<input type="hidden" value="2" name='status'>
                           		</form>
@@ -401,7 +401,11 @@
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">PROCESSED ORDER(shipped)</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      		<a href='#'>訂單已出貨</a>
+                      	<form method="post" action='shippedOrder' id='shipped'>
+                          		<a onclick="shipped();" href='#'>已出貨訂單</a>
+                          		<input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
+                          		<input type="hidden" value="3" name='status'>
+                          		</form>
                       </div>
                     </div>
                     <div class="col-auto">
@@ -484,6 +488,9 @@
 		}
 		function unshipped() {
 			$("#unshipped").submit();
+		}
+		function shipped() {
+			$("#shipped").submit();
 		}
 	</script>	
   
