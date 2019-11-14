@@ -137,6 +137,13 @@ public class CompanyDaoImpl implements CompanyDao {
 			Query query = session.createQuery("from CompanyBean where status=2 order by id ASC");
 			return (ArrayList<CompanyBean>) query.list();
 		}
+	// (管理員用)撈出拒絕的廠商列表 status=9
+				@Override
+		public ArrayList<CompanyBean> rejectCompany() {
+			Session session = factory.getCurrentSession();
+			Query query = session.createQuery("from CompanyBean where status=9 order by id ASC");
+			return (ArrayList<CompanyBean>) query.list();
+				}
 	
 
 	// 拒絕廠商申請(狀態改9)

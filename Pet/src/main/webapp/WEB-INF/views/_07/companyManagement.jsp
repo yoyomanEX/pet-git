@@ -12,8 +12,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>PET陪你廠商後台管理</title>
-
+<title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
+<link rel="icon" href="img/about_icon.png">
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -39,12 +39,12 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="CompanyManagement">
+				href="companyManagementIndex">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class=""></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-				Pet陪你<br> 廠商後台系統
+				pET ʕ•ᴥ•ʔ<br> 廠商後台管理
 				</div>
 			</a>
 			<!-- Divider -->
@@ -304,7 +304,7 @@
         <!-- Begin Page Content內文開始 -->
       
       <!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container-fluid" >
 
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800">商品管理</h1>
@@ -315,10 +315,10 @@
 
 					<!-- DataTales Example -->
 					 <!-- Content Row -->
-         			 <div class="row">
+         <div class="row" style="padding-left: 50px; padding-right: 50px;"> 
 
            				 <!-- 內文開始  第一個框-->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-5 col-md-10 mb-4" >
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -336,7 +336,7 @@
               </div>
             </div>
             
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-5 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -350,51 +350,6 @@
                       		</a>	
                       		</form>
                       	</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">NON SALE PRODUCT</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                          		<a href=''>????</a>
-                          	</div>
-                        </div>
-                        <div class="col">
-                          <div class="">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>

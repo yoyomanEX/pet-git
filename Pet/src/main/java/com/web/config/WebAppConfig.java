@@ -1,3 +1,4 @@
+
 package com.web.config;
 
 import java.util.ArrayList;
@@ -139,7 +140,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 			
 		}
 
-		
+//		
 		@Override
 		public void addResourceHandlers(ResourceHandlerRegistry registry) {
 			registry.addResourceHandler("/css/**")
@@ -160,7 +161,11 @@ public class WebAppConfig implements WebMvcConfigurer {
 			        .addResourceLocations("/WEB-INF/resources/vendor/");
 			registry.addResourceHandler("/.sass-cache/**")
 	        .addResourceLocations("/WEB-INF/resources/.sass-cache/");
-	    
+			registry.addResourceHandler("/06/**")
+
+	        .addResourceLocations("/WEB-INF/resources/06/");
+
+
 		}
 	
 }

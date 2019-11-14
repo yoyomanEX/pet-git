@@ -1,4 +1,5 @@
 
+
 package com.web.controller._01;
 
 import java.io.ByteArrayOutputStream;
@@ -21,7 +22,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -58,16 +58,18 @@ public class MemberController {
 		// 註冊會員
 //		return "_01/memberinsert";
 		// 會員登入
-		return "_01/memberlogin";
+//		return "_01/memberlogin";
 //		return null;
+		return "index";
+
 	}
 
 	// 會員登入頁面
 	@RequestMapping(value = "/_01.memberloginPage")
 	public String memberloginPage(Model model) {
 		model.addAttribute("MemberBean", new MemberBean());
-
 		return "_01/memberlogin";
+		
 	}
 
 	// 會員登入
@@ -97,14 +99,14 @@ public class MemberController {
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String n1 = loginToken.getName();
 		System.out.println("n1:" + n1);
-//		return "redirect:/article";
-		return "redirect:/_01.updataMemberPage";
+		return "index";
 	}
 
 	// 登入失敗
 	@RequestMapping(value = "loginErr")
 	public String loginErr() {
 		return "_01/login";
+
 	}
 
 	// 註冊會員頁面
@@ -225,6 +227,7 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		session.setAttribute("LoginOK", mb);
 
+
 		return "_01/ttt";
 	}
 	
@@ -265,3 +268,4 @@ public class MemberController {
 	}
 
 }
+

@@ -11,8 +11,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>PET陪你廠商後台管理</title>
-
+<title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
+<link rel="icon" href="img/about_icon.png">
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -51,29 +51,36 @@ var jq1=$.noConflict();
 </script>
 
 <script>
-	function detail() {
-		jq1.ajax({
-			url:"queryDetail",
-			data:{
-				key1:jq1("#order_id").val()    				
-			},
-			type:"post",
-			success:function (data){
-				alert(data);
- 				showDetail(data);
-			}
-		});
+	function detail(index) {
+		if($(".title" + index).length > 0){
+			$(".title" + index).remove();
+		}else{
+			jq1.ajax({
+				url:"queryDetail",
+				data:{
+					key1:jq1("#order_id"+index).val()    				
+				},
+				type:"post",
+				success:function (data){
+					alert(data);
+	 				showDetail(data, index);
+				}
+			});
+		}
+		
+		
 	}
-	function showDetail(data) {
+	function showDetail(data, index) {
 		var empss=JSON.parse(data);
-		var txt ="<th>產品編號<th>產品名稱<th>數量";
+		var txt ="<tr class='title" + index + "'><th>產品編號<th>產品名稱<th>數量</tr>";
 		for(i=0;i<empss.length;i++){	
-			txt +="<tr><td>"+empss[i].product_id;
+			txt +="<tr class='title" + index + "'><td>"+empss[i].product_id;
 			txt +="<td>"+empss[i].product_name;
 			txt +="<td>"+empss[i].amount;
-			txt +="<td>"+empss[i].total;
+			txt +="<td>"+empss[i].total + "</tr>";
 		}
-		document.getElementById("t1").innerHTML=txt;
+		
+		$("#title" + index).after(txt);
 	}
 
 
@@ -94,12 +101,12 @@ var jq1=$.noConflict();
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="CompanyManagement">
+				href="companyManagementIndex">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class=""></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-					Pet陪你<br> 廠商後台系統
+				pET ʕ•ᴥ•ʔ<br> 廠商後台管理
 				</div>
 			</a>
 			<!-- Divider -->
@@ -391,19 +398,19 @@ var jq1=$.noConflict();
                   <thead>
                     <tr>
                       <th>訂單編號</th><th>訂單日期</th><th>訂購人</th><th>收件人</th>
-                      <th>寄送地址</th><th>售價</th><th>出貨日期</th><th>接單</th>
+                      <th>寄送地址</th><th>售價</th><th>接單</th><th>
                     </tr>
                   </thead>
-                    <c:forEach items="${unprocessedOrder}" var="p1" varStatus="s">
-								<tr style="background-color: #F0F0F0;" id='title1'>
-									<td>${p1.order_id}
+                    <c:forEach items="${unprocessedOrder}" var="p1" varStatus="s" >
+								<tr style="background-color: #F0F0F0;" id='title${s.index}'>
+									<td><a onclick='detail(${s.index});'><input type='hidden' id ='order_id${s.index}' value='${p1.order_id}'>${p1.order_id}</a>
 									<td>${p1.order_date}
 									<td>${p1.member_id}
 									<td>${p1.recipient}
 									<td>${p1.address}
 									<td>${p1.total}
-									<td>${p1.ship_date}
 									<td>
+									
 									<form method="post" action="${pageContext.request.contextPath}/processed">
 									<input type="submit" value='接單'>
 									<input type="hidden" name="order_id" value="${p1.order_id}"> 
@@ -411,22 +418,8 @@ var jq1=$.noConflict();
 									<input type="hidden" value="${p1.company_id}" name='company_id'>							
 									</form>
 									<c:set var="count" value="${s.count}" />
-								<tr>	
-								<th><th>訂購明細<th>產品編號<th>產品名稱<th>數量<th><th><th><th>
-								<c:set var="d" scope="session" value="${p1.order_id}"/>
-								<c:forEach items="${orderDetail}" var="p2" varStatus="s">
-								<c:if test="${d eq p2.order_id}">
-								<tr class='panel'><td>
-									<td>
-									<td>${p2.product_id}
-									<td>${p2.product_name}
-									<td>${p2.amount}
-									<td>
-									<td>
-									<td>
-									<td>
-								</c:if>
-								</c:forEach>
+						
+	
 						</c:forEach>
 				</table>
 			

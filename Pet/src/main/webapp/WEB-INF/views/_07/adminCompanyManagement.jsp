@@ -8,9 +8,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>
-    Argon Dashboard - Free Dashboard for Bootstrap 4 by Creative Tim
-  </title>
+  <title>pETʕ•ᴥ•ʔ站方管理系統</title>
+  <link rel="icon" href="img/about_icon.png">
   <!-- Favicon -->
   <link href="${pageContext.request.contextPath}/assets/img/brand/favicon.png" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -24,13 +23,14 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
-var jq1=$.noConflict();
-jq1(document).ready(function(){
-	jq1('#reviewCompany').click(function() {
-		jq1.ajax({
+// var jq1=$.noConflict();
+
+//待審核廠商列表
+$(document).ready(function(){
+	$('#reviewCompany').click(function() {
+		$.ajax({
     			url:"reviewCompany",
     			success:function (data){
-    				alert(data);
     				showCompany(data);
     			}
     		});
@@ -38,29 +38,194 @@ jq1(document).ready(function(){
     });
    function showCompany(data) {
 			var c1=JSON.parse(data);
-			var txt ="<th>編號<th>廠商統編<th>廠商名稱<th>Email<th>地址<th>連絡電話<th>聯絡人";
+			var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>接受申請</th><th style='font-size: 15px;'>拒絕申請</th>";
 			for(i=0;i<c1.length;i++){
-				txt +="<tr><td>"+c1[i].id;
-				txt +="<td>"+c1[i].company_id;
-				txt +="<td>"+c1[i].company_name;
-				txt +="<td>"+c1[i].company_email;
-				txt +="<td>"+c1[i].company_add;
-				txt +="<td>"+c1[i].company_tel;
-				txt +="<td>"+c1[i].contact_name;
-				txt +="<td><button class=\"b1\" value=\""+c1[i].company_id+"\" onclick=\"showEmp2("+c1[i].company_id+")\">接受</button>";
-				txt +="<td><button class=\"b2\" value=\""+c1[i].company_id+"\">婉拒</button>";
+				txt +="<tr><td style='font-size: 15px;'>"+c1[i].id+"</td>";
+				txt +="<td style='font-size: 15px;'>"+c1[i].company_id+"</td>";
+				txt +="<td style='font-size: 15px;'>"+c1[i].company_name+"</td>";
+				txt +="<td style='font-size: 15px;'>"+c1[i].company_email+"</td>";
+				txt +="<td style='font-size: 15px;'>"+c1[i].company_add+"</td>";
+				txt +="<td style='font-size: 15px;'>"+c1[i].company_tel+"</td>";
+				txt +="<td style='font-size: 15px;'>"+c1[i].contact_name+"</td>";
+				txt +="<td style='font-size: 15px;'><button onclick='accept(" +i+ ");'><input type='hidden' id='status1"+i+"' value='1'><input type='hidden' id='company_id1"+i+"' value=\""+c1[i].company_id+"\">接受</button></td>";
+				txt +="<td style='font-size: 15px;'><button onclick='reject(" +i+ ");'><input type='hidden' id='status2"+i+"' value='9'><input type='hidden' id='company_id2"+i+"' value=\""+c1[i].company_id+"\">拒絕</button></td>";
 			}
 			document.getElementById("dataTable").innerHTML=txt;
 		}
+   
+	//接受審核
+	 function accept(p){
+// 		 $(this).hide();	
+		 if (confirm("是否通過審核呢？")) {
+			$.ajax({
+  			url:"acceptByCompanyId",
+  			data:{
+  				key1:$("#company_id1"+p).val(),
+  				key2:$("#status1"+p).val()
+  			},
+  			type:"post",
+  			success:function (){
+  				$("#company_id1"+p).parent().parent().parent().hide();	
+				
+			}
+  		});
+		 }
+	 };
 
+	//拒絕申請
+	 function reject(p){
+// 		 $(this).hide();	
+		 if (confirm("是否確定拒絕申請呢？")) {
+			$.ajax({
+  			url:"rejectByCompanyId",
+  			data:{
+  				key1:$("#company_id2"+p).val(),
+  				key2:$("#status2"+p).val()
+  			},
+  			type:"post",
+  			success:function (){
+  				$("#company_id2"+p).parent().parent().parent().hide();	
+				
+			}
+  		});
+		 }
+	 };
+	 
 
+   
+//    上架廠商列表
+   $(document).ready(function(){
+		$('#onsaleCompany').click(function() {
+			$.ajax({
+	    			url:"adminCompanyList",
+	    			success:function (data){
+	    				showOnsaleCompany(data);
+	    			}
+	    		});
+			});
+	    });
+	   function showOnsaleCompany(data) {
+				var c1=JSON.parse(data);
+				var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>廠商下架</th>";
+				for(i=0;i<c1.length;i++){
+					txt +="<tr><td style='font-size: 15px;'>"+c1[i].id+"</td>";
+					txt +="<td style='font-size: 15px;'>"+c1[i].company_id+"</td>";
+					txt +="<td style='font-size: 15px;'>"+c1[i].company_name+"</td>";
+					txt +="<td style='font-size: 15px;'>"+c1[i].company_email+"</td>";
+					txt +="<td style='font-size: 15px;'>"+c1[i].company_add+"</td>";
+					txt +="<td style='font-size: 15px;'>"+c1[i].company_tel+"</td>";
+					txt +="<td style='font-size: 15px;'>"+c1[i].contact_name+"</td>";
+					txt +="<td><button onclick='nonsale(" +i+ ");'><input type='hidden' id='status1"+i+"' value='2'><input type='hidden' id='company_id1"+i+"' value=\""+c1[i].company_id+"\">廠商下架</button>";
+				}
+				document.getElementById("dataTable").innerHTML=txt;
+			}
+	 //廠商狀態改下架
+		 function nonsale(p){	
+			 if (confirm("是否確定要下架廠商呢？")) {
+				$.ajax({
+	  			url:"obtainedByCompanyId",
+	  			data:{
+	  				key1:$("#company_id1"+p).val(),
+	  				key2:$("#status1"+p).val()
+	  			},
+	  			type:"post",
+	  			success:function (){
+	  				$("#company_id1"+p).parent().parent().parent().hide();	
+					
+				}
+	  		});
+			 }
+		 };
 
-
-
+	   
+//	   下架廠商列表
+	   $(document).ready(function(){
+			$('#obtainedCompany').click(function() {
+				$.ajax({
+		    			url:"obtainedCompany",
+		    			success:function (data){
+		    				showObtainedCompany(data);
+		    			}
+		    		});
+				});
+		    });
+		   function showObtainedCompany(data) {
+					var c1=JSON.parse(data);
+					var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>接受申請</th><th style='font-size: 15px;'>重新上架</th>";
+					for(i=0;i<c1.length;i++){
+						txt +="<tr><td style='font-size: 15px;'>"+c1[i].id+"</td>";
+						txt +="<td style='font-size: 15px;'>"+c1[i].company_id+"</td>";
+						txt +="<td style='font-size: 15px;'>"+c1[i].company_name+"</td>";
+						txt +="<td style='font-size: 15px;'>"+c1[i].company_email+"</td>";
+						txt +="<td style='font-size: 15px;'>"+c1[i].company_add+"</td>";
+						txt +="<td style='font-size: 15px;'>"+c1[i].company_tel+"</td>";
+						txt +="<td style='font-size: 15px;'>"+c1[i].contact_name+"</td>";
+						txt +="<td><button onclick='onsale(" +i+ ");'><input type='hidden' id='status1"+i+"' value='1'><input type='hidden' id='company_id1"+i+"' value=\""+c1[i].company_id+"\">重新上架</button>";
+					}
+					document.getElementById("dataTable").innerHTML=txt;
+				}
+		
+		 //廠商狀態重新上架
+			 function onsale(p){	
+				 if (confirm("是否確定要重新上架廠商呢？")) {
+					$.ajax({
+		  			url:"acceptByCompanyId1",
+		  			data:{
+		  				key1:$("#company_id1"+p).val(),
+		  				key2:$("#status1"+p).val()
+		  			},
+		  			type:"post",
+		  			success:function (){
+		  				$("#company_id1"+p).parent().parent().parent().hide();	
+						
+					}
+		  		});
+				 }
+			 };
+//			   拒絕廠商列表
+			   $(document).ready(function(){
+					$('#rejectCompany').click(function() {
+						$.ajax({
+				    			url:"rejectCompany",
+				    			success:function (data){
+				    				showRejectCompany(data);
+				    			}
+				    		});
+						});
+				    });
+				   function showRejectCompany(data) {
+							var c1=JSON.parse(data);
+							var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>接受申請</th><th style='font-size: 15px;'>再次審核</th>";
+							for(i=0;i<c1.length;i++){
+								txt +="<tr><td style='font-size: 15px;'>"+c1[i].id+"</td>";
+								txt +="<td style='font-size: 15px;'>"+c1[i].company_id+"</td>";
+								txt +="<td style='font-size: 15px;'>"+c1[i].company_name+"</td>";
+								txt +="<td style='font-size: 15px;'>"+c1[i].company_email+"</td>";
+								txt +="<td style='font-size: 15px;'>"+c1[i].company_add+"</td>";
+								txt +="<td style='font-size: 15px;'>"+c1[i].company_tel+"</td>";
+								txt +="<td style='font-size: 15px;'>"+c1[i].contact_name+"</td>";
+								txt +="<td><button onclick='onsale(" +i+ ");'><input type='hidden' id='status1"+i+"' value='1'><input type='hidden' id='company_id1"+i+"' value=\""+c1[i].company_id+"\">通過申請</button>";
+							}
+							document.getElementById("dataTable").innerHTML=txt;
+						}
+				   //廠商狀態重新審核
+					 function onsale(p){	
+						 if (confirm("確定要通過申請嗎？")) {
+							$.ajax({
+				  			url:"acceptByCompanyId1",
+				  			data:{
+				  				key1:$("#company_id1"+p).val(),
+				  				key2:$("#status1"+p).val()
+				  			},
+				  			type:"post",
+				  			success:function (){
+				  				$("#company_id1"+p).parent().parent().parent().hide();	
+								
+							}
+				  		});
+						 }
+					 };
 </script>
-
-
-
 </head>
 
 <body class="">
@@ -171,17 +336,17 @@ jq1(document).ready(function(){
           </li>
           <li class="nav-item">
             <a class="nav-link " href="${pageContext.request.contextPath}/views/profile.jsp">
-              <i class="ni ni-single-02 text-yellow"></i> User profile
+              <i class="ni ni-single-02 text-yellow"></i> 出貨管理
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="${pageContext.request.contextPath}/views/tables.jsp">
-              <i class="ni ni-bullet-list-67 text-red"></i> Tables
+              <i class="ni ni-bullet-list-67 text-red"></i> 商品管理
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/views/login.jsp">
-              <i class="ni ni-key-25 text-info"></i> Login
+              <i class="ni ni-key-25 text-info"></i> 廠商管理
             </a>
           </li>
           <li class="nav-item">
@@ -220,7 +385,12 @@ jq1(document).ready(function(){
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
+<<<<<<< HEAD
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="${pageContext.request.contextPath}/index.jsp">Dashboard</a>
+=======
+        <a style='font-size: 30px;' class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="${pageContext.request.contextPath}/index.jsp">廠商管理</a>
+        <p>COMPANY MANAGEMENT</p>
+>>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
@@ -278,7 +448,7 @@ jq1(document).ready(function(){
     <!-- End Navbar -->
     <!-- Header -->
     <!-- Header -->
-    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+    <div class="header bg-gradient-primary pb-3 pt-3 pt-md-8">
       <div class="container-fluid">
         <div class="header-body">
           <!-- Card stats -->
@@ -309,7 +479,7 @@ jq1(document).ready(function(){
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">ONSALE COMPANY</h5>
                       <span class="h2 font-weight-bold mb-0">
-                      	<a href='${pageContext.request.contextPath}/adminCompanyList'>在架廠商</a></span>
+                      	<a id='onsaleCompany' href='#'>上架廠商</a></span>
                     </div>
                     <div class="col-auto">
                      
@@ -326,7 +496,7 @@ jq1(document).ready(function(){
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">NONSALE COMPANY</h5>
                       <span class="h2 font-weight-bold mb-0">
-                      	<a href='${pageContext.request.contextPath}/obtainedCompany'>下架廠商</a></span>
+                      	<a id='obtainedCompany' href='#'>下架廠商</a></span>
                     </div>
                     <div class="col-auto">
                       
@@ -341,8 +511,9 @@ jq1(document).ready(function(){
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">???</h5>
-                      <span class="h2 font-weight-bold mb-0">????</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">REJECT COMPANY</h5>
+                      <span class="h2 font-weight-bold mb-0">
+                      	<a id='rejectCompany' href='#'>未通過廠商</a></span>
                     </div>
                     <div class="col-auto">
                       

@@ -11,8 +11,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>PET陪你廠商後台管理</title>
-
+<title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
+<link rel="icon" href="img/about_icon.png">
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -52,12 +52,12 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="CompanyManagement">
+				href="companyManagementIndex">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class=""></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-					Pet陪你<br> 廠商後台系統
+					pET ʕ•ᴥ•ʔ<br> 廠商後台管理
 				</div>
 			</a>
 			<!-- Divider -->
@@ -348,26 +348,19 @@
                   <thead>
                     <tr>
                       <th>訂購日期</th><th>訂單編號</th><th>訂購人</th><th>收件人</th>
-                      <th>寄送地址</th><th>售價</th><th>出貨日期</th><th>出貨</th>
+                      <th>寄送地址</th><th>售價</th><th>出貨</th>
                     </tr>
                   </thead>
-<!--                   <tfoot> -->
-<!--                     <tr> -->
-<!--                       <th>訂購日期</th><th>訂單編號</th><th>訂購人</th><th>收件人</th> -->
-<!--                       <th>寄送地址</th><th>售價</th><th>接單</th> -->
-<!--                     </tr> -->
-<!--                   </tfoot> -->
                   <tbody>
                     <c:forEach items="${unshippedOrder}" var="p1" varStatus="s">
 								<tr>
-									<form method="post" action="${pageContext.request.contextPath}/shipped">
+									<form method="post" action="${pageContext.request.contextPath}/changeToShipped">
 									<td><input type="hidden" id='order_date' name='order_date' value="${p1.ship_date}">${p1.order_date}
 									<td><input type="hidden" id='order_id' name='order_id' value="${p1.order_id}">${p1.order_id}
 									<td><input type="hidden" id='member_id' name='member_id' value="${p1.member_id}}">${p1.member_id}
 									<td><input type="hidden" id='recipient' name='recipient' value="${p1.recipient}}">${p1.recipient}
 									<td><input type="hidden" id='address' name='address' value="${p1.address}}">${p1.address}
 									<td><input type="hidden" id='total' name='total' value="${p1.total}}">${p1.total}
-									<td><input type="text" id='ship_date' name='ship_date' value="${p1.ship_date}">
 									<td>
 									<input type="submit" value='出貨'>
 									<input type="hidden" name="order_id" value="${p1.order_id}"> 

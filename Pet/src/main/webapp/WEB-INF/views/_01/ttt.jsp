@@ -10,7 +10,9 @@
 <body>
 <c:set var="memberName" value="${ LoginOK.name }" />
 <h1>³X«È${ memberName }</h1>
+
 <img width='60' height='72' src='getPicture' />
+
 
 </body>
 </html>

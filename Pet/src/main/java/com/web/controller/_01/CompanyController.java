@@ -72,8 +72,11 @@ public class CompanyController {
 		CompanyBean loginToken = (CompanyBean) session.getAttribute("CompanyLoginOK");
 		String n1 = loginToken.getCompany_name();
 		System.out.println("n1:" + n1);
-//		return "_01/ttt";
-		return "redirect:/_01.updataCompanyPage";
+
+		return "/_07/companyManagementIndex";
+//		return "redirect:/_01.updataCompanyPage";
+
+
 
 	}
 

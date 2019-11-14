@@ -51,8 +51,8 @@ public class MemberOrderDetailBean implements Serializable{
 		this.company_id = company_id;
 	
 	}
+	
 	@Id
-	@GeneratedValue(generator = "generator")
 	@Column(name = "ORDER_ID")
 	public Long getOrder_id() {
 		return order_id;
@@ -61,6 +61,7 @@ public class MemberOrderDetailBean implements Serializable{
 	public void setOrder_id(Long order_id) {
 		this.order_id = order_id;
 	}
+	@Id
 	@Column(name = "PRODUCT_ID")
 	public Integer getProduct_id() {
 		return product_id;

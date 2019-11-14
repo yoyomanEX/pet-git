@@ -61,6 +61,8 @@ public class CompanyDaoImpl_Hibernate implements CompanyDao {
 	}
 
 	@Override
+	
+	
 	public boolean idExists(String id) {
 		boolean exist = false;
 		String hql = "FROM CompanyBean c WHERE c.company_id = :cid";
