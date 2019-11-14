@@ -12,7 +12,7 @@
 <meta name="author" content="">
 
 <title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
-
+<link rel="icon" href="img/about_icon.png">
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -51,31 +51,36 @@ var jq1=$.noConflict();
 </script>
 
 <script>
-$(document).ready(function(){
-	function detail() {
-		jq1('a')
-		jq1.ajax({
-			url:"queryDetail",
-			data:{
-				key1:jq1("#order_id").val()    				
-			},
-			type:"post",
-			success:function (data){
-				alert(data);
- 				showDetail(data);
-			}
-		});
+	function detail(index) {
+		if($(".title" + index).length > 0){
+			$(".title" + index).remove();
+		}else{
+			jq1.ajax({
+				url:"queryDetail",
+				data:{
+					key1:jq1("#order_id"+index).val()    				
+				},
+				type:"post",
+				success:function (data){
+					alert(data);
+	 				showDetail(data, index);
+				}
+			});
+		}
+		
+		
 	}
-	function showDetail(data) {
+	function showDetail(data, index) {
 		var empss=JSON.parse(data);
-		var txt ="<th>產品編號<th>產品名稱<th>數量";
+		var txt ="<tr class='title" + index + "'><th>產品編號<th>產品名稱<th>數量</tr>";
 		for(i=0;i<empss.length;i++){	
-			txt +="<tr><td>"+empss[i].product_id;
+			txt +="<tr class='title" + index + "'><td>"+empss[i].product_id;
 			txt +="<td>"+empss[i].product_name;
 			txt +="<td>"+empss[i].amount;
-			txt +="<td>"+empss[i].total;
+			txt +="<td>"+empss[i].total + "</tr>";
 		}
-		document.getElementById("t1").innerHTML=txt;
+		
+		$("#title" + index).after(txt);
 	}
 
 
@@ -96,7 +101,7 @@ $(document).ready(function(){
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="CompanyManagement">
+				href="companyManagementIndex">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class=""></i>
 				</div>
@@ -396,9 +401,9 @@ $(document).ready(function(){
                       <th>寄送地址</th><th>售價</th><th>接單</th><th>
                     </tr>
                   </thead>
-                    <c:forEach items="${unprocessedOrder}" var="p1" varStatus="s">
-								<tr style="background-color: #F0F0F0;" id='title1'>
-									<td><a href='#' onclick='detail();'><input type='hidden' id ='order_id' value='${p1.order_id}'>${p1.order_id}</a>
+                    <c:forEach items="${unprocessedOrder}" var="p1" varStatus="s" >
+								<tr style="background-color: #F0F0F0;" id='title${s.index}'>
+									<td><a onclick='detail(${s.index});'><input type='hidden' id ='order_id${s.index}' value='${p1.order_id}'>${p1.order_id}</a>
 									<td>${p1.order_date}
 									<td>${p1.member_id}
 									<td>${p1.recipient}
@@ -414,8 +419,6 @@ $(document).ready(function(){
 									</form>
 									<c:set var="count" value="${s.count}" />
 						
-								<tr><td>在這裡要加訂單明細
-							
 	
 						</c:forEach>
 				</table>

@@ -12,6 +12,7 @@
 <meta name="author" content="">
 
 <title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
+<link rel="icon" href="img/about_icon.png">
 
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -77,8 +78,7 @@
   
   
   jq1(document).ready(function(){
-		
-		var company_id =jq1("#company_id").val();  
+		var company_id =jq1("#company_id").val();
 		jq1("#clickmeS").click(function() {
 			jq1.ajax({
     			url:"queryOrderByStatus",
@@ -86,7 +86,7 @@
     				key1:jq1("#from").val(),
     				key2:jq1("#to").val(),
     				key3:company_id,
-    				key4:jq1("#status1").val()      				
+    				key4:jq1("#status1").val()
     			},
 //     			dataType: "text",
     			type:"post",
@@ -96,11 +96,11 @@
     			}
     		});
 		});
-    });
+  });
    function unprocessedOrder(data) {
   	 	
 			var unprocess=JSON.parse(data);
-			var txt ="<th>訂單日期<th>訂單編號<th>訂購人<th>收貨人<th>地址<th>出貨日期<th>接受訂單";
+			var txt ="<tr><th>訂單日期<th>訂單編號<th>訂購人<th>收貨人<th>地址<th>出貨日期<th>接單";
 			for(i=0;i<unprocess.length;i++){
 				var order_date = "";
 				if(unprocess[i].order_date != '' && typeof unprocess[i].order_date != 'undefined'){
@@ -113,14 +113,13 @@
 					var v1 = new Date(unprocess[i].ship_date);
 					ship_date = v1.getFullYear()+"-"+(v1.getMonth()+1)+"-"+addZero(v1.getDate(),2)+" "+addZero(v1.getHours(),2)+":"+addZero(v1.getMinutes(),2)+":"+addZero(v1.getSeconds(),2);
 				}
-				txt +="<tr><td>"+ order_date;
+				txt +="<tr id='title"+i+"'><td>"+ order_date;
 				txt +="<td><a onclick='queryDetail(" +i+ ")'><input type='hidden' id='order_id"+i+"' value=\""+unprocess[i].order_id+"\">"+unprocess[i].order_id+"</a>";
 				txt +="<td>"+unprocess[i].member_id;
 				txt +="<td>"+unprocess[i].recipient;
 				txt +="<td>"+unprocess[i].address;
 				txt +="<td>"+ship_date;
 				txt +="<td><button onclick='accept(" +i+ ");'><input type='hidden' id='status1"+i+"' value='1'><input type='hidden' id='company_id1"+i+"' value=\""+unprocess[i].company_id+"\">接受</button>";
-				txt +="<tr><th id='t1"+i+"'>";
 				txt +="<tr>";
 			}
 			document.getElementById("dataTable").innerHTML=txt;
@@ -142,6 +141,10 @@
 </script>
 <script>
 	function queryDetail(p) {
+		if(jq1(".title"+p).length>0){
+			jq1(".title"+p).remove();
+		}
+		else{
 		jq1.ajax({
 			url:"queryDetail",
 			data:{
@@ -150,22 +153,25 @@
 			type:"post",
 			success:function (data){
 				alert(data);
- 				showDetail(data);
+ 				showDetail(data,p);
 			}
 		});
+		}
 	}
 
-function showDetail(data) {
+function showDetail(data,p) {
  	 	
 		var empss=JSON.parse(data);
-		var txt ="<th>產品編號<th>產品名稱<th>數量";
+		var txt ="<tr class='title" + p + "'><th></th><th>產品編號</th><th>產品名稱</th><th>數量</th><th>金額</th>";
 		for(i=0;i<empss.length;i++){
-			txt += "<tr><td>"+empss[i].product_id;
-			txt += "<tr><td>"+empss[i].product_name;
-			txt += "<tr><td>"+empss[i].amount;
-			txt += "<tr><td>"+empss[i].total;	
+			txt += "<tr class='title" + p + "'><td></td>";
+			txt += "<td>"+empss[i].product_id+"</td>";
+			txt += "<td>"+empss[i].product_name+"</td>";
+			txt += "<td>"+empss[i].amount+"</td>";
+			txt += "<td>"+empss[i].total+"</td>";	
+			txt += "<td></td></tr>"
 			}
-			document.getElementById("t1"+i).innerHTML=txt;
+		$("#title" + p).after(txt);
 		}
 </script>
 
@@ -183,7 +189,7 @@ function showDetail(data) {
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="CompanyManagement">
+				href="companyManagementIndex">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class=""></i>
 				</div>
@@ -473,15 +479,12 @@ function showDetail(data) {
 					</a> 
 					<a style='padding-right: 100px;'>
 					 <label for="" class="t1">商品狀態</label>
-					 <select name='status' id='status1'>
+					 <select  name='status' id='status1'>
 							<option value='1'>未處理</option>
 							<option value="2">已處理未出貨</option>
 							<option value="3">已處理已出貨</option>
 					</select>
-						<button id='clickmeS'>查詢
-						
-						
-						</button>
+						<button id='clickmeS'>查詢</button>
 					</a> 
 					<a href="orderManagement">返回訂單管理</a> 
 						</div>

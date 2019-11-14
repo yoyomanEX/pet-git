@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -27,29 +27,24 @@
 <!-- Custom styles for this page -->
 <link href="vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
-<style>
-	.img1{
-	width: 150px;
-	height: 150px;
-	}	
-</style>
+
 </head>
-<body>
-	<body id="page-top">
+<body id="page-top">
 	<div id="wrapper">
 		<!-- Sidebar -->
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">
+			id="accordionSidebar" style="background-color: pink;">
 
 			<!-- Sidebar - Brand -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center"
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="companyManagementIndex">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class=""></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-				pET ʕ•ᴥ•ʔ<br>廠商後台管理
+				pET ʕ•ᴥ•ʔ<br> 廠商後台管理
 				</div>
 			</a>
 			<!-- Divider -->
@@ -66,8 +61,9 @@
 <!-- 			<div class="sidebar-heading">XXXXXXX</div> -->
 
 
+			<!-- Nav Item - Pages Collapse Menu -->
 			<!-- Nav Item - 商品管理-->
-			<li class="nav-item active">
+			<li class="nav-item">
 			<a class="nav-link collapsed" href="CompanyManagement"
 				data-toggle="" data-target="#collapsePages"
 				aria-controls="collapsePages"> 
@@ -118,11 +114,11 @@
 						<a class="collapse-item" href="utilities-other.html">Other</a>
 					</div>
 				</div></li>
-		<!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
 
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
+			<!-- Divider -->
+			 <hr class="sidebar-divider d-none d-md-block">
+			 <!-- Sidebar Toggler (Sidebar) -->
+     	 <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
 
@@ -146,8 +142,8 @@
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
+              <input type="text" name='product_name' class="form-control bg-light border-0 small" placeholder="Search for.." aria-label="Search" aria-describedby="basic-addon2">
+             <div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                   <i class="fas fa-search fa-sm"></i>
                 </button>
@@ -286,9 +282,9 @@
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
+           <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">歡迎回來～${CompanyLoginOK.company_name}</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${CompanyLoginOK.company_name}～您已登入</span>
 <!--                 <img class="img-profile rounded-circle" src=""> -->
               </a>
               <!-- Dropdown - User Information -->
@@ -301,93 +297,32 @@
                 </a>
               </div>
             </li>
-
           </ul>
-
         </nav>
         <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <!-- Begin Page Content內文開始 -->
+      
+      <!-- Begin Page Content -->
+				<div class="container-fluid" style='padding:200px;'>
+				<h1 style="font-size: 55px;">您已進入pET ʕ•ᴥ•ʔ 廠商後台管理頁面<h1>
+         		<div class="row">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">下架商品區</h1>
-          <p class="mb-4"><a>NON SALE PRODUCT LIST</a>.</p>
+           				 <!-- 內文開始  第一個框-->
 
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-            <form method="post" action='companyProductQueryAll' id='allProduct'>
-              <h6 class="m-0 font-weight-bold text-primary" style='text-align: right'>
-              	<a onclick="allProduct();" href="#">返回商品列表</a>
-              <input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
-              </h6>
-             </form>
-            </div>
-            
-            
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>商品編號</th>
-                      <th>商品圖片</th>
-                      <th>商品名稱</th>
-                      <th>售價</th>
-                      <th>數量</th>
-                      <th>商品描述</th>
-                      <th>上架</th>
-                    </tr>
-                  </thead>
-<!--                   <tfoot> -->
-<!--                     <tr> -->
-<!--                       <th>商品編號</th> -->
-<!--                       <th>商品圖片</th> -->
-<!--                       <th>商品名稱</th> -->
-<!--                       <th>售價</th> -->
-<!--                       <th>數量</th> -->
-<!--                       <th>商品描述</th> -->
-<!--                       <th>上架</th> -->
-<!--                     </tr> -->
-<!--                   </tfoot> -->
-                  <tbody>
-                    <c:forEach items="${nonSaleProduct}" var="p1" varStatus="s">
-								<tr>
-									<td>${p1.product_id}
-									<input type="hidden" name="company_id" value='${CompanyLoginOK.company_id}'> 
-									<td><img class="img1" alt=""
-         								src="${pageContext.request.contextPath}/downloadFile/${p1.product_id}.jpg">
-									<td>${p1.product_name}
-									<td>${p1.price}
-									<td>${p1.amount}
-									<td>${p1.describe}
-									<td><form method="get"
-											action="${pageContext.request.contextPath}/onSaleProduct">
-											<input type="hidden" name="product_id" value="${p1.product_id}">
-											<input type="hidden" name="company_id" value="${CompanyLoginOK.company_id}">
-											<input type="hidden" name="status" value="${p1.status}">
-											<input type="submit" value="上架" onclick="return confirm('商品編號${p1.product_id}-${p1.product_name}，真的要重新上架嗎?')" />
-										</form> <c:set var="count" value="${s.count}" />
-							</c:forEach>
-							 </tbody>
-				</table>
-				<h3 class="count1">共${count}筆商品資料</h3>            
-              </div>
-            </div>
           </div>
-
-        </div>
-        <!-- /.container-fluid -->
-
+          <div class="row">
+            <div class="col-lg-6">
+          </div>
       </div>
-      <!-- End of Main Content -->
-
+      </div>	 
+      </div>
+ 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; PET陪你寵物網  2019</span>
+            <span>Copyright &copy; PET陪你寵物網 2019</span>
           </div>
         </div>
       </footer>
@@ -414,17 +349,14 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
-        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
           <a class="btn btn-primary" href="login.html">Logout</a>
         </div>
-        
       </div>
     </div>
-  </div>
-  
+  </div>  
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -442,12 +374,17 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+  
+  
+   <script src="js/demo/datatables-demo.js"></script>
 	<script>
 		function allProduct() {
-			$('#allProduct').submit();
+			$("#allProduct").submit();
 		}
-	</script>
-		
-				
+	
+	</script>	
+  
+  
+  
 </body>
 </html>

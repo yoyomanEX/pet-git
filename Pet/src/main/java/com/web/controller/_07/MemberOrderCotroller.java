@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -256,21 +257,39 @@ public class MemberOrderCotroller {
 	public void queryAllOrderByStatus(Model model,HttpServletRequest request,HttpServletResponse response) throws Exception  {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		String s1 = request.getParameter("key4");
-		Integer status = Integer.parseInt(s1);
+		
  		String company_id = request.getParameter("key3");
 		System.out.println(company_id);
-		
 		String startdate = request.getParameter("key1")+" 00:00:00";	
 		String enddate = request.getParameter("key2")+" 23:59:59";
 		
+		String s1 = request.getParameter("key4");
+		Integer status = Integer.parseInt(s1);
+		
+		if(status ==1) {
 			List<MemberOrderBean> queryAllOrderByStatus = service.queryAllOrderByStatus(company_id, startdate, enddate, status);
-			System.out.println("You called===> @ResponseBody +List<MemberOrderBean> queryAllOrderByStatus");
 			Gson gson = new Gson();
-			String json = gson.toJson(queryAllOrderByStatus);
-			System.out.println("寫在上面"+json);
-			response.getWriter().print(json);
-			System.out.println("寫在下面"+json);
+			String json1 = gson.toJson(queryAllOrderByStatus);
+			response.getWriter().print(json1);
+			System.out.println("You called json的值 status==1："+json1);
+		}
+		else if(status==2) {
+			List<MemberOrderBean> queryAllOrderByStatus = service.queryAllOrderByStatus(company_id, startdate, enddate, status);
+			System.out.println("You called===>queryAllOrderByStatus");
+			Gson gson = new Gson();
+			String json2 = gson.toJson(queryAllOrderByStatus);
+			response.getWriter().print(json2);
+			System.out.println("You called json的值 status==2:"+json2);
+		}
+		else if(status==3) {
+			List<MemberOrderBean> queryAllOrderByStatus = service.queryAllOrderByStatus(company_id, startdate, enddate, status);
+			System.out.println("You called===>queryAllOrderByStatus");
+			Gson gson = new Gson();
+			String json3 = gson.toJson(queryAllOrderByStatus);
+			response.getWriter().print(json3);
+			System.out.println("You called json的值= status==3: "+json3);
+		}
+			
 	}
 
 	//	AJAX搜尋訂單明細
@@ -284,10 +303,10 @@ public class MemberOrderCotroller {
 			MemberOrderDetailBean bean = new MemberOrderDetailBean();
 			bean.setOrder_id(o1);
 			
-			detailService.queryByOrderId(bean);
+			ArrayList<MemberOrderDetailBean> list=detailService.queryByOrderId(bean);
 				System.out.println("You called===> queryDetail");
 				Gson gson = new Gson();
-				String json = gson.toJson(bean);
+				String json = gson.toJson(list);
 				System.out.println("寫在上面"+json);
 				response.getWriter().print(json);
 				System.out.println("寫在下面"+json);

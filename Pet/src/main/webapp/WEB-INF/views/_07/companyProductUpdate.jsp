@@ -15,7 +15,7 @@
 <meta name="author" content="">
 
 <title>pET ʕ•ᴥ•ʔ廠商後台管理你廠商後台管理</title>
-
+<link rel="icon" href="img/about_icon.png">
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -46,7 +46,7 @@
 
 			<!-- Sidebar - Brand -->
 			<a class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="CompanyManagement">
+				href="companyManagementIndex">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class=""></i>
 				</div>
@@ -368,8 +368,17 @@
                 						</select>
                 </div>
                  <br>
+                 
+                 
+                 <form action="/somewhere/to/upload" enctype="multipart/form-data">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <span>商品圖片</span><input type="file" id="file" name='file'>
+                    <span>商品圖片：</span><input type="file" id="file" name='file' accept="image/gif, image/jpeg, image/png">
+                </div>
+                </form>
+                <br>
+                <div>
+                    <span>選擇圖片：</span>
+                	<td><img id='exImg' class="img1"src="${pageContext.request.contextPath}/downloadFile/${product_id.product_id}.jpg">
                 </div>
                    <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">
@@ -450,6 +459,20 @@
 	function allProduct() {
 		$('#allProduct').submit();
 	}
+	
+	 $("#file").change(function(){
+	      //當檔案改變後，做一些事 
+	     readURL(this);   // this代表<input id="imgInp">
+	   });
+	 function readURL(input){
+		  if(input.files && input.files[0]){
+		    var reader = new FileReader();
+		    reader.onload = function (e) {
+		       $("#exImg").attr('src', e.target.result);
+		    }
+		    reader.readAsDataURL(input.files[0]);
+		  }
+		}
 
 </script>		
 				

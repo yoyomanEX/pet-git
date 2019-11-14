@@ -51,7 +51,7 @@ public class RootAppConfig {
         ComboPooledDataSource ds = new ComboPooledDataSource();
         ds.setUser("sa");
 
-        ds.setPassword("password");
+        ds.setPassword("P@ssw0rd");
 
         try {
             ds.setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");
