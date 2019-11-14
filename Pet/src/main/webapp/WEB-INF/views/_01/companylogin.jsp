@@ -31,7 +31,7 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">廠商登入</h1>
                   </div>
                   <form:form modelAttribute="CompanyBean" action='_01.loginCompany' method='POST' class="user">
                     <div class="form-group">
@@ -49,13 +49,7 @@
                     <button type="submit" class="btn btn-primary btn-user btn-block">
                       Login
                     </button>
-                    <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
+                    
                   </form:form>
                   <hr>
                   <div class="text-center">
