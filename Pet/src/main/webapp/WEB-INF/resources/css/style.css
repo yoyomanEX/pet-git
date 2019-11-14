@@ -2053,7 +2053,7 @@ ul {
   }
   /* line 160, /Applications/MAMP/htdocs/palash/cl/august 2019/198 Animal adoption/198 Animal adoption html/sass/_menu.scss */
   .main_menu .nav-item {
-    padding: 5px 10px 5px 15px;
+    padding: 5px 15px 5px 15px;
     background-color: #53C9BB;
   }
   /* line 164, /Applications/MAMP/htdocs/palash/cl/august 2019/198 Animal adoption/198 Animal adoption html/sass/_menu.scss */
@@ -2320,7 +2320,7 @@ ul {
 /******** services css hrer ********/
 /* line 2, /Applications/MAMP/htdocs/palash/cl/august 2019/198 Animal adoption/198 Animal adoption html/sass/_services.scss */
 .services_bg {
-  background-image: url(../img/services_bg.png);
+/*   background-image: url(../img/services_bg.png); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -2804,13 +2804,14 @@ ul {
 /******** client review part start *******/
 /* line 2, /Applications/MAMP/htdocs/palash/cl/august 2019/198 Animal adoption/198 Animal adoption html/sass/_client_review.scss */
 .client_review {
-  background-image: url(../img/review_bg.png);
+  background-image: url(../img/carousel_001.gif);
+/*   background-attachment: scroll; */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 180px 0;
   position: relative;
-  z-index: 1;
+  z-index: -5;
 }
 
 /* line 10, /Applications/MAMP/htdocs/palash/cl/august 2019/198 Animal adoption/198 Animal adoption html/sass/_client_review.scss */
@@ -2820,10 +2821,10 @@ ul {
   top: 0;
   width: 100%;
   height: 100%;
-  content: "";
+/*   content: ""; */
   background-color: #fff;
   opacity: .3;
-  z-index: -1;
+  z-index: -5;
 }
 
 @media (max-width: 991px) {
@@ -5127,4 +5128,161 @@ h6 {
   color: #FF5B5B;
 }
 
+/*follow.css*/
+/* social__icon.icon--fbShare:hover { */
+/* 	background-color: #3b5998; */
+/* 	background-image: url(/img/icon_sharefb_w.svg) */
+/* } */
+
+.follow__title {
+	font-weight: 700
+}
+
+.follow {
+	position: relative;
+	list-style: none
+}
+
+.follow .follow__icon {
+	list-style: none;
+	display: inline-block;
+	position: relative;
+	margin: 0 20px
+}
+
+.follow .follow__icon:first-child {
+	margin: 0 20px 0 0
+}
+
+.follow .follow__icon:last-child {
+	margin: 0 0 0 20px
+}
+
+.follow .follow__icon .follow__icon--link {
+	width: 28px;
+	height: 28px;
+	display: block;
+	background-position: center;
+	background-size: contain;
+	border-radius: 2px
+}
+
+@media screen and (min-width:80em) {
+	.follow .follow__icon .follow__icon--link {
+		width: 32px;
+		height: 32px
+	}
+}
+
+.follow .follow__icon .icon--instagram {
+	background-image: url(/img/instagram-g.svg)
+}
+
+.follow .follow__icon .icon--instagram:hover {
+	background-image: url(/img/instagram.svg)
+}
+
+.follow .follow__icon .icon--fb {
+	background-image: url(/img/facebook-g.svg)
+}
+
+.follow .follow__icon .icon--fb:hover {
+	background-image: url(/img/facebook.svg)
+}
+
+.follow .follow__icon .icon--youtube {
+	background-image: url(/img/youtube-g.svg)
+}
+
+.follow .follow__icon .icon--youtube:hover {
+	background-image: url(/img/youtube.svg)
+}
+
+.follow .follow__icon .icon--robot {
+	background-image: url(/img/robot-g.svg)
+}
+
+.follow .follow__icon .icon--robot:hover {
+	background-image: url("/img/robot.svg ")
+}
+
+.hamburger__follow {
+	display: block;
+	padding: 25px 0 30px;
+	border-bottom: 1px solid #666;
+	width: 100%
+}
+
+@media screen and (min-width:80em) {
+	.hamburger__follow {
+		padding: 20px 0 0;
+		border-bottom: none;
+		width: unset;
+		float: left
+	}
+}
+
+.hamburger__follow .follow__title {
+	margin-bottom: 20px
+}
+
+.footer .footer__follow {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: flex-end
+}
+
+.footer .follow__title {
+	font-size: 13px;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto
+}
+
+.footer .follow {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto
+}
+
+.footer .follow__icon, .footer .follow__icon:first-child {
+	margin: 0 0 0 20px
+}
+
+.footer .follow__icon .follow__icon--link {
+	width: 16px;
+	height: 16px
+}
+
+.footer .follow__icon .icon--robot {
+	background-image: url(/img/robot.svg)
+}
+
+.footer .follow__icon .icon--fb {
+	background-image: url(/img/facebook.svg)
+}
+
+.footer .follow__icon .icon--youtube {
+	background-image: url(/img/youtube.svg)
+}
+
+.footer .follow__icon .icon--instagram {
+	background-image: url(/img/instagram-dg.svg)
+}
+
+.tags__content {
+	list-style: none;
+	display: block;
+	margin: 20px 0
+}
+
+.tags__content .tags__wrap {
+	text-align: left;
+}
 /*# sourceMappingURL=../css/style.map */

@@ -100,6 +100,22 @@ public class ReportBean implements Serializable {
 	public void setArticle_no(Integer article_no) {
 		this.article_no = article_no;
 	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ReportBean [no=");
+		builder.append(no);
+		builder.append(", content=");
+		builder.append(content);
+		builder.append(", postTime=");
+		builder.append(postTime);
+		builder.append(", memberId=");
+		builder.append(memberId);
+		builder.append(", article_no=");
+		builder.append(article_no);
+		builder.append("]");
+		return builder.toString();
+	}
 	
 	
 }

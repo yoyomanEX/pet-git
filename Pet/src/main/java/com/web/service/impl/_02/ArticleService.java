@@ -34,11 +34,13 @@ public interface ArticleService {
 	
 	public List<ReplyBean>  getReplysByArticle(int articleno);
 	
-//	public ReplyBean getReplyById(int reply_no);
+//	public ReplyBean getReplyById(int no);
 	
 //	public ReplyBean getReplyByArticleId(int articleno);
 	
 	public void addReport(ReportBean rb);
+	
+	public ReportBean getReportByArticle(int articleno);
 	
 	public void addCt(LikeCountBean likecount);
 	

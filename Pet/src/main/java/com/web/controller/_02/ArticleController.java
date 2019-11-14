@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
@@ -54,50 +56,30 @@ public class ArticleController {
 	public void setContext(ServletContext context) {
 		this.context = context;
 	}
-	
-	@RequestMapping("/")
+
+//	@RequestMapping("/")
 	public String petIndex() {
 		return "index";
 
 	}
-	
-	// 管理者後台，顯示所有會員的發文@RequestMapping("/adminarticle")
 
-//	@RequestMapping("/")   
-	public String list(Model model, HttpServletRequest request) {
-		List<ArticleBean> art = service.getAll();
-
-//		System.out.println(art);
-
-		model.addAttribute("arts", art);
-//		return "_02/adminarticle";
-//		return "_02/test";
-		return "_02/admin_article";
-	}
-
-	@RequestMapping("/article") // 後台只顯示自己的發文
+//會員文章後台
+	@RequestMapping("/article")
 	public String testlist(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 //		System.out.println(loginToken);
-
 		String member = loginToken.getMember_Id();
 		List<ArticleBean> art = service.getArticlesByMemberNo(member);
-
 //		System.out.println(art);
-
 		model.addAttribute("arts", art);
 		return "_02/article";
 	}
 
-	// 不管有沒有登入都可以看到個人頁面 ，差在是否可以編輯 ， 即登入才能看到自己的後台
-
 	@RequestMapping("/blogIndex")
 	public String articleBlog(Model model, HttpServletRequest request) {
 		List<ArticleBean> art = service.getAll();
-
 //		System.out.println(art);
-
 		model.addAttribute("arts", art);
 		return "_02/blogIndex";
 	}
@@ -107,7 +89,6 @@ public class ArticleController {
 		HttpSession session = request.getSession();
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 //		System.out.println(loginToken);
-
 		String member = loginToken.getMember_Id();
 		List<ArticleBean> art = service.getArticlesByMemberNo(member);
 
@@ -121,10 +102,8 @@ public class ArticleController {
 //		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 //		String member = loginToken.getMember_Id();
 //		List<ArticleBean> art = service.getArticlesByMemberNo(member);
-
 		ArticleBean bean = service.getArticleById(no);
 		model.addAttribute("art", bean);
-
 //		List<ReplyBean> art = service.getAllReplys();  // 全部留言，不分文章id
 		List<ReplyBean> art = service.getReplysByArticle(no);
 //		System.out.println("getPostblogById =" + art);
@@ -157,14 +136,6 @@ public class ArticleController {
 
 		return "redirect:/article";
 	}
-
-//	@RequestMapping("/GetDelete2")
-//	public String getDelete(Model model) {
-//		List<ArticleBean> art = service.getAll();
-//		model.addAttribute("arts", art);
-//
-//		return "_02/article";
-//	}
 
 	@RequestMapping("/blogInsert")
 	public void blogInsert(@RequestParam("upload") MultipartFile upload, HttpServletRequest request,
@@ -264,7 +235,9 @@ public class ArticleController {
 
 			bean.setPostTime(dateString);
 			bean.setMemberId(member);
+			bean.setReport(false);
 			bean.setLikeCount(0);
+			bean.setAvailable(true);
 
 			service.addArticle(bean);
 //			List<ArticleBean> art = service.getAll();
@@ -278,13 +251,6 @@ public class ArticleController {
 		}
 
 	}
-
-//	@RequestMapping(value = "/addArticle2")
-//	public String processAddNewArticleAll(Model model) {
-//		List<ArticleBean> art = service.getAll();
-//		model.addAttribute("arts", art);
-//		return "_02/article";
-//	}
 
 	@RequestMapping(value = "/editArticle")
 	public String getEditNewArticle(Model model, HttpServletRequest request) {
@@ -313,7 +279,9 @@ public class ArticleController {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 //		String postTime = request.getParameter("postTime");
+		String report = request.getParameter("message");
 		String LikeButton = request.getParameter("like");
+		String LockButton = request.getParameter("lock");
 
 		// 目前時間
 		Date date = new Date();
@@ -326,7 +294,9 @@ public class ArticleController {
 		bean.setTitle(title);
 		bean.setContent(content);
 		bean.setMemberId(member);
+		bean.setReport(Boolean.parseBoolean(report));
 		bean.setLikeCount(Integer.parseInt(LikeButton));
+		bean.setAvailable(Boolean.parseBoolean(LockButton));
 
 //		SimpleDateFormat ssdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //		bean.setPostTimeString(ssdf.format(bean.getPostTime()));
@@ -432,7 +402,7 @@ public class ArticleController {
 //		System.out.println("no=" + no);
 
 		ArticleBean ab = service.getArticleById(no);
-		System.out.println("ab=" + ab);
+//		System.out.println("ab=" + ab);
 
 		String ArticleNoS = Integer.toString(ab.getNo());
 
@@ -443,6 +413,7 @@ public class ArticleController {
 		rb.setMemberId(member);
 		rb.setPostTime(new Date());
 		rb.setArticle_no(Integer.parseInt(ArticleNoS));
+//		System.out.println("rb=" + rb);
 
 		ab.setReport(true); // true=1;false=0
 
@@ -450,32 +421,13 @@ public class ArticleController {
 //		System.out.println("getreport" + ab.getReport());
 		service.editArticle(ab, no);
 
-		model.addAttribute("ReportBean", rb);
-		model.addAttribute("ArticleBean", ab);
+//		model.addAttribute("ReportBean", rb);   //檢舉人看到自己的檢舉內容
+//		model.addAttribute("ArticleBean", ab);
 
 		return "redirect:/postblog?id=" + ArticleNoS;
 
 	}
 
-//	@RequestMapping(value = "/articlelike", method = RequestMethod.GET)
-//	public String getArticleById(@RequestParam("id") Integer no, Model model,HttpServletRequest request,HttpSession session) {
-//		session = request.getSession();
-//		ArticleBean ab = service.getArticleById(no);
-//		ReplyBean rb = new ReplyBean();
-//		List<ReplyBean> list = service.getReplysByArticle(no);
-//		LikeCountBean lb = new LikeCountBean();
-//		
-//		model.addAttribute("ArticleBean", ab);
-//		model.addAttribute("Reply", rb);
-//		model.addAttribute("Replys", list);
-//		model.addAttribute("LikeCountBean", lb);
-//		model.addAttribute("Article", service.getArticleById(no));
-//		
-//		String ArticleNoS =Integer.toString(ab.getNo());
-//		
-//		return "redirect:/postblog?id=" + ArticleNoS;
-//	}
-//	
 	@RequestMapping(value = "/articlelike")
 	public String getArticlelike(@RequestParam("no") Integer no, @ModelAttribute("LikeCountBean") LikeCountBean lb,
 			Model model, HttpServletRequest request, HttpSession session) {
@@ -487,7 +439,7 @@ public class ArticleController {
 //		System.out.println("ArticleNoS=" + ArticleNoS);
 
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
-		
+
 		HashMap<String, String> errorMessage = new HashMap<>();
 		request.setAttribute("ErrMsg", errorMessage);
 
@@ -503,38 +455,90 @@ public class ArticleController {
 			return "redirect:/postblog?id=" + ArticleNoS;
 
 		} else {
-		String member = (loginToken.getMember_Id());
-		System.out.println("member=" + member);
+			String member = (loginToken.getMember_Id());
+//			System.out.println("member=" + member);
 
-		lb.setMemberId(member);
-		lb.setArticle_no(Integer.parseInt(ArticleNoS));
+			lb.setMemberId(member);
+			lb.setArticle_no(Integer.parseInt(ArticleNoS));
 
-		String LikeButton = request.getParameter("like");
+			String LikeButton = request.getParameter("like");
 
-		if ("like".equals(LikeButton) && service.getLikeByMemberAndArticle(member, no) == "null") {
+			if ("like".equals(LikeButton) && service.getLikeByMemberAndArticle(member, no) == "null") {
 
-			lb.setLikecount(true);
-			ab.setLikeCount(ab.getLikeCount() + 1);
-			if (service.getLikeNo(member, no) == null) {
-				service.addCt(lb);
-			} else {
+				lb.setLikecount(true);
+				ab.setLikeCount(ab.getLikeCount() + 1);
+				if (service.getLikeNo(member, no) == null) {
+					service.addCt(lb);
+				} else {
+					LikeCountBean lbno = service.getLikeNo(member, no);
+					lb.setNo(lbno.getNo());
+					service.updateCt(lb);
+				}
+				service.editArticle(ab, no);
+
+			} else if ("like".equals(LikeButton) && service.getLikeByMemberAndArticle(member, no) == "true") { // -1
 				LikeCountBean lbno = service.getLikeNo(member, no);
 				lb.setNo(lbno.getNo());
+				lb.setLikecount(null);
+				ab.setLikeCount(ab.getLikeCount() - 1);
 				service.updateCt(lb);
+				service.editArticle(ab, no);
 			}
-			service.editArticle(ab, no);
-
-		} else if ("like".equals(LikeButton) && service.getLikeByMemberAndArticle(member, no) == "true") { // -1
-			LikeCountBean lbno = service.getLikeNo(member, no);
-			lb.setNo(lbno.getNo());
-			lb.setLikecount(null);
-			ab.setLikeCount(ab.getLikeCount() - 1);
-			service.updateCt(lb);
-			service.editArticle(ab, no);
-		}
 
 //		model.addAttribute("id", no);
-		return "redirect:/postblog?id=" + ArticleNoS;
+			return "redirect:/postblog?id=" + ArticleNoS;
+		}
 	}
+
+//站方文章後台adminarticle
+	@RequestMapping("/")
+	public String list(Model model, HttpServletRequest request) {
+		List<ArticleBean> art = service.getAll();
+
+		model.addAttribute("arts", art);
+//		System.out.println(art);
+		return "_02/admin_article";
+	}
+
+	@RequestMapping(value="/adminreport",produces="application/json")
+	public @ResponseBody ReportBean adminreport(Model model, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+
+		request.setCharacterEncoding("UTF-8");
+		response.getCharacterEncoding();
+//		ArticleBean no = (ArticleBean) model.getAttribute("arts");
+	    String reportno = request.getParameter("reportno");
+		System.out.println("reportnoreportno=" + reportno);
+	
+		ReportBean rb = service.getReportByArticle(Integer.parseInt(reportno));
+        System.out.println("rbrb=" +rb );
+        
+        HttpSession session = request.getSession();
+		session.setAttribute("rbs", rb);
+		
+//        model.addAttribute("rbs", rb);
+		
+        return rb;
+		
+	}
+	
+	@RequestMapping(value = "/adminlockarticle")
+	public String processAddLockForm(@RequestParam("no") Integer no,Model model,HttpServletRequest request,HttpSession session) {
+		System.out.println("lockno=" + no);
+		ArticleBean ab = service.getArticleById(no);
+	
+		String LockButton = request.getParameter("lock");
+	
+		if ("lock".equals(LockButton)&&ab.getAvailable()==true) {
+			
+            ab.setAvailable(false);
+            service.editArticle(ab, no);
+            
+        } else if ("lock".equals(LockButton)&&ab.getAvailable()==false) {
+        	
+            ab.setAvailable(true);
+            service.editArticle(ab, no);
+        }
+		
+		return "redirect:/";
 	}
 }
