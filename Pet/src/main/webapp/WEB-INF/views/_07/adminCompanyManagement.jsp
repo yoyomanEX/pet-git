@@ -335,7 +335,7 @@ $(document).ready(function(){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="${pageContext.request.contextPath}/views/profile.jsp">
+            <a class="nav-link " href="${pageContext.request.contextPath}/_06/shippingManagement">
               <i class="ni ni-single-02 text-yellow"></i> 出貨管理
             </a>
           </li>

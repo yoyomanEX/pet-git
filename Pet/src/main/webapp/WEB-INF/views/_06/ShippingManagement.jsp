@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Argon Dashboard - Free Dashboard for Bootstrap 4 by Creative Tim</title>
@@ -17,19 +18,79 @@
 <link href="${pageContext.request.contextPath}/assets/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<style type="text/css">
-<
-title>產品資料 </title> <script src ="http: //code.jquery.com /jquery-1.12.4.min.js
-	 "> </script> <style type ="text /css">#customers {
+<script>
+//其作用和 $(document).ready()一樣 ，用意在DOM載入後執行ready()方法。
+$(function() {
+	/*選擇器介紹:https://ithelp.ithome.com.tw/articles/10095237 
+	JQuery選擇器 選擇(input元素 要做的事情:click後 下方執行方法*/
+	$("input").click(function() {
+		/*attr() 方法设置或返回被选元素的属性值。根据该方法不同的参数，其工作方式也有所差异。
+		$(selector).attr(attribute)返回被选元素的属性值。
+		this代表當前物件*/
+		var orderid = $(this).attr("orderid");
+		console.log('tr[orderid="' + orderid + '"]');
+		/* 因為所有TR有設置ID 當點擊按鈕時產生orderid會傳給TR的orderId
+		即可對該TR做顯示跟隱藏的替換工作*/
+		$('tr[orderid=' + orderid + ']').toggle();
+	});
+});
+</script>
+<style>
+.btn-group .button {
+	background-color: #B8B8FF; /* Green */
+	border: 1px solid #CCCCFF;
+	color: #000000;
+	padding: 15px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px;
+	cursor: pointer;
+	float: left;
+	margin: auto;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+#customers {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	color: #000000;
 	border-collapse: collapse;
-	width: 60%;
-	font-size: 20px;
+	width: 100%;
+	text-align: center;
+	font-size: 18px;
+	float: left;
+}
+
+#customers td, #customers th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+	background-color: #ddd;
+}
+
+#customers th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	background-color: #7962e4;
+	color: white;
+}
+
+#body1 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.productImg {
+	width: 130px;
+	height: 90px
 }
 </style>
 </head>
-<body>
 <body class="">
 	<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
 		<div class="container-fluid">
@@ -58,7 +119,8 @@ title>產品資料 </title> <script src ="http: //code.jquery.com /jquery-1.12.4
 					<a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<div class="media align-items-center">
 							<span class="avatar avatar-sm rounded-circle">
-								<img alt="Image placeholder" src="${pageContext.request.contextPath}/assets/img/theme/team-1-800x800.jpg">
+								<img alt="Image placeholder" src="${pageContext.request.contextPath}/assets/img/theme/team-1-800x800.jpg
+">
 							</span>
 						</div>
 					</a>
@@ -197,7 +259,7 @@ title>產品資料 </title> <script src ="http: //code.jquery.com /jquery-1.12.4
 		<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
 			<div class="container-fluid">
 				<!-- Brand -->
-				<a style='font-size: 30px;' class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="${pageContext.request.contextPath}/index.jsp">商品管理</a>
+				<a style='font-size: 30px;' class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="${pageContext.request.contextPath}/index.jsp">出貨管理</a>
 				<p>PRODUCT MANAGEMENT</p>
 				<!-- Form -->
 				<form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" method="post" action="${pageContext.request.contextPath}/_06/queryOrder">
@@ -208,7 +270,7 @@ title>產品資料 </title> <script src ="http: //code.jquery.com /jquery-1.12.4
 									<i class="fas fa-search"></i>
 								</span>
 							</div>
-							<input class="form-control" placeholder="輸入商品編號或名稱" name="orderSearch" type="text">
+							<input class="form-control" placeholder="輸入用戶ID或訂單號碼" name="orderSearch" type="text">
 						</div>
 					</div>
 				</form>
@@ -268,9 +330,9 @@ title>產品資料 </title> <script src ="http: //code.jquery.com /jquery-1.12.4
 								<div class="card-body">
 									<div class="row">
 										<div class="col">
-											<h5 class="card-title text-uppercase text-muted mb-0">Product Management</h5>
+											<h5 class="card-title text-uppercase text-muted mb-0">Unshipped Order</h5>
 											<span class="h2 font-weight-bold mb-0">
-												<a href="${pageContext.request.contextPath}/_06/petProductsAll">商品管理</a>
+												<a href="${pageContext.request.contextPath}/_06/unshippedOrder">未出貨訂單</a>
 											</span>
 										</div>
 										<div class="col-auto"></div>
@@ -283,9 +345,9 @@ title>產品資料 </title> <script src ="http: //code.jquery.com /jquery-1.12.4
 								<div class="card-body">
 									<div class="row">
 										<div class="col">
-											<h5 class="card-title text-uppercase text-muted mb-0">Add Product</h5>
+											<h5 class="card-title text-uppercase text-muted mb-0">shipped Order</h5>
 											<span class="h2 font-weight-bold mb-0">
-												<a href="${pageContext.request.contextPath}/_06/petProductsNew">新增商品</a>
+												<a href="${pageContext.request.contextPath}/_06/shippedOrder">已出貨訂單</a>
 											</span>
 										</div>
 										<div class="col-auto"></div>
@@ -298,120 +360,136 @@ title>產品資料 </title> <script src ="http: //code.jquery.com /jquery-1.12.4
 			</div>
 		</div>
 		<div class="card shadow mb-4">
-			<div align="center">
-				<h2>更新商品</h2>
-				<form method="post" action="${pageContext.request.contextPath}/_06/petProductUpdateDone" enctype="multipart/form-data">
-					<table id="customers">
+			<div id="content">
+				<br>
+				<table style="text-align: center; width: 850px; font-family: Microsoft JhengHei; font-size: 14px; font-weight: bold;" border=1">
+					<c:forEach var='list' items='${orderList}'>
 						<tr>
-							<td>商品ID</td>
+							<th>訂單日期</th>
+							<th>訂單編號</th>
+							<th>總額</th>
+							<th>用戶ID</th>
+							<th>訂單明細</th>
+							<th>------</th>
+						<tr>
+							<td>${list.order_date}</td>
+							<td>${list.order_id}</td>
+							<td>${list.total}$</td>
+							<td>${list.member_id}</td>
 							<td>
-								<input type="text" disabled value="${pb.product_id}">
+								<input type="button" class="showDetail" orderid="${list.order_id}" value="checkʕ•ᴥ•ʔ " />
 							</td>
-							<td>
-								<input type="hidden" value="${pb.product_id}" name="productId">
-							</td>
-						<tr>
-							<td>商品名稱</td>
-							<td>
-								<input type="text" value="${pb.product_name}" name="productName">
-							</td>
-						<tr>
-							<td>庫存</td>
-							<td>
-								<input type="text" value="${pb.amount}" name="amount">
-						<tr>
-							<td>成本
-							<td>
-								<input type="text" value="${pb.cost_price}" name="cost">
-							</td>
-						<tr>
-							<td>售價</td>
-							<td>
-								<input type="text" value="${pb.price}" name="price">
-							</td>
-						<tr>
-							<td>商品描述</td>
-							<td>
-								<textarea style="overflow: hidden; resize: none; width: 400px; height: 300px;" name="describe">${pb.describe}</textarea>
-							</td>
-						<tr>
-							<td>圖片</td>
-							<td>
-								<input type="file" name="file">
-							</td>
-						<tr>
+							<th></th>
+							<c:forEach var='detailList' items='${orderListDetail}'>
+								<c:if test='${list.order_id == detailList.order_id}'>
+									<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
+										<td>商品圖片</td>
+										<td>商品ID</td>
+										<td>商品名稱</td>
+										<td>數量</td>
+										<td>合計金額</td>
+										<td>是否免運</td>
+									</tr>
+									<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
+										<td>
+											<img alt="ʕ•ᴥ•ʔ" class='productImg' src="${pageContext.request.contextPath}/_06/downloadFile/${detailList.product_id}.jpg">
+										</td>
+										<td>${detailList.product_id}</td>
+										<td>${detailList.product_name}</td>
+										<td>${detailList.amount}</td>
+										<td>${detailList.total}$</td>
+										<c:choose>
+											<c:when test="${list.total < 299}">
+												<td>N</td>
+											</c:when>
+											<c:otherwise>
+												<td>Y</td>
+											</c:otherwise>
+										</c:choose>
+								</c:if>
+								<tr>
+							</c:forEach>
 							<c:choose>
-								<c:when test="${pb.status == 1}">
-									<td>商品狀態</td>
-									<td>
-										<input type="radio" CHECKED name="status" value="1">
-										上架
-										<input type="radio" name="status" value="2">
-										下架
-									</td>
-								</c:when>
-								<c:otherwise>
-									<td>商品狀態</td>
-									<td>
-										<input type="radio" name="status" value="1">
-										上架商品
-										<input type="radio" CHECKED name="status" value="2">
-										下架商品
-									</td>
-								</c:otherwise>
-							</c:choose>
-						<tr>
-							<c:choose>
-								<c:when test="${pb.category == 1}">
-									<td>商品類別</td>
-									<td>
-										<input type="radio" CHECKED name="category" value="1">
-										狗狗分類
-										<input type="radio" name="category" value="2">
-										貓咪分類
-										<input type="radio" name="category" value="3">
-										其它分類
-									</td>
-								</c:when>
-								<c:when test="${pb.category == 2}">
-									<td>商品類別</td>
-									<td>
-										<input type="radio" name="category" value="1">
-										狗狗分類
-										<input type="radio" CHECKED name="category" value="2">
-										貓咪分類
-										<input type="radio" name="category" value="3">
-										其它分類
-									</td>
-								</c:when>
-								<c:otherwise>
-									<td>商品類別</td>
-									<td>
-										<input type="radio" name="category" value="1">
-										狗狗分類
-										<input type="radio" name="category" value="2">
-										貓咪分類
-										<input type="radio" CHECKED name="category" value="3">
-										其它分類
-									</td>
-								</c:otherwise>
-							</c:choose>
-					</table>
-					<input type="submit" value="修改">
-				</form>
+							<c:when test="${empty list.ship_date}">
+						<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
+							<td colspan="6">
+								<div class="btn-group">
+									<form method="post" action="${pageContext.request.contextPath}/_06/insertShippedDate">
+										<input type="hidden" value="${list.order_id}" name="orderId">
+										<input class="button" type="submit" value="出貨去" />
+									</form>
+									<c:set var="count" value="${s.count}" />
+								</div>
+						</tr>
+						</c:when>
+						<c:otherwise>
+						<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
+							<td colspan="6">
+								<div class="btn-group">
+									<h3>已於${list.ship_date}出貨。</h3>
+									<c:set var="count" value="${s.count}" />
+								</div>
+						</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</table>
 			</div>
-			<!--   Core   -->
-			<script src="${pageContext.request.contextPath}/assets/js/plugins/jquery/dist/jquery.min.js"></script>
-			<!--   Optional JS   -->
-			<!--   Argon JS   -->
-			<script src="${pageContext.request.contextPath}/assets/js/argon-dashboard.min.js?v=1.1.0"></script>
-			<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-			<script>
-				window.TrackJS && TrackJS.install({
-					token : "ee6fab19c5a04ac1a32a645abde4613a",
-					application : "argon-dashboard-free"
-				});
-			</script>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%" scellspacing="0"></table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--   Core   -->
+	<script src="${pageContext.request.contextPath}/assets/js/plugins/jquery/dist/jquery.min.js"></script>
+	<!--   Optional JS   -->
+	<!--   Argon JS   -->
+	<script src="${pageContext.request.contextPath}/assets/js/argon-dashboard.min.js?v=1.1.0"></script>
+	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+	<script>
+		window.TrackJS && TrackJS.install({
+			token : "ee6fab19c5a04ac1a32a645abde4613a",
+			application : "argon-dashboard-free"
+		});
+	</script>
 </body>
+<body id="body1">
+	<Script>
+		document.addEventListener("DOMContentLoaded", function() {
+		document.getElementById("bt").addEventListener("click", checkId);
+		
+		});
+		let pros= document.getElementsByName("pro");
+		pros.forEach(function(pro){
+			pro.addEventListener("click",checkId);
+		});
+		
+		
+		
+		
+		function checkId() {
+			let flag1=false;
+			var id = document.getElementById("pi").value;
+			var idLeng = id.length;
+			let pros= document.getElementsByName("pro");
+			pros.forEach(function(pro){
+				var proId =pro.getAttribute("productid");
+				console.log("proId="+ proId);
+				if(id == proId){
+					flag1 = true;
+				}
+			});
+			if (id == "") { // 產品編號不得為空值
+				document.getElementById("sp").innerHTML = "產品編號不得為空值";
+			}else if(idLeng < 4 || idLeng > 4){ //產品編號不得小於等於4位數
+				document.getElementById("sp").innerHTML = "產品編號長度需為4碼";
+			}else if(flag1==false){//產品編號需是產品列表裡面有的
+				document.getElementById("sp").innerHTML = "沒有這個產品編號";
+			}else if(flag1) {
+				document.form1.submit();
+			}
+		}
+	</Script>
 </body>
 </html>

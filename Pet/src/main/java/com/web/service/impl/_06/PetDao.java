@@ -1,6 +1,5 @@
 package com.web.service.impl._06;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -111,6 +110,63 @@ public class PetDao implements PetInterface {
 
 	}
 
+	/**
+	 * 判別傳入字串回傳DB內相同資料 ，查詢商品資料
+	 * 
+	 * @param petBean
+	 */
+
+	public List<PetBean06> queryProduct(String productSearch) {
+
+		List<PetBean06> pbs = new ArrayList<>();
+		String qryStmt = "select * from product where product_name like ? or product_id like ?";
+		List<Map<String, Object>> rows = jdbcTemplate.queryForList(qryStmt, "%" + productSearch + "%", "%" + productSearch + "%");
+		for (Map<String, Object> row : rows) {
+			PetBean06 petBean = new PetBean06();
+			petBean.setProduct_id((int) row.get("product_id"));
+			petBean.setProduct_name((String) row.get("product_name"));
+			petBean.setPrice((int) row.get("price"));
+			petBean.setCost_price((int) row.get("cost_price"));
+			petBean.setAmount((int) row.get("amount"));
+			petBean.setCompany_id((String) row.get("company_id"));
+			petBean.setDescribe((String) row.get("describe"));
+			petBean.setStatus((int) row.get("status"));
+			petBean.setCategory((int) row.get("category"));
+			pbs.add(petBean);
+		}
+		return pbs;
+
+	}
+
+	/**
+	 * 判別傳入字串回傳DB內相同資料 ，查詢訂單資料
+	 * 
+	 * @param petBean
+	 */
+
+	public List<OrderBean> queryOrder(String queryOrder) {
+
+		List<OrderBean> orderBean = new ArrayList<>();
+		
+		String qryStmt = "select * from member_order where member_id like ? or order_id like ?";
+		List<Map<String, Object>> rows = jdbcTemplate.queryForList(qryStmt, "%" + queryOrder + "%", "%" + queryOrder + "%");
+		for (Map<String, Object> row : rows) {
+			System.out.println(row);
+			OrderBean ob = new OrderBean();
+			ob.setOrder_id(String.valueOf(row.get("order_id")));
+			ob.setAddress((String) row.get("address"));
+			ob.setMember_id((String) row.get("member_id"));
+			ob.setPhone((String) row.get("userPhone"));
+			ob.setRecipient((String) row.get("recipient"));
+			ob.setOrder_date((Date) row.get("order_date"));
+			ob.setTotal((int) row.get("total"));
+			ob.setShip_date((Date) row.get("ship_date"));
+			orderBean.add(ob);
+		}
+		return orderBean;
+
+	}
+
 	public void queryDBId(PetBean06 petBean) {
 
 		String qryStmt = "select * from product where product_id=?";
@@ -135,8 +191,7 @@ public class PetDao implements PetInterface {
 
 	@Override
 	public void updateProduct(PetBean06 PB) throws SQLException {
-		String qryStmt = "update product set product_name=?,price=?,cost_price=?,amount=?," + 
-						"company_id =?,describe=?,status=?,category=? where product_id=?";
+		String qryStmt = "update product set product_name=?,price=?,cost_price=?,amount=?," + "company_id =?,describe=?,status=?,category=? where product_id=?";
 		jdbcTemplate.update(qryStmt, PB.getProduct_name(), PB.getPrice(), PB.getCost_price(), PB.getAmount(), PB.getCompany_id(), PB.getDescribe(), PB.getStatus(), PB.getCategory(),
 			PB.getProduct_id());
 	}
@@ -179,17 +234,17 @@ public class PetDao implements PetInterface {
 			jdbcTemplate.update(changeSQL, productId);
 		}
 	}
+
 	/*
-	 確認尚未出貨訂單
+	 * 確認尚未出貨訂單
 	 */
 	@Override
 	public List<OrderBean> unshippedOrder() throws SQLException {
 		List<OrderBean> orderBean = new ArrayList<>();
-		
-		//判斷目前出貨日期是空值的話即為未出貨
+
+		// 判斷目前出貨日期是空值的話即為未出貨
 		String sql = "select * from member_order where ship_date is null";
-		
-		
+
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
 		for (Map<String, Object> row : rows) {
 			OrderBean ob = new OrderBean();
@@ -205,15 +260,14 @@ public class PetDao implements PetInterface {
 		}
 		return orderBean;
 	}
-	
+
 	@Override
 	public List<OrderBean> shippedOrder() throws SQLException {
 		List<OrderBean> orderBean = new ArrayList<>();
-		
-		//判斷目前出貨日期是空值的話即為未出貨
+
+		// 判斷目前出貨日期是空值的話即為未出貨
 		String sql = "select * from member_order where ship_date is not null";
-		
-		
+
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
 		for (Map<String, Object> row : rows) {
 			OrderBean ob = new OrderBean();
@@ -229,17 +283,14 @@ public class PetDao implements PetInterface {
 		}
 		return orderBean;
 	}
-	
-	
-	
+
 	/*
 	 * 訂單詳情
 	 */
 	@Override
 	public List<OrderDetailBean> totalOrderDetail() throws SQLException {
 		List<OrderDetailBean> orderDetailBean = new ArrayList<>();
-		
-		
+
 		String sql = "select * from member_order_detail where company_id is null";
 
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
@@ -250,18 +301,17 @@ public class PetDao implements PetInterface {
 			ob.setProduct_name((String) row.get("product_name"));
 			ob.setAmount((int) row.get("amount"));
 			ob.setTotal((int) row.get("total"));
-			//ob.setCompany_id((int)row.get("company_id"));
+			// ob.setCompany_id((int)row.get("company_id"));
 			orderDetailBean.add(ob);
 		}
 		return orderDetailBean;
 	}
-	
-	
+
 	@Override
 	public void insertShippedDate(String order_id) throws SQLException {
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		String sql = "update member_order set ship_date =? where order_id =?";
-		jdbcTemplate.update(sql, now,order_id);
+		jdbcTemplate.update(sql, now, order_id);
 
 	}
 

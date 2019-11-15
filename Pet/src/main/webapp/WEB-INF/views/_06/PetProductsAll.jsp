@@ -245,7 +245,7 @@
 				<a style='font-size: 30px;' class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="${pageContext.request.contextPath}/index.jsp">商品管理</a>
 				<p>PRODUCT MANAGEMENT</p>
 				<!-- Form -->
-				<form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+				<form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" method="post" action="${pageContext.request.contextPath}/_06/petProductsQuery">
 					<div class="form-group mb-0">
 						<div class="input-group input-group-alternative">
 							<div class="input-group-prepend">
@@ -253,7 +253,7 @@
 									<i class="fas fa-search"></i>
 								</span>
 							</div>
-							<input class="form-control" placeholder="Search" type="text">
+							<input class="form-control" placeholder="輸入商品編號或名稱" name="productSearch" type="text">
 						</div>
 					</div>
 				</form>

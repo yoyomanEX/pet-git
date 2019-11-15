@@ -58,21 +58,43 @@ public class ProductMangementController06_New {
 		model.addAttribute("pbs", pbs);
 		return "_06/PetProductsAll";
 	}
+	
+	/**
+	 * 判別傳入字串回傳DB內相同資料 查詢商品資料
+	 * @param petBean
+	 */
 
 	@RequestMapping("/petProductsQuery")
-	public String PetProductsQuery() throws Exception {
-		return "06_/PetProductsQuery";
+	public String PetProductsQuery(HttpServletRequest request,Model model) throws Exception {
+		String productSearch = request.getParameter("productSearch");
+		List<PetBean06> pbs = petDao.queryProduct(productSearch);
+		model.addAttribute("pbs", pbs);
+		return "_06/PetProductsAll";
 	}
+	
+	
+	@RequestMapping("/queryOrder")
+	public String orderQuery(HttpServletRequest request,Model model) throws Exception {
+		String orderSearch = request.getParameter("orderSearch");
+		System.out.println("orderSearch="+orderSearch);
+		List<OrderBean> orderList = petDao.queryOrder(orderSearch);
+		List <OrderDetailBean>orderDetailBeans =petDao.totalOrderDetail();	
+		model.addAttribute("orderList", orderList);
+		model.addAttribute("orderListDetail", orderDetailBeans);
+		return "_06/ShippingManagement";
+	}
+	
+	
 
-	@RequestMapping("/petProductsQueryId")
-	public String petProductQueryId(HttpServletRequest request, Model model) throws Exception {
-		PetBean06 petBean = new PetBean06();
-		String productId = request.getParameter("productId");
-		petBean.setProduct_id(Integer.parseInt(productId));
-		petDao.queryDBId(petBean);
-		model.addAttribute("pb", petBean);
-		return "06_/PetProductsQueryId";
-	}
+//	@RequestMapping("/petProductsQueryId")
+//	public String petProductQueryId(HttpServletRequest request, Model model) throws Exception {
+//		PetBean06 petBean = new PetBean06();
+//		String productId = request.getParameter("productId");
+//		petBean.setProduct_id(Integer.parseInt(productId));
+//		petDao.queryDBId(petBean);
+//		model.addAttribute("pb", petBean);
+//		return "06_/PetProductsQueryId";
+//	}
 
 	/*
 	 * 更改商品上架狀態
@@ -204,7 +226,7 @@ public class ProductMangementController06_New {
 		String productName = request.getParameter("productName");
 		List<PetBean06> petBean = petDao.queryAllName(productName);
 		model.addAttribute("pbs", petBean);
-		return "06_/ShippingManagement";
+		return "_06/ShippingManagement";
 	}
 	
 	
@@ -214,7 +236,7 @@ public class ProductMangementController06_New {
 		List <OrderDetailBean>orderDetailBeans =petDao.totalOrderDetail();	
 		model.addAttribute("orderList", orderBeans);
 		model.addAttribute("orderListDetail", orderDetailBeans);
-		return "06_/UnshippedOrder";
+		return "_06/ShippingManagement";
 	}
 	
 	/**
@@ -228,7 +250,7 @@ public class ProductMangementController06_New {
 		List <OrderDetailBean>orderDetailBeans =petDao.totalOrderDetail();	
 		model.addAttribute("orderList", orderBeans);
 		model.addAttribute("orderListDetail", orderDetailBeans);
-		return "06_/UnshippedOrder";
+		return "_06/ShippingManagement";
 	}
 	
 	@RequestMapping("/shippedOrder")
@@ -237,7 +259,7 @@ public class ProductMangementController06_New {
 		List <OrderDetailBean>orderDetailBeans =petDao.totalOrderDetail();	
 		model.addAttribute("orderList", orderBeans);
 		model.addAttribute("orderListDetail", orderDetailBeans);
-		return "06_/ShippedOrder";
+		return "_06/ShippingManagement";
 	}
 	
 	@RequestMapping("/upload")
