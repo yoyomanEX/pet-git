@@ -20,8 +20,8 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
 .btn-group .button {
-	background-color: #B8B8FF	; /* Green */
-	border: 1px solid #CCCCFF	;
+	background-color: #B8B8FF; /* Green */
+	border: 1px solid #CCCCFF;
 	color: #000000;
 	padding: 15px 15px;
 	text-align: center;
@@ -36,12 +36,12 @@
 
 #customers {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	color:#000000;
+	color: #000000;
 	border-collapse: collapse;
-	width:100%;
+	width: 100%;
 	text-align: center;
-	font-size: 20px;
-	float:left;
+	font-size: 18px;
+	float: left;
 }
 
 #customers td, #customers th {
@@ -60,7 +60,7 @@
 #customers th {
 	padding-top: 12px;
 	padding-bottom: 12px;
-	background-color:#7962e4;
+	background-color: #7962e4;
 	color: white;
 }
 
@@ -358,7 +358,6 @@
 							<th>售價</th>
 							<th>分類</th>
 							<th>狀態</th>
-<!-- 							<th>商品管理</th> -->
 							<th>修改</th>
 							<c:forEach items="${pbs}" var="pbs" varStatus="s">
 								<tr>
@@ -370,7 +369,17 @@
 									<td>${pbs.amount}</td>
 									<td>${pbs.cost_price}</td>
 									<td>${pbs.price}</td>
-									<td>${pbs.category}</td>
+									<c:choose>
+										<c:when test="${pbs.category == 1}">
+											<td>狗狗專區</td>
+										</c:when>
+										<c:when test="${pbs.category == 2}">
+											<td>貓咪專區</td>
+										</c:when>
+										<c:otherwise>
+											<td>其它專區</td>
+										</c:otherwise>
+									</c:choose>
 									<c:choose>
 										<c:when test="${pbs.status == 1}">
 											<td>上架中</td>
@@ -379,30 +388,6 @@
 											<td style="color: red;">下架中</td>
 										</c:otherwise>
 									</c:choose>
-<%-- 									<c:choose> --%>
-<%-- 										<c:when test="${pbs.status == 1}"> --%>
-<!-- 											<td> -->
-<!-- 												<div class="btn-group"> -->
-<%-- 													<form method="post" action="${pageContext.request.contextPath}/_06/changeProductsStatus"> --%>
-<%-- 														<input type="hidden" value="${pbs.product_id}" name="productId"> --%>
-<%-- 														<input type="hidden" value="${pbs.status}" name="status"> --%>
-<!-- 														<input class="button" type="submit" value="下架商品" /> -->
-<!-- 													</form> -->
-<!-- 												</div> -->
-<!-- 											</td> -->
-<%-- 										</c:when> --%>
-<%-- 										<c:otherwise> --%>
-<!-- 											<td> -->
-<!-- 												<div class="btn-group"> -->
-<%-- 													<form method="post" action="${pageContext.request.contextPath}/_06/changeProductsStatus"> --%>
-<%-- 														<input type="hidden" value="${pbs.product_id}" name="productId"> --%>
-<%-- 														<input type="hidden" value="${pbs.status}" name="status"> --%>
-<!-- 														<input class="button" type="submit" value="上架商品" /> -->
-<!-- 													</form> -->
-<!-- 												</div> -->
-<!-- 											</td> -->
-<%-- 										</c:otherwise> --%>
-<%-- 									</c:choose> --%>
 									<td>
 										<div class="btn-group">
 											<form method="post" action="${pageContext.request.contextPath}/_06/petProductUpdate">

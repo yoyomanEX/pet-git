@@ -188,7 +188,7 @@ public class ProductMangementController06_New {
 		}
 		List<PetBean06> pbs = petDao.queryAll();
 		model.addAttribute("pbs", pbs);
-		return "06_/PetProductsAll";
+		return "_06/PetProductsAll";
 	}
 
 	@RequestMapping("/petProductQueryName")
