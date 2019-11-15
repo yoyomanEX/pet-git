@@ -23,9 +23,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.web.model._01.MemberBean;
 import com.web.model._06.OrderBean;
 import com.web.model._06.OrderDetailBean;
-import com.web.model._06.PetBean;
+
 import com.web.model._06.PetProductListBean;
 import com.web.service.impl._06.PetProductListDao;
 import com.web.service.impl._06.Pet_UserDao;
@@ -82,22 +83,31 @@ public class ProductInfoController {
 		return "06/PetLogin";
 	}
 
-	@RequestMapping("/petLoginOrder")
-	public String petLoginOrder(HttpServletRequest request, Model model, HttpSession session) throws Exception {
-		String userName = request.getParameter("userName");
-		String userPassword = request.getParameter("userPassword");
-		petDao.createConn();
-		PetBean emp = petDao.loginVerifi(userName, userPassword);
-		petDao.closeConn();
-		if (emp == null) {
-			return "06/PetLoginError";
-		} else {
-			// model.addAttribute("emp", emp);
-			session.setAttribute("emp", emp);
-			System.out.println(emp);
-			return "redirect:/06/PetOrderAll";
-		}
-	}
+	/**
+	 * 會員登入頁面
+	 * @param request
+	 * @param model
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
+	
+	//@RequestMapping("/petLoginOrder")
+//	public String petLoginOrder(HttpServletRequest request, Model model, HttpSession session) throws Exception {
+//		String userName = request.getParameter("userName");
+//		String userPassword = request.getParameter("userPassword");
+//		petDao.createConn();
+//		PetBean emp = petDao.loginVerifi(userName, userPassword);
+//		petDao.closeConn();
+//		if (emp == null) {
+//			return "06/PetLoginError";
+//		} else {
+//			// model.addAttribute("emp", emp);
+//			session.setAttribute("emp", emp);
+//			System.out.println(emp);
+//			return "redirect:/06/PetOrderAll";
+//		}
+//	}
 
 	/**
 	 * 商品詳細頁,單樣-多樣商品加入購物車
@@ -182,11 +192,15 @@ public class ProductInfoController {
 		return "06/PetProductSale";
 	}
 
+	/*
+	 * 會員結帳頁面 會先判斷是否登入 如果沒有則導回登入頁面
+	 */
+	
 	@RequestMapping("/petOrder")
 	public String petOrder(HttpServletRequest request, Model model, HttpSession session) throws Exception {
-		Object emp = session.getAttribute("emp");
+		Object emp = session.getAttribute("LoginOK");
 		if (emp == null) {
-			return "06/PetLoginOrder";
+			return "redirect:/_01.memberloginPage";
 		} else {
 			List<PetProductListBean> pro = (List<PetProductListBean>) session.getAttribute("productsInCar");
 			model.addAttribute("products", pro);
@@ -201,7 +215,7 @@ public class ProductInfoController {
 	@RequestMapping("/petOrderConfirm")
 	public String petOrderDetail(HttpServletRequest request, Model model, HttpSession session) throws Exception {
 		petProductDao.createConn();
-		PetBean petBean = (PetBean) session.getAttribute("emp");
+		MemberBean member = (MemberBean) session.getAttribute("LoginOK");
 		List<PetProductListBean> shoppingCar = (List<PetProductListBean>) session.getAttribute("productsInCar");
 
 		// 接收傳回資料
@@ -217,7 +231,7 @@ public class ProductInfoController {
 		// 設定member_order_bean資料塞入傳回值
 		OrderBean orderBean = new OrderBean();
 		orderBean.setOrder_id(petProductDao.order_id()); // orderId透過DAO呼叫取值
-		orderBean.setMember_id(petBean.getUserID());
+		orderBean.setMember_id(member.getMember_Id());
 		orderBean.setTotal(Integer.parseInt(total));
 		orderBean.setPhone(userPhone);
 		orderBean.setRecipient(recipient);
@@ -248,16 +262,16 @@ public class ProductInfoController {
 
 	@RequestMapping("/PetOrderAll")
 	public String petOrderAll(Model model, HttpSession session) throws Exception {
-		Object emp = session.getAttribute("emp");
+		Object emp = session.getAttribute("LoginOK");
 		if (emp == null) {
-			return "06/PetLoginOrder";
+			return "redirect:/_01.memberloginPage";
 		} else {
-			PetBean petBean = (PetBean) session.getAttribute("emp");
-			int userId = petBean.getUserID();
-			List<OrderBean> orderList = petProductDao.orderAll(userId);
+			MemberBean member = (MemberBean) session.getAttribute("LoginOK");
+			String memberId = member.getMember_Id();
+			List<OrderBean> orderList = petProductDao.orderAll(memberId);
 			List<OrderDetailBean> orderListDetail = petProductDao.orderDetail(orderList);
 			model.addAttribute("orderList", orderList);
-			model.addAttribute("userName", petBean.getUserName());
+			model.addAttribute("userName", member.getName());
 			model.addAttribute("orderListDetail", orderListDetail);
 			return "06/PetOrderAll";
 		}

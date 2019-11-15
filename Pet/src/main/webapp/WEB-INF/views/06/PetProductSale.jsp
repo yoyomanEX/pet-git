@@ -358,6 +358,7 @@
 				<table style="text-align: center; width: 800px; font-family: Microsoft JhengHei; font-size: 18px; font-weight: bold;" border=1>
 					<%--items=表示處理的陣列跟集合 要循環的訊息 var=用來儲存目前元素的值--%>
 					<c:forEach items="${products}" var="pro">
+					<c:if test="${pro.status == 1}">
 						<input type="hidden" name="productId" value="${pro.product_id}">
 						<tr>
 							<td>
@@ -383,6 +384,7 @@
 								</c:choose>
 							</td>
 						</tr>
+						</c:if>
 					</c:forEach>
 				</table>
 				<div id="shoppingCart">

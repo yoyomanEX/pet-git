@@ -341,7 +341,7 @@ $(document).ready(function(){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="${pageContext.request.contextPath}/views/tables.jsp">
+            <a class="nav-link " href="${pageContext.request.contextPath}/_06/productList">
               <i class="ni ni-bullet-list-67 text-red"></i> 商品管理
             </a>
           </li>
@@ -445,7 +445,7 @@ $(document).ready(function(){
     <!-- End Navbar -->
     <!-- Header -->
     <!-- Header -->
-    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+    <div class="header bg-gradient-primary pb-3 pt-3 pt-md-8">
       <div class="container-fluid">
         <div class="header-body">
           <!-- Card stats -->

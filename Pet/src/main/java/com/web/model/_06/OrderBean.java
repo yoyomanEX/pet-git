@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class OrderBean {
 
 	private String order_id;
-	private int member_id;
+	private String member_id;
 	private int total;
 	private String address;
 	private String recipient;
@@ -21,10 +21,10 @@ public class OrderBean {
 	public void setOrder_id(String order_id) {
 		this.order_id = order_id;
 	}
-	public int getMember_id() {
+	public String getMember_id() {
 		return member_id;
 	}
-	public void setMember_id(int member_id) {
+	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
 	public int getTotal() {
