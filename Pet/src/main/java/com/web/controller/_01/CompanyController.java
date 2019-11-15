@@ -73,8 +73,9 @@ public class CompanyController {
 		String n1 = loginToken.getCompany_name();
 		System.out.println("n1:" + n1);
 
-		return "_07/companyManagement";
+		return "/_07/companyManagementIndex";
 //		return "redirect:/_01.updataCompanyPage";
+
 
 
 	}

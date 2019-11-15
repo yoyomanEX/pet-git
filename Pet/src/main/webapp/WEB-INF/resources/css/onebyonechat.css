@@ -28,9 +28,9 @@ h1{position: fixed; z-index:20; width: 100%; height:50px; line-height:50px; font
 .bottom input{width: 78%; height: 50px; line-height: 50px; float:left;border:none;}
 .bottom button{width: 20%;height: 50px; float: right; border:none; background:#459d36;color: #fff;}
 .chat-item{width:100%; margin-bottom:20px;}
-.item-right .message{background: #62b900;}
-.item-left .message{background: #fff; margin-top:20px;}
+.item-right .message{background: #62b900;font-size:35px;}
+.item-left .message{background: #fff; margin-top:20px;font-size:35px;}
 .item-left .img{margin-right:10px;}
-.item-left .uname{font-size:12px; left:50px; top:0;}
+.item-left .uname{font-size:20px; left:50px; top:0;}
 .chat-item .message{width:60%;display:block; padding:10px;border-radius:5px; margin-right:10px;}
 /* .chat-item .img{display:inline-block; width:40px; height:40px; background:url(../images/user/user.jpg) no-repeat; background-size:100% 100%;} */

@@ -12,7 +12,7 @@
 <meta name="author" content="">
 
 <title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
-
+<link rel="icon" href="img/about_icon.png">
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -51,31 +51,34 @@ var jq1=$.noConflict();
 </script>
 
 <script>
-$(document).ready(function(){
-	function detail() {
-		jq1('a')
-		jq1.ajax({
-			url:"queryDetail",
-			data:{
-				key1:jq1("#order_id").val()    				
-			},
-			type:"post",
-			success:function (data){
-				alert(data);
- 				showDetail(data);
-			}
-		});
-	}
-	function showDetail(data) {
-		var empss=JSON.parse(data);
-		var txt ="<th>產品編號<th>產品名稱<th>數量";
-		for(i=0;i<empss.length;i++){	
-			txt +="<tr><td>"+empss[i].product_id;
-			txt +="<td>"+empss[i].product_name;
-			txt +="<td>"+empss[i].amount;
-			txt +="<td>"+empss[i].total;
+	function detail(index) {
+		if($(".title" + index).length > 0){
+			$(".title" + index).remove();
+		}else{
+			jq1.ajax({
+				url:"queryDetail",
+				data:{
+					key1:jq1("#order_id"+index).val()    				
+				},
+				type:"post",
+				success:function (data){
+// 					alert(data);
+	 				showDetail(data, index);
+				}
+			});
 		}
-		document.getElementById("t1").innerHTML=txt;
+	}
+	function showDetail(data, index) {
+		var empss=JSON.parse(data);
+		var txt ="<tr class='title" + index + "'><th></th><th>產品編號</th><th>產品名稱</th><th>數量</th><th>單價</th></tr>";
+		for(i=0;i<empss.length;i++){	
+			txt +="<tr class='title" + index + "'><td></td>";
+			txt +="<td>"+empss[i].product_id+"</td>";
+			txt +="<td>"+empss[i].product_name+"</td>";
+			txt +="<td>"+empss[i].amount+"</td>";
+			txt +="<td>"+empss[i].total + "</td></tr>";
+		}
+		$("#title" + index).after(txt);
 	}
 
 
@@ -96,7 +99,7 @@ $(document).ready(function(){
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="CompanyManagement">
+				href="companyManagementIndex">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class=""></i>
 				</div>
@@ -392,14 +395,15 @@ $(document).ready(function(){
                   <tr>
                   <thead>
                     <tr>
-                      <th>訂單編號</th><th>訂單日期</th><th>訂購人</th><th>收件人</th>
-                      <th>寄送地址</th><th>售價</th><th>接單</th><th>
+                      <th>訂單編號</th><th>訂單日期</th><th>訂購明細</th><th>訂購人</th><th>收件人</th>
+                      <th>寄送地址</th><th>總金額</th><th>接單</th><th>
                     </tr>
                   </thead>
-                    <c:forEach items="${unprocessedOrder}" var="p1" varStatus="s">
-								<tr style="background-color: #F0F0F0;" id='title1'>
-									<td><a href='#' onclick='detail();'><input type='hidden' id ='order_id' value='${p1.order_id}'>${p1.order_id}</a>
+                    <c:forEach items="${unprocessedOrder}" var="p1" varStatus="s" >
+								<tr style="background-color: #F0F0F0;" id='title${s.index}'>
+									<td>${p1.order_id}
 									<td>${p1.order_date}
+									<td><a href='#' onclick='detail(${s.index});'><input type="hidden" id='order_id${s.index}' name='order_id' value="${p1.order_id}"><img src='img/arrowdown.png'></a></td>
 									<td>${p1.member_id}
 									<td>${p1.recipient}
 									<td>${p1.address}
@@ -414,8 +418,6 @@ $(document).ready(function(){
 									</form>
 									<c:set var="count" value="${s.count}" />
 						
-								<tr><td>在這裡要加訂單明細
-							
 	
 						</c:forEach>
 				</table>

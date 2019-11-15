@@ -9,9 +9,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title> Argon Dashboard - Free Dashboard for Bootstrap 4 by Creative Tim </title>
-  <!-- Favicon -->
-  <link href="${pageContext.request.contextPath}/assets/img/brand/favicon.png" rel="icon" type="image/png">
+  <title>pET ʕ•ᴥ•ʔ 陪你</title>
+  <link rel="icon" href="img/about_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
@@ -21,9 +20,13 @@
   <link href="${pageContext.request.contextPath}/assets/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
   
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+  .city {display:none}
+  </style>
   
   
   <script>
@@ -65,21 +68,21 @@
  
 
   <!-- Custom fonts for this template -->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet">
 
   <!-- Custom styles for this page -->
-  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   
 
 </head>
 
 
 <body class="">
-  <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
       <!-- Toggler -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
@@ -186,22 +189,22 @@
           </li>
           <li class="nav-item">
             <a class="nav-link " href="${pageContext.request.contextPath}/views/profile.jsp">
-              <i class="ni ni-single-02 text-yellow"></i> User profile
+              <i class="ni ni-single-02 text-yellow"></i> 出貨管理
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="${pageContext.request.contextPath}/views/tables.jsp">
-              <i class="ni ni-bullet-list-67 text-red"></i> Tables
+              <i class="ni ni-bullet-list-67 text-red"></i> 商品管理
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/views/login.jsp">
-              <i class="ni ni-key-25 text-info"></i> Login
+              <i class="ni ni-key-25 text-info"></i> 廠商管理
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/views/register.jsp">
-              <i class="ni ni-circle-08 text-pink"></i> Register
+            <a class="nav-link" href="${pageContext.request.contextPath}/adminarticle">
+              <i class="ni ni-circle-08 text-pink"></i> 文章檢舉管理
             </a>
           </li>
         </ul>
@@ -285,7 +288,7 @@
     <!-- Header -->
     
 <!--     改背景色 -->
-    <div class="header bg-gradient-primary pb-5 pt-5 pt-md-8">
+    <div class="header bg-gradient-primary pb-5 pt-3 pt-md-8">
       <div class="container-fluid">
         <div class="header-body">
           <!-- Card stats -->
@@ -305,42 +308,100 @@
 
           <!-- Page Heading -->
           <br>
-          <h1 class="m-0 font-weight-bold text-primary">文章管理後台</h1><br>
+          <h1 class="m-0 font-weight-bold text-primary">檢舉管理後台</h1><br>
         
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-            <label for="from" style="font-family:標楷體; font-size:20px">發文日期&nbsp從</label>
+            <label for="from" style="font-family:標楷體; font-size:25px">發文日期&nbsp從</label>
             <input type="text" id="from" name="from">
-            <label for="to" style="font-family:標楷體; font-size:20px">到</label>
+            <label for="to" style="font-family:標楷體; font-size:25px">到</label>
             <input type="text" id="to" name="to">
             <button type="submit">查詢</button>
- 
             </div>
+            
+            
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-                    <tr align="center">
-                      <th style="font-size:16px">發文時間</th>
-                      <th style="font-size:16px">標題</th>
-                      <th style="font-size:16px">發文者</th>
-                      <th style="font-size:16px">檢舉</th>
-                      <th style="font-size:16px">權限管理</th>
+                    <tr align="center" >
+                      <th style="font-family:標楷體;font-size:20px">發文時間</th>
+                      <th style="font-family:標楷體;font-size:20px">標題</th>
+                      <th style="font-family:標楷體;font-size:20px">發文者</th>
+                      <th style="font-family:標楷體;font-size:20px">檢舉狀態</th>
+                      <th style="font-family:標楷體;font-size:20px">權限管理</th>
                     </tr>
                   </thead>
                   <tbody>
                   <c:forEach items="${arts }" var="art" varStatus="s" >
                     <tr>
-                      <td style="width:10%;font-size:16px" align="center">${fn:substring(art.postTime, 0 ,19)}</td>
-                      <td style="width:48%;font-size:16px">${art.title} </td>
-                      <td style="width:13%;font-size:16px" align="center">${art.memberId} </td>
-                      <td> </td>
-                      <td> </td>
+                      <td style="width:10%;font-size:18px" align="center">${fn:substring(art.postTime, 0 ,19)}</td>
+                      <td style="width:48%;font-size:18px">${art.title} </td>
+                      <td style="width:13%;font-size:18px" align="center">${art.memberId} </td>
+                      <td> 
+                           
+								<c:choose>
+									<c:when test="${art.report==true}">
+
+										<button class="rebt btn btn-danger" id="reportno" name="reportno" value="${art.no}"  style="font-size: 20px">有檢舉</button>
+										
+									    
+									</c:when>
+									<c:otherwise>
+
+										<input type="button" class="btn btn-info" id="${art.no}" style="font-size: 20px" value="無檢舉">
+                                        
+									</c:otherwise>
+								</c:choose>
+							
+                      </td>
+                      <td> 
+<%--                         <form action="${pageContext.request.contextPath}/adminlockarticle" method="post"> --%>
+                            
+<%-- 								<c:choose> --%>
+<%-- 									<c:when test="${art.available==true}"> --%>
+<%--                                         <input type="hidden" value="${art.no}" name="no"> --%>
+<!-- 										<button type="submit" class="btn btn-info" id="lock" name="lock" value="lock" style="font-size: 20px">未封鎖</button> -->
+
+<%-- 									</c:when> --%>
+<%-- 									<c:otherwise> --%>
+<%--                                         <input type="hidden" value="${art.no}" name="no"> --%>
+<!-- 										<button type="submit" class="btn btn-danger" id="lock" name="lock" value="lock" style="font-size: 20px">已封鎖</button> -->
+
+<%-- 									</c:otherwise> --%>
+<%-- 								</c:choose> --%>
+<!-- 					      </form> -->
+					      
+					      <form action="${pageContext.request.contextPath}/adminlockarticle" method="post">
+                                  
+                                    <input type="hidden" value="${art.no}" name="no">
+                                 
+                                 <c:choose>
+                                    <c:when test="${art.available==true}">
+                                        <button id="lock" name="lock" value="lock" style="font-size: 20px" class="btn btn-info" aria-hidden="true" type="submit">未封鎖</button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button id="lock" name="lock" value="lock" style="font-size: 20px" class="btn btn-danger" aria-hidden="true" type="submit">已封鎖</button>
+                                    </c:otherwise>
+                                 </c:choose>
+                             </form>
+					      
+					      
+					      
+                      </td>
                     </tr>
-                  </c:forEach>
-                  
+                  </c:forEach>   
                   </tbody>
+                  <tfoot>
+                    <tr align="center">
+	                  <th style="font-family:標楷體;font-size:20px">發文時間</th>
+                      <th style="font-family:標楷體;font-size:20px">標題</th>
+                      <th style="font-family:標楷體;font-size:20px">發文者</th>
+                      <th style="font-family:標楷體;font-size:20px">檢舉狀態</th>
+                      <th style="font-family:標楷體;font-size:20px">權限管理</th>
+				    </tr>
+				 </tfoot>              
                 </table>
               </div>
             </div>
@@ -354,8 +415,56 @@
     </div>
     <!-- End of Content Wrapper -->
 
+
   </div>
   <!-- End of Page Wrapper -->
+  
+<div id="id01" class="w3-modal">
+ <div class="w3-modal-content w3-card-4 w3-animate-zoom">
+  <header class="w3-container w3-blue"> 
+   <span onclick="document.getElementById('id01').style.display='none'" 
+   class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>
+   <h2 style="font-family:標楷體;font-size:40px;padding:10px;color:white;" align="center">檢舉內容</h2>
+  </header>
+
+  <div class="w3-bar w3-border-bottom">
+   <button class="tablink w3-bar-item w3-button"></button>
+<!--    <button class="tablink w3-bar-item w3-button" onclick="openCity(event, 'time')">檢舉時間</button> -->
+<!--    <button class="tablink w3-bar-item w3-button" onclick="openCity(event, 'content')">檢舉原因</button> -->
+  </div>
+  
+             <table align="center">
+                    <tr style="width:500px">
+<!--                       <th style="font-family:標楷體;font-size:30px" align="center">檢舉時間</th> -->
+
+                      <th style="font-family:標楷體;font-size:30px">檢舉人</th>
+                      <th style="width:100px"></th>
+                      <th style="width:100px"></th>
+                      <th style="font-family:標楷體;font-size:30px">檢舉原因</th>
+                    </tr>
+                    <tr style="width:500px">
+<!--                       <td id="retime" style="width:20%;font-family:標楷體;font-size:25px"></td> -->
+
+                      <td id="remember" style="font-family:標楷體;font-size:25px"></td>
+                      <td style="width:100px"></td>
+                      <td style="width:100px"></td>
+                      <td id="recontent" style="font-family:標楷體;font-size:25px"></td>
+                    </tr>
+              </table>
+
+
+
+
+  
+<!--   <div class="w3-container w3-light-grey w3-padding"> -->
+<!--    <button class="w3-button w3-right w3-white w3-border" onclick="document.getElementById('id01').style.display='none'">Close</button> -->
+<!--   </div> -->
+  
+ </div>
+</div>
+
+</div>
+
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
@@ -403,17 +512,43 @@
   </script>
   
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="${pageContext.request.contextPath}/vendor/jquery-easing/jquery.easing.min.js"></script>
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/sb-admin-2.min.js"></script>
   <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="${pageContext.request.contextPath}/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="${pageContext.request.contextPath}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
   <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
+  <script src="${pageContext.request.contextPath}/js/demo/datatables-demo.js"></script>
+  <script>
+//   $("button").on("click",".reportBtn",function(){
+// 	  var no10999 = $('#no10999').val;
+// 	  console.log(no10999);
+//   })
+
+	  
+	  $("button.rebt").click(function(){
+		  console.log($(this).val());
+		  var reno = $(this).val();
+		  $.ajax({
+			  url:"adminreport",
+			  data:{reportno:reno},
+		      success:function(data){
+		    	  
+			    document.getElementById('remember').innerHTML = data.memberId;
+				document.getElementById('recontent').innerHTML = data.content;
+		
+		      }
+		  })
+		  document.getElementById('id01').style.display='block';
+	  });
+	  
+	  
+
+  </script>
 </body>
 
 </html>

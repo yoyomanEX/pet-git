@@ -34,6 +34,7 @@
 			$("#submitData").submit();
 		});
 
+
 		//商品數量+號button執行動作 把更新的值塞到數目欄
 		$(".buttonMinus").click(function() {
 			var minus = $(this).siblings(".textNum").val();
@@ -263,6 +264,7 @@ fieldset {
 								<td>${product.price}
 								<td>
 									<span class="totalVal"  value="${product.price*product.amount}">${product.price*product.amount}</span>
+
 									<!-- 設置sum累加 等於sum=sum+product.price*product.quantity -->
 									<c:set var="sum" value="${sum+product.price*product.amount}" />
 						</c:forEach>

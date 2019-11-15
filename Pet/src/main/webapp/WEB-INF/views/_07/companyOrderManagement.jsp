@@ -13,7 +13,7 @@
 <meta name="author" content="">
 
 <title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
-
+<link rel="icon" href="img/about_icon.png">
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -38,7 +38,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="CompanyManagement">
+				href="companyManagementIndex">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class=""></i>
 				</div>

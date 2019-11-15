@@ -9,8 +9,10 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>pet你 || blog</title>
-<link rel="icon" href="..${pageContext.request.contextPath}/img/favicon.png">
+	
+<title>pET ʕ•ᴥ•ʔ 陪你</title>
+<link rel="icon" href="img/about_icon.png">
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <!-- animate CSS -->
@@ -25,6 +27,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css">
 <!-- style CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
 </head>
@@ -319,24 +323,24 @@
                             
                             <c:forEach items="${arts }" var="art" varStatus="s">
                             
-                            <div class="post-thumbnail mb-50">
-                                <a href="#"><img src="img/blog-img/8.jpg" alt=""></a>
+                             <div class="post-thumbnail mb-50">
+                                <img width='300' height='450' src='<c:url value="/getPicture/${art.no }"/>'/>
                             </div>
                             
                             <!-- Content -->
                             <div class="post-content mb-50">
-                                <p class="post-date">${fn:substring(art.postTime, 0 ,20)} / foody</p>
+                                <p class="post-date">${fn:substring(art.postTime, 0 ,20)} / pet</p>
                                                             
                                 <a href="#" class="post-title">
                                     <h4>${art.title}</h4>
                                 </a>
                                 <div class="post-meta">
                                     <a href="#"><span>by</span> ${art.memberId}</a>
-                                    <a href="#"><i class="fa fa-eye"></i> 192</a>
-                                    <a href="#"><i class="fa fa-comments"></i> 08</a>
+<!--                                     <a href="#"><i class="fa fa-eye"></i> 192</a> -->
+<!--                                     <a href="#"><i class="fa fa-comments"></i> 08</a> -->
                                     <a href="#"><i class="fa fa-thumbs-up"></i>&nbsp&nbsp${art.likeCount}</a>
                                 </div>
-                                <p class="post-excerpt">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
+                                <p class="post-excerpt">${fn:substring(art.content, 0 ,20)}</p>
                                 <a href="<spring:url value='postblog?id=${art.no}' />" class="read-more-btn">Continue Reading <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                             </div>
                             
@@ -364,47 +368,16 @@
 					     <!-- ##### Single Widget Area ##### -->
 						<div class="single-widget-area">
 							<!-- Adds -->
-							<a href="#"><img src="img/blog-img/add3.jpg" alt=""></a>
+							<a href="#"><img src="img/blog-img/add4.jpg" alt=""></a>
 						</div>
+
+				
 
 						<!-- ##### Single Widget Area ##### -->
 						<div class="single-widget-area">
 							<!-- Title -->
 							<div class="widget-title">
-								<h6>工商頻道</h6>
-							</div>
-							<!-- Widget Social Info -->
-							<div class="widget-social-info text-center">
-							<iframe width="350" height="200" src="https://www.youtube.com/embed/E5NpfVntUVg" 
-							frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-							allowfullscreen></iframe>
-
-							</div>
-						</div>
-
-						<!-- ##### Single Widget Area ##### -->
-						<div class="single-widget-area">
-							<!-- Title -->
-							<div class="widget-title">
-								<h6>Subscribe &amp; Follow</h6>
-							</div>
-							<!-- Widget Social Info -->
-							<div class="widget-social-info text-center">
-								<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-									class="fa fa-twitter"></i></a> <a href="#"><i
-									class="fa fa-instagram"></i></a> <a href="#"><i
-									class="fa fa-google-plus"></i></a> <a href="#"><i
-									class="fa fa-pinterest"></i></a> <a href="#"><i
-									class="fa fa-linkedin"></i></a> <a href="#"><i
-									class="fa fa-rss"></i></a>
-							</div>
-						</div>
-
-						<!-- ##### Single Widget Area ##### -->
-						<div class="single-widget-area">
-							<!-- Title -->
-							<div class="widget-title">
-								<h6>Latest Posts</h6>
+								<h6>最新文章</h6>
 							</div>
 
 							<!-- Single Latest Posts -->
@@ -578,6 +551,25 @@
 	<script src="${pageContext.request.contextPath}/js/plugins/plugins.js"></script>
 	<!-- Active js -->
 	<script src="${pageContext.request.contextPath}/js/active.js"></script>
+	
+	<!-- popper js -->
+	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+	<!-- bootstrap js -->
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<!-- counterup js -->
+	<script src="${pageContext.request.contextPath}/js/jquery.counterup.min.js"></script>
+	<!-- waypoints js -->
+	<script src="${pageContext.request.contextPath}/js/waypoints.min.js"></script>
+	<!-- easing js -->
+	<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.js"></script>
+	<!-- particles js -->
+	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+	<!-- custom js -->
+	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<!-- 瀑布流 js -->
+	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
 </body>
 
 </html>

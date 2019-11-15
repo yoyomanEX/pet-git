@@ -54,8 +54,10 @@ public class ArticleDAOImpl implements ArtDAO {
 		bean.setContent(article.getContent());
 		bean.setPostTime(article.getPostTime());
 		bean.setReport(article.getReport());
-//		bean.setArticleImage(art.getArticleImage());
 		bean.setLikeCount(article.getLikeCount());
+		bean.setReport(article.getReport());
+		bean.setAvailable(article.getAvailable());
+//		bean.setArticleImage(article.getArticleImage());
 
 	}
 
@@ -196,6 +198,16 @@ public class ArticleDAOImpl implements ArtDAO {
 		Session session = factory.getCurrentSession();
 	    session.save(report);
 		
+	}
+	
+	@Override
+	public ReportBean getReportByArticle(int articleno) {     
+		String hql = "FROM ReportBean rb WHERE rb.article_no = : article_no";
+	    Session session = null;
+	    session = factory.getCurrentSession();
+	    ReportBean list = (ReportBean)session.createQuery(hql).setParameter("article_no", articleno).uniqueResult();
+	    return list;
+	    
 	}
 	
 

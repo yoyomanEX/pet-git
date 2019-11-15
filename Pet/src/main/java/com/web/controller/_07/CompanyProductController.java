@@ -94,7 +94,8 @@ public class CompanyProductController {
 		service.addProduct(bean);
 		if(!file1.isEmpty()) {
 			byte[] byte1 = file1.getBytes();
-			Path path = Paths.get("z"+bean.getProduct_id()+".jpg");
+
+			Path path = Paths.get("C:\\photo\\"+bean.getProduct_id()+".jpg");
 			Files.write(path, byte1);
 		}
 		System.out.println("抓到的商品編號："+bean.getProduct_id());//測試有沒有抓到商品編號
@@ -121,9 +122,9 @@ public class CompanyProductController {
 	   throws MalformedURLException {
 	  logger.info("fileName:{}", fileName);
 	  ResourcePatternResolver rpr = new PathMatchingResourcePatternResolver();
-	  Resource rs = rpr.getResource("file:/C:/petuse/" + fileName);
+	  Resource rs = rpr.getResource("file:/C:/photo/" + fileName);
 	  if (!rs.exists()) {
-	   rs = rpr.getResource("file:/C:/petuse/noImg.jpg");
+	   rs = rpr.getResource("file:/C:/photo/noImg.jpg");
 	  }
 
 	  // Try to determine file's content type
@@ -212,7 +213,7 @@ public class CompanyProductController {
 		
 		if(!file1.isEmpty()) {
 			byte[] byte1 = file1.getBytes();
-			Path path = Paths.get("C:\\petuse\\"+bean.getProduct_id()+".jpg");
+			Path path = Paths.get("C:\\photo\\"+bean.getProduct_id()+".jpg");
 			Files.write(path, byte1);		
 		}
 		System.out.println("有沒有檔名"+bean.getProduct_id());

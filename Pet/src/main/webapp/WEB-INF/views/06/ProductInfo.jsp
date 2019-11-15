@@ -48,6 +48,7 @@
 		});
 
 	});
+
 	
 	function totalName() {
 		var productNames = '';
@@ -131,6 +132,7 @@
 						</td>
 						<td>
 							<a class="checkPro" productId="${pro.product_id}" href="">${pro.product_name}</a>
+
 						</td>
 						<td>${pro.price}$</td>
 						<td>

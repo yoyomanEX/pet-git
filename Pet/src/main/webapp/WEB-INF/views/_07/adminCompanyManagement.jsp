@@ -8,9 +8,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>
-    Argon Dashboard - Free Dashboard for Bootstrap 4 by Creative Tim
-  </title>
+  <title>pETʕ•ᴥ•ʔ站方管理系統</title>
+  <link rel="icon" href="img/about_icon.png">
   <!-- Favicon -->
   <link href="${pageContext.request.contextPath}/assets/img/brand/favicon.png" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -39,17 +38,17 @@ $(document).ready(function(){
     });
    function showCompany(data) {
 			var c1=JSON.parse(data);
-			var txt ="<th>編號<th>廠商統編<th>廠商名稱<th>Email<th>地址<th>連絡電話<th>聯絡人<th>接受申請<th>拒絕申請";
+			var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>接受申請</th><th style='font-size: 15px;'>拒絕申請</th>";
 			for(i=0;i<c1.length;i++){
-				txt +="<tr><td>"+c1[i].id;
-				txt +="<td>"+c1[i].company_id;
-				txt +="<td>"+c1[i].company_name;
-				txt +="<td>"+c1[i].company_email;
-				txt +="<td>"+c1[i].company_add;
-				txt +="<td>"+c1[i].company_tel;
-				txt +="<td>"+c1[i].contact_name;
-				txt +="<td><button onclick='accept(" +i+ ");'><input type='hidden' id='status1"+i+"' value='1'><input type='hidden' id='company_id1"+i+"' value=\""+c1[i].company_id+"\">接受</button>";
-				txt +="<td><button onclick='reject(" +i+ ");'><input type='hidden' id='status2"+i+"' value='9'><input type='hidden' id='company_id2"+i+"' value=\""+c1[i].company_id+"\">拒絕</button>";
+				txt +="<tr><td style='font-size: 15px;'>"+c1[i].id+"</td>";
+				txt +="<td style='font-size: 15px;'>"+c1[i].company_id+"</td>";
+				txt +="<td style='font-size: 15px;'>"+c1[i].company_name+"</td>";
+				txt +="<td style='font-size: 15px;'>"+c1[i].company_email+"</td>";
+				txt +="<td style='font-size: 15px;'>"+c1[i].company_add+"</td>";
+				txt +="<td style='font-size: 15px;'>"+c1[i].company_tel+"</td>";
+				txt +="<td style='font-size: 15px;'>"+c1[i].contact_name+"</td>";
+				txt +="<td style='font-size: 15px;'><button onclick='accept(" +i+ ");'><input type='hidden' id='status1"+i+"' value='1'><input type='hidden' id='company_id1"+i+"' value=\""+c1[i].company_id+"\">接受</button></td>";
+				txt +="<td style='font-size: 15px;'><button onclick='reject(" +i+ ");'><input type='hidden' id='status2"+i+"' value='9'><input type='hidden' id='company_id2"+i+"' value=\""+c1[i].company_id+"\">拒絕</button></td>";
 			}
 			document.getElementById("dataTable").innerHTML=txt;
 		}
@@ -107,15 +106,15 @@ $(document).ready(function(){
 	    });
 	   function showOnsaleCompany(data) {
 				var c1=JSON.parse(data);
-				var txt ="<th>編號<th>廠商統編<th>廠商名稱<th>Email<th>地址<th>連絡電話<th>聯絡人<th>廠商下架";
+				var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>廠商下架</th>";
 				for(i=0;i<c1.length;i++){
-					txt +="<tr><td>"+c1[i].id;
-					txt +="<td>"+c1[i].company_id;
-					txt +="<td>"+c1[i].company_name;
-					txt +="<td>"+c1[i].company_email;
-					txt +="<td>"+c1[i].company_add;
-					txt +="<td>"+c1[i].company_tel;
-					txt +="<td>"+c1[i].contact_name;
+					txt +="<tr><td style='font-size: 15px;'>"+c1[i].id+"</td>";
+					txt +="<td style='font-size: 15px;'>"+c1[i].company_id+"</td>";
+					txt +="<td style='font-size: 15px;'>"+c1[i].company_name+"</td>";
+					txt +="<td style='font-size: 15px;'>"+c1[i].company_email+"</td>";
+					txt +="<td style='font-size: 15px;'>"+c1[i].company_add+"</td>";
+					txt +="<td style='font-size: 15px;'>"+c1[i].company_tel+"</td>";
+					txt +="<td style='font-size: 15px;'>"+c1[i].contact_name+"</td>";
 					txt +="<td><button onclick='nonsale(" +i+ ");'><input type='hidden' id='status1"+i+"' value='2'><input type='hidden' id='company_id1"+i+"' value=\""+c1[i].company_id+"\">廠商下架</button>";
 				}
 				document.getElementById("dataTable").innerHTML=txt;
@@ -152,15 +151,15 @@ $(document).ready(function(){
 		    });
 		   function showObtainedCompany(data) {
 					var c1=JSON.parse(data);
-					var txt ="<th>編號<th>廠商統編<th>廠商名稱<th>Email<th>地址<th>連絡電話<th>聯絡人<th>重新上架";
+					var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>重新上架</th>";
 					for(i=0;i<c1.length;i++){
-						txt +="<tr><td>"+c1[i].id;
-						txt +="<td>"+c1[i].company_id;
-						txt +="<td>"+c1[i].company_name;
-						txt +="<td>"+c1[i].company_email;
-						txt +="<td>"+c1[i].company_add;
-						txt +="<td>"+c1[i].company_tel;
-						txt +="<td>"+c1[i].contact_name;
+						txt +="<tr><td style='font-size: 15px;'>"+c1[i].id+"</td>";
+						txt +="<td style='font-size: 15px;'>"+c1[i].company_id+"</td>";
+						txt +="<td style='font-size: 15px;'>"+c1[i].company_name+"</td>";
+						txt +="<td style='font-size: 15px;'>"+c1[i].company_email+"</td>";
+						txt +="<td style='font-size: 15px;'>"+c1[i].company_add+"</td>";
+						txt +="<td style='font-size: 15px;'>"+c1[i].company_tel+"</td>";
+						txt +="<td style='font-size: 15px;'>"+c1[i].contact_name+"</td>";
 						txt +="<td><button onclick='onsale(" +i+ ");'><input type='hidden' id='status1"+i+"' value='1'><input type='hidden' id='company_id1"+i+"' value=\""+c1[i].company_id+"\">重新上架</button>";
 					}
 					document.getElementById("dataTable").innerHTML=txt;
@@ -196,15 +195,15 @@ $(document).ready(function(){
 				    });
 				   function showRejectCompany(data) {
 							var c1=JSON.parse(data);
-							var txt ="<th>編號<th>廠商統編<th>廠商名稱<th>Email<th>地址<th>連絡電話<th>聯絡人<th>再次審核";
+							var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>再次審核</th>";
 							for(i=0;i<c1.length;i++){
-								txt +="<tr><td>"+c1[i].id;
-								txt +="<td>"+c1[i].company_id;
-								txt +="<td>"+c1[i].company_name;
-								txt +="<td>"+c1[i].company_email;
-								txt +="<td>"+c1[i].company_add;
-								txt +="<td>"+c1[i].company_tel;
-								txt +="<td>"+c1[i].contact_name;
+								txt +="<tr><td style='font-size: 15px;'>"+c1[i].id+"</td>";
+								txt +="<td style='font-size: 15px;'>"+c1[i].company_id+"</td>";
+								txt +="<td style='font-size: 15px;'>"+c1[i].company_name+"</td>";
+								txt +="<td style='font-size: 15px;'>"+c1[i].company_email+"</td>";
+								txt +="<td style='font-size: 15px;'>"+c1[i].company_add+"</td>";
+								txt +="<td style='font-size: 15px;'>"+c1[i].company_tel+"</td>";
+								txt +="<td style='font-size: 15px;'>"+c1[i].contact_name+"</td>";
 								txt +="<td><button onclick='onsale(" +i+ ");'><input type='hidden' id='status1"+i+"' value='1'><input type='hidden' id='company_id1"+i+"' value=\""+c1[i].company_id+"\">通過申請</button>";
 							}
 							document.getElementById("dataTable").innerHTML=txt;
@@ -391,12 +390,6 @@ $(document).ready(function(){
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-              </div>
-              <input class="form-control" placeholder="Search" type="text">
-            </div>
           </div>
         </form>
         <!-- User -->
@@ -524,6 +517,15 @@ $(document).ready(function(){
         </div>
       </div>
     </div>
+    			
+                <div style="width:400px;padding-left: 20px;margin: 10px;" class="input-group input-group-alternative">
+              <div class="input-group-prepend">                
+              </div>
+               <a href='#'>
+              <input class="form-control" placeholder="Search" type="text">
+             <span class="input-group-text"><i class="fas fa-search"></i></span></a>
+            </div>
+    
    <div class="card shadow mb-4">
 			<div class="card-body">
               <div class="table-responsive">

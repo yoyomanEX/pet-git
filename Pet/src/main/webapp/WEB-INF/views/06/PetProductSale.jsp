@@ -44,6 +44,7 @@
 				alert("最大購買數量為10件，如有大量購買需求可以聯絡客服唷ʕ•ᴥ•ʔ");
 				return;
 			} else {
+
 				//判斷庫存數量是否小於客人點選數量,如小於則跳出庫存不足提醒
 				var amountTotal = $(this).attr("amount");
 				addTotal++;
@@ -366,6 +367,7 @@
 							</td>
 							<td>
 								<a class="checkPro" productId="${pro.product_id}" href="">${pro.product_name}</a>
+
 							</td>
 							<td>${pro.price}$</td>
 							<td>
