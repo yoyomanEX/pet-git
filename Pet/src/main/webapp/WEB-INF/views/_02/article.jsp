@@ -35,15 +35,16 @@
 		alert("删除成功");
 //     	var msg = "請問確定要刪除嗎???刪除後無法回復";
 //     	if (confirm(msg)==true){
-//     	return true;
+//     	   return true;
 //     	}else{
-//     	return false;
+//         return false;
 //     	}
     }
  </script>
 
 
   <title>pET ʕ•ᴥ•ʔ 陪你</title>
+  <link rel="icon" href="img/about_icon.png">
 
   <!-- Custom fonts for this template-->
   <link href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

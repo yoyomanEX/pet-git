@@ -28,7 +28,7 @@
           <div class="col-lg-7">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                <h1 class="h4 text-gray-900 mb-4">廠商修改</h1>
               </div>
               <form:form modelAttribute="CompanyBean" action='_01.updataCompany' method='POST' class="user">
                 <div class="form-group row">

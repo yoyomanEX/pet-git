@@ -1,0 +1,78 @@
+.chinese{
+	font-family: 微軟正黑體;
+	font-weight: bold;
+	
+}
+p.chinese{
+	color:white;
+	font-size: 30px;
+}
+.carousel_icon{
+	width: 80px;
+}
+/* Vertical Navigation Bar */
+.toolbar_r{
+	position: fixed;
+	right: 7%;
+	top:30%;
+	width: 50px;
+	margin: 15px auto;
+	z-index: initial !important;
+	color: white;
+	text-align:center;
+	background-color: #F0F0F0;
+}
+.vnb{
+	margin:10px;
+	width: 30px;
+	height: 30px;
+	background-color: #F0F0F0;
+}
+#vnb_instagram:hover{
+	background-image:url(../img/icon/instagram.svg);
+	width: 30px;
+	height: 30px;
+}
+#vnb_fb:hover {
+	background-image:url(../img/icon/facebook.svg);
+	width: 30px;
+	height: 30px;
+}
+#vnb_youtube:hover {
+	background-image:url(../img/icon/youtube.svg);
+	width: 30px;
+	height: 30px;
+}
+#vnb_robot:hover {
+	background-image:url(../img/icon/robot.svg);
+	width: 30px;
+	height: 30px;
+}
+#vnb_chat:hover {
+	background-image:url(../img/icon/chat.svg);
+	width: 30px;
+	height: 30px;
+}
+
+.provide-service{
+	width:500px;
+	height:300px;
+}
+.loadingScreen{
+  background-color: #ffffff;
+  width:100vh;
+  height:100vh;
+}
+/* #waterfallArea{ */
+/*   height:800px;  */
+/*   width:1000px;  */
+/*   overflow:hidden;  */
+/*   margin:0 auto; */
+/* } */
+/* #waterfallArea.content_box{ */
+/*     float: left; */
+/*     margin-bottom:10px; */
+/*     overflow:hidden; */
+/*     width:300px; */
+/* } */
+
