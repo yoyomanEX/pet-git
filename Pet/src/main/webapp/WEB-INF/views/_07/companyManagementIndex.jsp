@@ -80,7 +80,7 @@
     		  </li>	
 			<!-- Nav Item - Charts -->
      		 <li class="nav-item">
-       		 	<a class="nav-link" href="charts.html">
+       		 	<a class="nav-link" href="companyOrderCharts">
        		   <i class="fas fa-fw fa-chart-area"></i>
           	<span>統計報表</span></a>
     		  </li>

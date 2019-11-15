@@ -13,6 +13,7 @@
 
 <title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
 <link rel="icon" href="img/about_icon.png">
+
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -32,44 +33,223 @@
 	height: 150px;
 }
 </style>
-
+<!-- 判斷日期格式 -->
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-function detail(index) {
-	if($(".title" + index).length > 0){
-		$(".title" + index).remove();
-	}else{
-		$.ajax({
+  var jq1=$.noConflict();
+  jq1( function() {
+    var dateFormat = "yy-mm-dd",
+      from = jq1( "#from" )
+        .datepicker({
+          dateFormat: 'yy-mm-dd',
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 2
+        })
+        .on( "change", function() {
+          to.datepicker( "option", "minDate", getDate( this ) );
+        }),
+      to = jq1( "#to" ).datepicker({
+     	dateFormat: 'yy-mm-dd',
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 2
+      })
+      .on( "change", function() {
+        from.datepicker( "option", "maxDate", getDate( this ) );
+      });
+ 
+    function getDate( element ) {
+      var date;
+      try {
+        date = jq1.datepicker.parseDate(dateFormat, element.value );
+      } catch( error ) {
+        date = null;
+      }
+ 
+      return date;
+    }
+  } );
+  
+  
+  jq1(document).ready(function(){
+		var company_id =jq1("#company_id").val();
+		jq1("#clickmeS").click(function() {
+			jq1.ajax({
+    			url:"queryOrderByStatus",
+    			data:{
+    				key1:jq1("#from").val(),
+    				key2:jq1("#to").val(),
+    				key3:company_id,
+    				key4:jq1("#status1").val()
+    			},
+//     			dataType: "text",
+    			type:"post",
+    			success:function (data){
+    				alert(data);
+     				unprocessedOrder(data);
+    			}
+    		});
+		});
+  });
+
+</script>
+<script>
+	function queryDetail(p) {
+		if(jq1(".title"+p).length>0){
+			jq1(".title"+p).remove();
+		}
+		else{
+		jq1.ajax({
 			url:"queryDetail",
 			data:{
-				key1:$("#order_id"+index).val()    				
+				key1:jq1("#order_id"+p).val(),
 			},
 			type:"post",
 			success:function (data){
-// 					alert(data);
- 				showDetail(data, index);
+				alert(data);
+ 				showDetail(data,p);
 			}
 		});
-	}
-}
-	function showDetail(data, index) {
-		var empss=JSON.parse(data);
-		var txt ="<tr class='title" + index + "'><th></th><th>產品編號</th><th>產品名稱</th><th>數量</th><th>單價</th></tr>";
-		for(i=0;i<empss.length;i++){	
-			txt +="<tr class='title" + index + "'><td>";
-			txt +="<td>"+empss[i].product_id+"</td>";
-			txt +="<td>"+empss[i].product_name+"</td>";
-			txt +="<td>"+empss[i].amount+"</td>";
-			txt +="<td>"+empss[i].total + "</td></tr>";
 		}
-		$("#title" + index).after(txt);
 	}
 
 </script>
+
+<!-- Charts Circle start -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+   
+
+    google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'sale per date'],
+          ['日本狗糧',11],
+          ['大型貓跳台',2],
+          ['Commute',2],
+          ['Watch TV',2],
+          ['Sleep',7]
+        ]);
+
+        var options = {
+          title: '銷售紀錄',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+
+<!-- Charts Circle end -->
+<!-- Charts start -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+google.charts.load('current', {'packages':['line', 'corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+
+var button = document.getElementById('change-chart');
+var chartDiv = document.getElementById('chart_div');
+
+var data = new google.visualization.DataTable();
+data.addColumn('date', 'Month');
+data.addColumn('number', "數量");
+data.addColumn('number', "數量");
+
+data.addRows([
+  [new Date(2014, 0),  .0,  1],
+  [new Date(2014, 1),   .4,  8.7],
+  [new Date(2014, 2),   .5,   12],
+  [new Date(2014, 3),  2.9, 15.3],
+  [new Date(2014, 4),  6.3, 18.6],
+  [new Date(2014, 5),    9, 20.9],
+  [new Date(2014, 6), 10.6, 19.8],
+  [new Date(2014, 7), 10.3, 16.6],
+  [new Date(2014, 8),  7.4, 13.3],
+  [new Date(2014, 9),  4.4,  9.9],
+  [new Date(2014, 10), 1.1,  6.6],
+  [new Date(2014, 11), -.2,  4.5]
+]);
+
+var materialOptions = {
+  chart: {
+    title: '每日銷售紀錄'
+  },
+  width: 900,
+  height: 500,
+  series: {
+    // Gives each series an axis name that matches the Y-axis below.
+    0: {axis: 'Temps'},
+    1: {axis: 'Daylight'}
+  },
+  axes: {
+    // Adds labels to each axis; they don't have to match the axis names.
+    y: {
+      Temps: {label: 'Temps (Celsius)'},
+      Daylight: {label: 'Daylight'}
+    }
+  }
+};
+
+var classicOptions = {
+  title: 'Average Temperatures and Daylight in Iceland Throughout the Year',
+  width: 900,
+  height: 500,
+  // Gives each series an axis that matches the vAxes number below.
+  series: {
+    0: {targetAxisIndex: 0},
+    1: {targetAxisIndex: 1}
+  },
+  vAxes: {
+    // Adds titles to each axis.
+    0: {title: 'Temps (Celsius)'},
+    1: {title: 'Daylight'}
+  },
+  hAxis: {
+    ticks: [new Date(2014, 0), new Date(2014, 1), new Date(2014, 2), new Date(2014, 3),
+            new Date(2014, 4),  new Date(2014, 5), new Date(2014, 6), new Date(2014, 7),
+            new Date(2014, 8), new Date(2014, 9), new Date(2014, 10), new Date(2014, 11)
+           ]
+  },
+  vAxis: {
+    viewWindow: {
+      max: 30
+    }
+  }
+};
+
+
+function drawMaterialChart() {
+  var materialChart = new google.charts.Line(chartDiv);
+  materialChart.draw(data, materialOptions);
+  button.innerText = 'Change to Classic';
+  button.onclick = drawClassicChart;
+}
+
+function drawClassicChart() {
+  var classicChart = new google.visualization.LineChart(chartDiv);
+  classicChart.draw(data, classicOptions);
+  button.innerText = 'Change to Material';
+  button.onclick = drawMaterialChart;
+}
+drawMaterialChart();
+}
+
+</script>
+<!-- Charts end -->
+
+
+
+
+
 
 
 </head>
@@ -88,7 +268,7 @@ function detail(index) {
 					<i class=""></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-					pET ʕ•ᴥ•ʔ<br> 廠商後台管理
+					Pet陪你<br> 廠商後台系統
 				</div>
 			</a>
 			<!-- Divider -->
@@ -112,12 +292,12 @@ function detail(index) {
 					<span>商品管理</span>
 			</a></li>
 			<!-- Nav Item - 訂單紀錄 -->
-			<li class="nav-item active"><a class="nav-link"
+			<li class="nav-item"><a class="nav-link"
 				href="orderManagement"> <i style='width: 17px'
 					class="fas fa-fw fa-chart-area"></i> <span>訂單管理</span></a></li>
 
 			<!-- Nav Item - 統計報表 -->
-			<li class="nav-item"><a class="nav-link" href=""> <i
+			<li class="nav-item active"><a class="nav-link" href=""> <i
 					class="fas fa-fw fa-chart-area"></i> <span>統計報表</span></a></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -359,49 +539,34 @@ function detail(index) {
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">已出貨訂單列表</h1>
+					<h1 class="h3 mb-2 text-gray-800">報表</h1>
 					<p class="mb-4">
-						<a>SHIPPED ORDER</a>.
+						<a>ORDER CHARTS</a>.
 					</p>
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">
-									 <a href="orderManagement">返回訂單管理</a> 
-							</h6>
-						</div>
-					<!-- DataTales Example -->
-
-					<div class="card shadow mb-4">
-
-						            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>訂購日期</th><th>訂單編號</th><th>訂購明細</th><th>訂購人</th><th>收件人</th>
-                      <th>寄送地址</th><th>總金額</th><th>出貨日期</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <c:forEach items="${shippedOrder}" var="p1" varStatus="s">
-								<tr style="background-color: #F0F0F0;" id='title${s.index}'>
-								    <td>${p1.order_id}
-									<td>${p1.order_date}
-									<td><a href='#' onclick='detail(${s.index});'><input type="hidden" id='order_id${s.index}' name='order_id' value="${p1.order_id}"><img src='img/arrowdown.png'></a></td>
-									<td>${p1.member_id}
-									<td>${p1.recipient}
-									<td>${p1.address}
-									<td>${p1.total}
-									<td>${p1.ship_date}
-									<c:set var="count" value="${s.count}" />
-					</c:forEach>
-							</tbody>
-				</table>
-				<h3 class="count1">共${count}筆商品資料</h3>      
-              </div>
-            </div>
-          </div>
+							<a> <label for="from">訂單起日</label> 
+					<input type="text" id="from" name="startdate"> 
+					<input type="hidden" value='${CompanyLoginOK.company_id}' name='company_id' id='company_id'> 
+					<label for="to">~訂單迄日</label> 
+					<input type="text" id="to" name="enddate">
+					</a> 
+					<a style='padding-right: 100px;'>
+						<button id='clickmeS'>查詢</button>
+					</a> 
 				</div>
+					<!-- CHARTS CIRCLE -->
+				  <div  id="donutchart" style="width: 900px; height: 500px; padding-left: 150px;"></div>
+				  
+				<!-- CHARTS -->
+				<div style='padding-left: 200px;' style='float: none;'>
+					 <button id="change-chart">Change to Classic</button>
+  				<br>
+  				<br>
+  				<div id="chart_div"></div>
+					</div>
+				</div>
+				
 				<!-- /.container-fluid -->
 
 			</div>

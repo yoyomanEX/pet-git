@@ -151,7 +151,7 @@ $(document).ready(function(){
 		    });
 		   function showObtainedCompany(data) {
 					var c1=JSON.parse(data);
-					var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>接受申請</th><th style='font-size: 15px;'>重新上架</th>";
+					var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>重新上架</th>";
 					for(i=0;i<c1.length;i++){
 						txt +="<tr><td style='font-size: 15px;'>"+c1[i].id+"</td>";
 						txt +="<td style='font-size: 15px;'>"+c1[i].company_id+"</td>";
@@ -195,7 +195,7 @@ $(document).ready(function(){
 				    });
 				   function showRejectCompany(data) {
 							var c1=JSON.parse(data);
-							var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>接受申請</th><th style='font-size: 15px;'>再次審核</th>";
+							var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>再次審核</th>";
 							for(i=0;i<c1.length;i++){
 								txt +="<tr><td style='font-size: 15px;'>"+c1[i].id+"</td>";
 								txt +="<td style='font-size: 15px;'>"+c1[i].company_id+"</td>";
@@ -385,21 +385,11 @@ $(document).ready(function(){
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-<<<<<<< HEAD
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="${pageContext.request.contextPath}/index.jsp">Dashboard</a>
-=======
         <a style='font-size: 30px;' class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="${pageContext.request.contextPath}/index.jsp">廠商管理</a>
         <p>COMPANY MANAGEMENT</p>
->>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-              </div>
-              <input class="form-control" placeholder="Search" type="text">
-            </div>
           </div>
         </form>
         <!-- User -->
@@ -527,6 +517,15 @@ $(document).ready(function(){
         </div>
       </div>
     </div>
+    			
+                <div style="width:400px;padding-left: 20px;margin: 10px;" class="input-group input-group-alternative">
+              <div class="input-group-prepend">                
+              </div>
+               <a href='#'>
+              <input class="form-control" placeholder="Search" type="text">
+             <span class="input-group-text"><i class="fas fa-search"></i></span></a>
+            </div>
+    
    <div class="card shadow mb-4">
 			<div class="card-body">
               <div class="table-responsive">
@@ -542,31 +541,31 @@ $(document).ready(function(){
        
       
       <!-- Footer -->
-      <footer class="footer">
-        <div class="row align-items-center justify-content-xl-between">
-          <div class="col-xl-6">
-            <div class="copyright text-center text-xl-left text-muted">
-              &copy; 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
-            </div>
-          </div>
-          <div class="col-xl-6">
-            <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+<!--       <footer class="footer"> -->
+<!--         <div class="row align-items-center justify-content-xl-between"> -->
+<!--           <div class="col-xl-6"> -->
+<!--             <div class="copyright text-center text-xl-left text-muted"> -->
+<!--               &copy; 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--           <div class="col-xl-6"> -->
+<!--             <ul class="nav nav-footer justify-content-center justify-content-xl-end"> -->
+<!--               <li class="nav-item"> -->
+<!--                 <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a> -->
+<!--               </li> -->
+<!--               <li class="nav-item"> -->
+<!--                 <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a> -->
+<!--               </li> -->
+<!--               <li class="nav-item"> -->
+<!--                 <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a> -->
+<!--               </li> -->
+<!--               <li class="nav-item"> -->
+<!--                 <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a> -->
+<!--               </li> -->
+<!--             </ul> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--       </footer> -->
     </div>
   </div>
   <!--   Core   -->
