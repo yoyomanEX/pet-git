@@ -249,7 +249,7 @@
                             </div>
                             <!-- Thumbnail -->
                             <div class="about-thumbnail">
-                                <img src="img/blog-img/about-me.jpg" alt="">
+                                <img width='60' height='72' src='getPicture' />
                             </div>
                             <!-- Content -->
                             <div class="widget-content text-center">

@@ -51,6 +51,7 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 			product.setProduct_name((String) row.get("product_name"));
 			product.setAmount((int) row.get("amount"));
 			product.setPrice((int) row.get("price"));
+			product.setStatus((int)row.get("status"));
 		}
 		return products;
 	}
@@ -279,7 +280,7 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 	 * @return orderList
 	 */
 	@Override
-	public List<OrderBean> orderAll(int Member_id) {
+	public List<OrderBean> orderAll(String Member_id) {
 		// 準備好傳出去的集合
 		List<OrderBean> orderList = new ArrayList<OrderBean>();
 

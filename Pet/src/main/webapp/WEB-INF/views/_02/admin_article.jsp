@@ -28,44 +28,6 @@
   .city {display:none}
   </style>
   
-  
-  <script>
-  var jq1=$.noConflict();   //因為會跟套件衝突，所以所有$換成jq1
-  jq1( function() {
-    var dateFormat = "mm/dd/yy/",
-      from = jq1( "#from" )
-        .datepicker({
-          dateFormat:"yy/mm/dd",
-          defaultDate: "+1w",
-          changeMonth: true,
-          numberOfMonths: 1   //調要幾個日期選擇器
-        })
-        .on( "change", function() {
-          to.datepicker( "option", "minDate", getDate( this ) );
-        }),
-      to = jq1( "#to" ).datepicker({
-        defaultDate: "+1w",
-        dateFormat:"yy/mm/dd",
-        changeMonth: true,
-        numberOfMonths: 1
-      })
-      .on( "change", function() {
-        from.datepicker( "option", "maxDate", getDate( this ) );
-      });
- 
-    function getDate( element ) {
-      var date;
-      try {
-        date = $.datepicker.parseDate( dateFormat, element.value );
-      } catch( error ) {
-        date = null;
-      }
- 
-      return date;
-    }
-  } );
-  </script>
- 
 
   <!-- Custom fonts for this template -->
   <link href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -312,18 +274,10 @@
         
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3">
-            <label for="from" style="font-family:標楷體; font-size:25px">發文日期&nbsp從</label>
-            <input type="text" id="from" name="from">
-            <label for="to" style="font-family:標楷體; font-size:25px">到</label>
-            <input type="text" id="to" name="to">
-            <button type="submit">查詢</button>
-            </div>
-            
-            
+   
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr align="center" >
                       <th style="font-family:標楷體;font-size:20px">發文時間</th>

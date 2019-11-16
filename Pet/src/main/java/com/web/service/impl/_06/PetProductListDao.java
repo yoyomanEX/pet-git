@@ -32,7 +32,7 @@ public interface PetProductListDao {
 
 	public List<OrderBean> confirmOrderDetail(OrderBean orderBean, String[] product_ids, String[] product_names, String[] amounts, String[] prices) throws SQLException;
 
-	public List<OrderBean> orderAll(int Member_id);
+	public List<OrderBean> orderAll(String userId);
 
 	public List<OrderDetailBean> orderDetail(List<OrderBean> orderList);
 

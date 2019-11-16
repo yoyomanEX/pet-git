@@ -86,6 +86,10 @@ public class ArticleController {
 		List<ArticleBean> art = service.getAll();
 //		System.out.println(art);
 		model.addAttribute("arts", art);
+		
+		List<ArticleBean> arts = service.getArticleByLike();
+		model.addAttribute("artss", arts);
+		
 		return "_02/blogIndex";
 	}
 
@@ -490,7 +494,7 @@ public class ArticleController {
 		}
 
 	}
-
+	
 	@RequestMapping(value = "/addReportblog")
 	public String processAddReportForm(@ModelAttribute("ReportBean") ReportBean rb, @RequestParam("rpid") Integer no,
 			HttpServletRequest request, HttpSession session, Model model) throws ParseException {
@@ -584,6 +588,7 @@ public class ArticleController {
 			return "redirect:/postblog?id=" + ArticleNoS;
 		}
 	}
+
 
 //站方文章後台adminarticle
 	@RequestMapping("/adminarticle")
