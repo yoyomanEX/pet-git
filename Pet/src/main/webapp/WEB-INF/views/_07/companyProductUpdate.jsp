@@ -35,8 +35,89 @@
 	height: 150px;
 	}	
 </style>
+
+
+<!-- 前端輸入驗證 -->
+<script>
+document.addEventListener("DOMContentLoaded",
+		function(){
+		document.getElementById("product_name").addEventListener("blur",checkProductName);
+		document.getElementById("price").addEventListener("blur",checkProductPrice);
+		document.getElementById("amount").addEventListener("blur",checkProductAmount);
+	});
+	function checkProductName() {
+		var theName = document.getElementById("product_name").value;
+		var theNameLen = theName.length;
+		var flag1 = false,flag2 = false;
+		
+		if(theNameLen==""){
+			document.getElementById("pName").innerHTML = "<img src='img/error.png'> 不可空白";
+		}else {
+			document.getElementById("pName").innerHTML = "<img src='img/correct.png'>已輸入商品名稱";
+		}
+		
+	}
+	function checkProductPrice() {
+		let thePrice= document.getElementById("price").value;
+		let thePriceLen = thePrice.length;
+		let flag1 = false, flag2 = false;
+
+		if (thePriceLen == "") {
+			document.getElementById("pPrice").innerHTML = "<img src='img/error.png'>不可空白";
+		} 
+		else if (thePriceLen > 1) {
+			for (let i = 0; i < thePriceLen; i++) {
+				let PriceChr = thePrice.charAt(i);
+					if (PriceChr >= 0 && PriceChr <= 9) {
+						flag1 = true;
+					}else {
+						flag2 = false;
+					}
+
+				if (flag1 == true && flag2 == false) {
+					document.getElementById("pPrice").innerHTML = "<img src='img/correct.png'>已輸入價格";
+				} else
+					document.getElementById("pPrice").innerHTML = "<img src='img/error.png'>金額錯誤,請重新輸入";
+				}
+			}
+			else {
+			document.getElementById("pPrice").innerHTML = "<img src='img/error.png'>金額錯誤，請重新輸入";
+		}
+
+	}
+	function checkProductAmount() {
+		let theAmount= document.getElementById("amount").value;
+		let theAmountLen = theAmount.length;
+		let flag1 = false,flag2 = false;
+		
+		
+		if(theAmountLen ==""){
+			document.getElementById("pAmount").innerHTML = "<img src='img/error.png'>不可空白";
+		}
+		else if (theAmountLen >= 1) {
+			for (let i = 0; i < theAmountLen; i++) {
+				let AmountChr = theAmount.charAt(i);
+					if (AmountChr >=1 && AmountChr <= 9) {
+							flag1 = true;
+					}else {
+						flag2 = false;
+					}
+
+				if (flag1 == true && flag2 == false) {
+					document.getElementById("pAmount").innerHTML = "<img src='img/correct.png'>已輸入數量";
+				} else
+					document.getElementById("pAmount").innerHTML = "<img src='img/error.png'> 數量錯誤,請重新輸入";
+				}
+			}
+			else {
+			document.getElementById("pAmount").innerHTML = "<img src='img/error.png'> 數量錯誤，請重新輸入";
+		}
+		}
+
+</script>
+
+
 </head>
-<body>
 	<body id="page-top">
 	<div id="wrapper">
 		<!-- Sidebar -->
@@ -348,14 +429,17 @@
                   <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                    <span>商品名稱</span> <input  type="text" value="${product_id.product_name}" class="form-control form-control-user" name='product_name' id="product_name" placeholder="PRODUCT NAME">
+                  <span id='pName'></span>
                   </div>
                   <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <span>售價</span><input type="text" value="${product_id.price}" class="form-control form-control-user" name="price" id="price" placeholder="PRICE">
+                <span id='pPrice'></span>
                 </div>
                  <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <span>數量</span><input type="text" value="${product_id.amount}" class="form-control form-control-user" name="amount" id="amount" placeholder="AMOUNT">
+                 <span id='pAmount'></span>
                 </div>
                 	 <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">

@@ -152,7 +152,11 @@ $(document).ready(function(){
 		    });
 		   function showObtainedCompany(data) {
 					var c1=JSON.parse(data);
+<<<<<<< HEAD
 					var txt ="<th>編號<th>廠商統編<th>廠商名稱<th>Email<th>地址<th>連絡電話<th>聯絡人<th>重新上架";
+=======
+					var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>重新上架</th>";
+>>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
 					for(i=0;i<c1.length;i++){
 						txt +="<tr><td>"+c1[i].id;
 						txt +="<td>"+c1[i].company_id;
@@ -196,7 +200,11 @@ $(document).ready(function(){
 				    });
 				   function showRejectCompany(data) {
 							var c1=JSON.parse(data);
+<<<<<<< HEAD
 							var txt ="<th>編號<th>廠商統編<th>廠商名稱<th>Email<th>地址<th>連絡電話<th>聯絡人<th>再次審核";
+=======
+							var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>再次審核</th>";
+>>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
 							for(i=0;i<c1.length;i++){
 								txt +="<tr><td>"+c1[i].id;
 								txt +="<td>"+c1[i].company_id;
@@ -336,7 +344,7 @@ $(document).ready(function(){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="${pageContext.request.contextPath}/views/profile.jsp">
+            <a class="nav-link " href="${pageContext.request.contextPath}/_06/shippingManagement">
               <i class="ni ni-single-02 text-yellow"></i> 出貨管理
             </a>
           </li>
@@ -385,18 +393,16 @@ $(document).ready(function(){
     <!-- Navbar -->
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
+<<<<<<< HEAD
         <!-- Brand -->
+=======
+        <!-- Brand -->
+>>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
         <a style='font-size: 30px;' class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="${pageContext.request.contextPath}/index.jsp">廠商管理</a>
         <p>COMPANY MANAGEMENT</p>
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-              </div>
-              <input class="form-control" placeholder="Search" type="text">
-            </div>
           </div>
         </form>
         <!-- User -->
@@ -524,6 +530,15 @@ $(document).ready(function(){
         </div>
       </div>
     </div>
+    			
+                <div style="width:400px;padding-left: 20px;margin: 10px;" class="input-group input-group-alternative">
+              <div class="input-group-prepend">                
+              </div>
+               <a href='#'>
+              <input class="form-control" placeholder="Search" type="text">
+             <span class="input-group-text"><i class="fas fa-search"></i></span></a>
+            </div>
+    
    <div class="card shadow mb-4">
 			<div class="card-body">
               <div class="table-responsive">

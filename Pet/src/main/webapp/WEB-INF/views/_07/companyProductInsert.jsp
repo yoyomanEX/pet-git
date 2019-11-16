@@ -3,6 +3,87 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- 前端輸入驗證 -->
+<script>
+document.addEventListener("DOMContentLoaded",
+		function(){
+		document.getElementById("product_name").addEventListener("blur",checkProductName);
+		document.getElementById("price").addEventListener("blur",checkProductPrice);
+		document.getElementById("amount").addEventListener("blur",checkProductAmount);
+	});
+	function checkProductName() {
+		var theName = document.getElementById("product_name").value;
+		var theNameLen = theName.length;
+		var flag1 = false,flag2 = false;
+		
+		if(theNameLen==""){
+			document.getElementById("pName").innerHTML = "<img src='img/error.png'> 不可空白";
+		}else {
+			document.getElementById("pName").innerHTML = "<img src='img/correct.png'>已輸入商品名稱";
+		}
+		
+	}
+	function checkProductPrice() {
+		let thePrice= document.getElementById("price").value;
+		let thePriceLen = thePrice.length;
+		let flag1 = false, flag2 = false;
+
+		if (thePriceLen == "") {
+			document.getElementById("pPrice").innerHTML = "<img src='img/error.png'>不可空白";
+		} 
+		else if (thePriceLen > 1) {
+			for (let i = 0; i < thePriceLen; i++) {
+				let PriceChr = thePrice.charAt(i);
+					if (PriceChr >= 0 && PriceChr <= 9) {
+						flag1 = true;
+					}else {
+						flag2 = false;
+					}
+
+				if (flag1 == true && flag2 == false) {
+					document.getElementById("pPrice").innerHTML = "<img src='img/correct.png'>已輸入價格";
+				} else
+					document.getElementById("pPrice").innerHTML = "<img src='img/error.png'>金額錯誤,請重新輸入";
+				}
+			}
+			else {
+			document.getElementById("pPrice").innerHTML = "<img src='img/error.png'>金額錯誤，請重新輸入";
+		}
+
+	}
+	function checkProductAmount() {
+		let theAmount= document.getElementById("amount").value;
+		let theAmountLen = theAmount.length;
+		let flag1 = false,flag2 = false;
+		
+		
+		if(theAmountLen ==""){
+			document.getElementById("pAmount").innerHTML = "<img src='img/error.png'>不可空白";
+		}
+		else if (theAmountLen >= 1) {
+			for (let i = 0; i < theAmountLen; i++) {
+				let AmountChr = theAmount.charAt(i);
+					if (AmountChr >=1 && AmountChr <= 9) {
+							flag1 = true;
+					}else {
+						flag2 = false;
+					}
+
+				if (flag1 == true && flag2 == false) {
+					document.getElementById("pAmount").innerHTML = "<img src='img/correct.png'>已輸入數量";
+				} else
+					document.getElementById("pAmount").innerHTML = "<img src='img/error.png'> 數量錯誤,請重新輸入";
+				}
+			}
+			else {
+			document.getElementById("pAmount").innerHTML = "<img src='img/error.png'> 數量錯誤，請重新輸入";
+		}
+		}
+
+</script>
+
+
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <meta charset="UTF-8">
 <meta charset="utf-8">
@@ -332,19 +413,27 @@
         			<input type="hidden" name="company_id" value='${CompanyLoginOK.company_id}'>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                    <span>商品名稱</span> <input  type="text" class="form-control form-control-user" name='product_name' id="product_name" placeholder="PRODUCT NAME">
+                  <span  id="pName"></span>
                   </div>
+                  
                   <br>
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <span>售價</span><input type="text" class="form-control form-control-user" name="price" id="price" placeholder="PRICE">
+                  <div class="col-sm-6 mb-3 mb-sm-0"> 
+                    <div>
+                    <span>售價</span>
+                    <input type="text" class="form-control form-control-user" name="price" id="price" placeholder="PRICE">
+                	<span id="pPrice"></span>
+                	</div>
                 </div>
                  <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <span>數量</span><input type="text" class="form-control form-control-user" name="amount" id="amount" placeholder="AMOUNT">
+                	<span id="pAmount"></span>
                 </div>
                 	 <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                      <label class="t1">適用寵物類別</label>
                							 <select name="category">
+               							 <option >請選擇</option>
                    						 <option value="1">狗</option>
                    						 <option value="2">貓</option>
                     					<option value="3">其他</option>
@@ -353,8 +442,13 @@
                 	</div>
                  <br>
                   	<div class="col-sm-6 mb-3 mb-sm-0">
-                   		 <span>商品圖片</span><input type="file" id="file" name='file'>
+                   		 <span>商品圖片</span><input type="file" id="file" name='file' accept="image/gif, image/jpeg, image/png">
                		 </div>
+               		 <div>
+                 <br>
+                    <span>圖片：</span>
+                	<td><img id='exImg' class="img1"src="${pageContext.request.contextPath}/downloadFile/${product_id.product_id}.jpg">
+                </div>
                    <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <span>商品描述</span>
@@ -432,6 +526,20 @@
 	function insertPro() {
 		$('#insertPro').submit();
 	}
+	
+	 $("#file").change(function(){
+	      //當檔案改變後，做一些事 
+	     readURL(this);   // this代表<input id="imgInp">
+	   });
+	 function readURL(input){
+		  if(input.files && input.files[0]){
+		    var reader = new FileReader();
+		    reader.onload = function (e) {
+		       $("#exImg").attr('src', e.target.result);
+		    }
+		    reader.readAsDataURL(input.files[0]);
+		  }
+		}
 </script>		
 				
 </body>
