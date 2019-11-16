@@ -164,7 +164,6 @@ public class PetDao implements PetInterface {
 			orderBean.add(ob);
 		}
 		return orderBean;
-
 	}
 
 	public void queryDBId(PetBean06 petBean) {
@@ -181,9 +180,7 @@ public class PetDao implements PetInterface {
 			petBean.setDescribe((String) row.get("describe"));
 			petBean.setStatus((int) row.get("status"));
 			petBean.setCategory((int) row.get("category"));
-
 		}
-
 	}
 	/**
 	 * 更新商品資料
