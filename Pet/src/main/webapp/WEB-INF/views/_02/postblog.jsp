@@ -10,6 +10,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <title>pET ʕ•ᴥ•ʔ 陪你</title>
     <link rel="icon" href="img/about_icon.png">
     <!-- Bootstrap CSS -->
@@ -74,6 +75,19 @@ function myFunction() {
 		});
     });
  </script>
+ 
+<script type='text/javascript'>
+    setTimeout('countdown()', 1000);
+
+function countdown() {
+	var s = document.getElementById('timer');
+	s.innerHTML = s.innerHTML - 1;
+	if (s.innerHTML == 0)
+	window.location = "<spring:url value='/blogIndex'/>";
+	else
+	setTimeout('countdown()', 1000);
+	}
+	</script>
 
 </head>
     
@@ -503,7 +517,11 @@ function myFunction() {
 	
 	</c:when>
         <c:otherwise>
-              <img src="img/lockpicture.jpg" alt="" style="margin-left:150px">
+              <span id='timer' style="font-size:50px;text-align:center; display:block;" >5</span>
+              <span style="font-size:50px;text-align:center; display:block;">秒後，為您自動轉跳。</span>
+              <img src="img/lockpicture.jpg" alt="" style="margin-left:150px"><br>
+              
+
         </c:otherwise>
                                 
      </c:choose>

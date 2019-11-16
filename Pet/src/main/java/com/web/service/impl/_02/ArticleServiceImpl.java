@@ -79,6 +79,12 @@ public class ArticleServiceImpl implements ArticleService{
 			System.out.println("insert null");
 		}
 	}
+	
+	@Transactional
+	@Override
+	public ReplyBean getReplyById(int no) {
+		return dao.getReplyById(no);
+	}
 
 	@Transactional
 	@Override
@@ -149,10 +155,11 @@ public class ArticleServiceImpl implements ArticleService{
 		return dao.getReportByArticle(articleno);
 	}
 
-
-
-
-
-
+	@Transactional
+	@Override
+	public List<ArticleBean> getArticleByLike() {
+		return dao.getArticleByLike();
+	}
+	
 }
 

@@ -62,24 +62,22 @@ var jq1=$.noConflict();
 				},
 				type:"post",
 				success:function (data){
-					alert(data);
+// 					alert(data);
 	 				showDetail(data, index);
 				}
 			});
 		}
-		
-		
 	}
 	function showDetail(data, index) {
 		var empss=JSON.parse(data);
-		var txt ="<tr class='title" + index + "'><th>產品編號<th>產品名稱<th>數量</tr>";
+		var txt ="<tr class='title" + index + "'><th></th><th>產品編號</th><th>產品名稱</th><th>數量</th><th>單價</th></tr>";
 		for(i=0;i<empss.length;i++){	
-			txt +="<tr class='title" + index + "'><td>"+empss[i].product_id;
-			txt +="<td>"+empss[i].product_name;
-			txt +="<td>"+empss[i].amount;
-			txt +="<td>"+empss[i].total + "</tr>";
+			txt +="<tr class='title" + index + "'><td></td>";
+			txt +="<td>"+empss[i].product_id+"</td>";
+			txt +="<td>"+empss[i].product_name+"</td>";
+			txt +="<td>"+empss[i].amount+"</td>";
+			txt +="<td>"+empss[i].total + "</td></tr>";
 		}
-		
 		$("#title" + index).after(txt);
 	}
 
@@ -397,14 +395,15 @@ var jq1=$.noConflict();
                   <tr>
                   <thead>
                     <tr>
-                      <th>訂單編號</th><th>訂單日期</th><th>訂購人</th><th>收件人</th>
-                      <th>寄送地址</th><th>售價</th><th>接單</th><th>
+                      <th>訂單編號</th><th>訂單日期</th><th>訂購明細</th><th>訂購人</th><th>收件人</th>
+                      <th>寄送地址</th><th>總金額</th><th>接單</th><th>
                     </tr>
                   </thead>
                     <c:forEach items="${unprocessedOrder}" var="p1" varStatus="s" >
 								<tr style="background-color: #F0F0F0;" id='title${s.index}'>
-									<td><a onclick='detail(${s.index});'><input type='hidden' id ='order_id${s.index}' value='${p1.order_id}'>${p1.order_id}</a>
+									<td>${p1.order_id}
 									<td>${p1.order_date}
+									<td><a href='#' onclick='detail(${s.index});'><input type="hidden" id='order_id${s.index}' name='order_id' value="${p1.order_id}"><img src='img/arrowdown.png'></a></td>
 									<td>${p1.member_id}
 									<td>${p1.recipient}
 									<td>${p1.address}

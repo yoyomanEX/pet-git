@@ -176,13 +176,12 @@ public class ArticleDAOImpl implements ArtDAO {
 	}
 
 
-//	@Override
-//	public ReplyBean getReplyById(int no) {
-//		ReplyBean bean = null;
-//		Session session = factory.getCurrentSession();
-//		bean = session.get(ReplyBean.class, no);
-//		return bean;
-//	}
+	@Override
+	public ReplyBean getReplyById(int no) {
+		Session session = factory.getCurrentSession();
+		ReplyBean rb = session.get(ReplyBean.class, no);
+		return rb;
+	}
 
 
 //	@Override
@@ -244,6 +243,20 @@ public class ArticleDAOImpl implements ArtDAO {
 	}
 
 
+	@Override
+	public List<ArticleBean> getArticleByLike() {
+
+	    Session session = factory.getCurrentSession();
+	    Query query = session.createQuery("from ArticleBean order by likeCount DESC");
+	    query.setFirstResult(0);
+	    query.setMaxResults(5);
+	    query.list();
+	    return (ArrayList<ArticleBean>) query.list();
+	    
+	    
+	    
+	}
+	
 
 
 }
