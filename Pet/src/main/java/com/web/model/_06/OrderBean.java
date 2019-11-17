@@ -15,6 +15,33 @@ public class OrderBean {
 	private String phone;
 	private Date order_date;
 	private Date ship_date;
+	private String company_id;
+	private int status;
+	private int payment_status;
+	private String merchant_no;  //merchant_no 紀錄綠界回傳交易號碼
+	
+	
+	
+	
+	public String getCompany_id() {
+		return company_id;
+	}
+	public void setCompany_id(String company_id) {
+		this.company_id = company_id;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
+	public String getMerchant_no() {
+		return merchant_no;
+	}
+	public void setMerchant_no(String merchant_no) {
+		this.merchant_no = merchant_no;
+	}
 	public String getOrder_id() {
 		return order_id;
 	}
@@ -62,6 +89,12 @@ public class OrderBean {
 	}
 	public void setShip_date(Date ship_date) {
 		this.ship_date = ship_date;
+	}
+	public int getPayment_status() {
+		return payment_status;
+	}
+	public void setPayment_status(int payment_status) {
+		this.payment_status = payment_status;
 	}
 
 	

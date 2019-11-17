@@ -11,39 +11,48 @@
 <title>leopet || Home</title>
 <link rel="icon" href="img/favicon.png">
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <!-- animate CSS -->
-<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
 <!-- owl carousel CSS -->
-<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css">
 <!-- themify CSS -->
-<link rel="stylesheet" href="css/themify-icons.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/themify-icons.css">
 <!-- flaticon CSS -->
-<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/flaticon.css">
 <!-- font awesome CSS -->
-<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css">
 <!-- style CSS -->
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<!-- Flexslider 圖片輪播套件 -->
+<link href="http://cdn.bootcss.com/flexslider/2.6.3/flexslider.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
 	
 </script>
+<script src="http://cdn.bootcss.com/flexslider/2.6.3/jquery.flexslider.min.js"></script>
+<script type="text/javascript" src="../lib/jquery_pagination/jquery.pagination.js"></script>
 <script>
 	var sum = 0;
 	var buycar = new Object();
 
 	$(function() {
 
+		$(".flexslider").flexslider({
+			slideshowSpeed : 5000,
+		});
 		totalName();
 		totalNum();
 		totalPrice();
 
 		//商品數量+號button執行動作 把更新的值塞到數目欄
-		$("#buttonAdd").click(function() {
+		$(".buttonAdd").click(function() {
 			var addTotal = $(this).siblings(".textNum").val();
 			if (addTotal >= 10) {
 				alert("最大購買數量為10件，如有大量購買需求可以聯絡客服唷ʕ•ᴥ•ʔ");
 				return;
 			} else {
+
+				//判斷庫存數量是否小於客人點選數量,如小於則跳出庫存不足提醒
 				var amountTotal = $(this).attr("amount");
 				addTotal++;
 				if (addTotal > amountTotal) {
@@ -57,7 +66,7 @@
 		});
 
 		//商品數量-號button執行動作 把更新的值塞到數目欄
-		$("#buttonMinus").click(function() {
+		$(".buttonMinus").click(function() {
 			var minusTotal = $(this).siblings(".textNum").val();
 			if (minusTotal <= 0) {
 				alert('選購數量不得為負ʕ•ᴥ•ʔ');
@@ -69,6 +78,7 @@
 
 	});
 
+	//跑商品名稱
 	function totalName() {
 		var productNames = '';
 		$(".productName").each(function() {
@@ -84,6 +94,7 @@
 		});
 	}
 
+	//跑商品總數量合計
 	function totalNum() {
 		var sumNum = 0;
 		$(".textNum").each(function() {
@@ -93,6 +104,7 @@
 		$("#cartSumNumber").text(sumNum);
 	}
 
+	//跑商品總金額合計
 	function totalPrice() {
 		var zong = 0;
 		$(".cartProductItemSumPrice").each(function() {
@@ -113,8 +125,8 @@
 					Accept : "text/html, application/xhtml+xml, */*"
 				},
 				success : function(data) {
-					$("#detailContent").empty();
-					$("#detailContent").append(data);
+					$("#content").empty();
+					$("#content").append(data);
 				}
 
 			});
@@ -129,8 +141,8 @@
 					Accept : "text/html, application/xhtml+xml, */*"
 				},
 				success : function(data) {
-					$("#detailContent").empty();
-					$("#detailContent").append(data);
+					$("#content").empty();
+					$("#content").append(data);
 				}
 			});
 		});
@@ -141,15 +153,14 @@
 				url : '${pageContext.request.contextPath}/06/productInfoAll',
 				type : 'post',
 				headers : {
-					Accept : "text/html, application/xhtml+xml, */*"
+					Accept : "text/html"
 				},
 				success : function(data) {
-					$("#detailContent").empty();
-					$("#detailContent").append(data);
+					$("#content").empty();
+					$("#content").append(data);
 				}
 			});
 		});
-		
 		$("#productSearch").keypress(function(){
 			var productSearch=$("#productSearch").val();
 			
@@ -161,15 +172,18 @@
 					Accept : "text/html"
 				},
 				success : function(data) {
-					$("#detailContent").empty();
-					$("#detailContent").append(data);
+					$("#content").empty();
+					$("#content").append(data);
 				}
 			});
 		});
 	});
+	
+	
+		
 
 	$(function() {
-		//點選商品頁超連結執行SUBMIT動作
+		//點選商品頁超連結 執行SUBMIT動作 傳到該商品詳細資料頁面
 		$(".checkPro").click(function() {
 			event.preventDefault();
 			var productId = $(this).attr("productId");
@@ -216,26 +230,27 @@
 #sidebar_left {
 	/* 	background-color: #FFB5B5;  */
 	width: 260px;
+	height: 800px;
 	text-align: center;
 	float: left;
 }
 
-#detailContent {
-	margin-left: 260px;
-	margin-right: 260px;
-	/* 	background-color: #F2FFF2; */
-	text-align: center;
-	width: 850px;
+#content {
+	/* 	background-color: #F2FFF2;text-align: center; */
+	height: 800px;
+	width: 1200px;
 }
 
-#content {
-	margin-left: 260px;
-	/* 	background-color: #F2FFF2; */
+.flexslider {
+	margin-left: 300px;
+	height: 560px;
+	width: 800px;
 	text-align: center;
 }
 
 #pageBackground {
-	background-image: url('${pageContext.request.contextPath}/06/img/aa.png');
+	background-image:
+		url('${pageContext.request.contextPath}/06/img/aa.png');
 }
 
 .buttonSearch {
@@ -292,12 +307,6 @@
 	right: 0;
 }
 
-#productImg {
-	width: 300px;
-	height: 400px;
-	float: left;
-}
-
 .productImg {
 	width: 130px;
 	height: 90px;
@@ -313,7 +322,7 @@
 					<div class="col-4 col-md-4 col-xl-6">
 						<div id="logo">
 							<a href="index.html">
-								<!-- 	<img src="img/Logo.png" alt="" title="" /> -->
+								<img src="img/Logo.png" alt="" title="" />
 							</a>
 						</div>
 					</div>
@@ -321,9 +330,10 @@
 						<div class="sub_header_social_icon float-right">
 							<a href="#">
 								<i class="flaticon-phone"></i>
-								+02 213 - 256 (365)
+								02
 							</a>
-							<a href="#" class="btn_1 d-none d-md-inline-block">Become a Volunteer</a>
+							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">Longin</a>
+							<a href="friendlist" class="btn_1 d-none d-md-inline-block">account</a>
 						</div>
 					</div>
 				</div>
@@ -340,14 +350,30 @@
 							</button>
 							<div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
 								<ul class="navbar-nav">
-									<li></li>
-									<li></li>
-									<li></li>
-									<li></li>
-									<li></li>
-									<li></li>
+									<li class="nav-item active">
+										<a class="nav-link active" href="index.jsp">Home</a>
+									</li>
 									<li class="nav-item">
-										<a href="contact.html" class="nav-link"></a>
+										<a href="travel.jsp" class="nav-link">𨑨迌 食飯</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">交朋友</a>
+									</li>
+									<li class="nav-item">
+										<a href="${pageContext.request.contextPath}/06/petProductSale" class="nav-link">PET陪你購物</a>
+									</li>
+									<li>
+										<a href="<spring:url value='/blogIndex'/>" class="nav-link">blog</a>
+									</li>
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> PET PET 醫療站 </a>
+										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="hospital.jsp">醫院資訊</a>
+											<a class="dropdown-item" href="question.jsp">PET PET Q&A</a>
+										</div>
+									</li>
+									<li class="nav-item">
+										<a href="contact.html" class="nav-link">Contact</a>
 									</li>
 								</ul>
 							</div>
@@ -375,68 +401,20 @@
 				<span>其他商品 </span>
 			</button>
 		</div>
-		<div id="detailContent">
-			<form method="post" id="orderSubmit" action="${pageContext.request.contextPath}/06/petOrder">
-				<input type="hidden" name="productId" value="${product.product_id}">
-				<h1>${product.product_name}</h1>
-				<hr>
-				<br>
-				<img alt="ʕ•ᴥ•ʔ" id='productImg' src="${pageContext.request.contextPath}/06/downloadFile/${product.product_id}.jpg">
-				<h3>${product.describe}</h3>
-				<br>
-				<br>
-				<br>
-				<h3>價格:${product.price}$</h3>
-				<c:choose>
-					<c:when test="${product.amount==0}">
-						<input type="hidden" name="amount" value="0" class="textNum" style="text-align: center;" />
-						<h4>商品目前補貨中ʕ•ᴥ•ʔ</h4>
-					</c:when>
-					<c:otherwise>
-						<input type="button" name="minus" id='buttonMinus' value='-'>
-						<input type="number" readonly name="amount" value="0" min="0" max="10" class="textNum" style="text-align: center;" />
-						<input type="button" name="add" id='buttonAdd' value='+' amount="${product.amount}">
-						<input type='hidden' class='cartProductItemSumPrice' price="${product.price}">
-						<%-- 										<input type='hidden' productId="${product.product_id}" class='productName' text="${product.product_name}"> --%>
-					</c:otherwise>
-				</c:choose>
-				<h3>pETʕ•ᴥ•ʔ 陪你購物</h3>
-				<div id="shoppingCart">
-					<button type='button' class="button" id='addToCar' style="vertical-align: middle">
-						<span>加到購物車</span>
-					</button>
-					<br>
-					<c:set var="carTotal" value="0"></c:set>
-					<c:set var="carQuantity" value="0"></c:set>
-					<c:forEach var="InCar" items="${productsInCar}">
-						<c:set var="carTotal" value="${carTotal+InCar.price*InCar.amount}"></c:set>
-						<c:set var="carQuantity" value="${carQuantity+InCar.amount}"></c:set>
-						<input type="hidden" value="${InCar.product_id}">
-						<span>${InCar.product_name} 數量x ${InCar.amount}</span>
-						<br>
-					</c:forEach>
-					<hr>
-					<span>
-						已選商品
-						<span>${carQuantity}</span>
-						件
-					</span>
-					<br>
-					<span>
-						合計 :
-						<span> ${carTotal}</span>
-						元
-					</span>
-					<button type='submit' class="button" id='buttonALL' style="vertical-align: middle">
-						<span>結帳去</span>
-					</button>
-					<c:if test="${carTotal > 0}">
-						<button type='button' class="button" id='clearCar' style="vertical-align: middle">
-							<span>清空購物車</span>
-						</button>
-					</c:if>
-				</div>
-			</form>
+		<div id="content">
+			<div class="flexslider">
+				<ul class="slides">
+					<li>
+						<img class="imgBanner" src="${pageContext.request.contextPath}/06/img/saleBanner01.png" alt="" style="height: 550px; width: 800px">
+					</li>
+					<li>
+						<img class="imgBanner" src="${pageContext.request.contextPath}/06/img/saleBanner02.png" alt="" style="height: 550px; width: 800px">
+					</li>
+					<li>
+						<img class="imgBanner" src="${pageContext.request.contextPath}/06/img/saleBanner03.png" alt="" style="height: 550px; width: 800px">
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </body>

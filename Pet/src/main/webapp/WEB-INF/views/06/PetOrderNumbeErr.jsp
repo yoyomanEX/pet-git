@@ -95,7 +95,6 @@ fieldset {
 	font-weight: bold;
 	margin: auto;
 }
-
 #pageBackground {
 	background-image: url(img/aa.png);
 }
@@ -153,29 +152,19 @@ fieldset {
 			</div>
 		</div>
 	</header>
-	<div id="sidebar_left">
-		<h3>pETʕ•ᴥ•ʔ 陪你購物</h3>
-		<p>
-		<h2 style="color: red">注意！！！！！</h2>
-		<img src="img/noImg.jpg" style="width: 220px; height: 220px">
-		<h4>可愛貓咪出沒(๑• . •๑)</h4>
-		</p>
-	</div>
-	<div id='content'>
-		<h2>訂單成立通知</h2>
-		<h2>
-			您的訂單已成功下單！
-			<br>
-			您的訂單編號為：${orderNumber}。
-			<br>
-			我們會盡快為您安排出貨。
-		</h2>
-		<hr style="height: 10px; border: none; border-top: 10px groove skyblue;">
-		<h2>
-			您可至
-			<a href="${pageContext.request.contextPath}/06/PetOrderAll">訂單明細</a>
-			查看出貨狀況唷！
-		</h2>
+	<div id="pageBackground">
+		<div id="sidebar_left">
+			<h3>pETʕ•ᴥ•ʔ 陪你購物</h3>
+			<p>
+			<h2 style="color: red">注意！！！！！</h2>
+			<img src="img/noImg.jpg" style="width: 220px; height: 220px">
+			<h4>可愛貓咪出沒(๑• . •๑) </h4>
+			</p>
+		</div>
+		<div id='content'>
+			<h2>訂單失敗通知</h2>
+			<h2>您的訂單未成功下單，失敗訂單編號為：${orderNumber}，請持此編號洽詢客服。</h2>
+		</div>
 	</div>
 </body>
 </html>
