@@ -67,6 +67,7 @@ $(document).ready(function(){
 </script>
 
   <title>pET ʕ•ᴥ•ʔ 陪你</title>
+  <link rel="icon" href="img/about_icon.png">
 
   <!-- Custom fonts for this template-->
   <link href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -378,16 +379,11 @@ $(document).ready(function(){
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-
-
-
-
-
           <!-- Page Heading -->
-          
-          <form action="${pageContext.request.contextPath}/addArticle" method="post">
-
+          <form action="${pageContext.request.contextPath}/addArticle" method="post" enctype="multipart/form-data">
           <div>
+              <input id="articleImage" name="articleImage" type="file">
+              
           <input type="text" style="margin-top:20px;margin-bottom:16px;font-size:25px;width:100%;border-radius:5px" name="title" id="title"  value="${param.title }" placeholder="&nbsp請輸入文章標題"/>
 <%--           <a style="color: red;">${ErrMsg.titleNull}${ErrMsg.titleOver}</a> --%>
           <span id="titlesp"></span>

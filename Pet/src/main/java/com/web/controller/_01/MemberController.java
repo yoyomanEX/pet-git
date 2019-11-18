@@ -1,17 +1,31 @@
 
+
 package com.web.controller._01;
 
-
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.web.model._01.MemberBean;
 import com.web.model._01.PetBean;
@@ -48,14 +62,15 @@ public class MemberController {
 //		return "_01/memberlogin";
 //		return null;
 		return "index";
+
 	}
-	
-	//會員登入頁面
+
+	// 會員登入頁面
 	@RequestMapping(value = "/_01.memberloginPage")
 	public String memberloginPage(Model model) {
 		model.addAttribute("MemberBean", new MemberBean());
-		
 		return "_01/memberlogin";
+		
 	}
 
 	// 會員登入
@@ -86,19 +101,21 @@ public class MemberController {
 		String n1 = loginToken.getName();
 		System.out.println("n1:" + n1);
 		return "index";
+//		return "redirect: _01.updataMemberPage";
 	}
 
 	// 登入失敗
 	@RequestMapping(value = "loginErr")
 	public String loginErr() {
 		return "_01/login";
+
 	}
-	
+
 	// 註冊會員頁面
 	@RequestMapping(value = "/_01.saveMemberPage")
 	public String saveMemberPage(Model model) {
 		model.addAttribute("MemberBean", new MemberBean());
-		
+
 		return "_01/memberinsert";
 	}
 
@@ -172,7 +189,7 @@ public class MemberController {
 
 	}
 
-	//進入修改會員頁面
+	// 進入修改會員頁面
 	@RequestMapping(value = "/_01.updataMemberPage")
 	public String updataMemberPage(Model model) {
 		model.addAttribute("MemberBean", new MemberBean());
@@ -182,11 +199,101 @@ public class MemberController {
 	// 修改會員
 	@RequestMapping(value = "/_01.updataMember", method = RequestMethod.POST)
 	public String updataMember(MemberBean mb, HttpServletRequest request) {
+
+		MultipartFile picture = mb.getFilImage();
+		if(picture.getSize() == 0) {
+			System.out.println("picture1:"+picture.getSize());
+			Blob blob =null;
+			mb.setMemberImage(blob);
+		}else {
+			System.out.println("picture2:"+picture.getSize());
+			try {
+				byte[] b = picture.getBytes();
+				Blob blob = new SerialBlob(b);
+				mb.setMemberImage(blob);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SerialException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+
 		memberService.updataMember(mb);
 		HttpSession session = request.getSession();
 		session.setAttribute("LoginOK", mb);
 
+
 		return "_01/ttt";
+	}
+	
+	String noImage = "/images/NoImage.png";
+	
+	//讀取會員大頭貼
+	//<img width='60' height='72' src='getPicture' />
+	@RequestMapping(value = "/getPicture", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getPicture(HttpServletRequest request) {
+		byte[] body = null;
+		ResponseEntity<byte[]> re = null;
+		MediaType mediaType = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		HttpSession session = request.getSession();
+		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+		Blob blob = loginToken.getMemberImage();
+		if(blob!=null) {
+			body = blobToByteArray(blob);
+			
+		}else {
+			String path = null;
+			path = noImage;
+			body = fileToByteArray(path);
+			
+		}
+		re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
+		return re;
+	}
+	
+	@Autowired
+	ServletContext context;
+	
+	private byte[] fileToByteArray(String path) {
+		byte[] result = null;
+		try (InputStream is = context.getResourceAsStream(path);
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();) {
+			byte[] b = new byte[819200];
+			int len = 0;
+			while ((len = is.read(b)) != -1) {
+				baos.write(b, 0, len);
+			}
+			result = baos.toByteArray();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public byte[] blobToByteArray(Blob blob) {
+		byte[] result = null;
+		try (InputStream is = blob.getBinaryStream(); ByteArrayOutputStream baos = new ByteArrayOutputStream();) {
+			byte[] b = new byte[819200];
+			int len = 0;
+			while ((len = is.read(b)) != -1) {
+				baos.write(b, 0, len);
+			}
+			result = baos.toByteArray();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+
 	}
 
 }
+

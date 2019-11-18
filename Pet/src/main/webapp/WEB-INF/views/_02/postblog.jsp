@@ -10,8 +10,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>pet你 || blog</title>
-    <link rel="icon" href="..${pageContext.request.contextPath}/img/favicon.png">
+    
+    <title>pET ʕ•ᴥ•ʔ 陪你</title>
+    <link rel="icon" href="img/about_icon.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <!-- animate CSS -->
@@ -26,6 +27,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
     <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -72,6 +75,19 @@ function myFunction() {
 		});
     });
  </script>
+ 
+<script type='text/javascript'>
+    setTimeout('countdown()', 1000);
+
+function countdown() {
+	var s = document.getElementById('timer');
+	s.innerHTML = s.innerHTML - 1;
+	if (s.innerHTML == 0)
+	window.location = "<spring:url value='/blogIndex'/>";
+	else
+	setTimeout('countdown()', 1000);
+	}
+	</script>
 
 </head>
     
@@ -82,6 +98,9 @@ function myFunction() {
     <jsp:include page="header.jsp" /> 
     
     <!-- Header part end-->
+    
+    <c:choose>
+            <c:when test="${art.available==true}">
 
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
@@ -91,9 +110,9 @@ function myFunction() {
                     <img src="img/core-img/breadcrumb-line.png" alt="">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Blog List</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Blog Single</li>
+<!--                             <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li> -->
+<!--                             <li class="breadcrumb-item"><a href="#">Blog List</a></li> -->
+<!--                             <li class="breadcrumb-item active" aria-current="page">Blog Single</li> -->
                         </ol>
                     </nav>
                 </div>
@@ -130,39 +149,26 @@ function myFunction() {
                                  </c:choose>
                                  
                                  <a>
-                                 <form action="${pageContext.request.contextPath}/articlelike" method="post">
-                                 <input type="hidden" class="form-control" id="memberId" name="memberId" placeholder="memberId" readonly="true" value="${LoginOK.member_Id }">
-                                 <input type="hidden" value="${art.no}" name="no">
+                            <form action="${pageContext.request.contextPath}/articlelike" method="post">
+                                    <input type="hidden" class="form-control" id="memberId" name="memberId" placeholder="memberId" readonly="true" value="${LoginOK.member_Id }">
+                                    <input type="hidden" value="${art.no}" name="no">
                                  
                                  <c:choose>
-                                 <c:when test="${empty LoginOK}">
-                                 <button id="like" name="like" value="like" style="font-size:16px;padding:10px" class="btn btn-danger fa fa-thumbs-up" aria-hidden="true" type="submit" onclick="myFunction()">&nbsp&nbsp${art.likeCount}</button>
-                                 </c:when>
-                                 <c:otherwise>
-                                 <button id="like" name="like" value="like" style="font-size:16px;padding:10px" class="btn btn-danger fa fa-thumbs-up" aria-hidden="true" type="submit">&nbsp&nbsp${art.likeCount}</button>
-                                 </c:otherwise>
+                                    <c:when test="${empty LoginOK}">
+                                        <button id="like" name="like" value="like" style="font-size:16px;padding:10px" class="btn btn-danger fa fa-thumbs-up" aria-hidden="true" type="submit" onclick="myFunction()">&nbsp&nbsp${art.likeCount}</button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button id="like" name="like" value="like" style="font-size:16px;padding:10px" class="btn btn-danger fa fa-thumbs-up" aria-hidden="true" type="submit">&nbsp&nbsp${art.likeCount}</button>
+                                    </c:otherwise>
                                  </c:choose>
-                                 </form>
+                             </form>
                                  </a>
                                 
                                 <a href="#"><span>by</span> ${art.memberId} </a>
                                 </div>
                                 
+                                      <p>${art.content }</p>
                                 
-                                <p>${art.content }</p>
-<!--                                 <p>What hadn’t shown up, however, was the idea that Vietnamese cuisine can be taken seriously, with complex techniques and in a fancier setting. That changed with last December’s opening of Taro, a surprisingly chic bistro in the forever up-and-coming Smichov neighborhood southwest of Old Town. Run by two brothers, Khanh and Giang Ta, Taro has no evening à la carte menu (there is one at lunch), instead offering just two options for dinner: a four-course tasting menu at 890 koruna (about $40) or a seven-course menu at 1,290 koruna per person, not including drinks. Cheap noodles this ain’t.</p> -->
-<!--                                 <blockquote> -->
-<!--                                     <div class="blockquote-icon"> -->
-<!--                                         <img src="img/core-img/quote.png" alt=""> -->
-<!--                                     </div> -->
-<!--                                     <div class="blockquote-text"> -->
-<!--                                         <h6>That’s not to say you’ll have the exact same thing if you stop by: the restaurant’s menus change constantly, based on seasonal ingredients.</h6> -->
-<!--                                         <h6>Ollie Schneider</h6> -->
-<!--                                     </div> -->
-<!--                                 </blockquote> -->
-<!--                                 <h4>You have 4 free articles remaining.</h4> -->
-<!--                                 <p>A deconstructed gyoza started things off on my visit, topping a crisp won ton cracker with sweet and spicy candied ginger, a tender bite of smoky Peking duck and an aromatic cucumber gel for a crunchy and fragrant amuse bouche. Seven equally creative courses followed, often balancing sweet notes with bracing acidity.</p> -->
-<!--                                 <p>A sweet-and-sour sea bass tartare, decorated with apple chips, mango chunks and creamy avocado purée, tasted more like a ceviche, while a green mango salad bathed in crisp passion fruit dressing contrasted tropical fruit flavors with juicy chunks of slow-cooked beef tenderloin.</p> -->
                             </div>
                         </div>
 
@@ -207,7 +213,7 @@ function myFunction() {
           <label style="font-size:25px;font-weight: bold; font-family:標楷體;"><b>檢舉原因</b></label>
              <input type="hidden" class="form-control" id="member_Id" name="member_Id" placeholder="member_Id" readonly="true" value="${LoginOK.member_Id }">
              <input type="hidden" value="${art.no}" id="rpid" name="rpid">
-             <textarea style="resize:none; height:250px" class="w3-input w3-border w3-margin-bottom" placeholder="請輸入原因" name="message" autofocus ></textarea>
+             <textarea style="resize:none; height:250px" class="w3-input w3-border w3-margin-bottom" placeholder="請輸入原因" id="message" name="message" autofocus ></textarea>
           <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit" id="button2">傳送</button>
  
         </div>
@@ -220,73 +226,11 @@ function myFunction() {
                         <!-- Related Post Area -->
                         <div class="related-posts clearfix">
                             <!-- Line -->
-<!--                             <div class="curve-line bg-img mb-50" style="background-image: url(img/core-img/breadcrumb-line.png);"></div> -->
-
-                            <!-- Headline -->
-                            
-<!--                             <h4 class="headline">Relatest News</h4> -->
-
-<!--                             <div class="row"> -->
-
-<!--                                 Single Blog Post -->
-<!--                                 <div class="col-12 col-md-6"> -->
-<!--                                     <div class="single-blog-post related-post"> -->
-<!--                                         Thumbnail -->
-<!--                                         <div class="post-thumbnail mb-50"> -->
-<!--                                             <a href="#"><img src="img/blog-img/13.jpg" alt=""></a> -->
-<!--                                         </div> -->
-<!--                                         Content -->
-<!--                                         <div class="post-content mb-50"> -->
-<!--                                             <p class="post-date">MAY 12, 2018 / drinks</p> -->
-<!--                                             <a href="#" class="post-title"> -->
-<!--                                                 <h4>Grain-Free Sweet &amp; Savory Activate Walnut Granola</h4> -->
-<!--                                             </a> -->
-<!--                                             <div class="post-meta"> -->
-<!--                                                 <a href="#"><span>by</span> Sarah Jenks</a> -->
-<!--                                                 <a href="#"><i class="fa fa-eye"></i> 192</a> -->
-<!--                                                 <a href="#"><i class="fa fa-comments"></i> 08</a> -->
-<!--                                             </div> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-
-<!--                                 Single Blog Post -->
-<!--                                 <div class="col-12 col-md-6"> -->
-<!--                                     <div class="single-blog-post related-post"> -->
-<!--                                         Thumbnail -->
-<!--                                         <div class="post-thumbnail mb-50"> -->
-<!--                                             <a href="#"><img src="img/blog-img/14.jpg" alt=""></a> -->
-<!--                                         </div> -->
-<!--                                         Content -->
-<!--                                         <div class="post-content mb-50"> -->
-<!--                                             <p class="post-date">MAY 15, 2018 / Coffee</p> -->
-<!--                                             <a href="#" class="post-title"> -->
-<!--                                                 <h4>Self-Care Interview Series: Gabrielle Russomagno</h4> -->
-<!--                                             </a> -->
-<!--                                             <div class="post-meta"> -->
-<!--                                                 <a href="#"><span>by</span> Sarah Jenks</a> -->
-<!--                                                 <a href="#"><i class="fa fa-eye"></i> 192</a> -->
-<!--                                                 <a href="#"><i class="fa fa-comments"></i> 08</a> -->
-<!--                                             </div> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-
-<!--                             </div> -->
-
-                            <!-- Line -->
                             <div class="curve-line bg-img" style="background-image: url(img/core-img/breadcrumb-line.png);"></div>
                         </div>
 
                             
                         <!-- Comment Area Start -->
-<!--                         <div> -->
-<%--                             <c:forEach items="${arts }" var="art" varStatus="s" > --%>
-<%--                             <c:set var="count" value="${s.count }"/> --%>
-<%--                             </c:forEach> --%>
-<%--                             <h4 class="headline" id="showmessage">${count} 則留言</h4> --%>
-<!--                         </div> -->
-                        
                         <div id="hidemessage" class="comment_area clearfix" style="display:none">
                        
                         
@@ -570,6 +514,17 @@ function myFunction() {
 		</div>
 	</div>
 	<!-- ##### Instagram Area End ##### -->
+	
+	</c:when>
+        <c:otherwise>
+              <span id='timer' style="font-size:50px;text-align:center; display:block;" >5</span>
+              <span style="font-size:50px;text-align:center; display:block;">秒後，為您自動轉跳。</span>
+              <img src="img/lockpicture.jpg" alt="" style="margin-left:150px"><br>
+              
+
+        </c:otherwise>
+                                
+     </c:choose>
 
 
     <!-- footer part start-->
@@ -590,6 +545,26 @@ function myFunction() {
     <script src="${pageContext.request.contextPath}/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="${pageContext.request.contextPath}/js/active.js"></script>
+    
+    
+	<!-- popper js -->
+	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+	<!-- bootstrap js -->
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<!-- counterup js -->
+	<script src="${pageContext.request.contextPath}/js/jquery.counterup.min.js"></script>
+	<!-- waypoints js -->
+	<script src="${pageContext.request.contextPath}/js/waypoints.min.js"></script>
+	<!-- easing js -->
+	<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.js"></script>
+	<!-- particles js -->
+	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+	<!-- custom js -->
+	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<!-- 瀑布流 js -->
+	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
 </body>
 
 </html>

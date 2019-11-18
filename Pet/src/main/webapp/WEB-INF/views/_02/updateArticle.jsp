@@ -31,6 +31,7 @@ $(document).ready(function(){
 
 
   <title>pET ʕ•ᴥ•ʔ 陪你</title>
+  <link rel="icon" href="img/about_icon.png">
 
   <!-- Custom fonts for this template-->
   <link href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -357,8 +358,12 @@ $(document).ready(function(){
           <input type="text" style="margin-top:20px;margin-bottom:16px;font-size:25px;width:100%;border-radius:5px" name="title" id="title" value="${arts.title}">
           <span id="titlesp"></span>
           <br>  
+
           <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="postTime" id="time" value="${arts.postTime}">
           <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="like" id="like" value="${arts.likeCount}">
+          <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="message" id="message" value="${arts.report}">
+          <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="lock" id="lock" value="${arts.available}">
+          <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="articleImage" id="articleImage" value="${arts.coverImage}">
           </div>
           
           <textarea id="editor" name="content">${arts.content}</textarea>

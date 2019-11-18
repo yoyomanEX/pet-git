@@ -30,15 +30,20 @@ public interface ArticleService {
 	
 	public void editReply(ReplyBean reply);
 	
+	public ReplyBean getReplyById(int no);
+	
 	public List<ReplyBean>  getAllReplys();
 	
 	public List<ReplyBean>  getReplysByArticle(int articleno);
 	
-//	public ReplyBean getReplyById(int reply_no);
+//	public ReplyBean getReplyById(int no);
 	
 //	public ReplyBean getReplyByArticleId(int articleno);
 	
 	public void addReport(ReportBean rb);
+	
+	public ReportBean getReportByArticle(int articleno);
+
 	
 	public void addCt(LikeCountBean likecount);
 	
@@ -47,5 +52,7 @@ public interface ArticleService {
 	public LikeCountBean getLikeNo(String memberNo, int articleno);
 	
 	public String getLikeByMemberAndArticle(String memberNo,int articleno);
+	
+	public List<ArticleBean> getArticleByLike();
 	
 }

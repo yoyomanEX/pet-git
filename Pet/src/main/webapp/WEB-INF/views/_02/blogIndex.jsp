@@ -9,8 +9,10 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>pet你 || blog</title>
-<link rel="icon" href="..${pageContext.request.contextPath}/img/favicon.png">
+	
+<title>pET ʕ•ᴥ•ʔ 陪你</title>
+<link rel="icon" href="img/about_icon.png">
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <!-- animate CSS -->
@@ -25,8 +27,15 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css">
 <!-- style CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/util.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	
+	
 </head>
 
 <body>
@@ -34,7 +43,12 @@
      <jsp:include page="header.jsp" />
     <!-- Header part end-->
 
-
+<!-- Headline -->
+	<div class="container">
+		<div class="bg0 flex-wr-sb-c p-rl-20 p-tb-8">
+			<div class="f2-s-1 p-r-30 size-w-0 m-tb-6 flex-wr-s-c"></div>
+		</div>
+	</div>
     
 	<!-- ##### Hero Area Start ##### -->
 	<section class="hero-area">
@@ -44,12 +58,12 @@
 			<div class="single-hero-post">
 				<!-- Post Image -->
 				<div class="slide-img bg-img"
-					style="background-image: url(img/blog-img/2.jpg);"></div>
+					style="background-image: url(img/waterfall/001.jpg);"></div>
 				<!-- Post Content -->
 				<div class="hero-slides-content">
-					<p>MAY 8, 2018 / 35 Comments</p>
+					<p>MAY 8, 2018 / story</p>
 					<a href="#" class="post-title">
-						<h4>Fried Pizzas on parchment paper with basil.</h4>
+						<h4>動物眼中的世界</h4>
 					</a>
 				</div>
 			</div>
@@ -58,12 +72,12 @@
 			<div class="single-hero-post">
 				<!-- Post Image -->
 				<div class="slide-img bg-img"
-					style="background-image: url(img/blog-img/3.jpg);"></div>
+					style="background-image: url(img/waterfall/003.png);"></div>
 				<!-- Post Content -->
 				<div class="hero-slides-content">
-					<p>MAY 8, 2018 / Foody</p>
+					<p>MAY 8, 2018 / news</p>
 					<a href="#" class="post-title">
-						<h4>Quick Vegan Enchiladas with Sweet Potato Sauce</h4>
+						<h4>搞笑野生動物攝影獎</h4>
 					</a>
 				</div>
 			</div>
@@ -72,12 +86,12 @@
 			<div class="single-hero-post">
 				<!-- Post Image -->
 				<div class="slide-img bg-img"
-					style="background-image: url(img/blog-img/4.jpg);"></div>
+					style="background-image: url(img/waterfall/002.jpg);"></div>
 				<!-- Post Content -->
 				<div class="hero-slides-content">
-					<p>aug 8, 2018 / health</p>
+					<p>aug 8, 2018 / news</p>
 					<a href="#" class="post-title">
-						<h4>Eleven Slushie Cocktails I Bookmarked</h4>
+						<h4>臭臉賣萌走紅至今動物明星不爽貓辭世</h4>
 					</a>
 				</div>
 			</div>
@@ -86,421 +100,682 @@
 			<div class="single-hero-post">
 				<!-- Post Image -->
 				<div class="slide-img bg-img"
-					style="background-image: url(img/blog-img/5.jpg);"></div>
+					style="background-image: url(img/waterfall/004.jpg);"></div>
+				<!-- Post Content -->
+				<div class="hero-slides-content">
+					<p>MAY 8, 2018 / news</p>
+					<a href="#" class="post-title">
+						<h4>忍不住讚嘆美麗動物</h4>
+					</a>
+				</div>
+			</div>
+
+			<!-- Single Hero Post -->
+			<div class="single-hero-post">
+				<!-- Post Image -->
+				<div class="slide-img bg-img"
+					style="background-image: url(img/waterfall/005.jpg);"></div>
+				<!-- Post Content -->
+				<div class="hero-slides-content">
+					<p>MAY 8, 2018 / Travel</p>
+					<a href="#" class="post-title">
+						<h4>荷蘭家居品牌Doing Goods推出可愛動物地毯</h4>
+					</a>
+				</div>
+			</div>
+
+			<!-- Single Hero Post -->
+			<div class="single-hero-post">
+				<!-- Post Image -->
+				<div class="slide-img bg-img"
+					style="background-image: url(img/waterfall/8.jpg);"></div>
+				<!-- Post Content -->
+				<div class="hero-slides-content">
+					<p>MAY 8, 2018 / news</p>
+					<a href="#" class="post-title">
+						<h4>什麼是動物溝通術</h4>
+					</a>
+				</div>
+			</div>
+			
+			<!-- Single Hero Post -->
+			<div class="single-hero-post">
+				<!-- Post Image -->
+				<div class="slide-img bg-img"
+					style="background-image: url(img/waterfall/009.jpg);"></div>
+				<!-- Post Content -->
+				<div class="hero-slides-content">
+					<p>MAY 8, 2018 / story</p>
+					<a href="#" class="post-title">
+						<h4>力量動物卡：你的靈性生活指南</h4>
+					</a>
+				</div>
+			</div>
+
+			<!-- Single Hero Post -->
+			<div class="single-hero-post">
+				<!-- Post Image -->
+				<div class="slide-img bg-img"
+					style="background-image: url(img/waterfall/006.jpg);"></div>
+				<!-- Post Content -->
+				<div class="hero-slides-content">
+					<p>MAY 8, 2018 / news</p>
+					<a href="#" class="post-title">
+						<h4>神人P出「所有動物都有貓臉」</h4>
+					</a>
+				</div>
+			</div>
+
+			<!-- Single Hero Post -->
+			<div class="single-hero-post">
+				<!-- Post Image -->
+				<div class="slide-img bg-img"
+					style="background-image: url(img/waterfall/007.jpg);"></div>
+				<!-- Post Content -->
+				<div class="hero-slides-content">
+					<p>aug 8, 2018 / news</p>
+					<a href="#" class="post-title">
+						<h4>香港動植物公園周末舉辦「動物護理聚談」活動</h4>
+					</a>
+				</div>
+			</div>
+
+			<!-- Single Hero Post -->
+			<div class="single-hero-post">
+				<!-- Post Image -->
+				<div class="slide-img bg-img"
+					style="background-image: url(img/waterfall/008.jpg);"></div>
 				<!-- Post Content -->
 				<div class="hero-slides-content">
 					<p>MAY 8, 2018 / drinks</p>
 					<a href="#" class="post-title">
-						<h4>Homemade Strawberry Almond Milk</h4>
+						<h4>少用塑膠袋，還動物一個乾淨的家</h4>
 					</a>
 				</div>
 			</div>
 
-			<!-- Single Hero Post -->
-			<div class="single-hero-post">
-				<!-- Post Image -->
-				<div class="slide-img bg-img"
-					style="background-image: url(img/blog-img/6.jpg);"></div>
-				<!-- Post Content -->
-				<div class="hero-slides-content">
-					<p>MAY 8, 2018 / foody</p>
-					<a href="#" class="post-title">
-						<h4>Kitchen Sink Sunflower Salad in a bow.</h4>
-					</a>
-				</div>
-			</div>
-
-			<!-- Single Hero Post -->
-			<div class="single-hero-post">
-				<!-- Post Image -->
-				<div class="slide-img bg-img"
-					style="background-image: url(img/blog-img/2.jpg);"></div>
-				<!-- Post Content -->
-				<div class="hero-slides-content">
-					<p>MAY 8, 2018 / 35 Comments</p>
-					<a href="#" class="post-title">
-						<h4>Fried Pizzas on parchment paper with basil.</h4>
-					</a>
-				</div>
-			</div>
-
-			<!-- Single Hero Post -->
-			<div class="single-hero-post">
-				<!-- Post Image -->
-				<div class="slide-img bg-img"
-					style="background-image: url(img/blog-img/3.jpg);"></div>
-				<!-- Post Content -->
-				<div class="hero-slides-content">
-					<p>MAY 8, 2018 / Foody</p>
-					<a href="#" class="post-title">
-						<h4>Quick Vegan Enchiladas with Sweet Potato Sauce</h4>
-					</a>
-				</div>
-			</div>
-
-			<!-- Single Hero Post -->
-			<div class="single-hero-post">
-				<!-- Post Image -->
-				<div class="slide-img bg-img"
-					style="background-image: url(img/blog-img/4.jpg);"></div>
-				<!-- Post Content -->
-				<div class="hero-slides-content">
-					<p>aug 8, 2018 / health</p>
-					<a href="#" class="post-title">
-						<h4>Eleven Slushie Cocktails I Bookmarked</h4>
-					</a>
-				</div>
-			</div>
-
-			<!-- Single Hero Post -->
-			<div class="single-hero-post">
-				<!-- Post Image -->
-				<div class="slide-img bg-img"
-					style="background-image: url(img/blog-img/5.jpg);"></div>
-				<!-- Post Content -->
-				<div class="hero-slides-content">
-					<p>MAY 8, 2018 / drinks</p>
-					<a href="#" class="post-title">
-						<h4>Homemade Strawberry Almond Milk</h4>
-					</a>
-				</div>
-			</div>
-
-			<!-- Single Hero Post -->
-			<div class="single-hero-post">
-				<!-- Post Image -->
-				<div class="slide-img bg-img"
-					style="background-image: url(img/blog-img/6.jpg);"></div>
-				<!-- Post Content -->
-				<div class="hero-slides-content">
-					<p>MAY 8, 2018 / foody</p>
-					<a href="#" class="post-title">
-						<h4>Kitchen Sink Sunflower Salad in a bow.</h4>
-					</a>
-				</div>
-			</div>
 
 		</div>
 	</section>
 	<!-- ##### Hero Area End ##### -->
-
-	<!-- ##### Blog Content Area Start ##### -->
-	<section class="blog-content-area section-padding-100">
+	
+	<!-- Post -->
+	<section class="bg0 p-t-70">
 		<div class="container">
-			<div class="row">
-				<!-- Featured Post Area -->
-				<div class="col-12">
-					<div class="featured-post-area">
-						<div id="featured-post-slides"
-							class="carousel slide d-flex flex-wrap" data-ride="carousel">
+			<div class="row justify-content-center">
+				<div class="col-md-10 col-lg-8">
+					<div class="p-b-20">
+						<!-- 寵物報報 -->
+						<div class="tab01 p-b-20">
+							<div class="tab01-head how2 how2-cl1 bocl12 flex-s-c m-r-10 m-r-0-sr991">
+								<!-- Brand tab -->
+								<h3 class="f1-m-2 cl12 tab01-title">
+									寵物報報
+								</h3>
 
-							<div class="carousel-inner">
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist">
+									
 
-								<div class="carousel-item active bg-img"
-									style="background-image: url(img/blog-img/7.jpg)">
-									<!-- Featured Post Content -->
-									<div class="featured-post-content">
-										<p>MAY 8, 2018 / foody</p>
-										<a href="#" class="post-title">
-											<h2>A Closer Look At Our Front Porch Items From Lowe’s</h2>
+									<li class="nav-item-more dropdown dis-none">
+										<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+											<i class="fa fa-ellipsis-h"></i>
 										</a>
+
+										<ul class="dropdown-menu">
+											
+										</ul>
+									</li>
+								</ul>
+
+								<!--  -->
+								<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+									View all
+									<i class="fs-12 m-l-5 fa fa-caret-right"></i>
+								</a>
+							</div>
+								
+
+							<!-- Tab panes -->
+							<div class="tab-content p-t-35">
+								<!-- - -->
+								<div class="tab-pane fade show active" id="tab1-1" role="tabpanel">
+									<div class="row">
+										<div class="col-sm-6 p-r-25 p-r-15-sr991">
+											<!-- Item post -->	
+											<div class="m-b-30">
+											
+										
+											 
+												<a href="#" class="wrap-pic-w hov1 trans-03">
+													<img src="img/waterfall/5.png" alt="IMG">
+												</a>
+
+												<div class="p-t-20">
+													<h5 class="p-b-5">
+														<a href="#" class="f1-m-3 cl2 hov-cl10 trans-03">
+															六大步驟看懂成分表 
+														</a>
+													</h5>
+
+													<span class="cl8">
+														<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
+															knowledge
+														</a>
+
+														<span class="f1-s-3 m-rl-3">
+															-
+														</span>
+
+														<span class="f1-s-3">
+															Feb 18
+														</span>
+													</span>
+												</div>
+										
+											</div>
+										</div>
+
+										<div class="col-sm-6 p-r-25 p-r-15-sr991">
+											<!-- Item post -->	
+											<div class="flex-wr-sb-s m-b-30">
+												<a href="#" class="size-w-1 wrap-pic-w hov1 trans-03">
+													<img src="img/waterfall/6.jpg" alt="IMG">
+												</a>
+
+												<div class="size-w-2">
+													<h5 class="p-b-5">
+														<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+															狗狗要得到糖尿病，比你想像中容易
+														</a>
+													</h5>
+
+													<span class="cl8">
+														<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+															knowledge
+														</a>
+
+														<span class="f1-s-3 m-rl-3">
+															-
+														</span>
+
+														<span class="f1-s-3">
+															Feb 17
+														</span>
+													</span>
+												</div>
+											</div>
+											
+											<!-- Item post -->
+											<div class="flex-wr-sb-s m-b-30">
+												<a href="#" class="size-w-1 wrap-pic-w hov1 trans-03">
+													<img src="img/waterfall/7.jpg" alt="IMG">
+												</a>
+
+												<div class="size-w-2">
+													<h5 class="p-b-5">
+														<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+															狗狗的教育不能等！掌握最佳學習黃金期
+														</a>
+													</h5>
+
+													<span class="cl8">
+														<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+															knowledge
+														</a>
+
+														<span class="f1-s-3 m-rl-3">
+															-
+														</span>
+
+														<span class="f1-s-3">
+															Feb 16
+														</span>
+													</span>
+												</div>
+											</div>
+
+											<!-- Item post -->
+											<div class="flex-wr-sb-s m-b-30">
+												<a href="#" class="size-w-1 wrap-pic-w hov1 trans-03">
+													<img src="img/waterfall/9.jpg" alt="IMG">
+												</a>
+
+												<div class="size-w-2">
+													<h5 class="p-b-5">
+														<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+															飼養前請先認識我
+														</a>
+													</h5>
+
+													<span class="cl8">
+														<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+															knowledge
+														</a>
+
+														<span class="f1-s-3 m-rl-3">
+															-
+														</span>
+
+														<span class="f1-s-3">
+															Feb 12
+														</span>
+													</span>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 
-								<div class="carousel-item bg-img"
-									style="background-image: url(img/blog-img/6.jpg)">
-									<!-- Featured Post Content -->
-									<div class="featured-post-content">
-										<p>MAY 8, 2018 / foody</p>
-										<a href="#" class="post-title">
-											<h2>12 Beautiful Vegan Panna Cottas</h2>
-										</a>
-									</div>
-								</div>
+							</div>
+						</div>
 
-								<div class="carousel-item bg-img"
-									style="background-image: url(img/blog-img/2.jpg)">
-									<!-- Featured Post Content -->
-									<div class="featured-post-content">
-										<p>MAY 8, 2018 / foody</p>
-										<a href="#" class="post-title">
-											<h2>Quick Vegan Enchiladas with Sweet Potato Sauce</h2>
-										</a>
-									</div>
-								</div>
+						<!-- 寵物美容保養 -->
+						<div class="tab01 p-b-20">
+							<div class="tab01-head how2 how2-cl2 bocl12 flex-s-c m-r-10 m-r-0-sr991">
+								<!-- Brand tab -->
+								<h3 class="f1-m-2 cl13 tab01-title">
+									寵物美容保養
+								</h3>
 
-								<div class="carousel-item bg-img"
-									style="background-image: url(img/blog-img/3.jpg)">
-									<!-- Featured Post Content -->
-									<div class="featured-post-content">
-										<p>MAY 8, 2018 / foody</p>
-										<a href="#" class="post-title">
-											<h2>Instant Pot Mushroom Stroganoff with Vodka</h2>
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist">
+									
+									<li class="nav-item-more dropdown dis-none">
+										<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+											<i class="fa fa-ellipsis-h"></i>
 										</a>
-									</div>
-								</div>
 
-								<div class="carousel-item bg-img"
-									style="background-image: url(img/blog-img/5.jpg)">
-									<!-- Featured Post Content -->
-									<div class="featured-post-content">
-										<p>MAY 8, 2018 / foody</p>
-										<a href="#" class="post-title">
-											<h2>The Most Popular Recipe Last Month</h2>
-										</a>
+										<ul class="dropdown-menu">
+											
+										</ul>
+									</li>
+								</ul>
+
+								<!--  -->
+								<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+									View all
+									<i class="fs-12 m-l-5 fa fa-caret-right"></i>
+								</a>
+							</div>
+								
+
+							<!-- Tab panes -->
+							<div class="tab-content p-t-35">
+								<!-- - -->
+								<div class="tab-pane fade show active" id="tab2-1" role="tabpanel">
+									<div class="row">
+										<div class="col-sm-6 p-r-25 p-r-15-sr991">
+											<!-- Item post -->	
+											<div class="m-b-30">
+												<a href="#" class="wrap-pic-w hov1 trans-03">
+													<img src="img/waterfall/20.jpeg" alt="IMG">
+												</a>
+
+												<div class="p-t-20">
+													<h5 class="p-b-5">
+														<a href="#" class="f1-m-3 cl2 hov-cl10 trans-03">
+															保養從平日基礎做起
+														</a>
+													</h5>
+
+													<span class="cl8">
+														<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
+															Beauty
+														</a>
+
+														<span class="f1-s-3 m-rl-3">
+															-
+														</span>
+
+														<span class="f1-s-3">
+															Feb 18
+														</span>
+													</span>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-6 p-r-25 p-r-15-sr991">
+											<!-- Item post -->	
+											<div class="flex-wr-sb-s m-b-30">
+												<a href="#" class="size-w-1 wrap-pic-w hov1 trans-03">
+													<img src="img/waterfall/19.jpg" alt="IMG">
+												</a>
+
+												<div class="size-w-2">
+													<h5 class="p-b-5">
+														<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+															幫毛孩洗澡像打仗？簡單幾步驟讓爸媽輕鬆上手
+														</a>
+													</h5>
+
+													<span class="cl8">
+														<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+															Beauty
+														</a>
+
+														<span class="f1-s-3 m-rl-3">
+															-
+														</span>
+
+														<span class="f1-s-3">
+															Feb 17
+														</span>
+													</span>
+												</div>
+											</div>
+											
+											<!-- Item post -->
+											<div class="flex-wr-sb-s m-b-30">
+												<a href="#" class="size-w-1 wrap-pic-w hov1 trans-03">
+													<img src="img/waterfall/18.jpg" alt="IMG">
+												</a>
+
+												<div class="size-w-2">
+													<h5 class="p-b-5">
+														<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+															跟著季節保養，打造居家專業美容小撇步
+														</a>
+													</h5>
+
+													<span class="cl8">
+														<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+															Beauty
+														</a>
+
+														<span class="f1-s-3 m-rl-3">
+															-
+														</span>
+
+														<span class="f1-s-3">
+															Feb 16
+														</span>
+													</span>
+												</div>
+											</div>
+
+											<!-- Item post -->
+											<div class="flex-wr-sb-s m-b-30">
+												<a href="#" class="size-w-1 wrap-pic-w hov1 trans-03">
+													<img src="img/waterfall/17.jpg" alt="IMG">
+												</a>
+
+												<div class="size-w-2">
+													<h5 class="p-b-5">
+														<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+															如何挑選寵物皮膚保養品
+														</a>
+													</h5>
+
+													<span class="cl8">
+														<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+															Beauty
+														</a>
+
+														<span class="f1-s-3 m-rl-3">
+															-
+														</span>
+
+														<span class="f1-s-3">
+															Feb 12
+														</span>
+													</span>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
+						</div>
 
-							<ol class="carousel-indicators">
-								<li data-target="#featured-post-slides" data-slide-to="0"
-									class="active">
-									<h2>01</h2> <a href="#" class="post-title">
-										<h5>A Closer Look At Our Front Porch Items From Lowe’s</h5>
-								</a>
-								</li>
-								<li data-target="#featured-post-slides" data-slide-to="1">
-									<h2>02</h2> <a href="#" class="post-title">
-										<h5>12 Beautiful Vegan Panna Cottas</h5>
-								</a>
-								</li>
-								<li data-target="#featured-post-slides" data-slide-to="2">
-									<h2>03</h2> <a href="#" class="post-title">
-										<h5>Quick Vegan Enchiladas with Sweet Potato Sauce</h5>
-								</a>
-								</li>
-								<li data-target="#featured-post-slides" data-slide-to="3">
-									<h2>04</h2> <a href="#" class="post-title">
-										<h5>Instant Pot Mushroom Stroganoff with Vodka</h5>
-								</a>
-								</li>
+						<!-- 寵物旅遊 -->
+						<div class="tab01 p-b-20">
+							<div class="tab01-head how2 how2-cl3 bocl12 flex-s-c m-r-10 m-r-0-sr991">
+								<!-- Brand tab -->
+								<h3 class="f1-m-2 cl14 tab01-title">
+									寵物旅遊
+								</h3>
 
-							</ol>
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist">
 
+									<li class="nav-item-more dropdown dis-none">
+										<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+											<i class="fa fa-ellipsis-h"></i>
+										</a>
+
+										<ul class="dropdown-menu">
+											
+										</ul>
+									</li>
+								</ul>
+
+								<!--  -->
+								<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+									View all
+									<i class="fs-12 m-l-5 fa fa-caret-right"></i>
+								</a>
+							</div>
+								
+
+							<!-- Tab panes -->
+							<div class="tab-content p-t-35">
+								<!-- - -->
+								<div class="tab-pane fade show active" id="tab3-1" role="tabpanel">
+									<div class="row">
+										<div class="col-sm-6 p-r-25 p-r-15-sr991">
+											<!-- Item post -->	
+											<div class="m-b-30">
+												<a href="#" class="wrap-pic-w hov1 trans-03">
+													<img src="img/waterfall/1.jpg" alt="IMG">
+												</a>
+
+												<div class="p-t-20">
+													<h5 class="p-b-5">
+														<a href="#" class="f1-m-3 cl2 hov-cl10 trans-03">
+															2019奔跑吧！毛小孩公益路跑 
+														</a>
+													</h5>
+
+													<span class="cl8">
+														<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
+															Travel
+														</a>
+
+														<span class="f1-s-3 m-rl-3">
+															-
+														</span>
+
+														<span class="f1-s-3">
+															Feb 18
+														</span>
+													</span>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-sm-6 p-r-25 p-r-15-sr991">
+											<!-- Item post -->	
+											<div class="flex-wr-sb-s m-b-30">
+												<a href="#" class="size-w-1 wrap-pic-w hov1 trans-03">
+													<img src="img/waterfall/2.jpg" alt="IMG">
+												</a>
+
+												<div class="size-w-2">
+													<h5 class="p-b-5">
+														<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+															FollowAlanaXDog是好朋友【汪汪友善日】
+														</a>
+													</h5>
+
+													<span class="cl8">
+														<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+															Travel
+														</a>
+
+														<span class="f1-s-3 m-rl-3">
+															-
+														</span>
+
+														<span class="f1-s-3">
+															Feb 17
+														</span>
+													</span>
+												</div>
+											</div>
+											
+											<!-- Item post -->
+											<div class="flex-wr-sb-s m-b-30">
+												<a href="#" class="size-w-1 wrap-pic-w hov1 trans-03">
+													<img src="img/waterfall/3.jpg" alt="IMG">
+												</a>
+
+												<div class="size-w-2">
+													<h5 class="p-b-5">
+														<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+															『毛孩麻吉日—Taipei友善動物城市嘉年華』登場囉！
+														</a>
+													</h5>
+
+													<span class="cl8">
+														<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+															Travel
+														</a>
+
+														<span class="f1-s-3 m-rl-3">
+															-
+														</span>
+
+														<span class="f1-s-3">
+															Feb 16
+														</span>
+													</span>
+												</div>
+											</div>
+
+											<!-- Item post -->
+											<div class="flex-wr-sb-s m-b-30">
+												<a href="#" class="size-w-1 wrap-pic-w hov1 trans-03">
+													<img src="img/waterfall/4.jpg" alt="IMG">
+												</a>
+
+												<div class="size-w-2">
+													<h5 class="p-b-5">
+														<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+															台北寵物節—毛孩友善聖誕城
+														</a>
+													</h5>
+
+													<span class="cl8">
+														<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+															Travel
+														</a>
+
+														<span class="f1-s-3 m-rl-3">
+															-
+														</span>
+
+														<span class="f1-s-3">
+															Feb 12
+														</span>
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
+				
+
+				<div class="col-md-10 col-lg-4">
+					<div class="p-l-10 p-rl-0-sr991 p-b-20">
+						<!--  -->
+						<div class="flex-c-s p-t-8">
+							<a href="#">
+								<a href="#"><img src="img/blog-img/add4.jpg" alt="">
+							</a>
+						</div>
+						
+						<!-- Headline -->
+	<div class="container" style="padding-top:20px">
+		<div>
+			<div>
+				<span class="text-uppercase cl2 p-r-8 fa fa-bell" style="color:#FF1C1C;font-size:20px">
+					站方公告:
+				</span>
+
+				<span class="dis-inline-block cl6 slide100-txt pos-relative size-w-0" data-in="fadeInDown" data-out="fadeOutDown">
+					<span class="dis-inline-block slide100-txt-item animated visible-false">
+						Interest rate angst trips up US equity bull market
+					</span>
+					
+					<span class="dis-inline-block slide100-txt-item animated visible-false">
+						Designer fashion show kicks off Variety Week
+					</span>
+
+					<span class="dis-inline-block slide100-txt-item animated visible-false">
+						Microsoft quisque at ipsum vel orci eleifend ultrices
+					</span>
+				</span>
 			</div>
 			
-					<div class="top-header" style="margin-top: 60px">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div
-							class="top-header-content d-flex align-items-center justify-content-between">
-							
-							<!-- Search Form -->
-<%-- 					    <form action="${pageContext.request.contextPath}/findBySearchblog" method="post" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"> --%>
-							<div class="input-group">
-								<input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-								<div class="input-group-append">
-									<button class="btn btn-primary" type="submit">
-										<i class="fa fa-search"></i>
-									</button>
-								</div>
-							</div>
-<!-- 						</form>	 -->
-						
-							
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</div>
+	</div>
+	
+	                     <!--  -->
+						<div class="p-t-50" style="padding-top:30px">
+							<div class="how2 how2-cl4 flex-s-c">
+								<h3 class="f1-m-2 cl3 tab01-title">
+									PET&nbspBlog&nbsp✿&nbsp廣告
+								</h3>
+							</div>
+							
+							<div class="flex-c-s p-t-8" style="padding-top:20px">
+							    <a href="#">
+								<img class="max-w-full" src="img/blog.png" alt="IMG">
+							    </a>
+						    </div>
+						</div>
+						
+						
+						<div style="padding-top:30px">
+							<div class="how2 how2-cl4 flex-s-c" >
+								<h3 class="f1-m-2 cl3 tab01-title">
+									PET&nbspBlog&nbsp✿&nbsp全站熱門文章
+								</h3>
+							</div>
 
-			<div class="row justify-content-center">
-				<!-- Blog Posts Area -->
-				<div class="col-12 col-lg-8">
-					<div class="blog-posts-area">
+							<ul class="p-t-35">
+							
+							  <c:forEach items="${artss }" var="art" varStatus="s">
+							  <c:set var="count" value="${s.count }"/>
+							  
+								<li class="flex-wr-sb-s p-b-22">
+									<div class="size-a-8 flex-c-c borad-3 size-a-8 bg9 f1-m-4 cl0 m-b-6">
+										${count}
+									</div>
 
-						 <!-- Single Blog Post -->
-                        <div class="single-blog-post d-flex flex-wrap mt-50">
-                            <!-- Thumbnail -->
-                            
-                            <c:forEach items="${arts }" var="art" varStatus="s">
-                            
-                            <div class="post-thumbnail mb-50">
-                                <a href="#"><img src="img/blog-img/8.jpg" alt=""></a>
-                            </div>
-                            
-                            <!-- Content -->
-                            <div class="post-content mb-50">
-                                <p class="post-date">${fn:substring(art.postTime, 0 ,20)} / foody</p>
-                                                            
-                                <a href="#" class="post-title">
-                                    <h4>${art.title}</h4>
-                                </a>
-                                <div class="post-meta">
-                                    <a href="#"><span>by</span> ${art.memberId}</a>
-                                    <a href="#"><i class="fa fa-eye"></i> 192</a>
-                                    <a href="#"><i class="fa fa-comments"></i> 08</a>
+									<a href="<spring:url value='postblog?id=${art.no}' />" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
+										${art.title}
+									</a>
+								
                                     <a href="#"><i class="fa fa-thumbs-up"></i>&nbsp&nbsp${art.likeCount}</a>
-                                </div>
-                                <p class="post-excerpt">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
-                                <a href="<spring:url value='postblog?id=${art.no}' />" class="read-more-btn">Continue Reading <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                            </div>
-                            
-                             </c:forEach>
-                            
-                            
-                            <!-- Post Curve Line -->
-                            <img class="post-curve-line" src="img/core-img/post-curve-line.png" alt="">
-                        </div>
-					</div>
-
-					<!-- Pager -->
-					<ol class="foode-pager mt-50">
-						<li><a href="#"><i class="fa fa-long-arrow-left"
-								aria-hidden="true"></i> Newer</a></li>
-						<li><a href="#">Older <i class="fa fa-long-arrow-right"
-								aria-hidden="true"></i></a></li>
-					</ol>
-				</div>
-
-				<!-- Blog Sidebar Area -->
-				<div class="col-12 col-sm-9 col-md-6 col-lg-4">
-					<div class="post-sidebar-area">
-					
-					     <!-- ##### Single Widget Area ##### -->
-						<div class="single-widget-area">
-							<!-- Adds -->
-							<a href="#"><img src="img/blog-img/add3.jpg" alt=""></a>
+                                    <span>by${art.memberId}</span> 
+								</li>
+							  </c:forEach>
+							</ul>
 						</div>
-
-						<!-- ##### Single Widget Area ##### -->
-						<div class="single-widget-area">
-							<!-- Title -->
-							<div class="widget-title">
-								<h6>工商頻道</h6>
-							</div>
-							<!-- Widget Social Info -->
-							<div class="widget-social-info text-center">
-							<iframe width="350" height="200" src="https://www.youtube.com/embed/E5NpfVntUVg" 
-							frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-							allowfullscreen></iframe>
-
-							</div>
-						</div>
-
-						<!-- ##### Single Widget Area ##### -->
-						<div class="single-widget-area">
-							<!-- Title -->
-							<div class="widget-title">
-								<h6>Subscribe &amp; Follow</h6>
-							</div>
-							<!-- Widget Social Info -->
-							<div class="widget-social-info text-center">
-								<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-									class="fa fa-twitter"></i></a> <a href="#"><i
-									class="fa fa-instagram"></i></a> <a href="#"><i
-									class="fa fa-google-plus"></i></a> <a href="#"><i
-									class="fa fa-pinterest"></i></a> <a href="#"><i
-									class="fa fa-linkedin"></i></a> <a href="#"><i
-									class="fa fa-rss"></i></a>
-							</div>
-						</div>
-
-						<!-- ##### Single Widget Area ##### -->
-						<div class="single-widget-area">
-							<!-- Title -->
-							<div class="widget-title">
-								<h6>Latest Posts</h6>
-							</div>
-
-							<!-- Single Latest Posts -->
-							<div class="single-latest-post d-flex">
-								<div class="post-thumb">
-									<img src="img/blog-img/lp1.jpg" alt="">
-								</div>
-								<div class="post-content">
-									<a href="#" class="post-title">
-										<h6>Weeknight Ponzu Pasta</h6>
-									</a> <a href="#" class="post-author"><span>by</span> Erin
-										Alderson</a>
-								</div>
-							</div>
-
-							<!-- Single Latest Posts -->
-							<div class="single-latest-post d-flex">
-								<div class="post-thumb">
-									<img src="img/blog-img/lp2.jpg" alt="">
-								</div>
-								<div class="post-content">
-									<a href="#" class="post-title">
-										<h6>The Most Popular Recipe Last Month</h6>
-									</a> <a href="#" class="post-author"><span>by</span> Erin
-										Alderson</a>
-								</div>
-							</div>
-
-							<!-- Single Latest Posts -->
-							<div class="single-latest-post d-flex">
-								<div class="post-thumb">
-									<img src="img/blog-img/lp3.jpg" alt="">
-								</div>
-								<div class="post-content">
-									<a href="#" class="post-title">
-										<h6>A Really Good Chana Masala</h6>
-									</a> <a href="#" class="post-author"><span>by</span> Erin
-										Alderson</a>
-								</div>
-							</div>
-
-							<!-- Single Latest Posts -->
-							<div class="single-latest-post d-flex">
-								<div class="post-thumb">
-									<img src="img/blog-img/lp4.jpg" alt="">
-								</div>
-								<div class="post-content">
-									<a href="#" class="post-title">
-										<h6>Spicy Instant Pot Taco Soup</h6>
-									</a> <a href="#" class="post-author"><span>by</span> Erin
-										Alderson</a>
-								</div>
-							</div>
-
-							<!-- Single Latest Posts -->
-							<div class="single-latest-post d-flex">
-								<div class="post-thumb">
-									<img src="img/blog-img/lp5.jpg" alt="">
-								</div>
-								<div class="post-content">
-									<a href="#" class="post-title">
-										<h6>Lime Leaf Miso Soup</h6>
-									</a> <a href="#" class="post-author"><span>by</span> Erin
-										Alderson</a>
-								</div>
-							</div>
-
-						</div>
-
-
-						<!-- ##### Single Widget Area ##### -->
-						<div class="single-widget-area">
-							<!-- Title -->
-							<div class="widget-title">
-								<h6>popular tags</h6>
-							</div>
-							<!-- Tags -->
-							<ol class="popular-tags d-flex flex-wrap">
-								<li><a href="#">Creative</a></li>
-								<li><a href="#">Unique</a></li>
-								<li><a href="#">Template</a></li>
-								<li><a href="#">Photography</a></li>
-								<li><a href="#">travel</a></li>
-								<li><a href="#">lifestyle</a></li>
-								<li><a href="#">Wordpress Template</a></li>
-								<li><a href="#">food</a></li>
-								<li><a href="#">Idea</a></li>
-							</ol>
-						</div>
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<!-- ##### Blog Content Area End ##### -->
+	
 
 	<!-- ##### Instagram Area Start ##### -->
 	<div class="follow-us-instagram">
@@ -508,8 +783,7 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="section-heading">
-						<h2>Follow Us On Instagram</h2>
-						<span>@pET-blog</span>
+						<h2>Follow Us @pET-blog</h2>
 					</div>
 				</div>
 			</div>
@@ -578,6 +852,32 @@
 	<script src="${pageContext.request.contextPath}/js/plugins/plugins.js"></script>
 	<!-- Active js -->
 	<script src="${pageContext.request.contextPath}/js/active.js"></script>
+	
+	<!-- popper js -->
+	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+	<!-- bootstrap js -->
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<!-- counterup js -->
+	<script src="${pageContext.request.contextPath}/js/jquery.counterup.min.js"></script>
+	<!-- waypoints js -->
+	<script src="${pageContext.request.contextPath}/js/waypoints.min.js"></script>
+	<!-- easing js -->
+	<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.js"></script>
+	<!-- particles js -->
+	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+	<!-- custom js -->
+	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<!-- 瀑布流 js -->
+	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
+	
+	<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 
 </html>

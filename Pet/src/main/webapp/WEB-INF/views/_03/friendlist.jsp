@@ -165,9 +165,12 @@
 					</div>
 				</div></li>
 
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#">
-					<i class="fas fa-paw"></i> <span>會員訂單</span>
+<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="${pageContext.request.contextPath}/06/PetOrderAll"> <i
+
+			
+		
+					 class="fas fa-paw"></i> <span>會員訂單</span>
 			</a></li>
 
 			<!-- Divider -->

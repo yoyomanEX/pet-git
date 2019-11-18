@@ -12,7 +12,7 @@
 <meta name="author" content="">
 
 <title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
-
+<link rel="icon" href="img/about_icon.png">
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -38,7 +38,41 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- 判斷日期格式 -->
+
+<script>
+function detail(index) {
+		if($(".title" + index).length > 0){
+			$(".title" + index).remove();
+		}else{
+			$.ajax({
+				url:"queryDetail",
+				data:{
+					key1:$("#order_id"+index).val()    				
+				},
+				type:"post",
+				success:function (data){
+// 					alert(data);
+	 				showDetail(data, index);
+				}
+			});
+		}
+	}
+	function showDetail(data, index) {
+		var empss=JSON.parse(data);
+		var txt ="<tr class='title" + index + "'><th></th><th>產品編號</th><th>產品名稱</th><th>數量</th><th>單價</th></tr>";
+		for(i=0;i<empss.length;i++){	
+			txt +="<tr class='title" + index + "'><td>";
+			txt +="<td>"+empss[i].product_id+"</td>";
+			txt +="<td>"+empss[i].product_name+"</td>";
+			txt +="<td>"+empss[i].amount+"</td>";
+			txt +="<td>"+empss[i].total + "</td></tr>";
+		}
+		$("#title" + index).after(txt);
+	}
+</script>
+
+
+
 
 </head>
 <body>
@@ -52,7 +86,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="CompanyManagement">
+				href="companyManagementIndex">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class=""></i>
 				</div>
@@ -347,16 +381,17 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>訂購日期</th><th>訂單編號</th><th>訂購人</th><th>收件人</th>
-                      <th>寄送地址</th><th>售價</th><th>出貨</th>
+                      <th>訂單編號</th><th>訂購日期</th><th>訂購明細</th><th>訂購人</th><th>收件人</th>
+                      <th>寄送地址</th><th>總金額</th><th>出貨</th>
                     </tr>
                   </thead>
                   <tbody>
                     <c:forEach items="${unshippedOrder}" var="p1" varStatus="s">
-								<tr>
-									<form method="post" action="${pageContext.request.contextPath}/changeToShipped">
+								<tr style="background-color: #F0F0F0;" id='title${s.index}'>
+									<form method="post" action="${pageContext.request.contextPath}/changeToShipped"></a>
+									<td>${p1.order_id}</td>
 									<td><input type="hidden" id='order_date' name='order_date' value="${p1.ship_date}">${p1.order_date}
-									<td><input type="hidden" id='order_id' name='order_id' value="${p1.order_id}">${p1.order_id}
+									<td><a href='#' onclick='detail(${s.index});'><input type="hidden" id='order_id${s.index}' name='order_id' value="${p1.order_id}"><img src='img/arrowdown.png'></a></td>
 									<td><input type="hidden" id='member_id' name='member_id' value="${p1.member_id}}">${p1.member_id}
 									<td><input type="hidden" id='recipient' name='recipient' value="${p1.recipient}}">${p1.recipient}
 									<td><input type="hidden" id='address' name='address' value="${p1.address}}">${p1.address}

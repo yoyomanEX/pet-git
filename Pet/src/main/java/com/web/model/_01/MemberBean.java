@@ -12,10 +12,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @XmlRootElement(name="memberBean")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -23,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "member")
 public class MemberBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	@Id
+	
 	@XmlElement(name = "member_Id")
 	private String member_Id;
 	@XmlElement(name = "name")
@@ -37,13 +41,23 @@ public class MemberBean implements Serializable {
 	@XmlElement(name = "tel")
 	private int tel;
 	@XmlElement(name = "memberImage")
-	private String memberImage;
+	private Blob memberImage;
 	@XmlElement(name = "fileName")
 	private String fileName;
 	@XmlElement(name = "memberPet")
 	private int memberPet;
+	private MultipartFile  filImage;
 	
+	@Transient
+	@XmlTransient
+	public MultipartFile getFilImage() {
+		return filImage;
+	}
+	public void setFilImage(MultipartFile filImage) {
+		this.filImage = filImage;
+	}
 	
+	@Id
 	@Column(name = "member_Id")
 	public String getMember_Id() {
 		return member_Id;
@@ -93,10 +107,10 @@ public class MemberBean implements Serializable {
 	}
 	
 	@Column(name = "memberImage")
-	public String getMemberImage() {
+	public Blob getMemberImage() {
 		return memberImage;
 	}
-	public void setMemberImage(String memberImage) {
+	public void setMemberImage(Blob memberImage) {
 		this.memberImage = memberImage;
 	}
 	
