@@ -1,4 +1,3 @@
-
 package com.web.config;
 
 import java.util.ArrayList;
@@ -168,4 +167,5 @@ public class WebAppConfig implements WebMvcConfigurer {
 
 		}
 	
+
 }

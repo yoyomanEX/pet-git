@@ -329,6 +329,9 @@ public class MemberOrderCotroller {
 //			model.addAttribute("queryOrder", queryAllOrderByStatus);
 //			return "/_07/companyOrderQuery";
 //		}
-//		
+		@RequestMapping("/companyOrderCharts")
+		public String companyOrderCharts() {
+			return "/_07/companyOrderCharts";
+		}
 
 }

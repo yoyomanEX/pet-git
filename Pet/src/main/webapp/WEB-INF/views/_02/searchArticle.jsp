@@ -15,12 +15,13 @@
   <meta name="author" content="">
  
 
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
-<script src="${pageContext.request.contextPath}/js/ckeditor/ckeditor.js"></script>
+  <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+  <script src="${pageContext.request.contextPath}/js/ckeditor/ckeditor.js"></script>
 
 
   <title>pET ʕ•ᴥ•ʔ 陪你</title>
+  <link rel="icon" href="img/about_icon.png">
 
   <!-- Custom fonts for this template-->
   <link href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

@@ -33,6 +33,8 @@ public interface ArtDAO {
 	
 	public void editReply(ReplyBean reply);
 	
+	public ReplyBean getReplyById(int no);
+	
 	public List<ReplyBean>  getAllReplys();
 	
 	public List<ReplyBean>  getReplysByArticle(int articleno);   //根據不同文章留言
@@ -53,8 +55,7 @@ public interface ArtDAO {
 	
 	public String getLikeByMemberAndArticle(String memberNo,int articleno);
 	
-	
-
+	public List<ArticleBean> getArticleByLike();
 	
 
 }

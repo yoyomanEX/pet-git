@@ -9,8 +9,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -51,7 +49,7 @@ public class RootAppConfig {
         ComboPooledDataSource ds = new ComboPooledDataSource();
         ds.setUser("sa");
 
-        ds.setPassword("password");
+        ds.setPassword("P@ssw0rd");
 
         try {
             ds.setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");

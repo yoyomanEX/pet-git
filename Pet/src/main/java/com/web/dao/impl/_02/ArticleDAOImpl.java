@@ -54,9 +54,10 @@ public class ArticleDAOImpl implements ArtDAO {
 		bean.setContent(article.getContent());
 		bean.setPostTime(article.getPostTime());
 		bean.setReport(article.getReport());
-//		bean.setArticleImage(art.getArticleImage());
 		bean.setLikeCount(article.getLikeCount());
 		bean.setReport(article.getReport());
+		bean.setAvailable(article.getAvailable());
+//		bean.setArticleImage(article.getArticleImage());
 
 	}
 
@@ -175,13 +176,12 @@ public class ArticleDAOImpl implements ArtDAO {
 	}
 
 
-//	@Override
-//	public ReplyBean getReplyById(int no) {
-//		ReplyBean bean = null;
-//		Session session = factory.getCurrentSession();
-//		bean = session.get(ReplyBean.class, no);
-//		return bean;
-//	}
+	@Override
+	public ReplyBean getReplyById(int no) {
+		Session session = factory.getCurrentSession();
+		ReplyBean rb = session.get(ReplyBean.class, no);
+		return rb;
+	}
 
 
 //	@Override
@@ -207,7 +207,6 @@ public class ArticleDAOImpl implements ArtDAO {
 	    ReportBean list = (ReportBean)session.createQuery(hql).setParameter("article_no", articleno).uniqueResult();
 	    return list;
 	    
-
 	}
 	
 
@@ -244,6 +243,20 @@ public class ArticleDAOImpl implements ArtDAO {
 	}
 
 
+	@Override
+	public List<ArticleBean> getArticleByLike() {
+
+	    Session session = factory.getCurrentSession();
+	    Query query = session.createQuery("from ArticleBean order by likeCount DESC");
+	    query.setFirstResult(0);
+	    query.setMaxResults(5);
+	    query.list();
+	    return (ArrayList<ArticleBean>) query.list();
+	    
+	    
+	    
+	}
+	
 
 
 }

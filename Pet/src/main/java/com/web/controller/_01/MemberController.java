@@ -42,12 +42,12 @@ public class MemberController {
 		this.memberService = memberService;
 	}
 
-	PetService petService;
-
-	@Autowired
-	public void setPetService(PetService petService) {
-		this.petService = petService;
-	}
+//	PetService petService;
+//
+//	@Autowired
+//	public void setPetService(PetService petService) {
+//		this.petService = petService;
+//	}
 
 	public MemberController() {
 
@@ -145,49 +145,49 @@ public class MemberController {
 	}
 
 	// 新增寵物
-	@RequestMapping(value = "/_01.savePet", method = RequestMethod.POST)
-	public String savePet(HttpServletRequest request, PetBean pb) {
-		HttpSession session = request.getSession();
-		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
-		String id = loginToken.getMember_Id();
-		pb.setMember_id(id);
-		petService.savePet(pb);
-		return "";
-	}
+//	@RequestMapping(value = "/_01.savePet", method = RequestMethod.POST)
+//	public String savePet(HttpServletRequest request, PetBean pb) {
+//		HttpSession session = request.getSession();
+//		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+//		String id = loginToken.getMember_Id();
+//		pb.setMember_id(id);
+//		petService.savePet(pb);
+//		return "";
+//	}
 
 	// 刪除寵物
-	@RequestMapping(value = "/_01.deletePet", method = RequestMethod.POST)
-	public String deletePet(HttpServletRequest request, PetBean pb) {
-		HttpSession session = request.getSession();
-		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
-		String id = loginToken.getMember_Id();
-		pb.setMember_id(id);
-		petService.deletePet(pb);
-		return "";
-	}
+//	@RequestMapping(value = "/_01.deletePet", method = RequestMethod.POST)
+//	public String deletePet(HttpServletRequest request, PetBean pb) {
+//		HttpSession session = request.getSession();
+//		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+//		String id = loginToken.getMember_Id();
+//		pb.setMember_id(id);
+//		petService.deletePet(pb);
+//		return "";
+//	}
 
 	// 修改寵物
-	@RequestMapping(value = "/_01.updataPet", method = RequestMethod.POST)
-	public String updataPet(HttpServletRequest request, PetBean pb) {
-		HttpSession session = request.getSession();
-		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
-		String id = loginToken.getMember_Id();
-		pb.setMember_id(id);
-		petService.updataPet(pb);
-
-		return "_01/ttt";
-	}
+//	@RequestMapping(value = "/_01.updataPet", method = RequestMethod.POST)
+//	public String updataPet(HttpServletRequest request, PetBean pb) {
+//		HttpSession session = request.getSession();
+//		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+//		String id = loginToken.getMember_Id();
+//		pb.setMember_id(id);
+//		petService.updataPet(pb);
+//
+//		return "_01/ttt";
+//	}
 
 	// 查詢全部寵物
-	public List<PetBean> queryAllPet(HttpServletRequest request, MemberBean mb) {
-		HttpSession session = request.getSession();
-		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
-		String id = loginToken.getMember_Id();
-		mb.setMember_Id(id);
-		List<PetBean> list = petService.queryAllPet(mb);
-		return list;
-
-	}
+//	public List<PetBean> queryAllPet(HttpServletRequest request, MemberBean mb) {
+//		HttpSession session = request.getSession();
+//		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+//		String id = loginToken.getMember_Id();
+//		mb.setMember_Id(id);
+//		List<PetBean> list = petService.queryAllPet(mb);
+//		return list;
+//
+//	}
 
 	// 進入修改會員頁面
 	@RequestMapping(value = "/_01.updataMemberPage")
