@@ -51,6 +51,20 @@
 						'newwindow',
 						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
 	}
+	function catroom() {
+		window
+				.open(
+						'catroom',
+						'newwindow',
+						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+	}
+	function petroom() {
+		window
+				.open(
+						'petroom',
+						'newwindow',
+						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+	}
 </script>
 
 
@@ -105,7 +119,8 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i class="far fa-edit"></i> <span>文章後台</span>
+				aria-expanded="true" aria-controls="collapseTwo"> <i
+					class="far fa-edit"></i> <span>文章後台</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
@@ -142,18 +157,18 @@
 				<div id="collapseOne" class="collapse"
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-							<a href='#' class="collapse-item" onclick="room()"><i
-							class="fas fa-dog"></i>汪汪聊天室</a>
-							 <a class="collapse-item"
-							href="catroom"><i class="fas fa-cat"></i> 喵喵聊天室</a> <a
-							class="collapse-item" href="petroom"><i class="fas fa-hippo"></i>
-							PET聊天室</a>
+						<a href='#' class="collapse-item" onclick="room()"><i
+							class="fas fa-dog"></i>汪汪聊天室</a> <a href='#' class="collapse-item"
+							onclick="catroom()"><i class="fas fa-cat"></i> 喵喵聊天室</a> <a
+							href='#' class="collapse-item" onclick="petroom()"><i
+							class="fas fa-hippo"></i> PET聊天室</a>
 					</div>
 				</div></li>
-				
-						<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"> <i
-					class="fas fa-paw"></i> <span>會員訂單</span></a></li>
+
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#">
+					<i class="fas fa-paw"></i> <span>會員訂單</span>
+			</a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
