@@ -88,9 +88,9 @@
 				
 			<!-- Nav Item - 統計報表 -->
      		 <li class="nav-item">
-       		 	<a class="nav-link" href="">
+       		 	<a class="nav-link" href="companyOrderCharts">
        		   <i class="fas fa-fw fa-chart-area"></i>
-          	<span>統計報表</span></a>
+          	<span>銷售報表</span></a>
     		  </li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"

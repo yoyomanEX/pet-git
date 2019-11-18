@@ -12,11 +12,13 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -265,30 +267,30 @@ public class MemberOrderCotroller {
 		
 		String s1 = request.getParameter("key4");
 		Integer status = Integer.parseInt(s1);
+//		
+//		if(status ==1) {
+//			List<MemberOrderBean> queryAllOrderByStatus = service.queryAllOrderByStatus(company_id, startdate, enddate, status);
+//			Gson gson = new Gson();
+//			String json1 = gson.toJson(queryAllOrderByStatus);
+//			response.getWriter().print(json1);
+//			System.out.println("You called json的值 status==1："+json1);
+//		}
+//		else if(status==2) {
+//			List<MemberOrderBean> queryAllOrderByStatus = service.queryAllOrderByStatus(company_id, startdate, enddate, status);
+//			System.out.println("You called===>queryAllOrderByStatus");
+//			Gson gson = new Gson();
+//			String json2 = gson.toJson(queryAllOrderByStatus);
+//			response.getWriter().print(json2);
+//			System.out.println("You called json的值 status==2:"+json2);
+//		}
 		
-		if(status ==1) {
-			List<MemberOrderBean> queryAllOrderByStatus = service.queryAllOrderByStatus(company_id, startdate, enddate, status);
-			Gson gson = new Gson();
-			String json1 = gson.toJson(queryAllOrderByStatus);
-			response.getWriter().print(json1);
-			System.out.println("You called json的值 status==1："+json1);
-		}
-		else if(status==2) {
-			List<MemberOrderBean> queryAllOrderByStatus = service.queryAllOrderByStatus(company_id, startdate, enddate, status);
-			System.out.println("You called===>queryAllOrderByStatus");
-			Gson gson = new Gson();
-			String json2 = gson.toJson(queryAllOrderByStatus);
-			response.getWriter().print(json2);
-			System.out.println("You called json的值 status==2:"+json2);
-		}
-		else if(status==3) {
 			List<MemberOrderBean> queryAllOrderByStatus = service.queryAllOrderByStatus(company_id, startdate, enddate, status);
 			System.out.println("You called===>queryAllOrderByStatus");
 			Gson gson = new Gson();
 			String json3 = gson.toJson(queryAllOrderByStatus);
 			response.getWriter().print(json3);
 			System.out.println("You called json的值= status==3: "+json3);
-		}
+		
 			
 	}
 
@@ -333,5 +335,36 @@ public class MemberOrderCotroller {
 		public String companyOrderCharts() {
 			return "/_07/companyOrderCharts";
 		}
+		
+		
+		@RequestMapping(value="/companyOrderAmount",produces="application/json")
+		public @ResponseBody ArrayList<MemberOrderDetailBean> companyOrderAmount(Model model, HttpServletRequest request, HttpServletResponse response) {
+			String company_id =request.getParameter("key3");
+			String startdate = request.getParameter("key1")+" 00:00:00";	
+			String enddate = request.getParameter("key2")+" 23:59:59";
+
+			ArrayList<MemberOrderDetailBean> list = service.queryOrderProductTotalAmount(startdate, enddate, company_id);
+			
+			System.out.println("list====> "+list);
+			HttpSession session = request.getSession();
+			session.setAttribute("list", list);
+			
+			return list;
+	
+		}
+//		
+//		@RequestMapping(value="/companyOrderDetailAmount",produces="application/json")
+//		public @ResponseBody ArrayList<MemberOrderDetailBean> companyOrderDetailAmount(Model model, HttpServletRequest request, HttpServletResponse response) {
+//			String o1 =request.getParameter("key1");
+//			Long order_id = Long.parseLong(o1);
+//			System.out.println("o1="+o1);
+//			MemberOrderDetailBean bean = new MemberOrderDetailBean();
+//			bean.setOrder_id(order_id);
+//			return null;
+//			
+//
+//			
+//		
+//		}
 
 }

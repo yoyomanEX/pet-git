@@ -133,8 +133,8 @@ var jq1=$.noConflict();
 					class="fas fa-fw fa-chart-area"></i> <span>訂單管理</span></a></li>
 
 			<!-- Nav Item - 統計報表 -->
-			<li class="nav-item"><a class="nav-link" href=""> <i
-					class="fas fa-fw fa-chart-area"></i> <span>統計報表</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="companyOrderCharts"> <i
+					class="fas fa-fw fa-chart-area"></i> <span>銷售圖表</span></a></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
@@ -411,7 +411,7 @@ var jq1=$.noConflict();
 									<td>
 									
 									<form method="post" action="${pageContext.request.contextPath}/processed">
-									<input type="submit" value='接單'>
+									<input type="submit" value='接單' onclick="return confirm('訂單編號${p1.order_id}，確定要接單嗎?')">
 									<input type="hidden" name="order_id" value="${p1.order_id}"> 
 									<input type="hidden" value="${p1.status}" name='status'>
 									<input type="hidden" value="${p1.company_id}" name='company_id'>							

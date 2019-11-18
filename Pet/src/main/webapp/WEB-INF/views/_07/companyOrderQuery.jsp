@@ -100,7 +100,7 @@
    function unprocessedOrder(data) {
   	 	
 			var unprocess=JSON.parse(data);
-			var txt ="<tr><th>訂單日期<th>訂單編號<th>訂購人<th>收貨人<th>地址<th>出貨日期<th>接單";
+			var txt ="<tr><th>訂單日期</th><th>訂單編號</th><th>訂購人</th><th>收貨人</th><th>地址</th><th>出貨日期</th>";
 			for(i=0;i<unprocess.length;i++){
 				var order_date = "";
 				if(unprocess[i].order_date != '' && typeof unprocess[i].order_date != 'undefined'){
@@ -119,7 +119,6 @@
 				txt +="<td>"+unprocess[i].recipient;
 				txt +="<td>"+unprocess[i].address;
 				txt +="<td>"+ship_date;
-				txt +="<td><button onclick='accept(" +i+ ");'><input type='hidden' id='status1"+i+"' value='1'><input type='hidden' id='company_id1"+i+"' value=\""+unprocess[i].company_id+"\">接受</button>";
 				txt +="<tr>";
 			}
 			document.getElementById("dataTable").innerHTML=txt;
@@ -223,8 +222,8 @@ function showDetail(data,p) {
 					class="fas fa-fw fa-chart-area"></i> <span>訂單管理</span></a></li>
 
 			<!-- Nav Item - 統計報表 -->
-			<li class="nav-item"><a class="nav-link" href=""> <i
-					class="fas fa-fw fa-chart-area"></i> <span>統計報表</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="companyOrderCharts"> <i
+					class="fas fa-fw fa-chart-area"></i> <span>銷售圖表</span></a></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
@@ -465,7 +464,7 @@ function showDetail(data,p) {
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">查詢訂單</h1>
+					<h1 class="h3 mb-2 text-gray-800">已出貨訂單</h1>
 					<p class="mb-4">
 						<a>ORDER QUERY</a>.
 					</p>
@@ -478,12 +477,13 @@ function showDetail(data,p) {
 					<input type="text" id="to" name="enddate">
 					</a> 
 					<a style='padding-right: 100px;'>
-					 <label for="" class="t1">商品狀態</label>
-					 <select  name='status' id='status1'>
-							<option value='1'>未處理</option>
-							<option value="2">已處理未出貨</option>
-							<option value="3">已處理已出貨</option>
-					</select>
+					<input type="hidden" id='status1' value='3'>
+<!-- 					 <label for="" class="t1">商品狀態</label> -->
+<!-- 					 <select  name='status' id='status1'> -->
+<!-- 							<option value='1'>未處理</option> -->
+<!-- 							<option value="2">已處理未出貨</option> -->
+<!-- 							<option value="3">已處理已出貨</option> -->
+<!-- 					</select> -->
 						<button id='clickmeS'>查詢</button>
 					</a> 
 					<a href="orderManagement">返回訂單管理</a> 
@@ -502,7 +502,6 @@ function showDetail(data,p) {
 											<th>收件人</th>
 											<th>售價</th>
 											<th>出貨日期</th>
-											<th>訂單狀態</th>
 										</tr>
 									</thead>
 
@@ -515,7 +514,7 @@ function showDetail(data,p) {
 									<td>${p1.recipient}
 									<td>${p1.total}
 									<td>${p1.ship_date}
-									<td>${p1.status}
+									
 									<c:set var="count" value="${s.count}" />	
 					
 									</c:forEach>

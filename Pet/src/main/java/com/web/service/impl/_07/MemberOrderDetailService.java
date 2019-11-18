@@ -12,6 +12,6 @@ public interface MemberOrderDetailService {
 	ArrayList<MemberOrderDetailBean> queryAllOrder(MemberOrderDetailBean p1);
 
 	ArrayList<MemberOrderDetailBean> queryByOrderId(MemberOrderDetailBean p1);
-
+	
 }
 

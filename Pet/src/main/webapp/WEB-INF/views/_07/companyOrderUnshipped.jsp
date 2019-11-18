@@ -120,8 +120,8 @@ function detail(index) {
 					class="fas fa-fw fa-chart-area"></i> <span>訂單管理</span></a></li>
 
 			<!-- Nav Item - 統計報表 -->
-			<li class="nav-item"><a class="nav-link" href=""> <i
-					class="fas fa-fw fa-chart-area"></i> <span>統計報表</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="companyOrderCharts"> <i
+					class="fas fa-fw fa-chart-area"></i> <span>銷售圖表</span></a></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
@@ -397,7 +397,7 @@ function detail(index) {
 									<td><input type="hidden" id='address' name='address' value="${p1.address}}">${p1.address}
 									<td><input type="hidden" id='total' name='total' value="${p1.total}}">${p1.total}
 									<td>
-									<input type="submit" value='出貨'>
+									<input type="submit" value='出貨' onclick="return confirm('訂單編號${p1.order_id}，確認出貨嗎?')">
 									<input type="hidden" name="order_id" value="${p1.order_id}"> 
 									<input type="hidden" value="${p1.status}" name='status'>
 									<input type="hidden" value="${p1.company_id}" name='company_id'>							

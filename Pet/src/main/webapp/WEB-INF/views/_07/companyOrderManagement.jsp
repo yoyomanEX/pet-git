@@ -79,9 +79,9 @@
     		  </li>	
 			<!-- Nav Item - Charts -->
      		 <li class="nav-item">
-       		 	<a class="nav-link" href="charts.html">
+       		 	<a class="nav-link" href="companyOrderCharts">
        		   <i class="fas fa-fw fa-chart-area"></i>
-          	<span>統計報表</span></a>
+          	<span>銷售圖表</span></a>
     		  </li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -317,24 +317,7 @@
          			 <div class="row">
 
            				 <!-- 內文開始  第一個框-->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-						 	QUERY ORDER</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      	<a href='queryOrder'>查詢訂單</a>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
             
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
@@ -394,18 +377,36 @@
             </div>
 
             <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+<!--             <div class="col-xl-3 col-md-6 mb-4"> -->
+<!--               <div class="card border-left-warning shadow h-100 py-2"> -->
+<!--                 <div class="card-body"> -->
+<!--                   <div class="row no-gutters align-items-center"> -->
+<!--                     <div class="col mr-2"> -->
+<!--                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">PROCESSED ORDER(shipped)</div> -->
+<!--                       <div class="h5 mb-0 font-weight-bold text-gray-800"> -->
+<!--                       	<form method="post" action='shippedOrder' id='shipped'> -->
+<!--                           		<a onclick="shipped();" href='#'>已出貨訂單</a> -->
+<%--                           		<input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" > --%>
+<!--                           		<input type="hidden" value="3" name='status'> -->
+<!--                           		</form> -->
+<!--                       </div> -->
+<!--                     </div> -->
+<!--                     <div class="col-auto"> -->
+<!--                       <i class="fas fa-clipboard-list fa-2x text-gray-300"></i> -->
+<!--                     </div> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--               </div> -->
+<!--             </div> -->
+			<div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">PROCESSED ORDER(shipped)</div>
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+						 	QUERY ORDER</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      	<form method="post" action='shippedOrder' id='shipped'>
-                          		<a onclick="shipped();" href='#'>已出貨訂單</a>
-                          		<input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
-                          		<input type="hidden" value="3" name='status'>
-                          		</form>
+                      	<a href='queryOrder'>銷售報表(已出貨訂單)</a>
                       </div>
                     </div>
                     <div class="col-auto">
@@ -415,6 +416,8 @@
                 </div>
               </div>
             </div>
+
+
           </div>
           <div class="row">
             <div class="col-lg-6">
@@ -489,9 +492,9 @@
 		function unshipped() {
 			$("#unshipped").submit();
 		}
-		function shipped() {
-			$("#shipped").submit();
-		}
+// 		function shipped() {
+// 			$("#shipped").submit();
+// 		}
 	</script>	
   
   

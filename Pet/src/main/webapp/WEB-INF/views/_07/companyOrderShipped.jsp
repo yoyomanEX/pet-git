@@ -117,8 +117,8 @@ function detail(index) {
 					class="fas fa-fw fa-chart-area"></i> <span>訂單管理</span></a></li>
 
 			<!-- Nav Item - 統計報表 -->
-			<li class="nav-item"><a class="nav-link" href=""> <i
-					class="fas fa-fw fa-chart-area"></i> <span>統計報表</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="companyOrderCharts"> <i
+					class="fas fa-fw fa-chart-area"></i> <span>銷售圖表</span></a></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
@@ -378,7 +378,7 @@ function detail(index) {
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>訂購日期</th><th>訂單編號</th><th>訂購明細</th><th>訂購人</th><th>收件人</th>
+                      <th>訂單編號</th><th>訂購日期</th><th>訂購明細</th><th>訂購人</th><th>收件人</th>
                       <th>寄送地址</th><th>總金額</th><th>出貨日期</th>
                     </tr>
                   </thead>

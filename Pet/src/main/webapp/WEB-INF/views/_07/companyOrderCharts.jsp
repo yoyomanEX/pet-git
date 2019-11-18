@@ -74,182 +74,72 @@
       return date;
     }
   } );
-  
-  
-  jq1(document).ready(function(){
+</script>
+
+<!-- Charts Circle start -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+    
+    
+    jq1(document).ready(function(){
 		var company_id =jq1("#company_id").val();
 		jq1("#clickmeS").click(function() {
 			jq1.ajax({
-    			url:"queryOrderByStatus",
+    			url:"companyOrderAmount",
     			data:{
     				key1:jq1("#from").val(),
     				key2:jq1("#to").val(),
     				key3:company_id,
-    				key4:jq1("#status1").val()
     			},
-//     			dataType: "text",
+    			dataType: "json",
     			type:"post",
-    			success:function (data){
-    				alert(data);
-     				unprocessedOrder(data);
-    			}
+    			success:function (result){
+    				console.log(result);
+    				alert(result)
+    			google.charts.load("current", {packages:["corechart"]});
+    			google.charts.setOnLoadCallback(function(){
+    				drawChart(result)
+    		
     		});
-		});
-  });
-
-</script>
-<script>
-	function queryDetail(p) {
-		if(jq1(".title"+p).length>0){
-			jq1(".title"+p).remove();
-		}
-		else{
-		jq1.ajax({
-			url:"queryDetail",
-			data:{
-				key1:jq1("#order_id"+p).val(),
-			},
-			type:"post",
-			success:function (data){
-				alert(data);
- 				showDetail(data,p);
 			}
+		})
 		});
-		}
-	}
+		 function drawChart(result) {
+		        var data =new  google.visualization.DataTable();
+		       data.addColumn("string","product_name");
+		       data.addColumn("number","amount");
+		       var dataArray=[];
+		       jq1.each(result,function(i,obj){
+		    	   dataArray.push([obj.product_name,obj.amount]);
+		       });
+		        data.addRows(dataArray);
+		        
+		        var piechart_options = {
+		          title: '銷售紀錄(圓餅圖)',
+		          width:600,
+		          height:600
+		        };
+		        var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+		         piechart.draw(data,piechart_options);
+		         
+		         var barchart_options ={
+		        	title:'銷售紀錄(長條圖)',
+		        	width:600,
+		        	height:600,
+		        	legend:'none'
+		         };
+		         var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
+				 barchart.draw(data, barchart_options);
+		 }
+		
+		});
 
-</script>
-
-<!-- Charts Circle start -->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
-   
-
-    google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'sale per date'],
-          ['日本狗糧',11],
-          ['大型貓跳台',2],
-          ['Commute',2],
-          ['Watch TV',2],
-          ['Sleep',7]
-        ]);
-
-        var options = {
-          title: '銷售紀錄',
-          pieHole: 0.4,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-        chart.draw(data, options);
-      }
     </script>
-
 <!-- Charts Circle end -->
 <!-- Charts start -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
-google.charts.load('current', {'packages':['line', 'corechart']});
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-
-var button = document.getElementById('change-chart');
-var chartDiv = document.getElementById('chart_div');
-
-var data = new google.visualization.DataTable();
-data.addColumn('date', 'Month');
-data.addColumn('number', "數量");
-data.addColumn('number', "數量");
-
-data.addRows([
-  [new Date(2014, 0),  .0,  1],
-  [new Date(2014, 1),   .4,  8.7],
-  [new Date(2014, 2),   .5,   12],
-  [new Date(2014, 3),  2.9, 15.3],
-  [new Date(2014, 4),  6.3, 18.6],
-  [new Date(2014, 5),    9, 20.9],
-  [new Date(2014, 6), 10.6, 19.8],
-  [new Date(2014, 7), 10.3, 16.6],
-  [new Date(2014, 8),  7.4, 13.3],
-  [new Date(2014, 9),  4.4,  9.9],
-  [new Date(2014, 10), 1.1,  6.6],
-  [new Date(2014, 11), -.2,  4.5]
-]);
-
-var materialOptions = {
-  chart: {
-    title: '每日銷售紀錄'
-  },
-  width: 900,
-  height: 500,
-  series: {
-    // Gives each series an axis name that matches the Y-axis below.
-    0: {axis: 'Temps'},
-    1: {axis: 'Daylight'}
-  },
-  axes: {
-    // Adds labels to each axis; they don't have to match the axis names.
-    y: {
-      Temps: {label: 'Temps (Celsius)'},
-      Daylight: {label: 'Daylight'}
-    }
-  }
-};
-
-var classicOptions = {
-  title: 'Average Temperatures and Daylight in Iceland Throughout the Year',
-  width: 900,
-  height: 500,
-  // Gives each series an axis that matches the vAxes number below.
-  series: {
-    0: {targetAxisIndex: 0},
-    1: {targetAxisIndex: 1}
-  },
-  vAxes: {
-    // Adds titles to each axis.
-    0: {title: 'Temps (Celsius)'},
-    1: {title: 'Daylight'}
-  },
-  hAxis: {
-    ticks: [new Date(2014, 0), new Date(2014, 1), new Date(2014, 2), new Date(2014, 3),
-            new Date(2014, 4),  new Date(2014, 5), new Date(2014, 6), new Date(2014, 7),
-            new Date(2014, 8), new Date(2014, 9), new Date(2014, 10), new Date(2014, 11)
-           ]
-  },
-  vAxis: {
-    viewWindow: {
-      max: 30
-    }
-  }
-};
-
-
-function drawMaterialChart() {
-  var materialChart = new google.charts.Line(chartDiv);
-  materialChart.draw(data, materialOptions);
-  button.innerText = 'Change to Classic';
-  button.onclick = drawClassicChart;
-}
-
-function drawClassicChart() {
-  var classicChart = new google.visualization.LineChart(chartDiv);
-  classicChart.draw(data, classicOptions);
-  button.innerText = 'Change to Material';
-  button.onclick = drawMaterialChart;
-}
-drawMaterialChart();
-}
-
-</script>
-<!-- Charts end -->
-
-
-
-
-
 
 
 </head>
@@ -297,8 +187,8 @@ drawMaterialChart();
 					class="fas fa-fw fa-chart-area"></i> <span>訂單管理</span></a></li>
 
 			<!-- Nav Item - 統計報表 -->
-			<li class="nav-item active"><a class="nav-link" href=""> <i
-					class="fas fa-fw fa-chart-area"></i> <span>統計報表</span></a></li>
+			<li class="nav-item active"><a class="nav-link" href="companyOrderCharts"> <i
+					class="fas fa-fw fa-chart-area"></i> <span>銷售圖表</span></a></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
@@ -539,7 +429,7 @@ drawMaterialChart();
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">報表</h1>
+					<h1 class="h3 mb-2 text-gray-800">銷售報表</h1>
 					<p class="mb-4">
 						<a>ORDER CHARTS</a>.
 					</p>
@@ -556,17 +446,12 @@ drawMaterialChart();
 					</a> 
 				</div>
 					<!-- CHARTS CIRCLE -->
-				  <div  id="donutchart" style="width: 900px; height: 500px; padding-left: 150px;"></div>
-				  
-				<!-- CHARTS -->
-				<div style='padding-left: 200px;' style='float: none;'>
-					 <button id="change-chart">Change to Classic</button>
-  				<br>
-  				<br>
-  				<div id="chart_div"></div>
-					</div>
-				</div>
-				
+				<table class='columns'>
+				 	<tr>
+				 		<td><div  id='piechart_div' style="border:1px solid #ccc;"></div></td>
+		                <td><div id='barchart_div' style="border:1px solid #ccc"></div></td>
+					</tr>
+				</table>
 				<!-- /.container-fluid -->
 
 			</div>

@@ -2,8 +2,10 @@ package com.web.dao.impl._07;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 import com.web.model._07.MemberOrderBean;
+import com.web.model._07.MemberOrderDetailBean;
 
 
 public interface MemberOrderDao {
@@ -24,7 +26,9 @@ public interface MemberOrderDao {
 	
 	public void processedUnshippedOrder(MemberOrderBean p1);
 	public void processedShippedOrder(MemberOrderBean p1);
+
+	ArrayList<MemberOrderDetailBean> queryOrderProductTotalAmount(String p1, String p2, String p3);
+
 	
-	public MemberOrderBean getMemberOrder(Long id);
-	
+
 }
