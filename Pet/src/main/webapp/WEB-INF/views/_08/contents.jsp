@@ -344,33 +344,43 @@
 				</div>
 			</div>
 		</div>
-		<div class="container">
-			<div class="row">
-				<c:forEach var='ann' items='${allAnnouncements}'>
-					<div class="col-sm-6 col-md-3" >
-						<div class="thumbnail" >
-							<img 
-								src="<c:url value='/getAnnPicture/${ann.announce_id}' />" />
-							<div class="caption">
-								<p>
-									<b style='font-size: 16px;'>${ann.announce_title}</b>
-								</p>
-								<p>${ann.announce_sub}</p>
-								<p>
-									<%-- 								<a href="<spring:url value='/announcement?id=${ann.announce_id}' />" --%>
-									<!-- 									class="btn btn-primary"> <span -->
-									<!-- 									class="glyphicon-info-sigh glyphicon"></span>詳細資料 -->
-									<!-- 								</a> <a -->
-									<%-- 									href="<spring:url value='/product.json?id=${ann.announce_id}' />" --%>
-									<!-- 									class="btn btn-primary">  -->
-									<!-- 								</a> -->
-								</p>
-							</div>
-						</div>
-					</div>
+		<div align="center">
+			<h2>content資料</h2>
+			<c:if test='${empty allcontents}'>
+		查無醫院資料<br>
+			</c:if>
+			<c:if test='${not empty allcontents}'>
+				<c:forEach var='cont' varStatus='vs' items='${allcontents}'>
+					<c:if test='${vs.first}'>
+						<c:out value="<table border='1'>" escapeXml='false' />
+						<c:out
+							value="<tr><td>IMG</td><td>ID</td><td>TITLE</td><td>SUB</td><td>FILE_NAME</td><td>編輯</td>"
+							escapeXml='false' />
+					</c:if>
+
+					<tr>
+						<td width='100'>
+						<img width='200' height='300'
+								src="<c:url value='getContPicture/${cont.content_id}' />" />
+						</td>
+						<td>${cont.content_id}</td>
+						<td>${cont.content_title}</td>
+						<td>${cont.content_sub}</td>
+						<td>${cont.content_fileName}</td>
+						<td><a href='contents/${cont.content_id}'>
+								Update </a></td>
+
+					</tr>
+					<c:if test='${vs.last }'>
+						<c:out value="</table>" escapeXml='false' />
+					</c:if>
 				</c:forEach>
-			</div>
+			</c:if>
+			<p />
+			<a href='${pageContext.request.contextPath}/_08/admin0123'>回到_08---管理</a>
 		</div>
+		<hr>
+	</div>
 
 		<!-- Footer -->
 		<footer class="footer">

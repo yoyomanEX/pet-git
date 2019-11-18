@@ -28,17 +28,17 @@ public class AnnouncementBean implements Serializable{
 	private String announce_fileName;
 	
 	public AnnouncementBean() {}
-	
+
 	public AnnouncementBean(int announce_id, String announce_title, String announce_sub, Blob announce_img,
-			MultipartFile annImg, String announce_fileName) {
+			String announce_fileName) {
 		super();
 		this.announce_id = announce_id;
 		this.announce_title = announce_title;
 		this.announce_sub = announce_sub;
 		this.announce_img = announce_img;
-		this.annImg = annImg;
 		this.announce_fileName = announce_fileName;
 	}
+
 
 
 	@Id
@@ -79,11 +79,11 @@ public class AnnouncementBean implements Serializable{
 	public MultipartFile getAnnImg() {
 		return annImg;
 	}
-	@Transient
+	
 	public void setAnnImg(MultipartFile annImg) {
 		this.annImg = annImg;
 	}
-
+	@Column(name = "announce_fileName")
 	public String getAnnounce_fileName() {
 		return announce_fileName;
 	}

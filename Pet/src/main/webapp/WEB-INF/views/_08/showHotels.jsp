@@ -82,8 +82,8 @@
 								id="navbarSupportedContent">
 								<ul class="navbar-nav">
 									<li class="nav-item active"><a class="nav-link active"
-										href="index.jsp">Home</a></li>
-									<li class="nav-item"><a href="travel.jsp" class="nav-link">𨑨迌
+										href="${pageContext.request.contextPath}/">Home</a></li>
+									<li class="nav-item"><a href="_08/announcements__Front" class="nav-link">𨑨迌
 											食飯</a></li>
 									<li class="nav-item"><a href="#" class="nav-link">交朋友</a>
 									</li>

@@ -354,10 +354,10 @@
 			<a href='getEmptyResForm'>restaurants資料新增</a><br> <a
 				href='restaurants'>restaurants資料查詢</a><br> <br> 
 		    <!-- -------------------------------------------------------- -->
-		    <a href='#'>contents資料新增</a><br> <a
+		    <a href='contents/add'>contents資料新增</a><br> <a
 				href='contents'>contents資料查詢</a><br> <br>
 		    <!-- -------------------------------------------------------- -->
-		    <a href='#'>announcements資料新增</a><br> <a
+		    <a href='announcements/add'>announcements資料新增</a><br> <a
 				href='announcements'>announcements資料查詢</a><br> <br> 
 		    <!-- -------------------------------------------------------- --> 
 			<a href='${pageContext.request.contextPath}'>回前頁</a>

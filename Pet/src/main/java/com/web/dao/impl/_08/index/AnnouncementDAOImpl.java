@@ -31,9 +31,9 @@ public class AnnouncementDAOImpl implements AnnouncementDAO {
 	}
 
 	@Override
-	public AnnouncementBean qryAnnouncementById(Integer annId) {
+	public AnnouncementBean qryAnnouncementById(Integer announce_id) {
 		Session session = factory.getCurrentSession();
-		AnnouncementBean ann = session.get(AnnouncementBean.class, annId);
+		AnnouncementBean ann = session.get(AnnouncementBean.class, announce_id);
 		return ann;
 	}
 

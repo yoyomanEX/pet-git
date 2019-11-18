@@ -16,44 +16,44 @@ fieldset {
 	margin: auto;
 }
 </style>
-<title>Announcement</title>
+<title>Content</title>
 
 
 </head>
 <body>
 	<section>
 		<div class="container">
-			<h1 style="text-align: center">新增Announcement資料</h1>
+			<h1 style="text-align: center">新增Content資料</h1>
 		</div>
 	</section>
 	<hr>
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
-		<form:form method='POST' modelAttribute="AnnouncementBean"
+		<form:form method='POST' modelAttribute="ContentBean"
 			class='form-horizontal' enctype="multipart/form-data">
 			<fieldset>
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='announce_title'>
+					<label class="control-label col-lg-2 col-lg-2" for='content_title'>
 						標題 </label>
 					<div class="col-lg-10">
-						<form:input id="announce_title" path="announce_title" type='text'
+						<form:input id="content_title" path="content_title" type='text'
 							class='form:input-large' />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='announce_sub'>
+					<label class="control-label col-lg-2 col-lg-2" for='content_sub'>
 						內容 </label>
 					<div class="col-lg-10">
-						<form:input id="announce_sub" path="announce_sub" type='text'
+						<form:input id="content_sub" path="content_sub" type='text'
 							class='form:input-large' />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class='control-label col-lg-2 col-lg-2' for="annImg">
+					<label class='control-label col-lg-2 col-lg-2' for="contentImg">
 						圖片 </label>
 					<div class='col-lg-10'>
-						<form:input id="annImg" path="annImg" type="file"
+						<form:input id="contentImg" path="contentImg" type="file"
 							class="form:input-large" />
 					</div>
 				</div>

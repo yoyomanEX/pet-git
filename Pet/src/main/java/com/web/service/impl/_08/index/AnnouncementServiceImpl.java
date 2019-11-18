@@ -27,8 +27,8 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	
 	@Transactional
 	@Override
-	public AnnouncementBean qryAnnouncementById(Integer annId) {
-		return annDAO.qryAnnouncementById(annId);
+	public AnnouncementBean qryAnnouncementById(Integer announce_id) {
+		return annDAO.qryAnnouncementById(announce_id);
 	}
 	@Transactional
 	@Override

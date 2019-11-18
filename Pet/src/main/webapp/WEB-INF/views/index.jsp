@@ -70,10 +70,10 @@
 								id="navbarSupportedContent">
 								<ul class="navbar-nav">
 									<li class="nav-item active"><a class="nav-link active"
-										href="index.jsp">Home</a></li>
-									<li class="nav-item"><a href="#" class="nav-link">𨑨迌
+										href="#">Home</a></li>
+									<li class="nav-item"><a href="_08/announcements__Front" class="nav-link">𨑨迌
 											食飯</a></li>
-									<li class="nav-item"><a href="#" class="nav-link">交朋友</a>
+									<li class="nav-item"><a href="_08/contents_Front" class="nav-link">交朋友</a>
 									</li>
 									<li class="nav-item">
 									<a href="<spring:url value='/06/petProductSale'/>" class="nav-link">PET陪你購物</a>

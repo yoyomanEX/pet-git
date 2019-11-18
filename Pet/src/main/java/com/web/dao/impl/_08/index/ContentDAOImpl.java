@@ -31,9 +31,9 @@ public class ContentDAOImpl implements ContentDAO {
 	}
 
 	@Override
-	public ContentBean qryContentById(Integer contId) {
+	public ContentBean qryContentById(Integer content_id) {
 		Session session = factory.getCurrentSession();
-		ContentBean cont = session.get(ContentBean.class, contId);
+		ContentBean cont = session.get(ContentBean.class, content_id);
 		return cont;
 	}
 
