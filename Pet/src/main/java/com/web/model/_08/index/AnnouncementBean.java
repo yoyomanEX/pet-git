@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "announcement")
@@ -20,16 +23,24 @@ public class AnnouncementBean implements Serializable{
 	private String announce_title;
 	private String announce_sub;
 	private Blob announce_img;
+	@Transient
+	private MultipartFile annImg;
+	private String announce_fileName;
 	
 	public AnnouncementBean() {}
-	
-	public AnnouncementBean(int announce_id, String announce_title, String announce_sub, Blob announce_img) {
+
+	public AnnouncementBean(int announce_id, String announce_title, String announce_sub, Blob announce_img,
+			String announce_fileName) {
 		super();
 		this.announce_id = announce_id;
 		this.announce_title = announce_title;
 		this.announce_sub = announce_sub;
 		this.announce_img = announce_img;
+		this.announce_fileName = announce_fileName;
 	}
+
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "announce_id")
@@ -63,6 +74,22 @@ public class AnnouncementBean implements Serializable{
 
 	public void setAnnounce_img(Blob announce_img) {
 		this.announce_img = announce_img;
+	}
+	@Transient
+	public MultipartFile getAnnImg() {
+		return annImg;
+	}
+	
+	public void setAnnImg(MultipartFile annImg) {
+		this.annImg = annImg;
+	}
+	@Column(name = "announce_fileName")
+	public String getAnnounce_fileName() {
+		return announce_fileName;
+	}
+
+	public void setAnnounce_fileName(String announce_fileName) {
+		this.announce_fileName = announce_fileName;
 	}
 	
 	

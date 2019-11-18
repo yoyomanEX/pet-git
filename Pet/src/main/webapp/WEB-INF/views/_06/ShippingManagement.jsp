@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -355,6 +356,21 @@ $(function() {
 								</div>
 							</div>
 						</div>
+						<div class="col-xl-3 col-lg-6">
+							<div class="card card-stats mb-4 mb-xl-0">
+								<div class="card-body">
+									<div class="row">
+										<div class="col">
+											<h5 class="card-title text-uppercase text-muted mb-0">error Order</h5>
+											<span class="h2 font-weight-bold mb-0">
+												<a href="${pageContext.request.contextPath}/_06/errorOrder">失敗訂單</a>
+											</span>
+										</div>
+										<div class="col-auto"></div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -362,24 +378,24 @@ $(function() {
 		<div class="card shadow mb-4">
 			<div id="content">
 				<br>
-				<table style="text-align: center; width: 850px; font-family: Microsoft JhengHei; font-size: 14px; font-weight: bold;" border=1">
+				<table style="text-align: center; width: 1100px; font-family: Microsoft JhengHei; font-size: 14px; font-weight: bold;" border=1">
 					<c:forEach var='list' items='${orderList}'>
 						<tr>
 							<th>訂單日期</th>
 							<th>訂單編號</th>
 							<th>總額</th>
 							<th>用戶ID</th>
+							<th>ECPay交易編號</th>
 							<th>訂單明細</th>
-							<th>------</th>
 						<tr>
 							<td>${list.order_date}</td>
 							<td>${list.order_id}</td>
 							<td>${list.total}$</td>
 							<td>${list.member_id}</td>
+							<td>${list.merchant_no}</td>
 							<td>
 								<input type="button" class="showDetail" orderid="${list.order_id}" value="checkʕ•ᴥ•ʔ " />
 							</td>
-							<th></th>
 							<c:forEach var='detailList' items='${orderListDetail}'>
 								<c:if test='${list.order_id == detailList.order_id}'>
 									<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
@@ -410,27 +426,53 @@ $(function() {
 								<tr>
 							</c:forEach>
 							<c:choose>
-							<c:when test="${empty list.ship_date}">
-						<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
-							<td colspan="6">
-								<div class="btn-group">
-									<form method="post" action="${pageContext.request.contextPath}/_06/insertShippedDate">
-										<input type="hidden" value="${list.order_id}" name="orderId">
-										<input class="button" type="submit" value="出貨去" />
-									</form>
-									<c:set var="count" value="${s.count}" />
-								</div>
-						</tr>
-						</c:when>
-						<c:otherwise>
-						<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
-							<td colspan="6">
-								<div class="btn-group">
-									<h3>已於${list.ship_date}出貨。</h3>
-									<c:set var="count" value="${s.count}" />
-								</div>
-						</c:otherwise>
-						</c:choose>
+								<c:when test="${empty list.ship_date}">
+									<tr orderid="${list.order_id}" style="display: none; color: #3657ff">
+										<td>收件人</td>
+										<td>收件人電話</td>
+										<td>收件人地址</td>
+										<td colspan="3">付款狀態</td>
+									<tr orderid="${list.order_id}" style="display: none; color: #3657ff">
+										<td>${list.recipient}</td>
+										<td>${list.phone}</td>
+										<td>${list.address}</td>
+										<c:choose>
+											<c:when test="${list.payment_status == 1}">
+												<td colspan="3">訂單已成立但客戶尚未付款</td>
+											</c:when>
+											<c:when test="${list.payment_status == 2}">
+												<td colspan="3">
+													<div class="btn-group">
+														<form method="post" action="${pageContext.request.contextPath}/_06/insertShippedDate">
+															<input type="hidden" value="${list.order_id}" name="orderId">
+															<input class="button" type="submit" value="付款成功，出貨去" />
+														</form>
+														<c:set var="count" value="${s.count}" />
+													</div>
+												</td>
+											</c:when>
+											<c:when test="${list.payment_status == 3}">
+												<td colspan="3">交易失敗</td>
+											</c:when>
+										</c:choose>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
+										<td>收件人</td>
+										<td>收件人電話</td>
+										<td>收件人地址</td>
+										<td colspan="3">出貨時間</td>
+									<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
+										<td>${list.recipient}</td>
+										<td>${list.phone}</td>
+										<td>${list.address}</td>
+										<td colspan="3">
+											<fmt:formatDate value="${list.ship_date}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
+											已出貨。
+										</td>
+								</c:otherwise>
+							</c:choose>
 					</c:forEach>
 				</table>
 			</div>

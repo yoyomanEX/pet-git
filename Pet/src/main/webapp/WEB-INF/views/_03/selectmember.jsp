@@ -46,6 +46,27 @@
 		//     	return false;
 		//     	}
 	}
+	function room() {
+		window
+				.open(
+						'dogroom',
+						'newwindow',
+						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+	}
+	function catroom() {
+		window
+				.open(
+						'catroom',
+						'newwindow',
+						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+	}
+	function petroom() {
+		window
+				.open(
+						'petroom',
+						'newwindow',
+						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+	}
 </script>
 
 
@@ -101,14 +122,14 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
 				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-cog"></i> <span>文章後台</span>
+					class="far fa-edit"></i> <span>文章後台</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">文章管理</h6>
-						<a class="collapse-item" href="<spring:url value="/article"/>">文章列表</a>
-						<a class="collapse-item" href="<spring:url value="myblog"/>">我的部落格首頁</a>
+						<a class="collapse-item" href="<spring:url value='/article'/>">文章列表</a>
+						<a class="collapse-item" href="<spring:url value='myblog'/>">我的部落格首頁</a>
 
 					</div>
 				</div></li>
@@ -128,6 +149,28 @@
 							class="collapse-item" href="waiting">等候回覆</a>
 					</div>
 				</div></li>
+
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseOne"
+				aria-expanded="true" aria-controls="collapseOne"> <i
+					class="fas fa-paw"></i> <span>寵物聊天室</span>
+			</a>
+				<div id="collapseOne" class="collapse"
+					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a href='#' class="collapse-item" onclick="room()"><i
+							class="fas fa-dog"></i>汪汪聊天室</a> <a href='#' class="collapse-item"
+							onclick="catroom()"><i class="fas fa-cat"></i> 喵喵聊天室</a> <a
+							href='#' class="collapse-item" onclick="petroom()"><i
+							class="fas fa-hippo"></i> PET聊天室</a>
+					</div>
+				</div></li>
+
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#">
+					<i class="fas fa-paw"></i> <span>會員訂單</span>
+			</a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -389,64 +432,65 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-	<section>
-		<div class='text-center'>
-			<div class="container" style="text-align: center">
-				<h1>好友清單</h1>
-			</div>
-			<form action='select' method="post" id="frm1"
-				class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-				<div class="input-group">
-					<input type="text" name='friendid'
-						class="form-control bg-light border-0 small"
-						placeholder="Search for..." aria-label="Search"
-						aria-describedby="basic-addon2">
-					<div class="input-group-append">
-						<button class="btn btn-primary" type="button"
-							onclick="myFunction()">
-							<i class="fas fa-search fa-sm"></i>
-						</button>
-					</div>
-				</div>
-			</form>
-			<br> <a href="friendlist">好友列表</a> <a href="application">申請列表</a> <a
-				href="waiting">等候回覆</a>
-		</div>
-	</section>
-	<hr
-		style="height: 1px; border: none; color: #333; background-color: #333;">
-	<div class="row">
-		<c:forEach var='friend' items='${frienddata}'>
-<%-- 			<c:set var='status' scope='session' value='${friend.status}' /> --%>
-<%-- 			<c:if test='${status!="allow"}'> --%>
-				<div class="col-xl-4 col-md-6 mb-4">
-					<div class="card border-left-primary shadow py-2">
-						<div class="card-body">
-							<div class="row no-gutters align-items-center">
-								<div class="col mr-2">
-									<div
-										class="text-xs font-weight-bold text-primary text-uppercase mb-1" style='font-size: 18px'>${friend.name}</div>
-									<div class="h5 mb-0 font-weight-bold text-gray-800">${friend.memberPet}</div>
-								</div>
-								<table>
-									<tr>
-										<td><form action='add' method="post">
-												<input type="hidden" name='friendid'
-													value='${friend.member_Id}'> <input type="submit"
-													value='申請好友'>
-											</form></td>
-									</tr>
-								</table>
-								<div class="col-auto">
-									<i class="fas fa-user fa-2x"></i>
-								</div>
-
+					<section>
+						<div class='text-center'>
+							<div class="container" style="text-align: center">
+								<h1>好友清單</h1>
 							</div>
+							<form action='select' method="post" id="frm1"
+								class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+								<div class="input-group">
+									<input type="text" name='friendid'
+										class="form-control bg-light border-0 small"
+										placeholder="Search for..." aria-label="Search"
+										aria-describedby="basic-addon2">
+									<div class="input-group-append">
+										<button class="btn btn-primary" type="button"
+											onclick="myFunction()">
+											<i class="fas fa-search fa-sm"></i>
+										</button>
+									</div>
+								</div>
+							</form>
+							<br> <a href="friendlist">好友列表</a> <a href="application">申請列表</a>
+							<a href="waiting">等候回覆</a>
 						</div>
+					</section>
+					<hr
+						style="height: 1px; border: none; color: #333; background-color: #333;">
+					<div class="row">
+						<c:forEach var='friend' items='${frienddata}'>
+							<%-- 			<c:set var='status' scope='session' value='${friend.status}' /> --%>
+							<%-- 			<c:if test='${status!="allow"}'> --%>
+							<div class="col-xl-4 col-md-6 mb-4">
+								<div class="card border-left-primary shadow py-2">
+									<div class="card-body">
+										<div class="row no-gutters align-items-center">
+											<div class="col mr-2">
+												<div
+													class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+													style='font-size: 18px'>${friend.name}</div>
+												<div class="h5 mb-0 font-weight-bold text-gray-800">${friend.memberPet}</div>
+											</div>
+											<table>
+												<tr>
+													<td><form action='add' method="post">
+															<input type="hidden" name='friendid'
+																value='${friend.member_Id}'> <input
+																type="submit" value='申請好友'>
+														</form></td>
+												</tr>
+											</table>
+											<div class="col-auto">
+												<i class="fas fa-user fa-2x"></i>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
 					</div>
-				</div>
-		</c:forEach>
-	</div>
 
 
 				</div>
