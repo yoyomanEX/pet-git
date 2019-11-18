@@ -146,7 +146,7 @@ public class ProductInfoController {
 
 			model.addAttribute("productsInCar", productsInCar);
 			model.addAttribute("products", products);
-			return "06/PetProductSale";
+			return "06/PetProductSaleHome";
 		} else { // 如果購物車裡面已經有東西就保留原資料並把新資料塞進去並返回原頁面
 			List<PetProductListBean> productsInCar = petProductDao.addProducts(productIds, amounts);
 			pro = (List<PetProductListBean>) session.getAttribute("productsInCar");
@@ -154,7 +154,7 @@ public class ProductInfoController {
 			List<PetProductListBean> products = petProductDao.productInfo();
 			model.addAttribute("productsInCar", pro);
 			model.addAttribute("products", products);
-			return "06/PetProductSale";
+			return "06/PetProductSaleHome";
 		}
 	}
 
