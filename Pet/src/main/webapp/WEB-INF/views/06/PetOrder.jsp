@@ -234,7 +234,7 @@ fieldset {
 		<p >
 		<h2 style = "color: red">注意！！！！！</h2>
 		<img src="img/noImg.jpg" style="width: 220px; height: 220px">
-		<h4>感謝你的注意(๑´ڡ`๑)</h4>
+		<h4>可愛貓咪出沒(๑• . •๑</h4>
 		</p>
 	</div>
 	<div id='content'>

@@ -34,4 +34,6 @@ public interface PetInterface {
 
 	public void insertShippedDate(String order_id) throws SQLException;
 
+	public List<OrderBean> errorOrder() throws SQLException;
+
 }
