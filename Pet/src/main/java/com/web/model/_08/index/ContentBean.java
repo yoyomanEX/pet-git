@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "content")
@@ -20,21 +23,27 @@ public class ContentBean implements Serializable{
 	private String content_title;
 	private String content_sub;
 	private Blob content_img;
+	@Transient
+	private MultipartFile contentImg;
+	private String content_fileName;
 	private String content_loc;
 	private String content_tag;
 	
 	public ContentBean() {}
 	
-	public ContentBean(int content_id, String content_title, String content_sub, Blob content_img, String content_loc,
-			String content_tag) {
+	public ContentBean(int content_id, String content_title, String content_sub, Blob content_img,
+			MultipartFile contentImg, String content_fileName, String content_loc, String content_tag) {
 		super();
 		this.content_id = content_id;
 		this.content_title = content_title;
 		this.content_sub = content_sub;
 		this.content_img = content_img;
+		this.contentImg = contentImg;
+		this.content_fileName = content_fileName;
 		this.content_loc = content_loc;
 		this.content_tag = content_tag;
 	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "content_id")
@@ -84,6 +93,22 @@ public class ContentBean implements Serializable{
 
 	public void setContent_tag(String content_tag) {
 		this.content_tag = content_tag;
+	}
+	@Transient
+	public MultipartFile getContentImg() {
+		return contentImg;
+	}
+	@Transient
+	public void setContentImg(MultipartFile contentImg) {
+		this.contentImg = contentImg;
+	}
+
+	public String getContent_fileName() {
+		return content_fileName;
+	}
+
+	public void setContent_fileName(String content_fileName) {
+		this.content_fileName = content_fileName;
 	}
 	
 	

@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="UTF-8">
-
 <head>
 <meta charset="utf-8" />
 <meta name="viewport"
@@ -343,56 +344,60 @@
 				</div>
 			</div>
 		</div>
-		<div align="center">
-			<h2>_08---管理</h2>
-			<br> <a href='getEmptyHospitalForm'>醫院資料新增</a><br> <a
-				href='hospitals'>醫院資料查詢</a><br> <br>
-			<!-- -------------------------------------------------------- -->
-			<a href='getEmptyHotelForm'>Hotel資料新增</a><br> <a
-				href='hotels'>Hotel資料查詢</a><br> <br>
-			<!-- -------------------------------------------------------- -->
-			<a href='getEmptyResForm'>restaurants資料新增</a><br> <a
-				href='restaurants'>restaurants資料查詢</a><br> <br> 
-		    <!-- -------------------------------------------------------- -->
-		    <a href='#'>contents資料新增</a><br> <a
-				href='contents'>contents資料查詢</a><br> <br>
-		    <!-- -------------------------------------------------------- -->
-		    <a href='#'>announcements資料新增</a><br> <a
-				href='announcements'>announcements資料查詢</a><br> <br> 
-		    <!-- -------------------------------------------------------- --> 
-			<a href='${pageContext.request.contextPath}'>回前頁</a>
+		<div class="container">
+			<div class="row">
+				<c:forEach var='ann' items='${allAnnouncements}'>
+					<div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
+						<div class="thumbnail" style="width: 320px; height: 340px">
+							<img width='100' height='200'
+								src="<c:url value='/getPicture/${ann.announce_id}' />" />
+							<div class="caption">
+								<p>
+									<b style='font-size: 16px;'>${ann.announce_title}</b>
+								</p>
+								<p>${ann.announce_sub}</p>
+								<p>
+									<%-- 								<a href="<spring:url value='/announcement?id=${ann.announce_id}' />" --%>
+									<!-- 									class="btn btn-primary"> <span -->
+									<!-- 									class="glyphicon-info-sigh glyphicon"></span>詳細資料 -->
+									<!-- 								</a> <a -->
+									<%-- 									href="<spring:url value='/product.json?id=${ann.announce_id}' />" --%>
+									<!-- 									class="btn btn-primary">  -->
+									<!-- 								</a> -->
+								</p>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
 		</div>
-	</div>
-	
-	<!-- Footer -->
-	<footer class="footer">
-		<div class="row align-items-center justify-content-xl-between">
-			<div class="col-xl-6">
-				<div class="copyright text-center text-xl-left text-muted">
-					&copy; 2019 <a href="#" class="font-weight-bold ml-1"
-						target="_blank">pET ʕ•ᴥ•ʔ 陪你</a>
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="row align-items-center justify-content-xl-between">
+				<div class="col-xl-6">
+					<div class="copyright text-center text-xl-left text-muted">
+						&copy; 2019 <a href="#" class="font-weight-bold ml-1"
+							target="_blank">pET ʕ•ᴥ•ʔ 陪你</a>
+					</div>
 				</div>
 			</div>
-
-		</div>
-	</footer>
-	</div>
-	</div>
-	<!--   Core   -->
-	<script
-		src="${pageContext.request.contextPath}/assets/js/plugins/jquery/dist/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<!--   Optional JS   -->
-	<script
-		src="${pageContext.request.contextPath}/assets/js/plugins/chart.js/dist/Chart.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
-	<!--   Argon JS   -->
-	<script
-		src="${pageContext.request.contextPath}/assets/js/argon-dashboard.min.js?v=1.1.0"></script>
-	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-	<script>
+		</footer>
+		<!--   Core   -->
+		<script
+			src="${pageContext.request.contextPath}/assets/js/plugins/jquery/dist/jquery.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+		<!--   Optional JS   -->
+		<script
+			src="${pageContext.request.contextPath}/assets/js/plugins/chart.js/dist/Chart.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
+		<!--   Argon JS   -->
+		<script
+			src="${pageContext.request.contextPath}/assets/js/argon-dashboard.min.js?v=1.1.0"></script>
+		<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+		<script>
 		window.TrackJS && TrackJS.install({
 			token : "ee6fab19c5a04ac1a32a645abde4613a",
 			application : "argon-dashboard-free"
