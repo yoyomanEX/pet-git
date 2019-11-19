@@ -179,7 +179,7 @@
 		});
 		//點選商品加入購物車
 		$("#addToCar").click(function() {
-			$('#orderSubmit').attr('action', "${pageContext.request.contextPath}/06/addProductsToCar");
+			$('#orderSubmit').attr('action', "${pageContext.request.contextPath}/06/addProductToCar");
 			$('#orderSubmit').submit();
 		});
 		//清空購物車
