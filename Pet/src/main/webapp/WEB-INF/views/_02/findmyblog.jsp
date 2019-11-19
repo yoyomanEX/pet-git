@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
 <!--===============================================================================================-->
 	
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">  
+	<link rel="stylesheet" type="text/css" href="css/main.css">  
      
 <style>
 section {
@@ -108,7 +108,7 @@ background-attachment: fixed;
                                 </c:when>
                               <c:otherwise>
                                 <div class="post-thumbnail mb-50">
-                                    <img width='450' height='500' src='<c:url value="/getArtPicture/${art.no }"/>'/>
+                                    <img width='450' height='500' src='<c:url value="/getPicture/${art.no }"/>'/>
                                 </div>
                               </c:otherwise>
                               </c:choose>
@@ -130,7 +130,7 @@ background-attachment: fixed;
                                 <p class="post-excerpt">${fn:substring(art.content, 0 ,20)}</p>
                                 
                                                                 
-                                <a href="<spring:url value='postblog?id=${art.no}' />" class="read-more-btn">Continue Reading
+                                <a href="${pageContext.request.contextPath}/postblog?id=${art.no}" class="read-more-btn">Continue Reading
 <%--                                 <a href="<spring:url value='postblog?id=${art.no}' />" class="read-more-btn">Continue Reading --%>
                                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                                 </a>
@@ -152,8 +152,8 @@ background-attachment: fixed;
 
                     <!-- Pager -->
                     <ol class="foode-pager mt-50">
-                        <li><i class="fa fa-long-arrow-left" aria-hidden="true"><input id="pUp" onclick="pageUp()" class="btn foode-btn btn-sm" value="上一頁"></i></a></li>
-                        <li><input id="pDown" onclick="pageDown()" class="btn foode-btn btn-sm" value="下一頁"> <i class="fa fa-long-arrow-right" aria-hidden="true"></i></li>
+                        <li><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Newer</a></li>
+                        <li><a href="#">Older <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
                     </ol>
                 </div>
 
@@ -178,10 +178,9 @@ background-attachment: fixed;
 								</h3>
 							</div>
                             <!-- Thumbnail -->
-                            <div style="padding-top:20px">
+                            <div style="padding-top:40px">
                             <div class="about-thumbnail">
-<!--                                 <img width='60' height='72' src='getPicture' /> -->
-                                <img width='200' height='300' src="img/single_adopt_5.png" />
+                                <img width='60' height='72' src='getPicture' />
                             </div>
                             <!-- Content -->
                             <div class="widget-content text-center" style="padding-bottom:40px">
@@ -196,15 +195,15 @@ background-attachment: fixed;
 						<div class="p-t-50">
 							<div class="how2 how2-cl4 flex-s-c" style="padding-top:10px">
 								<h3 class="f1-m-2 cl3 tab01-title">
-									文章分類
+									Categories
 								</h3>
 							</div>
 							<div style="padding-top:20px">
 							<ol >
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp美食</span> <span>(18)</span></a></li>
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp旅遊</span> <span>(28)</span></a></li>
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp保養</span> <span>(15)</span></a></li>
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp知識</span> <span>(27)</span></a></li>
+                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp&nbsp美食</span> <span>(18)</span></a></li>
+                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp&nbsp旅遊</span> <span>(28)</span></a></li>
+                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp&nbsp保養</span> <span>(15)</span></a></li>
+                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp&nbsp知識</span> <span>(27)</span></a></li>
                             </ol>
 							</div>
 						</div>
@@ -230,7 +229,7 @@ background-attachment: fixed;
                                 </c:when>
                               <c:otherwise>
                                 <div class="post-thumb">
-                                    <img src='<c:url value="/getArtPicture/${art.no }"/>'/>
+                                    <img src='<c:url value="/getPicture/${art.no }"/>'/>
                                 </div>
                               </c:otherwise>
                               </c:choose>

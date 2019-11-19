@@ -24,6 +24,8 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  
+  <link href="css/adminarticle.css" rel="stylesheet">
   <style>
   .city {display:none}
   </style>
@@ -39,6 +41,13 @@
   <!-- Custom styles for this page -->
   <link href="${pageContext.request.contextPath}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   
+  <script>
+  function myonoffswitch(){
+	  document.getElementById('id01');
+	  
+	  
+  }
+  </script>
 
 </head>
 
@@ -52,7 +61,7 @@
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="./index.html">
-        <img src="${pageContext.request.contextPath}/assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+<%--         <img src="${pageContext.request.contextPath}/assets/img/brand/blue.png" class="navbar-brand-img" alt="..."> --%>
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -109,11 +118,11 @@
         <!-- Collapse header -->
         <div class="navbar-collapse-header d-md-none">
           <div class="row">
-            <div class="col-6 collapse-brand">
-              <a href="${pageContext.request.contextPath}/index.jsp">
-                <img src="${pageContext.request.contextPath}/assets/img/brand/blue.png">
-              </a>
-            </div>
+<!--             <div class="col-6 collapse-brand"> -->
+<%--               <a href="${pageContext.request.contextPath}/index.jsp"> --%>
+<%--                 <img src="${pageContext.request.contextPath}/assets/img/brand/blue.png"> --%>
+<!--               </a> -->
+<!--             </div> -->
             <div class="col-6 collapse-close">
               <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
                 <span></span>
@@ -290,9 +299,11 @@
                   <tbody>
                   <c:forEach items="${arts }" var="art" varStatus="s" >
                     <tr>
-                      <td style="width:10%;font-size:18px" align="center">${fn:substring(art.postTime, 0 ,19)}</td>
-                      <td style="width:48%;font-size:18px">${art.title} </td>
-                      <td style="width:13%;font-size:18px" align="center">${art.memberId} </td>
+                      <td style="width:10%;font-size:18px" align="center">${fn:substring(art.postTime, 0 ,10)}</td>
+                      <td style="width:48%;font-size:18px">
+                       <a href="<spring:url value='postblog?id=${art.no}' />" style="color:	#3C3C3C">${art.title}</a>
+                      </td>
+                      <td style="width:13%;font-size:15px" align="center">${art.memberId} </td>
                       <td> 
                            
 								<c:choose>
@@ -333,12 +344,17 @@
                                  
                                  <c:choose>
                                     <c:when test="${art.available==true}">
-                                        <button id="lock" name="lock" value="lock" style="font-size: 20px" class="btn btn-info" aria-hidden="true" type="submit">未封鎖</button>
+                                        <button id="lock" name="lock" value="lock" style="font-size: 20px" class="far fa-smile-beam btn btn-info" aria-hidden="true" type="submit">&nbsp未封鎖</button>
+                                   
                                     </c:when>
                                     <c:otherwise>
-                                        <button id="lock" name="lock" value="lock" style="font-size: 20px" class="btn btn-danger" aria-hidden="true" type="submit">已封鎖</button>
+                                        <button id="lock" name="lock" value="lock" style="font-size: 20px" class="far fa-frown btn btn-danger" aria-hidden="true" type="submit">&nbsp已封鎖</button>
                                     </c:otherwise>
                                  </c:choose>
+                                 
+                                
+                                 
+                                 
                              </form>
 					      
 					      
