@@ -17,25 +17,7 @@
 <link href="${pageContext.request.contextPath}/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
 <!-- CSS Files -->
 <link href="${pageContext.request.contextPath}/assets/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-//其作用和 $(document).ready()一樣 ，用意在DOM載入後執行ready()方法。
-$(function() {
-	/*選擇器介紹:https://ithelp.ithome.com.tw/articles/10095237 
-	JQuery選擇器 選擇(input元素 要做的事情:click後 下方執行方法*/
-	$("input").click(function() {
-		/*attr() 方法设置或返回被选元素的属性值。根据该方法不同的参数，其工作方式也有所差异。
-		$(selector).attr(attribute)返回被选元素的属性值。
-		this代表當前物件*/
-		var orderid = $(this).attr("orderid");
-		console.log('tr[orderid="' + orderid + '"]');
-		/* 因為所有TR有設置ID 當點擊按鈕時產生orderid會傳給TR的orderId
-		即可對該TR做顯示跟隱藏的替換工作*/
-		$('tr[orderid=' + orderid + ']').toggle();
-	});
-});
-</script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/DataTables/datatables.min.css">
 <style>
 .btn-group .button {
 	background-color: #B8B8FF; /* Green */
@@ -378,8 +360,8 @@ $(function() {
 		<div class="card shadow mb-4">
 			<div id="content">
 				<br>
-				<table style="text-align: center; width: 1100px; font-family: Microsoft JhengHei; font-size: 14px; font-weight: bold;" border=1">
-					<c:forEach var='list' items='${orderList}'>
+				<table id="example" style="text-align: center; width: 1100px; font-family: Microsoft JhengHei; font-size: 14px; font-weight: bold;" border=1">
+					<thead>
 						<tr>
 							<th>訂單日期</th>
 							<th>訂單編號</th>
@@ -387,93 +369,101 @@ $(function() {
 							<th>用戶ID</th>
 							<th>ECPay交易編號</th>
 							<th>訂單明細</th>
-						<tr>
-							<td>${list.order_date}</td>
-							<td>${list.order_id}</td>
-							<td>${list.total}$</td>
-							<td>${list.member_id}</td>
-							<td>${list.merchant_no}</td>
-							<td>
-								<input type="button" class="showDetail" orderid="${list.order_id}" value="checkʕ•ᴥ•ʔ " />
-							</td>
-							<c:forEach var='detailList' items='${orderListDetail}'>
-								<c:if test='${list.order_id == detailList.order_id}'>
-									<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
-										<td>商品圖片</td>
-										<td>商品ID</td>
-										<td>商品名稱</td>
-										<td>數量</td>
-										<td>合計金額</td>
-										<td>是否免運</td>
-									</tr>
-									<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
-										<td>
-											<img alt="ʕ•ᴥ•ʔ" class='productImg' src="${pageContext.request.contextPath}/_06/downloadFile/${detailList.product_id}.jpg">
-										</td>
-										<td>${detailList.product_id}</td>
-										<td>${detailList.product_name}</td>
-										<td>${detailList.amount}</td>
-										<td>${detailList.total}$</td>
-										<c:choose>
-											<c:when test="${list.total < 299}">
-												<td>N</td>
-											</c:when>
-											<c:otherwise>
-												<td>Y</td>
-											</c:otherwise>
-										</c:choose>
-								</c:if>
-								<tr>
-							</c:forEach>
-							<c:choose>
-								<c:when test="${empty list.ship_date}">
-									<tr orderid="${list.order_id}" style="display: none; color: #3657ff">
-										<td>收件人</td>
-										<td>收件人電話</td>
-										<td>收件人地址</td>
-										<td colspan="3">付款狀態</td>
-									<tr orderid="${list.order_id}" style="display: none; color: #3657ff">
-										<td>${list.recipient}</td>
-										<td>${list.phone}</td>
-										<td>${list.address}</td>
-										<c:choose>
-											<c:when test="${list.payment_status == 1}">
-												<td colspan="3">訂單已成立但客戶尚未付款</td>
-											</c:when>
-											<c:when test="${list.payment_status == 2}">
-												<td colspan="3">
-													<div class="btn-group">
-														<form method="post" action="${pageContext.request.contextPath}/_06/insertShippedDate">
-															<input type="hidden" value="${list.order_id}" name="orderId">
-															<input class="button" type="submit" value="付款成功，出貨去" />
-														</form>
-														<c:set var="count" value="${s.count}" />
-													</div>
-												</td>
-											</c:when>
-											<c:when test="${list.payment_status == 3}">
-												<td colspan="3">交易失敗</td>
-											</c:when>
-										</c:choose>
-									</tr>
-								</c:when>
-								<c:otherwise>
-									<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
-										<td>收件人</td>
-										<td>收件人電話</td>
-										<td>收件人地址</td>
-										<td colspan="3">出貨時間</td>
-									<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
-										<td>${list.recipient}</td>
-										<td>${list.phone}</td>
-										<td>${list.address}</td>
-										<td colspan="3">
-											<fmt:formatDate value="${list.ship_date}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
-											已出貨。
-										</td>
-								</c:otherwise>
-							</c:choose>
-					</c:forEach>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var='list' items='${orderList}'>
+							<tr>
+								<td>${list.order_date}</td>
+								<td>${list.order_id}</td>
+								<td>${list.total}$</td>
+								<td>${list.member_id}</td>
+								<td>${list.merchant_no}</td>
+								<td>
+									<input type="button" class="showDetail" orderid="${list.order_id}" value="checkʕ•ᴥ•ʔ " />
+								</td>
+								<c:forEach var='detailList' items='${orderListDetail}'>
+									<c:if test='${list.order_id == detailList.order_id}'>
+										<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
+											<td>商品圖片</td>
+											<td>商品ID</td>
+											<td>商品名稱</td>
+											<td>數量</td>
+											<td>合計金額</td>
+											<td>是否免運</td>
+										</tr>
+										<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
+											<td>
+												<img alt="ʕ•ᴥ•ʔ" class='productImg' src="${pageContext.request.contextPath}/_06/downloadFile/${detailList.product_id}.jpg">
+											</td>
+											<td>${detailList.product_id}</td>
+											<td>${detailList.product_name}</td>
+											<td>${detailList.amount}</td>
+											<td>${detailList.total}$</td>
+											<c:choose>
+												<c:when test="${list.total < 299}">
+													<td>N</td>
+												</c:when>
+												<c:otherwise>
+													<td>Y</td>
+												</c:otherwise>
+											</c:choose>
+									</c:if>
+								</c:forEach>
+								<c:choose>
+									<c:when test="${empty list.ship_date}">
+										<tr orderid="${list.order_id}" style="display: none; color: #3657ff">
+											<td>收件人</td>
+											<td>收件人電話</td>
+											<td>收件人地址</td>
+											<td colspan="3">付款狀態</td>
+										</tr>
+										<tr orderid="${list.order_id}" style="display: none; color: #3657ff">
+											<td>${list.recipient}</td>
+											<td>${list.phone}</td>
+											<td>${list.address}</td>
+											<c:choose>
+												<c:when test="${list.payment_status == 1}">
+													<td colspan="3">訂單已成立但客戶尚未付款</td>
+												</c:when>
+												<c:when test="${list.payment_status == 2}">
+													<td colspan="3">
+														<div class="btn-group">
+															<form method="post" action="${pageContext.request.contextPath}/_06/insertShippedDate">
+																<input type="hidden" value="${list.order_id}" name="orderId">
+																<input class="button" type="submit" value="付款成功，出貨去" />
+															</form>
+															<c:set var="count" value="${s.count}" />
+														</div>
+													</td>
+												</c:when>
+												<c:when test="${list.payment_status == 3}">
+													<td colspan="3">交易失敗</td>
+												</c:when>
+											</c:choose>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
+											<td>收件人</td>
+											<td>收件人電話</td>
+											<td>收件人地址</td>
+											<td colspan="3">出貨時間</td>
+										</tr>
+										<tr orderid="${list.order_id}" style="display: none; color: #FF5151">
+											<td>${list.recipient}</td>
+											<td>${list.phone}</td>
+											<td>${list.address}</td>
+											<td colspan="3">
+												<fmt:formatDate value="${list.ship_date}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
+												已出貨。
+											</td>
+										</tr>
+									</c:otherwise>
+								</c:choose>
+							</tr>
+						</c:forEach>
+					</tbody>
 				</table>
 			</div>
 			<div class="card-body">
@@ -489,49 +479,27 @@ $(function() {
 	<!--   Argon JS   -->
 	<script src="${pageContext.request.contextPath}/assets/js/argon-dashboard.min.js?v=1.1.0"></script>
 	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/DataTables/DataTables-1.10.20/js/jquery.dataTables.js"></script>
 	<script>
 		window.TrackJS && TrackJS.install({
 			token : "ee6fab19c5a04ac1a32a645abde4613a",
 			application : "argon-dashboard-free"
 		});
-	</script>
-</body>
-<body id="body1">
-	<Script>
-		document.addEventListener("DOMContentLoaded", function() {
-		document.getElementById("bt").addEventListener("click", checkId);
-		
-		});
-		let pros= document.getElementsByName("pro");
-		pros.forEach(function(pro){
-			pro.addEventListener("click",checkId);
-		});
-		
-		
-		
-		
-		function checkId() {
-			let flag1=false;
-			var id = document.getElementById("pi").value;
-			var idLeng = id.length;
-			let pros= document.getElementsByName("pro");
-			pros.forEach(function(pro){
-				var proId =pro.getAttribute("productid");
-				console.log("proId="+ proId);
-				if(id == proId){
-					flag1 = true;
-				}
+
+		$(function() {
+			/*選擇器介紹:https://ithelp.ithome.com.tw/articles/10095237 
+			JQuery選擇器 選擇(input元素 要做的事情:click後 下方執行方法*/
+			$("input").click(function() {
+				/*attr() 方法设置或返回被选元素的属性值。根据该方法不同的参数，其工作方式也有所差异。
+				$(selector).attr(attribute)返回被选元素的属性值。
+				this代表當前物件*/
+				var orderid = $(this).attr("orderid");
+				console.log('tr[orderid="' + orderid + '"]');
+				/* 因為所有TR有設置ID 當點擊按鈕時產生orderid會傳給TR的orderId
+				即可對該TR做顯示跟隱藏的替換工作*/
+				$('tr[orderid=' + orderid + ']').toggle();
 			});
-			if (id == "") { // 產品編號不得為空值
-				document.getElementById("sp").innerHTML = "產品編號不得為空值";
-			}else if(idLeng < 4 || idLeng > 4){ //產品編號不得小於等於4位數
-				document.getElementById("sp").innerHTML = "產品編號長度需為4碼";
-			}else if(flag1==false){//產品編號需是產品列表裡面有的
-				document.getElementById("sp").innerHTML = "沒有這個產品編號";
-			}else if(flag1) {
-				document.form1.submit();
-			}
-		}
-	</Script>
+		});
+	</script>
 </body>
 </html>

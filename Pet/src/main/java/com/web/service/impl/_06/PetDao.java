@@ -151,16 +151,18 @@ public class PetDao implements PetInterface {
 		String qryStmt = "select * from member_order where member_id like ? or order_id like ?";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(qryStmt, "%" + queryOrder + "%", "%" + queryOrder + "%");
 		for (Map<String, Object> row : rows) {
-			System.out.println(row);
 			OrderBean ob = new OrderBean();
 			ob.setOrder_id(String.valueOf(row.get("order_id")));
 			ob.setAddress((String) row.get("address"));
 			ob.setMember_id((String) row.get("member_id"));
-			ob.setPhone((String) row.get("userPhone"));
+			ob.setPhone((String) row.get("phone"));
 			ob.setRecipient((String) row.get("recipient"));
 			ob.setOrder_date((Date) row.get("order_date"));
 			ob.setTotal((int) row.get("total"));
 			ob.setShip_date((Date) row.get("ship_date"));
+			ob.setStatus((int) row.get("status"));
+			ob.setPayment_status((int) row.get("payment_status"));
+			ob.setMerchant_no((String) row.get("merchant_no"));
 			orderBean.add(ob);
 		}
 		return orderBean;

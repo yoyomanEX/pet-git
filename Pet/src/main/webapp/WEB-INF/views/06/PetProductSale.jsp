@@ -24,16 +24,20 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css">
 <!-- style CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/DataTables/datatables.min.css"> --%>
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
-	
 </script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/DataTables/DataTables-1.10.20/js/jquery.dataTables.js"></script>
 <script>
 	var sum = 0;
 	var buycar = new Object();
 
 	$(function() {
-
-		totalName();
+		$("#myTable").DataTable();
+		totalName({
+			"searching" : false,
+			"bLengthChange" : false
+		});
 		totalNum();
 		totalPrice();
 
@@ -356,36 +360,44 @@
 		<div id="content">
 			<form method="post" id="orderSubmit" action="${pageContext.request.contextPath}/06/petOrder">
 				<input type="hidden" id="selectPrdId" name="selectPrdId" value="">
-				<table style="text-align: center; width: 800px; font-family: Microsoft JhengHei; font-size: 18px; font-weight: bold;" border=1>
+				<table id="myTable" style="text-align: center; width: 800px; font-family: Microsoft JhengHei; font-size: 18px; font-weight: bold;" border=1>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Position</th>
+							<th>Office</th>
+							<th>Age</th>
+							
+						</tr>
+					</thead>
 					<%--items=表示處理的陣列跟集合 要循環的訊息 var=用來儲存目前元素的值--%>
 					<c:forEach items="${products}" var="pro">
-					<c:if test="${pro.status == 1}">
-						<input type="hidden" name="productId" value="${pro.product_id}">
-						<tr>
-							<td>
-								<img alt="ʕ•ᴥ•ʔ" class='productImg' src="${pageContext.request.contextPath}/06/downloadFile/${pro.product_id}.jpg">
-							</td>
-							<td>
-								<a class="checkPro" productId="${pro.product_id}" href="">${pro.product_name}</a>
-
-							</td>
-							<td>${pro.price}$</td>
-							<td>
-								<c:choose>
-									<c:when test="${pro.amount==0}">
-										<input type="hidden" name="amount" value="0" class="textNum" style="text-align: center;" />
-										<h4>商品目前補貨中ʕ•ᴥ•ʔ</h4>
-									</c:when>
-									<c:otherwise>
-										<input type="button" name="minus" class='buttonMinus' value='-'>
-										<input type="number" readonly name="amount" value="0" min="0" max="10" class="textNum" style="text-align: center;" />
-										<input type="button" name="add" class='buttonAdd' value='+' amount="${pro.amount}">
-										<input type='hidden' class='cartProductItemSumPrice' price="${pro.price}">
-										<input type='hidden' productId="${pro.product_id}" class='productName' text="${pro.product_name}">
-									</c:otherwise>
-								</c:choose>
-							</td>
-						</tr>
+						<c:if test="${pro.status == 1}">
+							<input type="hidden" name="productId" value="${pro.product_id}">
+							<tr>
+								<td>
+									<img alt="ʕ•ᴥ•ʔ" class='productImg' src="${pageContext.request.contextPath}/06/downloadFile/${pro.product_id}.jpg">
+								</td>
+								<td>
+									<a class="checkPro" productId="${pro.product_id}" href="">${pro.product_name}</a>
+								</td>
+								<td>${pro.price}$</td>
+								<td>
+									<c:choose>
+										<c:when test="${pro.amount==0}">
+											<input type="hidden" name="amount" value="0" class="textNum" style="text-align: center;" />
+											<h4>商品目前補貨中ʕ•ᴥ•ʔ</h4>
+										</c:when>
+										<c:otherwise>
+											<input type="button" name="minus" class='buttonMinus' value='-'>
+											<input type="number" readonly name="amount" value="0" min="0" max="10" class="textNum" style="text-align: center;" />
+											<input type="button" name="add" class='buttonAdd' value='+' amount="${pro.amount}">
+											<input type='hidden' class='cartProductItemSumPrice' price="${pro.price}">
+											<input type='hidden' productId="${pro.product_id}" class='productName' text="${pro.product_name}">
+										</c:otherwise>
+									</c:choose>
+								</td>
+							</tr>
 						</c:if>
 					</c:forEach>
 				</table>
