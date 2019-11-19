@@ -76,6 +76,107 @@
   } );
 </script>
 
+<!-- 報表查詢(依日期) -->
+<script type="text/javascript">
+
+jq1(document).ready(function(){
+	var company_id =jq1("#company_id").val();
+	jq1(".clickmeC").click(function() {
+		jq1.ajax({
+			url:"queryOrderByStatus",
+			data:{
+				key1:jq1("#from").val(),
+				key2:jq1("#to").val(),
+				key3:company_id,
+				key4:jq1("#status1").val()
+			},
+// 			dataType: "text",
+			type:"post",
+			success:function (data){
+// 				alert(data);
+ 				unprocessedOrder(data);
+			}
+		});
+	});
+});
+function unprocessedOrder(data) {
+	 	
+		var unprocess=JSON.parse(data);
+		var txt ="<tr><th>訂單日期</th><th>訂單編號</th><th>訂購人</th><th>收貨人</th><th>地址</th><th>出貨日期</th>";
+		for(i=0;i<unprocess.length;i++){
+			var order_date = "";
+			if(unprocess[i].order_date != '' && typeof unprocess[i].order_date != 'undefined'){
+				var v1 = new Date(unprocess[i].order_date);
+				order_date = v1.getFullYear()+"-"+(v1.getMonth()+1)+"-"+addZero(v1.getDate(),2)+" "+addZero(v1.getHours(),2)+":"+addZero(v1.getMinutes(),2)+":"+addZero(v1.getSeconds(),2);
+			}
+			
+			var ship_date = "";
+			if(unprocess[i].ship_date){
+				var v1 = new Date(unprocess[i].ship_date);
+				ship_date = v1.getFullYear()+"-"+(v1.getMonth()+1)+"-"+addZero(v1.getDate(),2)+" "+addZero(v1.getHours(),2)+":"+addZero(v1.getMinutes(),2)+":"+addZero(v1.getSeconds(),2);
+			}
+			txt +="<tr style='background-color:#F0F0F0;' id='title"+i+"'><td>"+ order_date;
+			txt +="<td>"+unprocess[i].order_id;
+			txt +="<td>"+unprocess[i].member_id;
+			txt +="<td>"+unprocess[i].recipient;
+			txt +="<td>"+unprocess[i].address;
+			txt +="<td><a style='padding-right: 30px;' href='#' onclick='queryDetail(" +i+ ")'>訂單明細<input type='hidden' id='order_id"+i+"' value=\""+unprocess[i].order_id+"\"><img src='img/arrowdown.png'></a>"+ship_date;
+			txt +="<tr>";
+		}
+		document.getElementById("dataTable").innerHTML=txt;
+	}
+	
+function addZero(p,n) {
+	 var s = p.toString();
+
+	for(var i=0;i<s.length;i++){
+		 if(s.length<n){
+				s="0"+s;
+			}else{
+				return s;
+			}
+	}
+	
+}
+
+</script>
+<script>
+	function queryDetail(p) {
+		if(jq1(".title"+p).length>0){
+			jq1(".title"+p).remove();
+		}
+		else{
+		jq1.ajax({
+			url:"queryDetail",
+			data:{
+				key1:jq1("#order_id"+p).val(),
+			},
+			type:"post",
+			success:function (data){
+// 				alert(data);
+ 				showDetail(data,p);
+			}
+		});
+		}
+	}
+// 報表訂單明細
+function showDetail(data,p) {
+ 	 	
+		var empss=JSON.parse(data);
+		var txt ="<tr class='title" + p + "'><th></th><th>產品編號</th><th>產品名稱</th><th>數量</th><th>金額</th>";
+		for(i=0;i<empss.length;i++){
+			txt += "<tr class='title" + p + "'><td></td>";
+			txt += "<td>"+empss[i].product_id+"</td>";
+			txt += "<td>"+empss[i].product_name+"</td>";
+			txt += "<td>"+empss[i].amount+"</td>";
+			txt += "<td>"+empss[i].total+"</td>";	
+			txt += "<td></td></tr>"
+			}
+		$("#title" + p).after(txt);
+		}
+</script>
+
+
 <!-- Charts Circle start -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -85,7 +186,7 @@
     
     jq1(document).ready(function(){
 		var company_id =jq1("#company_id").val();
-		jq1("#clickmeS").click(function() {
+		jq1(".clickmeC").click(function() {
 			jq1.ajax({
     			url:"companyOrderAmount",
     			data:{
@@ -97,7 +198,7 @@
     			type:"post",
     			success:function (result){
     				console.log(result);
-    				alert(result)
+//     				alert(result)
     			google.charts.load("current", {packages:["corechart"]});
     			google.charts.setOnLoadCallback(function(){
     				drawChart(result)
@@ -109,7 +210,7 @@
 		 function drawChart(result) {
 		        var data =new  google.visualization.DataTable();
 		       data.addColumn("string","product_name");
-		       data.addColumn("number","amount");
+		       data.addColumn("number","總計數量");
 		       var dataArray=[];
 		       jq1.each(result,function(i,obj){
 		    	   dataArray.push([obj.product_name,obj.amount]);
@@ -118,17 +219,19 @@
 		        
 		        var piechart_options = {
 		          title: '銷售紀錄(圓餅圖)',
-		          width:600,
-		          height:600
+		          width:500,
+		          height:500,
+		          is3D: true,
+		          chartArea:{left:60,top:60,width:'100%',height:'100%'}
 		        };
 		        var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
 		         piechart.draw(data,piechart_options);
 		         
 		         var barchart_options ={
 		        	title:'銷售紀錄(長條圖)',
-		        	width:600,
-		        	height:600,
-		        	legend:'none'
+		        	width:500,
+		        	height:500,
+		        	chartArea:{left:60,top:60,width:'60%',height:'60%'}
 		         };
 		         var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
 				 barchart.draw(data, barchart_options);
@@ -140,6 +243,19 @@
 <!-- Charts Circle end -->
 <!-- Charts start -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+<!-- jQuery切換視窗 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  jq1( function() {
+	  jq1( "#tabs" ).tabs();
+  } );
+  </script>
 
 
 </head>
@@ -188,7 +304,7 @@
 
 			<!-- Nav Item - 統計報表 -->
 			<li class="nav-item active"><a class="nav-link" href="companyOrderCharts"> <i
-					class="fas fa-fw fa-chart-area"></i> <span>銷售圖表</span></a></li>
+					class="fas fa-fw fa-chart-area"></i> <span>銷售報表</span></a></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
@@ -429,7 +545,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">銷售報表</h1>
+					<h1 class="h3 mb-2 text-gray-800">銷售報表查詢</h1>
 					<p class="mb-4">
 						<a>ORDER CHARTS</a>.
 					</p>
@@ -440,18 +556,49 @@
 					<input type="hidden" value='${CompanyLoginOK.company_id}' name='company_id' id='company_id'> 
 					<label for="to">~訂單迄日</label> 
 					<input type="text" id="to" name="enddate">
+					<input type="hidden" id='status1' value="3">
 					</a> 
 					<a style='padding-right: 100px;'>
-						<button id='clickmeS'>查詢</button>
+						<button id='clickmeS' class='clickmeC'>查詢</button>
 					</a> 
 				</div>
-					<!-- CHARTS CIRCLE -->
-				<table class='columns'>
+				<div id="tabs">
+  			<ul>
+    			<li><a href="#tabs-1">銷售報表</a></li>
+    			<li><a href="#tabs-2">銷售圖表</a></li>
+  			</ul>
+  			<div id="tabs-1">
+    			
+    		<div class="card shadow mb-4">
+			<div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" scellspacing="0">
+    			</table>
+    		</div>
+    		</div>
+    		</div>
+    			
+  			</div>
+  			<div id="tabs-2">
+   				<table class='columns'>
 				 	<tr>
-				 		<td><div  id='piechart_div' style="border:1px solid #ccc;"></div></td>
+				 		<td style='padding-right: 60px;'><div  id='piechart_div' style="border:1px solid #ccc;"></div></td>
+		                
 		                <td><div id='barchart_div' style="border:1px solid #ccc"></div></td>
 					</tr>
 				</table>
+            </div>
+           
+</div>
+				
+				
+					<!-- CHARTS CIRCLE -->
+<!-- 				<table class='columns'> -->
+<!-- 				 	<tr> -->
+<!-- 				 		<td><div  id='piechart_div' style="border:1px solid #ccc;"></div></td> -->
+<!-- 		                <td><div id='barchart_div' style="border:1px solid #ccc"></div></td> -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
 				<!-- /.container-fluid -->
 
 			</div>

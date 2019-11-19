@@ -38,41 +38,29 @@
 <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- 判斷日期格式 -->
-
 <script>
-var jq1=$.noConflict();
-// function push1() {
-// 		$("#title1").click(function() {
-// 			$("#panel").slideToggle("slow");
-		
-// 	});
-// }
-</script>
-
-<script>
-	function detail(index) {
-		if($(".title" + index).length > 0){
-			$(".title" + index).remove();
-		}else{
-			jq1.ajax({
-				url:"queryDetail",
-				data:{
-					key1:jq1("#order_id"+index).val()    				
-				},
-				type:"post",
-				success:function (data){
+function detail(index) {
+	if($(".title" + index).length > 0){
+		$(".title" + index).remove();
+	}else{
+		$.ajax({
+			url:"queryDetail",
+			data:{
+				key1:$("#order_id"+index).val()    				
+			},
+			type:"post",
+			success:function (data){
 // 					alert(data);
-	 				showDetail(data, index);
-				}
-			});
-		}
+ 				showDetail(data, index);
+			}
+		});
 	}
+}
 	function showDetail(data, index) {
 		var empss=JSON.parse(data);
 		var txt ="<tr class='title" + index + "'><th></th><th>產品編號</th><th>產品名稱</th><th>數量</th><th>單價</th></tr>";
 		for(i=0;i<empss.length;i++){	
-			txt +="<tr class='title" + index + "'><td></td>";
+			txt +="<tr class='title" + index + "'><td>";
 			txt +="<td>"+empss[i].product_id+"</td>";
 			txt +="<td>"+empss[i].product_name+"</td>";
 			txt +="<td>"+empss[i].amount+"</td>";
@@ -81,11 +69,7 @@ var jq1=$.noConflict();
 		$("#title" + index).after(txt);
 	}
 
-
 </script>
-
-
-
 
 
 </head>
@@ -104,7 +88,7 @@ var jq1=$.noConflict();
 					<i class=""></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-				pET ʕ•ᴥ•ʔ<br> 廠商後台管理
+					pET ʕ•ᴥ•ʔ<br> 廠商後台管理
 				</div>
 			</a>
 			<!-- Divider -->
@@ -134,7 +118,7 @@ var jq1=$.noConflict();
 
 			<!-- Nav Item - 統計報表 -->
 			<li class="nav-item"><a class="nav-link" href="companyOrderCharts"> <i
-					class="fas fa-fw fa-chart-area"></i> <span>銷售圖表</span></a></li>
+					class="fas fa-fw fa-chart-area"></i> <span>銷售報表</span></a></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
@@ -387,52 +371,48 @@ var jq1=$.noConflict();
 						</div>
 					<!-- DataTales Example -->
 
-					<div class="card shadow mb-4">
-
-						            <div class="card-body">
+		<div class="card shadow mb-4">
+			<div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <tr>
                   <thead>
                     <tr>
-                      <th>訂單編號</th><th>訂單日期</th><th>訂購明細</th><th>訂購人</th><th>收件人</th>
-                      <th>寄送地址</th><th>總金額</th><th>接單</th><th>
+                      <th>訂單編號</th><th>訂購日期</th><th>訂購人</th><th>收件人</th>
+                      <th>寄送地址</th><th>總金額</th><th>接單</th>
                     </tr>
                   </thead>
-                    <c:forEach items="${unprocessedOrder}" var="p1" varStatus="s" >
+                  <tbody>
+                    <c:forEach items="${unprocessedOrder}" var="p1" varStatus="s">
 								<tr style="background-color: #F0F0F0;" id='title${s.index}'>
-									<td>${p1.order_id}
-									<td>${p1.order_date}
-									<td><a href='#' onclick='detail(${s.index});'><input type="hidden" id='order_id${s.index}' name='order_id' value="${p1.order_id}"><img src='img/arrowdown.png'></a></td>
-									<td>${p1.member_id}
-									<td>${p1.recipient}
-									<td>${p1.address}
-									<td>${p1.total}
-									<td>
-									
+								    <td>${p1.order_id}</td>
+									<td>${p1.order_date}</td>									
+									<td>${p1.member_id}</td>
+									<td>${p1.recipient}</td>
+									<td>${p1.address}</td>
+									<td>${p1.total}</td>
+									<td>									
 									<form method="post" action="${pageContext.request.contextPath}/processed">
+									<a style='padding-right: 20px;' href='#' onclick='detail(${s.index});'>訂購明細<input type="hidden" id='order_id${s.index}' name='order_id' value="${p1.order_id}"><img src='img/arrowdown.png'></a>
 									<input type="submit" value='接單' onclick="return confirm('訂單編號${p1.order_id}，確定要接單嗎?')">
 									<input type="hidden" name="order_id" value="${p1.order_id}"> 
 									<input type="hidden" value="${p1.status}" name='status'>
-									<input type="hidden" value="${p1.company_id}" name='company_id'>							
+									<input type="hidden" value="${p1.company_id}" name='company_id'>
 									</form>
+									
+									</td>
+									
 									<c:set var="count" value="${s.count}" />
-						
-	
-						</c:forEach>
+					</c:forEach>
+							</tbody>
 				</table>
-			
-				
 				<h3 class="count1">共${count}筆商品資料</h3>      
               </div>
             </div>
           </div>
-				</div>
+		</div>
 				<!-- /.container-fluid -->
-
-			</div>
+		</div>
 			<!-- End of Main Content -->
-
 			<!-- Footer -->
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">

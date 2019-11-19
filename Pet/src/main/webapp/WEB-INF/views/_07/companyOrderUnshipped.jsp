@@ -121,7 +121,7 @@ function detail(index) {
 
 			<!-- Nav Item - 統計報表 -->
 			<li class="nav-item"><a class="nav-link" href="companyOrderCharts"> <i
-					class="fas fa-fw fa-chart-area"></i> <span>銷售圖表</span></a></li>
+					class="fas fa-fw fa-chart-area"></i> <span>銷售報表</span></a></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
@@ -376,12 +376,12 @@ function detail(index) {
 
 					<div class="card shadow mb-4">
 
-						            <div class="card-body">
+			<div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>訂單編號</th><th>訂購日期</th><th>訂購明細</th><th>訂購人</th><th>收件人</th>
+                      <th>訂單編號</th><th>訂購日期</th><th>訂購人</th><th>收件人</th>
                       <th>寄送地址</th><th>總金額</th><th>出貨</th>
                     </tr>
                   </thead>
@@ -391,12 +391,11 @@ function detail(index) {
 									<form method="post" action="${pageContext.request.contextPath}/changeToShipped"></a>
 									<td>${p1.order_id}</td>
 									<td><input type="hidden" id='order_date' name='order_date' value="${p1.ship_date}">${p1.order_date}
-									<td><a href='#' onclick='detail(${s.index});'><input type="hidden" id='order_id${s.index}' name='order_id' value="${p1.order_id}"><img src='img/arrowdown.png'></a></td>
 									<td><input type="hidden" id='member_id' name='member_id' value="${p1.member_id}}">${p1.member_id}
 									<td><input type="hidden" id='recipient' name='recipient' value="${p1.recipient}}">${p1.recipient}
 									<td><input type="hidden" id='address' name='address' value="${p1.address}}">${p1.address}
 									<td><input type="hidden" id='total' name='total' value="${p1.total}}">${p1.total}
-									<td>
+									<td><a style="padding-right: 20px;" href='#' onclick='detail(${s.index});'>訂單明細<input type="hidden" id='order_id${s.index}' name='order_id' value="${p1.order_id}"><img src='img/arrowdown.png'></a>
 									<input type="submit" value='出貨' onclick="return confirm('訂單編號${p1.order_id}，確認出貨嗎?')">
 									<input type="hidden" name="order_id" value="${p1.order_id}"> 
 									<input type="hidden" value="${p1.status}" name='status'>

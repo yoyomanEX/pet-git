@@ -223,7 +223,7 @@ function showDetail(data,p) {
 
 			<!-- Nav Item - 統計報表 -->
 			<li class="nav-item"><a class="nav-link" href="companyOrderCharts"> <i
-					class="fas fa-fw fa-chart-area"></i> <span>銷售圖表</span></a></li>
+					class="fas fa-fw fa-chart-area"></i> <span>銷售報表</span></a></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
