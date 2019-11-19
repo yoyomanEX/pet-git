@@ -46,6 +46,27 @@
 		//     	return false;
 		//     	}
 	}
+	function room() {
+		window
+				.open(
+						'dogroom',
+						'newwindow',
+						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+	}
+	function catroom() {
+		window
+				.open(
+						'catroom',
+						'newwindow',
+						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+	}
+	function petroom() {
+		window
+				.open(
+						'petroom',
+						'newwindow',
+						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+	}
 </script>
 
 
@@ -100,15 +121,14 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-cog"></i> <span>文章後台</span>
+				aria-expanded="true" aria-controls="collapseTwo"> <i class="far fa-edit"></i> <span>文章後台</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">文章管理</h6>
-						<a class="collapse-item" href="<spring:url value="/article"/>">文章列表</a>
-						<a class="collapse-item" href="<spring:url value="myblog"/>">我的部落格首頁</a>
+						<a class="collapse-item" href="<spring:url value='/article'/>">文章列表</a>
+						<a class="collapse-item" href="<spring:url value='myblog'/>">我的部落格首頁</a>
 
 					</div>
 				</div></li>
@@ -128,6 +148,27 @@
 							class="collapse-item" href="waiting">等候回覆</a>
 					</div>
 				</div></li>
+
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseOne"
+				aria-expanded="true" aria-controls="collapseOne"> <i
+					class="fas fa-paw"></i> <span>寵物聊天室</span>
+			</a>
+				<div id="collapseOne" class="collapse"
+					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a href='#' class="collapse-item" onclick="room()"><i
+							class="fas fa-dog"></i>汪汪聊天室</a> <a href='#' class="collapse-item"
+							onclick="catroom()"><i class="fas fa-cat"></i> 喵喵聊天室</a> <a
+							href='#' class="collapse-item" onclick="petroom()"><i
+							class="fas fa-hippo"></i> PET聊天室</a>
+					</div>
+				</div></li>
+				
+						<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"> <i
+					class="fas fa-paw"></i> <span>會員訂單</span></a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">

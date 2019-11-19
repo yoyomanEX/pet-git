@@ -1,11 +1,12 @@
 package com.web.service.impl._07;
 
 import java.util.ArrayList;
-
+import java.util.Map;
 
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.model._07.MemberOrderBean;
+import com.web.model._07.MemberOrderDetailBean;
 
 public interface MemberOrderService {
 
@@ -35,6 +36,9 @@ public interface MemberOrderService {
 
 	//搜尋全部未處理訂單(依照日期起訖日、company_id、商品狀態來判斷)
 	ArrayList<MemberOrderBean> queryAllOrderByStatus(String p1, String d1, String d2, Integer s1);
-
+	
+//	MemberOrderBean queryProductAmountByDate(String p1, String d1, String d2);
+	
+	ArrayList<MemberOrderDetailBean> queryOrderProductTotalAmount(String p1, String p2, String p3);
 }
 

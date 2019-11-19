@@ -53,6 +53,16 @@ public class InfoController {
 		return "_08/hospitals";
 	}
 
+	// URL為 /hospitals, 搭配 GET方法可以傳回所有hospital紀錄。
+	// produces屬性說明產生之資料的格式: produces ="text/html"
+	// 本方法可以html格式傳回所有Hospital紀錄
+	@RequestMapping(value = "/hospitalsFront", method = RequestMethod.GET, produces = "text/html")
+	public String qryAllHospitalsFront(Model model, HttpServletRequest req) {
+		List<HospitalBean> hospitals = hosService.qryAllHospital();
+		model.addAttribute("allHospitals", hospitals);
+		return "_08/showHospitals";
+	}
+
 	// 送回可以新增hospital資料的空白表單
 	@RequestMapping(value = "/getEmptyHospitalForm", method = RequestMethod.GET)
 	public String inputBlank(Model model) {
@@ -68,7 +78,7 @@ public class InfoController {
 		return "redirect: hospitals";
 	}
 
-	// 以JSON格式顯示單筆Member資料
+	// 以JSON格式顯示單筆hospital資料
 	@RequestMapping(value = "hospitals/{hosId}.json", method = RequestMethod.GET, produces = "application/json")
 	public String displayHospitalJSON(@PathVariable Integer hosId, Model model) {
 		HospitalBean hosBean = hosService.qryHospitalById(hosId);
@@ -85,7 +95,7 @@ public class InfoController {
 		return "redirect: hospitals";
 	}
 
-	// URL為 /members, 搭配 GET方法可以傳回所有會員紀錄。
+	// URL為 /hospitals, 搭配 GET方法可以傳回所有會員紀錄。
 	// produces屬性說明產生之資料的格式: produces = "application/json"
 	// 本方法可以JSON格式傳回所有Member紀錄
 	@RequestMapping(value = "/hospitals", method = RequestMethod.GET, produces = "application/json")
@@ -135,7 +145,7 @@ public class InfoController {
 //------	Hospital Table Controller End	-----//
 
 //------	Hotel Table Controller Start	-----//
-	
+
 	// URL為 /hotels, 搭配 GET方法可以傳回所有hotel紀錄。
 	// produces屬性說明產生之資料的格式: produces = "application/json"
 	// 本方法可以JSON格式傳回所有hotels紀錄
@@ -155,6 +165,16 @@ public class InfoController {
 		List<HotelBean> hotels = hotService.qryAllHotel();
 		model.addAttribute("allHotels", hotels);
 		return "_08/hotels";
+	}
+
+	// URL為 /hotels, 搭配 GET方法可以傳回所有hotels紀錄。
+	// produces屬性說明產生之資料的格式: produces ="text/html"
+	// 本方法可以html格式傳回所有hotels紀錄
+	@RequestMapping(value = "/hotelsFront", method = RequestMethod.GET, produces = "text/html")
+	public String queryAllHotelFront(Model model, HttpServletRequest req) {
+		List<HotelBean> hotels = hotService.qryAllHotel();
+		model.addAttribute("allHotels", hotels);
+		return "_08/showHotels";
 	}
 
 	// 送回可以新增hotel資料的空白表單
@@ -207,7 +227,7 @@ public class InfoController {
 
 	// 刪除單筆hotel資料
 	@RequestMapping(value = "/hotels/{hotId}", method = RequestMethod.DELETE)
-	public String deleteHotels(@RequestBody  HotelBean hotBean, Model model, HttpServletRequest req) {
+	public String deleteHotels(@RequestBody HotelBean hotBean, Model model, HttpServletRequest req) {
 		hotService.deleteHotel(hotBean);
 		return "redirect: " + req.getContextPath() + "/_08/hotels";
 	}
@@ -222,7 +242,7 @@ public class InfoController {
 //------	Hotel Table Controller End	-----//
 
 //------	Restaurant Table Controller Start	-----//
-	
+
 	// URL為 /restaurants, 搭配 GET方法可以傳回所有Res紀錄。
 	// produces屬性說明產生之資料的格式: produces = "application/json"
 	// 本方法可以JSON格式傳回所有restaurants紀錄
@@ -242,6 +262,16 @@ public class InfoController {
 		List<RestaurantBean> restaurants = resService.qryAllRestaurant();
 		model.addAttribute("allrestaurants", restaurants);
 		return "_08/restaurants";
+	}
+
+	// URL為 /restaurants, 搭配 GET方法可以傳回所有restaurants紀錄。
+	// produces屬性說明產生之資料的格式: produces ="text/html"
+	// 本方法可以html格式傳回所有restaurants紀錄
+	@RequestMapping(value = "/resFront", method = RequestMethod.GET, produces = "text/html")
+	public String queryAllResFront(Model model, HttpServletRequest req) {
+		List<RestaurantBean> restaurants = resService.qryAllRestaurant();
+		model.addAttribute("allrestaurants", restaurants);
+		return "_08/showRes";
 	}
 
 	// 送回可以新增restaurants資料的空白表單
@@ -294,7 +324,7 @@ public class InfoController {
 
 	// 刪除單筆Res資料
 	@RequestMapping(value = "/restaurants/{resId}", method = RequestMethod.DELETE)
-	public String deleterestaurants(@RequestBody  RestaurantBean resBean, Model model, HttpServletRequest req) {
+	public String deleterestaurants(@RequestBody RestaurantBean resBean, Model model, HttpServletRequest req) {
 		resService.deleteRestaurant(resBean);
 		return "redirect: " + req.getContextPath() + "/_08/restaurants";
 	}
@@ -305,7 +335,6 @@ public class InfoController {
 		resService.updateRestaurant(resBean, resId);
 		return "redirect: " + req.getContextPath() + "/_08/restaurants";
 	}
-
 
 //------	Restaurant Table Controller End	-----//
 

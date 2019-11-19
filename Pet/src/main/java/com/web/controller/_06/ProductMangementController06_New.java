@@ -60,7 +60,7 @@ public class ProductMangementController06_New {
 	}
 	
 	/**
-	 * 判別傳入字串回傳DB內相同資料 查詢商品資料
+	 * 判別傳入字串回傳DB內相同資料，查詢商品資料
 	 * @param petBean
 	 */
 
@@ -73,10 +73,14 @@ public class ProductMangementController06_New {
 	}
 	
 	
+	/**
+	 * 判別傳入字串回傳DB內相同資料，查訂單資料
+	 * @param petBean
+	 */
+	
 	@RequestMapping("/queryOrder")
 	public String orderQuery(HttpServletRequest request,Model model) throws Exception {
 		String orderSearch = request.getParameter("orderSearch");
-		System.out.println("orderSearch="+orderSearch);
 		List<OrderBean> orderList = petDao.queryOrder(orderSearch);
 		List <OrderDetailBean>orderDetailBeans =petDao.totalOrderDetail();	
 		model.addAttribute("orderList", orderList);
@@ -213,6 +217,10 @@ public class ProductMangementController06_New {
 		return "_06/PetProductsAll";
 	}
 
+	/*
+	 *  取得輸入的新增商品名稱執行資料庫查找，回復資料後跳回商品頁
+	 */
+	
 	@RequestMapping("/petProductQueryName")
 	public String petProductQueryName(HttpServletRequest request, Model model) throws SQLException {
 		String productName = request.getParameter("productName");
@@ -220,16 +228,21 @@ public class ProductMangementController06_New {
 		model.addAttribute("pbs", petBean);
 		return "06_/PetProductsAll";
 	}
+	
+	/*
+	 * 返回至訂單管理頁
+	 */
 
 	@RequestMapping("/shippingManagement")
 	public String shippingManagement(HttpServletRequest request, Model model) throws SQLException {
-		String productName = request.getParameter("productName");
-		List<PetBean06> petBean = petDao.queryAllName(productName);
-		model.addAttribute("pbs", petBean);
 		return "_06/ShippingManagement";
 	}
 	
 	
+	
+	/*
+	 * 查詢未出貨訂單
+	 */
 	@RequestMapping("/unshippedOrder")
 	public String unshippedOrder(HttpServletRequest request, Model model) throws SQLException {
 		List <OrderBean> orderBeans = petDao.unshippedOrder();
@@ -240,7 +253,7 @@ public class ProductMangementController06_New {
 	}
 	
 	/**
-	 * 安排出貨 插入出貨時間後回傳
+	 * 安排出貨 插入出貨時間後回傳，訂單將移入已出貨訂單
 	 */
 	@RequestMapping("/insertShippedDate")
 	public String insertShippedDate(HttpServletRequest request, Model model) throws SQLException {
@@ -253,9 +266,27 @@ public class ProductMangementController06_New {
 		return "_06/ShippingManagement";
 	}
 	
+	/*
+	 * 查詢已出貨訂單
+	 */
+	
 	@RequestMapping("/shippedOrder")
 	public String shippedOrder(HttpServletRequest request, Model model) throws SQLException {
 		List <OrderBean> orderBeans = petDao.shippedOrder();
+		List <OrderDetailBean>orderDetailBeans =petDao.totalOrderDetail();	
+		model.addAttribute("orderList", orderBeans);
+		model.addAttribute("orderListDetail", orderDetailBeans);
+		return "_06/ShippingManagement";
+	}
+	
+	
+	/*
+	 * 查詢付款失敗訂單
+	 */
+	
+	@RequestMapping("/errorOrder")
+	public String errorOrder(HttpServletRequest request, Model model) throws SQLException {
+		List <OrderBean> orderBeans = petDao.errorOrder();
 		List <OrderDetailBean>orderDetailBeans =petDao.totalOrderDetail();	
 		model.addAttribute("orderList", orderBeans);
 		model.addAttribute("orderListDetail", orderDetailBeans);

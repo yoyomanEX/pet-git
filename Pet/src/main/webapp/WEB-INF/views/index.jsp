@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="utf-8">
@@ -70,10 +70,10 @@
 								id="navbarSupportedContent">
 								<ul class="navbar-nav">
 									<li class="nav-item active"><a class="nav-link active"
-										href="index.jsp">Home</a></li>
-									<li class="nav-item"><a href="travel.jsp" class="nav-link">𨑨迌
+										href="#">Home</a></li>
+									<li class="nav-item"><a href="_08/announcements__Front" class="nav-link">𨑨迌
 											食飯</a></li>
-									<li class="nav-item"><a href="#" class="nav-link">交朋友</a>
+									<li class="nav-item"><a href="_08/contents_Front" class="nav-link">交朋友</a>
 									</li>
 									<li class="nav-item">
 									<a href="<spring:url value='/06/petProductSale'/>" class="nav-link">PET陪你購物</a>
@@ -84,10 +84,12 @@
 									<li class="nav-item dropdown"><a
 										class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 										role="button" data-toggle="dropdown" aria-haspopup="true"
-										aria-expanded="false"> PET PET 醫療站 </a>
+										aria-expanded="false"> PET PET 資訊欄 </a>
 										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-											<a class="dropdown-item" href="hospital.jsp">醫院資訊</a> <a
-												class="dropdown-item" href="question.jsp">PET PET Q&A</a>
+											<a class="dropdown-item" href="_08/hospitalsFront">醫院資訊</a>
+											<a class="dropdown-item" href="_08/hotelsFront">旅館資訊</a> 
+											<a class="dropdown-item" href="_08/resFront">餐廳資訊</a>  
+											<a class="dropdown-item" href="question.jsp">PET PET Q&A</a>
 										</div></li>
 									<li class="nav-item"><a href="contact.html"
 										class="nav-link">Contact</a></li>
@@ -235,70 +237,72 @@
 
 	<!-- 瀑布流文章 waterfall content here -->
 
-						<div id="#">
-							<div class="#">
-								<img src="img/waterfall/1">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/2">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/3">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/4">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/5">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/6">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/7">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/8">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/9">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/10">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/11">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/12">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/13">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/14">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/15">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/16">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/17">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/18">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/19">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/20">
-							</div>
-						</div>
+<!-- 						<div id="#"> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/1"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/2"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/3"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/4"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/5"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/6"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/7"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/8"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/9"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/10"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/11"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/12"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/13"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/14"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/15"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/16"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/17"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/18"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/19"> -->
+<!-- 							</div> -->
+<!-- 							<div class="#"> -->
+<!-- 								<img src="img/waterfall/20"> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 					
 	<!-- waterfall content end -->
+	<!--Announcement part start::-->
+    <!-- Announcement part end-->
 
 	<!-- footer part start-->
 	<footer class="footer_area padding_top">

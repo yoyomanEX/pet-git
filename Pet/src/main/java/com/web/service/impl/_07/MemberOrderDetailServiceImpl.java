@@ -26,4 +26,5 @@ public class MemberOrderDetailServiceImpl implements MemberOrderDetailService {
 	public ArrayList<MemberOrderDetailBean> queryByOrderId(MemberOrderDetailBean p1) {
 		return eDao.queryByOrderId(p1);
 	}
+
 }

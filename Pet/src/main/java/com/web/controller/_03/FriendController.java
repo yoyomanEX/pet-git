@@ -10,15 +10,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.model._01.MemberBean;
+import com.web.model._02.ArticleBean;
 import com.web.model._03.FriendBean;
 import com.web.model._03.MemberData;
+import com.web.service.impl._02.ArticleService;
 import com.web.service.impl._03.FriendService;
 
 @Controller
@@ -30,6 +31,12 @@ public class FriendController {
 		this.service = service;
 	}
 
+	ArticleService Artservice;
+
+	@Autowired
+	public void setArtService(ArticleService Artservice) {
+		this.Artservice = Artservice;
+	}
 	ServletContext context;
 
 	@Autowired
@@ -41,8 +48,20 @@ public class FriendController {
 	}
 	
 	@RequestMapping("/index")
-	public String test() {
+	public String index() {
 		return "index";
+	}
+	@RequestMapping("/404")
+	public String test() {
+		return "_03/404";
+	}
+	
+	@RequestMapping("/memberblog/{member_Id}")
+	public String getProductsByCategory(@PathVariable("member_Id") String member_Id, Model model) {
+		List<ArticleBean> art = Artservice.getArticlesByMemberNo(member_Id);
+
+		model.addAttribute("arts", art);
+		return "_03/memberblog";
 	}
 
 	@RequestMapping("/friendlist")

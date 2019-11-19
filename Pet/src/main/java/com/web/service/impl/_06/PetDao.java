@@ -151,16 +151,18 @@ public class PetDao implements PetInterface {
 		String qryStmt = "select * from member_order where member_id like ? or order_id like ?";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(qryStmt, "%" + queryOrder + "%", "%" + queryOrder + "%");
 		for (Map<String, Object> row : rows) {
-			System.out.println(row);
 			OrderBean ob = new OrderBean();
 			ob.setOrder_id(String.valueOf(row.get("order_id")));
 			ob.setAddress((String) row.get("address"));
 			ob.setMember_id((String) row.get("member_id"));
-			ob.setPhone((String) row.get("userPhone"));
+			ob.setPhone((String) row.get("phone"));
 			ob.setRecipient((String) row.get("recipient"));
 			ob.setOrder_date((Date) row.get("order_date"));
 			ob.setTotal((int) row.get("total"));
 			ob.setShip_date((Date) row.get("ship_date"));
+			ob.setStatus((int) row.get("status"));
+			ob.setPayment_status((int) row.get("payment_status"));
+			ob.setMerchant_no((String) row.get("merchant_no"));
 			orderBean.add(ob);
 		}
 		return orderBean;
@@ -220,7 +222,11 @@ public class PetDao implements PetInterface {
 		int productId = keyHolder.getKey().intValue();
 		return productId;
 	}
-
+	
+	
+	/*
+	 * 更改商品上架狀態 
+	 */
 	@Override
 	public void changeStatus(int productId, int status) throws SQLException {
 		if (status == 1) {
@@ -248,21 +254,28 @@ public class PetDao implements PetInterface {
 			ob.setOrder_id(String.valueOf(row.get("order_id")));
 			ob.setAddress((String) row.get("address"));
 			ob.setMember_id((String) row.get("member_id"));
-			ob.setPhone((String) row.get("userPhone"));
+			ob.setPhone((String) row.get("phone"));
 			ob.setRecipient((String) row.get("recipient"));
 			ob.setOrder_date((Date) row.get("order_date"));
 			ob.setTotal((int) row.get("total"));
 			ob.setShip_date((Date) row.get("ship_date"));
+			ob.setStatus((int) row.get("status"));
+			ob.setPayment_status((int) row.get("payment_status"));
+			ob.setMerchant_no((String) row.get("merchant_no"));
 			orderBean.add(ob);
 		}
 		return orderBean;
 	}
 
+	/*
+	 * 確認已出貨完成訂單
+	 */
+	
 	@Override
 	public List<OrderBean> shippedOrder() throws SQLException {
 		List<OrderBean> orderBean = new ArrayList<>();
 
-		// 判斷目前出貨日期是空值的話即為未出貨
+		// 判斷目前出貨日期不是空值的話即為已經出貨
 		String sql = "select * from member_order where ship_date is not null";
 
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
@@ -271,16 +284,49 @@ public class PetDao implements PetInterface {
 			ob.setOrder_id(String.valueOf(row.get("order_id")));
 			ob.setAddress((String) row.get("address"));
 			ob.setMember_id((String) row.get("member_id"));
-			ob.setPhone((String) row.get("userPhone"));
+			ob.setPhone((String) row.get("phone"));
 			ob.setRecipient((String) row.get("recipient"));
 			ob.setOrder_date((Date) row.get("order_date"));
 			ob.setTotal((int) row.get("total"));
 			ob.setShip_date((Date) row.get("ship_date"));
+			ob.setStatus((int) row.get("status"));
+			ob.setPayment_status((int) row.get("payment_status"));
+			ob.setMerchant_no((String) row.get("merchant_no"));
 			orderBean.add(ob);
 		}
 		return orderBean;
 	}
 
+	
+	/*
+	 * 確認失敗訂單(付款狀態為3的訂單即為失敗)
+	 */
+	
+	@Override
+	public List<OrderBean> errorOrder() throws SQLException {
+		List<OrderBean> orderBean = new ArrayList<>();
+
+		// 判斷目前出貨日期不是空值的話即為已經出貨
+		String sql = "select * from member_order where payment_status =3";
+
+		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
+		for (Map<String, Object> row : rows) {
+			OrderBean ob = new OrderBean();
+			ob.setOrder_id(String.valueOf(row.get("order_id")));
+			ob.setAddress((String) row.get("address"));
+			ob.setMember_id((String) row.get("member_id"));
+			ob.setPhone((String) row.get("phone"));
+			ob.setRecipient((String) row.get("recipient"));
+			ob.setOrder_date((Date) row.get("order_date"));
+			ob.setTotal((int) row.get("total"));
+			ob.setShip_date((Date) row.get("ship_date"));
+			ob.setStatus((int) row.get("status"));
+			ob.setPayment_status((int) row.get("payment_status"));
+			ob.setMerchant_no((String) row.get("merchant_no"));
+			orderBean.add(ob);
+		}
+		return orderBean;
+	}
 	/*
 	 * 訂單詳情
 	 */
@@ -288,9 +334,9 @@ public class PetDao implements PetInterface {
 	public List<OrderDetailBean> totalOrderDetail() throws SQLException {
 		List<OrderDetailBean> orderDetailBean = new ArrayList<>();
 
-		String sql = "select * from member_order_detail where company_id is null";
+		String sql = "select * from member_order_detail where company_id = ?";
 
-		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
+		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql,"66668888");
 		for (Map<String, Object> row : rows) {
 			OrderDetailBean ob = new OrderDetailBean();
 			ob.setOrder_id(String.valueOf(row.get("order_id")));
@@ -298,17 +344,21 @@ public class PetDao implements PetInterface {
 			ob.setProduct_name((String) row.get("product_name"));
 			ob.setAmount((int) row.get("amount"));
 			ob.setTotal((int) row.get("total"));
-			// ob.setCompany_id((int)row.get("company_id"));
+			ob.setCompany_id((int)row.get("company_id"));
 			orderDetailBean.add(ob);
 		}
 		return orderDetailBean;
 	}
 
+	/**
+	 * 幫已出貨訂單塞入出貨時間
+	 */
+	
 	@Override
 	public void insertShippedDate(String order_id) throws SQLException {
 		Timestamp now = new Timestamp(System.currentTimeMillis());
-		String sql = "update member_order set ship_date =? where order_id =?";
-		jdbcTemplate.update(sql, now, order_id);
+		String sql = "update member_order set ship_date =?, status=? where order_id =?";
+		jdbcTemplate.update(sql, now, 3,order_id);
 
 	}
 
