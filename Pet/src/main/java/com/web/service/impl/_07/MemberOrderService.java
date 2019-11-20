@@ -39,6 +39,6 @@ public interface MemberOrderService {
 	
 //	MemberOrderBean queryProductAmountByDate(String p1, String d1, String d2);
 	
-	ArrayList<MemberOrderDetailBean> queryOrderProductTotalAmount(String p1, String p2, String p3);
+	ArrayList<MemberOrderBean> queryAllOrder();
 }
 

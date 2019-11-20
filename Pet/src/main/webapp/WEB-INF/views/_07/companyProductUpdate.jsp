@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    import="java.util.ArrayList,com.web.model._07.CompanyProductBean"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
@@ -419,7 +418,7 @@ document.addEventListener("DOMContentLoaded",
           <div class="col-lg-7">
             <div class="p-5">
               
-             <jsp:useBean id="product_id" scope="application" class="com.web.model._07.CompanyProductBean"/>
+<%--              <jsp:useBean id="product_id" scope="application" class="com.web.model._07.CompanyProductBean"/> --%>
               <form class="user" id='updatePro' method="post" action="${pageContext.request.contextPath}/companyProductUpdate2" enctype="multipart/form-data">
                   <input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
                   
@@ -429,27 +428,63 @@ document.addEventListener("DOMContentLoaded",
                   <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                    <span>商品名稱</span> <input  type="text" value="${product_id.product_name}" class="form-control form-control-user" name='product_name' id="product_name" placeholder="PRODUCT NAME">
-                  <span id='pName'></span>
+                  <span style='float: right;' id='pName'></span>
                   </div>
                   <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <span>售價</span><input type="text" value="${product_id.price}" class="form-control form-control-user" name="price" id="price" placeholder="PRICE">
-                <span id='pPrice'></span>
+                    <span style='float: right;' id='pPrice'></span>
                 </div>
                  <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <span>數量</span><input type="text" value="${product_id.amount}" class="form-control form-control-user" name="amount" id="amount" placeholder="AMOUNT">
-                 <span id='pAmount'></span>
+                 <span style='float: right;' id='pAmount'></span>
                 </div>
                 	 <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <label class="t1">適用寵物類別</label>
+                  <label class="t1">適用寵物類別</label>
                							 <select name="category">
-               							 <option value='${product_id.category}'>請選擇</option>
-                   						 <option value="1">狗</option>
-                   						 <option value="2">貓</option>
-                    					<option value="3">其他</option>
+               							 <c:choose>
+               							 <c:when test="${product_id.category==1}">
+               							    <option value="1" selected>狗</option>
+                   						    <option value="2">貓</option>
+                   						    <option value="3">其他</option>
+                						</c:when>
+                						<c:when test="${product_id.category==2}">
+               							    <option value="1">狗</option>
+                   						    <option value="2" selected>貓</option>
+                   						    <option value="3">其他</option>
+                						</c:when>
+                						<c:when test="${product_id.category==3}">
+               							    <option value="1" >狗</option>
+                   						    <option value="2" >貓</option>
+                   						    <option value="3" selected>其他</option>
+                						</c:when>
+                						
+                						</c:choose>
                 						</select>
+                  
+                  
+<!--                     <label class="t1">適用寵物類別</label> -->
+<!--                							 <select name="category"> -->
+<%--                							 <c:choose> --%>
+<%--                							 <c:when test="${product_id.category==1}"> --%>
+<!--                							  <option value="1" selected>狗</option> -->
+<!--                    						  <option value="2">貓</option> -->
+<!--                     					  <option value="3">其他</option> -->
+<%--                 						</c:when> --%>
+<%--                 						 <c:when test="${product_id.category==2}"> --%>
+<!--                							  <option value="1">狗</option> -->
+<!--                    						  <option value="2"selected>貓</option> -->
+<!--                     					  <option value="3">其他</option> -->
+<%--                 						</c:when> --%>
+<%--                 						 <c:when test="${product_id.category==3}"> --%>
+<!--                							  <option value="1">狗</option> -->
+<!--                    						  <option value="2">貓</option> -->
+<!--                     					  <option value="3" selected>其他</option> -->
+<%--                 						</c:when> --%>
+<%--                 						</c:choose> --%>
+<!--                 						</select> -->
                 </div>
                  <br>
                  

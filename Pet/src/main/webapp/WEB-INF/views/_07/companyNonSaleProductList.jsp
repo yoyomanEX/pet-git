@@ -331,13 +331,13 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>商品編號</th>
-                      <th>商品圖片</th>
+                      <th style='width:11%;'>商品編號</th>
+                      <th style='width:11%;'>商品圖片</th>
                       <th>商品名稱</th>
-                      <th>售價</th>
-                      <th>數量</th>
+                      <th style='width:11%;'>售價</th>
+                      <th style='width:11%;'>數量</th>
                       <th>商品描述</th>
-                      <th>上架</th>
+                      <th style='width:11%;'>上架</th>
                     </tr>
                   </thead>
 <!--                   <tfoot> -->

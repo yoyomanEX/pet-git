@@ -27,7 +27,16 @@ public class MemberOrderDaoImpl implements MemberOrderDao {
 	public MemberOrderDaoImpl() {
 
 	}
+	//測試用
+	@Override
+	public ArrayList<MemberOrderBean> queryAllOrder() {
+		Session session = factory.getCurrentSession();
+		Query query = session.createQuery("from MemberOrderBean where company_id = 25251111");
+		return (ArrayList<MemberOrderBean>) query.list();
+	}
 
+	
+	
 	// 依日期搜尋訂單
 	@Override
 	public ArrayList<MemberOrderBean> queryAllOrder(String p1, String d1, String d2) {
@@ -94,32 +103,7 @@ public class MemberOrderDaoImpl implements MemberOrderDao {
 		query.executeUpdate();
 
 	}
-	//撈
-//	@Override
-//	public MemberOrderBean queryProductAmountByDate(String p1, String d1, String d2) {
-//		String hql = "from MemberOrderBean where company_id="+ p1 +" and status= 3 and order_date>=" + d1 +"'"
-//				+ "and order_date<="+ d2 +"'";
-//	    Session session = null;
-//	    session = factory.getCurrentSession();
-//	    MemberOrderBean list = (MemberOrderBean)session.createQuery(hql).uniqueResult();
-//	    return list;
-//		
-//	}
+
 	
-	@Override
-	public ArrayList<MemberOrderDetailBean> queryOrderProductTotalAmount(String p1,String p2,String p3) {
-		Session session = factory.getCurrentSession();
-		NativeQuery query = session
-				.createSQLQuery("SELECT 0 as order_id, 0 as company_id,0 as total,member_order_detail.product_id,member_order_detail.product_name"
-						+ ",sum(member_order_detail.amount) as amount "
-						+ "FROM member_order INNER JOIN member_order_detail "
-						+ "ON member_order.order_id = member_order_detail.order_id "
-						+ "where member_order.order_date >= '"+p1+"' "
-						+ "and member_order.order_date <='"+p2+"' "
-						+ "and member_order.company_id='"+p3+"'"
-						+ "and member_order.status = 3"
-						+ "group by member_order_detail.product_id,member_order_detail.product_name");
-		return (ArrayList<MemberOrderDetailBean>) query.addEntity(MemberOrderDetailBean.class).list();
-	}
 
 }

@@ -27,7 +27,10 @@ public interface MemberOrderDao {
 	public void processedUnshippedOrder(MemberOrderBean p1);
 	public void processedShippedOrder(MemberOrderBean p1);
 
-	ArrayList<MemberOrderDetailBean> queryOrderProductTotalAmount(String p1, String p2, String p3);
+	//測試用
+	ArrayList<MemberOrderBean> queryAllOrder();
+
+	
 
 	
 

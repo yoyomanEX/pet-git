@@ -365,9 +365,23 @@ function detail(index) {
 					</p>
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">
-									 <a href="orderManagement">返回訂單管理</a> 
-							</h6>
+							<form style="float:left;margin-right: 20px;" method="post" action='unprocessedOrder' id='unprocessed'>
+                      					<a href='#' class='btn btn-success' onclick="unprocessed();">
+                      					未處理訂單                	
+                      					<input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
+                      					<input type="hidden" value="1" name='status'>
+                      					</a>	
+                      				</form>
+									<form style="float:left;margin-right: 20px;" method="post" action='unshippedOrder' id='unshipped'>
+                          		    	<a class='btn btn-success' onclick="unshipped();" href='#'>未出貨訂單</a>
+                          					<input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
+                          					<input type="hidden" value="2" name='status'>
+                          		   </form>
+									<form method="post" action='shippedOrder' id='shipped'>
+                          				<a class='btn btn-success active' onclick="shipped();" href='#'>已出貨訂單</a>
+                          					<input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
+                          					<input type="hidden" value="3" name='status'>
+                          			</form> 
 						</div>
 					<!-- DataTales Example -->
 
@@ -390,9 +404,8 @@ function detail(index) {
 									<td>${p1.recipient}</td>
 									<td>${p1.address}</td>
 									<td>${p1.total}</td>
-									<td>
-									<a style='padding-right: 20px;' href='#' onclick='detail(${s.index});'>訂單明細<input type="hidden" id='order_id${s.index}' name='order_id' value="${p1.order_id}"><img src='img/arrowdown.png'></a>
-									${p1.ship_date}
+									<td >${p1.ship_date}
+									<a style='padding-left: 20px;' href='#' onclick='detail(${s.index});'>訂單明細<input type="hidden" id='order_id${s.index}' name='order_id' value="${p1.order_id}"><img src='img/arrowdown.png'></a>
 									</td>
 									<c:set var="count" value="${s.count}" />
 					</c:forEach>
@@ -471,9 +484,15 @@ function detail(index) {
 	<script src="js/demo/datatables-demo.js"></script>
 
 	<script>
-   		
-   
-   </script>
-
+		function unprocessed() {
+			$("#unprocessed").submit();
+		}
+		function unshipped() {
+			$("#unshipped").submit();
+		}
+		function shipped() {
+			$("#shipped").submit();
+		}
+	</script>	
 </body>
 </html>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -39,7 +40,36 @@ public class MemberOrderDetailDaoImpl implements MemberOrderDetailDao {
 		return list;
 		
 	}
-
+	@Override
+	public ArrayList<MemberOrderDetailBean> queryOrderProductTotalAmount(String p1,String p2,String p3) {
+		Session session = factory.getCurrentSession();
+		NativeQuery query = session
+				.createSQLQuery("SELECT 0 as order_id, 0 as company_id,0 as total,member_order_detail.product_id,member_order_detail.product_name"
+						+ ",sum(member_order_detail.amount) as amount "
+						+ "FROM member_order INNER JOIN member_order_detail "
+						+ "ON member_order.order_id = member_order_detail.order_id "
+						+ "where member_order.order_date >= '"+p1+"' "
+						+ "and member_order.order_date <='"+p2+"' "
+						+ "and member_order.company_id='"+p3+"'"
+						+ "and member_order.status = 3"
+						+ "group by member_order_detail.product_id,member_order_detail.product_name");
+		return (ArrayList<MemberOrderDetailBean>) query.addEntity(MemberOrderDetailBean.class).list();
+	}
+	@Override
+	public ArrayList<MemberOrderDetailBean> queryOrderChartsList(String p1,String p2,String p3) {
+		Session session = factory.getCurrentSession();
+		NativeQuery query = session
+				.createSQLQuery("SELECT member_order.order_id, 0 as company_id,"
+						+ "member_order.total,member_order_detail.product_id,"
+						+ "member_order_detail.product_name"
+						+ "FROM member_order INNER JOIN member_order_detail "
+						+ "ON member_order.order_id = member_order_detail.order_id "
+						+ "where member_order.order_date >= '"+p1+"' "
+						+ "and member_order.order_date <='"+p2+"' "
+						+ "and member_order.company_id='"+p3+"'"
+						+ "and member_order.status = 3");
+		return (ArrayList<MemberOrderDetailBean>) query.addEntity(MemberOrderDetailBean.class).list();
+	}
 
 
 }
