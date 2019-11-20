@@ -76,6 +76,60 @@
   } );
 </script>
 
+<!-- excel表 -->
+ <script type="text/javascript">
+// jq1(document).ready(function(){
+// 	var company_id =jq1("#company_id").val();
+// 	jq1(".clickmeC").click(function() {
+// 		jq1.ajax({
+// 			url:"companyOrderList.xls",
+// 			data:{
+// 				key1:jq1("#from").val(),
+// 				key2:jq1("#to").val(),
+// 				key3:company_id,
+// 				key4:jq1("#status1").val()
+// 			},
+//  			contentType: "application/vnd.ms-excel;charset = utf-8",
+// 			type:"post",
+// 			success:function (data){
+// 				alert(data);
+// 				orderList(data)
+// 			}
+// 		});
+// 	});
+// });
+// function orderList(data) {
+ 	
+// 	var unprocess=JSON.parse(data);
+// 	var txt ="<tr><th>訂單日期</th><th>訂單編號</th><th>訂購人</th><th>收貨人</th><th>地址</th><th>總金額</th><th>出貨日期</th>";
+// 	for(i=0;i<unprocess.length;i++){
+// 		var order_date = "";
+// 		if(unprocess[i].order_date != '' && typeof unprocess[i].order_date != 'undefined'){
+// 			var v1 = new Date(unprocess[i].order_date);
+// 			order_date = v1.getFullYear()+"-"+(v1.getMonth()+1)+"-"+addZero(v1.getDate(),2)+" "+addZero(v1.getHours(),2)+":"+addZero(v1.getMinutes(),2)+":"+addZero(v1.getSeconds(),2);
+// 		}
+		
+// 		var ship_date = "";
+// 		if(unprocess[i].ship_date){
+// 			var v1 = new Date(unprocess[i].ship_date);
+// 			ship_date = v1.getFullYear()+"-"+(v1.getMonth()+1)+"-"+addZero(v1.getDate(),2)+" "+addZero(v1.getHours(),2)+":"+addZero(v1.getMinutes(),2)+":"+addZero(v1.getSeconds(),2);
+// 		}
+// 		txt +="<tr style='background-color:#F0F0F0;' id='title"+i+"'><td>"+ order_date;
+// 		txt +="<td>"+unprocess[i].order_id;
+// 		txt +="<td>"+unprocess[i].member_id;
+// 		txt +="<td>"+unprocess[i].recipient;
+// 		txt +="<td>"+unprocess[i].address;
+// 		txt +="<td>"+unprocess[i].total;
+// 		txt +="<td>"+ship_date;
+// 		txt +="<tr>";
+// 	}
+// // 	document.getElementById("dataTable").innerHTML=txt;
+// }
+
+
+
+</script>
+
 <!-- 報表查詢(依日期) -->
 <script type="text/javascript">
 
@@ -94,15 +148,15 @@ jq1(document).ready(function(){
 			type:"post",
 			success:function (data){
 // 				alert(data);
- 				unprocessedOrder(data);
+ 				processedOrder(data);
 			}
 		});
 	});
 });
-function unprocessedOrder(data) {
+function processedOrder(data) {
 	 	
 		var unprocess=JSON.parse(data);
-		var txt ="<tr><th>訂單日期</th><th>訂單編號</th><th>訂購人</th><th>收貨人</th><th>地址</th><th>出貨日期</th>";
+		var txt ="<tr><th>訂單日期</th><th>訂單編號</th><th>訂購人</th><th>收貨人</th><th>地址</th><th>總金額</th><th>出貨日期</th>";
 		for(i=0;i<unprocess.length;i++){
 			var order_date = "";
 			if(unprocess[i].order_date != '' && typeof unprocess[i].order_date != 'undefined'){
@@ -120,7 +174,8 @@ function unprocessedOrder(data) {
 			txt +="<td>"+unprocess[i].member_id;
 			txt +="<td>"+unprocess[i].recipient;
 			txt +="<td>"+unprocess[i].address;
-			txt +="<td><a style='padding-right: 30px;' href='#' onclick='queryDetail(" +i+ ")'>訂單明細<input type='hidden' id='order_id"+i+"' value=\""+unprocess[i].order_id+"\"><img src='img/arrowdown.png'></a>"+ship_date;
+			txt +="<td>"+unprocess[i].total;
+			txt +="<td>"+ship_date+"<a style='padding-left: 100px;' href='#' onclick='queryDetail(" +i+ ")'>訂單明細<input type='hidden' id='order_id"+i+"' value=\""+unprocess[i].order_id+"\"><img src='img/arrowdown.png'></a>";
 			txt +="<tr>";
 		}
 		document.getElementById("dataTable").innerHTML=txt;
@@ -248,7 +303,7 @@ function showDetail(data,p) {
 <!-- jQuery切換視窗 -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+<!--   <link rel="stylesheet" href="/resources/demos/style.css"> -->
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
@@ -549,23 +604,27 @@ function showDetail(data,p) {
 					<p class="mb-4">
 						<a>ORDER CHARTS</a>.
 					</p>
+					
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<a> <label for="from">訂單起日</label> 
-					<input type="text" id="from" name="startdate"> 
-					<input type="hidden" value='${CompanyLoginOK.company_id}' name='company_id' id='company_id'> 
-					<label for="to">~訂單迄日</label> 
-					<input type="text" id="to" name="enddate">
-					<input type="hidden" id='status1' value="3">
-					</a> 
+					  <a> <label for="from">訂單起日</label> 
+					  <input type="text" id="from" name="startdate"> 
+					  <input type="hidden" value='${CompanyLoginOK.company_id}' name='company_id' id='company_id'> 
+					  <label for="to">~訂單迄日</label> 
+					  <input type="text" id="to" name="enddate">
+					  <input type="hidden" id='status1' value="3">
+					</a>
 					<a style='padding-right: 100px;'>
 						<button id='clickmeS' class='clickmeC'>查詢</button>
 					</a> 
+					<a href='${pageContext.request.contextPath}/companyOrderList.xls' class='btn btn-success'>EXCEL下載</a>
+					<a href='#' class='clickmeC btn btn-danger'>PDF下載</a>
 				</div>
 				<div id="tabs">
   			<ul>
     			<li><a href="#tabs-1">銷售報表</a></li>
     			<li><a href="#tabs-2">銷售圖表</a></li>
+    			
   			</ul>
   			<div id="tabs-1">
     			

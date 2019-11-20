@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded",
 		}
 		}
 
+
 </script>
 
 
@@ -412,8 +413,8 @@ document.addEventListener("DOMContentLoaded",
 				enctype="multipart/form-data" id='insertPro'>
         			<input type="hidden" name="company_id" value='${CompanyLoginOK.company_id}'>
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                   <span>商品名稱</span> <input  type="text" class="form-control form-control-user" name='product_name' id="product_name" placeholder="PRODUCT NAME">
-                  <span  id="pName"></span>
+                   <span>商品名稱</span> <input type="text" class="form-control form-control-user" name='product_name' id="product_name" placeholder="PRODUCT NAME">
+                  <span style='float: right;' id="pName"></span>
                   </div>
                   
                   <br>
@@ -421,25 +422,23 @@ document.addEventListener("DOMContentLoaded",
                     <div>
                     <span>售價</span>
                     <input type="text" class="form-control form-control-user" name="price" id="price" placeholder="PRICE">
-                	<span id="pPrice"></span>
+                	<span style='float: right;' id="pPrice"></span>
                 	</div>
                 </div>
                  <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <span>數量</span><input type="text" class="form-control form-control-user" name="amount" id="amount" placeholder="AMOUNT">
-                	<span id="pAmount"></span>
+                	<span style='float: right;' id="pAmount"></span>
                 </div>
                 	 <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                      <label class="t1">適用寵物類別</label>
-               							 <select name="category">
-               							 <option >請選擇</option>
-                   						 <option value="1">狗</option>
-                   						 <option value="2">貓</option>
-                    					<option value="3">其他</option>
-                						</select>
-										
-                	</div>
+               			 <select id='category' name="category">               				 
+                   			 <option value="1">狗</option>
+                   			 <option value="2">貓</option>
+                    	     <option value="3">其他</option>
+                		</select>
+				</div>
                  <br>
                   	<div class="col-sm-6 mb-3 mb-sm-0">
                    		 <span>商品圖片</span><input type="file" id="file" name='file' accept="image/gif, image/jpeg, image/png">

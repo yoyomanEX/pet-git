@@ -202,6 +202,8 @@ public class CompanyProductController {
 		Integer amount1 = Integer.parseInt(amount);
 		String company_id = request.getParameter("company_id");
 		String describe = request.getParameter("describe");
+		String category = request.getParameter("category");
+		Integer category1 = Integer.parseInt(category);
 
 		CompanyProductBean bean = new CompanyProductBean();
 		bean.setProduct_id(product1);
@@ -210,6 +212,7 @@ public class CompanyProductController {
 		bean.setAmount(amount1);
 		bean.setCompany_id(company_id);
 		bean.setDescribe(describe);
+		bean.setCategory(category1);
 		
 		if(!file1.isEmpty()) {
 			byte[] byte1 = file1.getBytes();

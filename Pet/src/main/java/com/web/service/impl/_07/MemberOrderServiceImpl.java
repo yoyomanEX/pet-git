@@ -81,8 +81,8 @@ public class MemberOrderServiceImpl implements MemberOrderService {
 //	}
 	@Override
 	@Transactional
-	public ArrayList<MemberOrderDetailBean> queryOrderProductTotalAmount(String p1,String p2,String p3){
-		return eDao.queryOrderProductTotalAmount(p1, p2,p3);
+	public ArrayList<MemberOrderBean> queryAllOrder(){
+		return eDao.queryAllOrder();
 		
 	}
 	
