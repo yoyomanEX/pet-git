@@ -47,120 +47,161 @@ $(document).ready(function(){
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+   <!-- Sidebar -->
+		<ul
+			class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion"
+			id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">pET ʕ•ᴥ•ʔ 陪你</div>
-      </a>
+			<!-- Sidebar - Brand -->
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				href="index.html"> <!--         <div class="sidebar-brand-icon rotate-n-15"> -->
+				<!--           <i class="fas fa-laugh-wink"></i> --> <!--         </div> -->
+				<div class="sidebar-brand-text mx-3">pET ʕ•ᴥ•ʔ 陪你</div>
+			</a>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+			<!-- Divider -->
+			<hr class="sidebar-divider my-0">
 
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
+			<!-- Nav Item - Dashboard -->
+			<!-- Divider -->
+			<hr class="sidebar-divider my-0">
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+			<!-- Nav Item - Dashboard -->
+			<li class="nav-item active"><a class="nav-link"
+				href="index.html"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
+			</li>
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
+			<!-- Divider -->
+			<hr class="sidebar-divider">
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>文章後台</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">文章管理</h6>
-            <a class="collapse-item" href="<spring:url value="/article"/>">文章列表</a>
-            <a class="collapse-item" href="<spring:url value="blogIndex"/>">部落格首頁</a>
-            <a class="collapse-item" href="<spring:url value="myblog"/>">我的部落格首頁</a>
-          </div>
-        </div>
-      </li>
+			<!-- Heading -->
+			<div class="sidebar-heading">Interface</div>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
-      </li>
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseTwo"
+				aria-expanded="true" aria-controls="collapseTwo"> <i class="far fa-edit"></i> <span>文章後台</span>
+			</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">文章管理</h6>
+						<a class="collapse-item" href="<spring:url value='/articlestyle'/>">
+						<i class="fa fa-camera"></i>&nbsp&nbsp部落格樣式管理</a>
+						<a class="collapse-item" href="<spring:url value='/article'/>">
+						<i class="fa fa-paint-brush"></i>&nbsp&nbsp文章列表</a>
+						<a class="collapse-item" href="<spring:url value='myblog'/>">
+						<i class="fa fa-home"></i>&nbsp&nbsp我的部落格首頁</a>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+					</div>
+				</div></li>
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseUtilities"
+				aria-expanded="true" aria-controls="collapseUtilities"> <i
+					class="fas fa-fw fa-wrench"></i> <span>好友</span>
+			</a>
+				<div id="collapseUtilities" class="collapse"
+					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">好友清單</h6>
+						<a class="collapse-item" href="friendlist">好友列表</a> <a
+							class="collapse-item" href="application">申請列表</a> <a
+							class="collapse-item" href="waiting">等候回覆</a>
+					</div>
+				</div></li>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div>
-      </li>
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseOne"
+				aria-expanded="true" aria-controls="collapseOne"> <i
+					class="fas fa-paw"></i> <span>寵物聊天室</span>
+			</a>
+				<div id="collapseOne" class="collapse"
+					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+							<a href='#' class="collapse-item" onclick="room()"><i
+							class="fas fa-dog"></i>汪汪聊天室</a>
+							 <a class="collapse-item"
+							href="catroom"><i class="fas fa-cat"></i> 喵喵聊天室</a> <a
+							class="collapse-item" href="petroom"><i class="fas fa-hippo"></i>
+							PET聊天室</a>
+					</div>
+				</div></li>
+				
+						<!-- Nav Item - Utilities Collapse Menu -->
 
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
+			<li class="nav-item"><a class="nav-link collapsed" href="${pageContext.request.contextPath}/06/PetOrderAll"> <i
 
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
+					class="fas fa-paw"></i> <span>會員訂單</span></a></li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
 
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseUtilities"
+				aria-expanded="true" aria-controls="collapseUtilities"> <i
+					class="fas fa-fw fa-wrench"></i> <span>Utilities</span>
+			</a>
+				<div id="collapseUtilities" class="collapse"
+					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">Custom Utilities:</h6>
+						<a class="collapse-item" href="utilities-color.html">Colors</a> <a
+							class="collapse-item" href="utilities-border.html">Borders</a> <a
+							class="collapse-item" href="utilities-animation.html">Animations</a>
+						<a class="collapse-item" href="utilities-other.html">Other</a>
+					</div>
+				</div></li>
 
-    </ul>
-    <!-- End of Sidebar -->
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+
+			<!-- Heading -->
+			<div class="sidebar-heading">Addons</div>
+
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapsePages"
+				aria-expanded="true" aria-controls="collapsePages"> <i
+					class="fas fa-fw fa-folder"></i> <span>Pages</span>
+			</a>
+				<div id="collapsePages" class="collapse"
+					aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">Login Screens:</h6>
+						<a class="collapse-item" href="login.html">Login</a> <a
+							class="collapse-item" href="register.html">Register</a> <a
+							class="collapse-item" href="forgot-password.html">Forgot
+							Password</a>
+						<div class="collapse-divider"></div>
+						<h6 class="collapse-header">Other Pages:</h6>
+						<a class="collapse-item" href="404.html">404 Page</a> <a
+							class="collapse-item" href="blank.html">Blank Page</a>
+					</div>
+				</div></li>
+
+			<!-- Nav Item - Charts -->
+			<li class="nav-item"><a class="nav-link" href="charts.html">
+					<i class="fas fa-fw fa-chart-area"></i> <span>Charts</span>
+			</a></li>
+
+			<!-- Nav Item - Tables -->
+			<li class="nav-item"><a class="nav-link" href="tables.html">
+					<i class="fas fa-fw fa-table"></i> <span>Tables</span>
+			</a></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider d-none d-md-block">
+
+			<!-- Sidebar Toggler (Sidebar) -->
+			<div class="text-center d-none d-md-inline">
+				<button class="rounded-circle border-0" id="sidebarToggle"></button>
+			</div>
+
+		</ul>
+		<!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -343,27 +384,55 @@ $(document).ready(function(){
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-
-
-
-
-
           <!-- Page Heading -->
           
 
-          <form action="${pageContext.request.contextPath}/editArticle2" method="post">
+          <form action="${pageContext.request.contextPath}/editArticle2" method="post" enctype="multipart/form-data">
    
           <div>
+              <input id="articleImage" name="articleImage" type="file">
           <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="no" id="no" value="${arts.no}">
-          <input type="text" style="margin-top:20px;margin-bottom:16px;font-size:25px;width:100%;border-radius:5px" name="title" id="title" value="${arts.title}">
+          <input type="text" style="margin-top:20px;font-size:25px;width:100%;border-radius:5px" name="title" id="title" value="${arts.title}">
           <span id="titlesp"></span>
-          <br>  
+                <div style="margin-top:10px;margin-bottom:16px;font-size:25px;width:100%;border-radius:5px">
 
-          <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="postTime" id="time" value="${arts.postTime}">
-          <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="like" id="like" value="${arts.likeCount}">
-          <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="message" id="message" value="${arts.report}">
-          <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="lock" id="lock" value="${arts.available}">
-          <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="articleImage" id="articleImage" value="${arts.coverImage}">
+						<select style="width:100%;font-size:25px;width:100%;border-radius:5px;color:#4F4F4F" name="categories" id="categories" >     
+                           <c:choose>
+                           <c:when test="${arts.categories==1}">
+                              <option value="1" selected>PET你&nbsp✿&nbsp寵物報報 </option>
+                              <option value="2">PET你&nbsp✿&nbsp寵物美容保養 </option>
+                              <option value="3">PET你&nbsp✿&nbsp寵物旅遊 </option>
+                              <option value="4">PET你&nbsp✿&nbsp其他 </option>
+                           </c:when>
+                           <c:when test="${arts.categories==2}">
+                              <option value="1">PET你&nbsp✿&nbsp寵物報報 </option>
+                              <option value="2" selected>PET你&nbsp✿&nbsp寵物美容保養 </option>
+                              <option value="3">PET你&nbsp✿&nbsp寵物旅遊 </option>
+                              <option value="4">PET你&nbsp✿&nbsp其他 </option>
+                           </c:when>
+                           <c:when test="${arts.categories==3}">
+                              <option value="1">PET你&nbsp✿&nbsp寵物報報 </option>
+                              <option value="2">PET你&nbsp✿&nbsp寵物美容保養 </option>
+                              <option value="3" selected>PET你&nbsp✿&nbsp寵物旅遊 </option>
+                              <option value="4">PET你&nbsp✿&nbsp其他 </option>
+                           </c:when>
+                           <c:when test="${arts.categories==4}">
+                              <option value="1">PET你&nbsp✿&nbsp寵物報報 </option>
+                              <option value="2">PET你&nbsp✿&nbsp寵物美容保養 </option>
+                              <option value="3">PET你&nbsp✿&nbsp寵物旅遊 </option>
+                              <option value="4" selected>PET你&nbsp✿&nbsp其他 </option>
+                           </c:when>
+                           </c:choose>
+                           
+                        </select>
+                        
+			  </div>
+
+          <input type="hidden" name="postTime" id="time" value="${arts.postTime}">
+          <input type="hidden" name="message" id="message" value="${arts.report}">
+          <input type="hidden" name="lock" id="lock" value="${arts.available}">
+          <input type="hidden" name="like" id="like" value="${arts.likeCount}">
+<%--           <input type="hidden" style="margin-bottom:16px;font-size:15px;width:100%;border-radius:5px" name="articleImage" id="articleImage" value="${arts.coverImage}"> --%>
           </div>
           
           <textarea id="editor" name="content">${arts.content}</textarea>

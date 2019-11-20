@@ -198,7 +198,7 @@ $(document).ready(function(){
 				    });
 				   function showRejectCompany(data) {
 							var c1=JSON.parse(data);
-
+							
 							var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>再次審核</th>";
 
 							for(i=0;i<c1.length;i++){
@@ -388,10 +388,10 @@ $(document).ready(function(){
   <div class="main-content">
     <!-- Navbar -->
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+
       <div class="container-fluid">
 
         <!-- Brand -->
-
         <a style='font-size: 30px;' class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="${pageContext.request.contextPath}/index.jsp">廠商管理</a>
         <p>COMPANY MANAGEMENT</p>
         <!-- Form -->

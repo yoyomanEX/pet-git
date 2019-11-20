@@ -79,6 +79,8 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 			product.setProduct_name((String) row.get("product_name"));
 			product.setAmount((int) row.get("amount"));
 			product.setPrice((int) row.get("price"));
+			product.setStatus((int)row.get("status"));
+
 		}
 		return products;
 	}
@@ -105,6 +107,8 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 			product.setProduct_name((String) row.get("product_name"));
 			product.setAmount((int) row.get("amount"));
 			product.setPrice((int) row.get("price"));
+			product.setStatus((int)row.get("status"));
+
 		}
 		return products;
 	}
@@ -237,8 +241,8 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 	public OrderBean confirmOrder(OrderBean orderBean) throws SQLException {
 		OrderBean ob = new OrderBean();
 		Timestamp now = new Timestamp(System.currentTimeMillis());
-		String setOrder = "Insert into member_order(order_id,member_id,total,address, " + "recipient,phone,order_date,payment_status) values(?,?,?,?,?,?,?,?)";
-		jdbcTemplate.update(setOrder, orderBean.getOrder_id(), orderBean.getMember_id(), orderBean.getTotal(), orderBean.getAddress(), orderBean.getRecipient(), orderBean.getPhone(), now, 1);
+		String setOrder = "Insert into member_order(order_id,member_id,total,address, " + "recipient,phone,order_date,payment_status,status) values(?,?,?,?,?,?,?,?,?)";
+		jdbcTemplate.update(setOrder, orderBean.getOrder_id(), orderBean.getMember_id(), orderBean.getTotal(), orderBean.getAddress(), orderBean.getRecipient(), orderBean.getPhone(), now, 1,1);
 		String sql = "Select * from member_order where order_id =?";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql, orderBean.getOrder_id());
 		for (Map<String, Object> row : rows) {
@@ -324,7 +328,7 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 	public List<OrderBean> orderAll(String Member_id) {
 		// 準備好傳出去的集合
 		List<OrderBean> orderList = new ArrayList<OrderBean>();
-
+		System.out.println("Member_id="+Member_id);
 		// 查詢指定用戶ID的所有訂單並搜尋後回傳
 		String getMemberdOrder = "select * from member_order where Member_id=?";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(getMemberdOrder, Member_id);

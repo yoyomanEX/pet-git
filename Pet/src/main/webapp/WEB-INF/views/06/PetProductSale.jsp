@@ -33,11 +33,8 @@
 	var buycar = new Object();
 
 	$(function() {
-		$("#myTable").DataTable();
-		totalName({
-			"searching" : false,
-			"bLengthChange" : false
-		});
+		
+		totalName();
 		totalNum();
 		totalPrice();
 
@@ -158,6 +155,24 @@
 				}
 			});
 		});
+		
+		//按下ENTER搜尋商品
+		$("#productSearch").keypress(function() {
+			var productSearch = $("#productSearch").val();
+
+			$.ajax({
+				url : '${pageContext.request.contextPath}/06/productSearch',
+				type : 'post',
+				data : "&productSearch=" + productSearch,
+				headers : {
+					Accept : "text/html"
+				},
+				success : function(data) {
+					$("#content").empty();
+					$("#content").append(data);
+				}
+			});
+		});
 	});
 
 	$(function() {
@@ -189,7 +204,14 @@
 			} else {
 				$('#orderSubmit').submit();
 			}
-		})
+		});
+		
+		$("#myTable").DataTable({
+			"searching" : false,
+			"bLengthChange" : false,
+			"pageLength" :8
+		});
+		
 	});
 </script>
 <style type="text/css">
@@ -223,6 +245,85 @@
 	background-image:
 		url('${pageContext.request.contextPath}/06/img/aa.png');
 }
+
+
+.buttonSearch {
+	display: inline-block;
+	border-radius: 25px;
+	border: none;
+	color: black;
+	text-align: center;
+	font-size: 20px;
+	padding: 10px;
+	width: 180px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 1.5em;
+  padding: 0.5em 1em;
+  margin-left: 2px;
+  text-align: center;
+  text-decoration: none !important;
+  cursor: pointer;
+  *cursor: hand;
+  color: #333 !important;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  color: #333 !important;
+  border: 1px solid #979797;
+  background-color: white;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #dcdcdc));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, white 0%, #dcdcdc 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -moz-linear-gradient(top, white 0%, #dcdcdc 100%);
+  /* FF3.6+ */
+  background: -ms-linear-gradient(top, white 0%, #dcdcdc 100%);
+  /* IE10+ */
+  background: -o-linear-gradient(top, white 0%, #dcdcdc 100%);
+  /* Opera 11.10+ */
+  background: linear-gradient(to bottom, white 0%, #dcdcdc 100%);
+  /* W3C */
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+  cursor: default;
+  color: #666 !important;
+  border: 1px solid transparent;
+  background: transparent;
+  box-shadow: none;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+  cursor: default;
+  color: #666 !important;
+  border: 1px solid transparent;
+  background: transparent;
+  box-shadow: none;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  color: white !important;
+  border: 1px solid #111;
+  background-color: #585858;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #585858), color-stop(100%, #111));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #585858 0%, #111 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -moz-linear-gradient(top, #585858 0%, #111 100%);
+  /* FF3.6+ */
+  background: -ms-linear-gradient(top, #585858 0%, #111 100%);
+  /* IE10+ */
+  background: -o-linear-gradient(top, #585858 0%, #111 100%);
+  /* Opera 11.10+ */
+  background: linear-gradient(to bottom, #585858 0%, #111 100%);
+  /* W3C */
+}
+
 
 .button {
 	display: inline-block;
@@ -344,6 +445,8 @@
 	<div id="pageBackground">
 		<div id="sidebar_left">
 			<h3>pETʕ•ᴥ•ʔ 陪你購物</h3>
+						<input class="buttonSearch" placeholder="請輸入商品名稱" type="text" id="productSearch">
+			
 			<button type='submit' class="button" id='allProducts' style="vertical-align: middle">
 				<span>全部商品</span>
 			</button>
@@ -360,20 +463,20 @@
 		<div id="content">
 			<form method="post" id="orderSubmit" action="${pageContext.request.contextPath}/06/petOrder">
 				<input type="hidden" id="selectPrdId" name="selectPrdId" value="">
-				<table id="myTable" style="text-align: center; width: 800px; font-family: Microsoft JhengHei; font-size: 18px; font-weight: bold;" border=1>
+				<table id="myTable" style="text-align: center; width: 850px; font-family: Microsoft JhengHei; font-size: 18px; font-weight: bold;" border=1>
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Position</th>
-							<th>Office</th>
-							<th>Age</th>
-							
+							<th>商品圖片</th>
+							<th>商品名稱</th>
+							<th>價格</th>
+							<th>選購數量</th>
 						</tr>
 					</thead>
 					<%--items=表示處理的陣列跟集合 要循環的訊息 var=用來儲存目前元素的值--%>
+					<tbody>
 					<c:forEach items="${products}" var="pro">
 						<c:if test="${pro.status == 1}">
-							<input type="hidden" name="productId" value="${pro.product_id}">
+							
 							<tr>
 								<td>
 									<img alt="ʕ•ᴥ•ʔ" class='productImg' src="${pageContext.request.contextPath}/06/downloadFile/${pro.product_id}.jpg">
@@ -386,6 +489,8 @@
 									<c:choose>
 										<c:when test="${pro.amount==0}">
 											<input type="hidden" name="amount" value="0" class="textNum" style="text-align: center;" />
+											<input type="hidden" name="productId"
+													value="${pro.product_id}">
 											<h4>商品目前補貨中ʕ•ᴥ•ʔ</h4>
 										</c:when>
 										<c:otherwise>
@@ -394,12 +499,14 @@
 											<input type="button" name="add" class='buttonAdd' value='+' amount="${pro.amount}">
 											<input type='hidden' class='cartProductItemSumPrice' price="${pro.price}">
 											<input type='hidden' productId="${pro.product_id}" class='productName' text="${pro.product_name}">
+											<input type="hidden" name="productId" value="${pro.product_id}">
 										</c:otherwise>
 									</c:choose>
 								</td>
 							</tr>
 						</c:if>
 					</c:forEach>
+					</tbody>
 				</table>
 				<div id="shoppingCart">
 					<button type='button' class="button" id='addToCar' style="vertical-align: middle" carQuantity="${carQuantity}">

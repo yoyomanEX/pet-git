@@ -12,31 +12,50 @@
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
 <title>pET ʕ•ᴥ•ʔ 陪你</title>
 <link rel="icon" href="img/about_icon.png">
 
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/magnific-popup.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/animations.css">
+<link href='${pageContext.request.contextPath}/css/jquery.qtip.min.css'
+	rel='stylesheet' />
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/css/bootstrap-theme.min.css"
+	rel="stylesheet" />
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
 <!-- Custom fonts for this template -->
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <!-- Custom styles for this page -->
-<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-<script type="text/javascript" src="<c:url value="/js/jquery/jquery-2.2.4.min.js"/>"></script>
+<link href="vendor/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="<c:url value="/js/jquery/jquery-2.2.4.min.js"/>">
+	
+</script>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- Custom fonts for this template-->
-<link href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-<!-- Custom styles for this template-->
-<link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet">
 
 <%-- <script src="${pageContext.request.contextPath}/js/jquery.js"></script> --%>
 <script src="${pageContext.request.contextPath}/js/ckeditor/ckeditor.js"></script>
@@ -59,80 +78,110 @@
 	}
 </script>
 
- <script>
-  var jq1=$.noConflict();   //因為會跟套件衝突，所以所有$換成jq1
-  jq1( function() {
-    var dateFormat = "mm/dd/yy/",
-      from = jq1( "#from" )
-        .datepicker({
-          dateFormat:"yy/mm/dd",
-          defaultDate: "+1w",
-          changeMonth: true,
-          numberOfMonths: 1   //調要幾個日期選擇器
-        })
-        .on( "change", function() {
-          to.datepicker( "option", "minDate", getDate( this ) );
-        }),
-      to = jq1( "#to" ).datepicker({
-        defaultDate: "+1w",
-        dateFormat:"yy/mm/dd",
-        changeMonth: true,
-        numberOfMonths: 1
-      })
-      .on( "change", function() {
-        from.datepicker( "option", "maxDate", getDate( this ) );
-      });
- 
-    function getDate( element ) {
-      var date;
-      try {
-        date = $.datepicker.parseDate( dateFormat, element.value );
-      } catch( error ) {
-        date = null;
-      }
- 
-      return date;
-    }
-  } );
-  
-  
-  jq1(document).ready(function(){
-		var article_no =jq1("#no").val();
-		jq1("#clickmeS").click(function() {
-			jq1.ajax({
-  			url:"queryArticleByDate",
-  			data:{
-  				key1:jq1("#from").val(),
-  				key2:jq1("#to").val(),
-  				key3:article_no,
-  			},
-//   			dataType: "text",
-  			type:"post",
-  			success:function (data){
-  				alert(data);
-  				unprocessedArticle(data);
-  			}
-  		});
+<script>
+	var jq1 = $.noConflict(); //因為會跟套件衝突，所以所有$換成jq1
+	jq1(function() {
+		var dateFormat = "mm/dd/yy/", from = jq1("#from").datepicker({
+			dateFormat : "yy/mm/dd",
+			defaultDate : "+1w",
+			changeMonth : true,
+			numberOfMonths : 1
+		//調要幾個日期選擇器
+		}).on("change", function() {
+			to.datepicker("option", "minDate", getDate(this));
+		}), to = jq1("#to").datepicker({
+			defaultDate : "+1w",
+			dateFormat : "yy/mm/dd",
+			changeMonth : true,
+			numberOfMonths : 1
+		}).on("change", function() {
+			from.datepicker("option", "maxDate", getDate(this));
 		});
-});
-  
-  function unprocessedArticle(data){
-	  var unprocess=JSON.parse(data);
-	  var txt ="<thead align='center'><tr style='font-family: 標楷體; font-size: 20px' align='center'><th >日期<th>標題<th>作者<th>編輯<th>刪除</tr></thead>";
-// 	  var txt ="<tfoot align='center'><tr style='font-family: 標楷體; font-size: 20px' align='center'><th >日期<th>標題<th>作者<th>編輯<th>刪除</tr></tfoot>";
-	  for(i=0;i<unprocess.length;i++){
-		  txt +="<tr><td style='width: 15%'>"+unprocess[i].postTime;
-		  txt +="<td style='width: 48%'><a href='<spring:url value='postblog?id="+unprocess[i].no+"' />' class='post-title'  style='color:#3C3C3C'>"+unprocess[i].title;
-		  txt +="<td style='width: 10%' align='center'>"+unprocess[i].memberId;		  
-		  txt +="<td style='width: 8%' align='center'><form action='${pageContext.request.contextPath}/editArticle' method='post'><input type='hidden' value='"+unprocess[i].no+"' id='no' name='no'><button class='far fa-edit btn btn-primary' type='submit'>&nbsp編輯</button></form>";
-		  txt +="<td style='width: 8%' align='center'><form action='${pageContext.request.contextPath}/GetDeleteblog' method='post'><input type='hidden' value='"+unprocess[i].no+"' id='no' name='no'><button onclick='clickDelete()' name='Delete' class='btn btn-danger fa fa-trash-alt' aria-hidden='true' type='submit'></button></form>";
-		  txt +="</tr>";
-	  }
-	  document.getElementById("dataTable").innerHTML=txt;
-  }
-  </script>
 
+		function getDate(element) {
+			var date;
+			try {
+				date = $.datepicker.parseDate(dateFormat, element.value);
+			} catch (error) {
+				date = null;
+			}
 
+			return date;
+		}
+	});
+</script>
+
+<style>
+.flex-container {
+	display: -webkit-flex;
+	display: flex;
+	width: 100%;
+	height: 360px;
+	justify-content: center;
+}
+
+.flex-item {
+	width: 550px;
+	height: 360px;
+	margin: 30px;
+	border-radius: 20px;
+	text-align: center;
+	padding-top: 100px;
+}
+
+#flex-item-1 {
+	background-image: url(img/style1.JPG);
+	background-size: cover;
+	visibility: hidden;
+}
+
+#flex-item-2 {
+	background-image: url(img/style2.JPG);
+	background-size: cover;
+	visibility: hidden;
+}
+
+#section-content {
+	margin-top: 100px;
+}
+
+#div-greeting {
+	margin-bottom: 100px;
+	text-align: center;
+}
+
+#div-greeting h1 {
+	font-size: 70px;
+	color: #002147;
+	font-weight: bold;
+}
+
+h3 {
+	color: #ffffff;
+	font-size: 60px;
+	font-weight: bold;
+}
+</style>
+<script>
+	$(document).ready(function() {
+		$(".flex-item").addClass("fadeIn")
+	})
+</script>
+
+<title>pET ʕ•ᴥ•ʔ 陪你</title>
+<link rel="icon" href="img/about_icon.png">
+
+<!-- Custom fonts for this template-->
+<link
+	href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css"
+	rel="stylesheet">
 
 </head>
 
@@ -144,8 +193,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<ul
-			class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion"
+		<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion"
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
@@ -177,19 +225,19 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i class="far fa-edit"></i> <span>文章後台</span>
+				aria-expanded="true" aria-controls="collapseTwo"> <i
+					class="far fa-edit"></i> <span>文章後台</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">文章管理</h6>
-						<a class="collapse-item" href="<spring:url value='/articlestyle'/>">
+						<a class="collapse-item" href="<spring:url value='/article2'/>">
 						<i class="fa fa-camera"></i>&nbsp&nbsp部落格樣式管理</a>
 						<a class="collapse-item" href="<spring:url value='/article'/>">
 						<i class="fa fa-paint-brush"></i>&nbsp&nbsp文章列表</a>
 						<a class="collapse-item" href="<spring:url value='myblog'/>">
 						<i class="fa fa-home"></i>&nbsp&nbsp我的部落格首頁</a>
-
 					</div>
 				</div></li>
 
@@ -218,19 +266,18 @@
 				<div id="collapseOne" class="collapse"
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-							<a href='#' class="collapse-item" onclick="room()"><i
-							class="fas fa-dog"></i>汪汪聊天室</a>
-							 <a class="collapse-item"
+						<a href='#' class="collapse-item" onclick="room()"><i
+							class="fas fa-dog"></i>汪汪聊天室</a> <a class="collapse-item"
 							href="catroom"><i class="fas fa-cat"></i> 喵喵聊天室</a> <a
 							class="collapse-item" href="petroom"><i class="fas fa-hippo"></i>
 							PET聊天室</a>
 					</div>
 				</div></li>
-				
-						<!-- Nav Item - Utilities Collapse Menu -->
 
-			<li class="nav-item"><a class="nav-link collapsed" href="${pageContext.request.contextPath}/06/PetOrderAll"> <i
+			<!-- Nav Item - Utilities Collapse Menu -->
 
+			<li class="nav-item"><a class="nav-link collapsed"
+				href="${pageContext.request.contextPath}/06/PetOrderAll"> <i
 					class="fas fa-paw"></i> <span>會員訂單</span></a></li>
 
 
@@ -478,8 +525,9 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small"  style="font-size:20px">你好，${LoginOK.member_Id }</span>
-								<img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small"
+								style="font-size: 20px">你好，${LoginOK.member_Id }</span> <img
+								class="img-profile rounded-circle"
 								src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
 						</a> <!-- Dropdown - User Information -->
 							<div
@@ -512,66 +560,35 @@
 
 					<!-- Page Heading -->
 					<br>
-					<h1 class="m-0 font-weight-bold text-primary">文章管理後台</h1>
+					<h1 class="m-0 font-weight-bold text-primary">部落格樣式管理</h1>
 					<br>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 
-						<div class="card-header py-3">
-							<label for="from" style="font-family: 標楷體; font-size: 25px">發文日期&nbsp從</label>
-							<input type="text" id="from" name="from">
-							<input type="hidden" value="${LoginOK.member_Id}" name='no' id='no'> 
-							<label for="to" style="font-family: 標楷體; font-size: 25px">到</label> 
-							<input type="text" id="to" name="to">
-							<button id='clickmeS'>查詢</button>
-							<div style="float:right">
-							<a href="<spring:url value='addArticle'/>" class="far fa-file-alt btn btn-success"> 
-							   <span class="glyphicon-info-sigh glyphicon" style="font-size:20px"></span>發表新文章
-							</a>
-							</div>
-						</div>
+
 
 						<!-- DataTales Example -->
 						<div class="card shadow mb-4">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
-										<thead align="center">
-											<tr>
-												<th style="font-family: 標楷體; font-size: 20px">日期</th>
-												<th style="font-family: 標楷體; font-size: 20px">標題</th>
-												<th style="font-family: 標楷體; font-size: 20px">作者</th>
-												<th style="font-family: 標楷體; font-size: 20px">編輯</th>
-												<th style="font-family: 標楷體; font-size: 20px">刪除</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach items="${arts }" var="art" varStatus="s">
-												<tr>
-													<td style="width: 15%" align="center">${fn:substring(art.postTime, 0 ,19)}</td>
-													<td style="width: 48%">
-													   <a href="<spring:url value='postblog?id=${art.no}' />" class="post-title"  style="color:	#3C3C3C">${art.title}</a>
-													</td>
-													<td style="width: 10%" align="center">${art.memberId}</td>
-													<td style="width: 8%" align="center">
-														<form action="${pageContext.request.contextPath}/editArticle" method="post">
-															<input type="hidden" value="${art.no}" id="no" name="no">
-															<button class="far fa-edit btn btn-primary" type="submit" >&nbsp編輯</button>
-														</form>
-													</td>
 
-													<td style="width: 8%" align="center">
-														<form action="${pageContext.request.contextPath}/GetDeleteblog" method="post">
-															<input type="hidden" value="${art.no}" id="no" name="no">
-															<!--       <input type="submit" name="Delete" class="btn btn-danger" onclick="clickDelete()"  value="刪除" /> -->
-															<button onclick="clickDelete()" name="Delete" class="btn btn-danger fa fa-trash-alt" aria-hidden="true" type="submit"></button>
-														</form>
-													</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
+
+									<div class="flex-container">
+
+										<a href="<spring:url value='myblog2'/>">
+											<div class="flex-item" id="flex-item-1">
+												<h3 style="color: black">樣式1</h3>
+											</div>
+										</a> <a href="<spring:url value='myblog'/>">
+											<div class="flex-item" id="flex-item-2">
+												<h3 style="color: black">樣式2</h3>
+											</div>
+										</a>
+
+									</div>
+
+
 								</div>
 							</div>
 						</div>
@@ -627,21 +644,28 @@
 	</div>
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
-	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 	<!-- Custom scripts for all pages-->
-	<script src="js/sb-admin-2.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/sb-admin-2.min.js"></script>
 
 	<!-- Page level plugins -->
-	<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-	<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/vendor/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 	<!-- Page level custom scripts -->
-	<script src="js/demo/datatables-demo.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/js/demo/datatables-demo.js"></script>
+	<script src="${pageContext.request.contextPath}/js/wow.min.js"></script>
 
 </body>
 

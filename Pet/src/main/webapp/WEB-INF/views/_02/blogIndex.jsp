@@ -7,8 +7,7 @@
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
 <title>pET ʕ•ᴥ•ʔ 陪你</title>
 <link rel="icon" href="img/about_icon.png">
@@ -29,12 +28,21 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
-
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/util.min.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	
+<style>
+section {
+background-image: url(img/007-bg011.jpg);
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+
+/* background-position: 50% -15%; */
+}
+</style>
 	
 </head>
 
@@ -187,7 +195,7 @@
 					style="background-image: url(img/waterfall/008.jpg);"></div>
 				<!-- Post Content -->
 				<div class="hero-slides-content">
-					<p>MAY 8, 2018 / drinks</p>
+					<p>MAY 8, 2018 / news</p>
 					<a href="#" class="post-title">
 						<h4>少用塑膠袋，還動物一個乾淨的家</h4>
 					</a>
@@ -710,15 +718,15 @@
 
 				<span class="dis-inline-block cl6 slide100-txt pos-relative size-w-0" data-in="fadeInDown" data-out="fadeOutDown">
 					<span class="dis-inline-block slide100-txt-item animated visible-false">
-						Interest rate angst trips up US equity bull market
+						PET-BLOG：新增樣式選擇功能
 					</span>
 					
 					<span class="dis-inline-block slide100-txt-item animated visible-false">
-						Designer fashion show kicks off Variety Week
+						夏日冰品文章募集，投稿前10名，我們請你喝咖啡🥤
 					</span>
 
 					<span class="dis-inline-block slide100-txt-item animated visible-false">
-						Microsoft quisque at ipsum vel orci eleifend ultrices
+						⛩招募日本精彩遊記，獲勝前3名深度旅遊玩家可獲得大獎
 					</span>
 				</span>
 			</div>
@@ -777,60 +785,7 @@
 	</section>
 	
 
-	<!-- ##### Instagram Area Start ##### -->
-	<div class="follow-us-instagram">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="section-heading">
-						<h2>Follow Us @pET-blog</h2>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-12">
-					<div class="instagram-slides owl-carousel">
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet1.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet5.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet2.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet4.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-
-
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet6.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet3.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- ##### Instagram Area End ##### -->
+	
 
 	<!-- ##### Footer Area Start ##### -->
 	
@@ -840,19 +795,15 @@
 
 	<!-- ##### All Javascript Script ##### -->
 	<!-- jQuery-2.2.4 js -->
-	<script
-		src="${pageContext.request.contextPath}/js/jquery/jquery-2.2.4.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery/jquery-2.2.4.min.js"></script>
 	<!-- Popper js -->
-	<script
-		src="${pageContext.request.contextPath}/js/bootstrap/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap/popper.min.js"></script>
 	<!-- Bootstrap js -->
-	<script
-		src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap.min.js"></script>
 	<!-- All Plugins js -->
 	<script src="${pageContext.request.contextPath}/js/plugins/plugins.js"></script>
 	<!-- Active js -->
 	<script src="${pageContext.request.contextPath}/js/active.js"></script>
-	
 	<!-- popper js -->
 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
 	<!-- bootstrap js -->

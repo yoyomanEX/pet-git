@@ -334,9 +334,9 @@ public class PetDao implements PetInterface {
 	public List<OrderDetailBean> totalOrderDetail() throws SQLException {
 		List<OrderDetailBean> orderDetailBean = new ArrayList<>();
 
-		String sql = "select * from member_order_detail where company_id is null";
+		String sql = "select * from member_order_detail where company_id = ?";
 
-		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
+		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql,"66668888");
 		for (Map<String, Object> row : rows) {
 			OrderDetailBean ob = new OrderDetailBean();
 			ob.setOrder_id(String.valueOf(row.get("order_id")));
@@ -344,7 +344,7 @@ public class PetDao implements PetInterface {
 			ob.setProduct_name((String) row.get("product_name"));
 			ob.setAmount((int) row.get("amount"));
 			ob.setTotal((int) row.get("total"));
-			// ob.setCompany_id((int)row.get("company_id"));
+			ob.setCompany_id((int)row.get("company_id"));
 			orderDetailBean.add(ob);
 		}
 		return orderDetailBean;
@@ -357,8 +357,8 @@ public class PetDao implements PetInterface {
 	@Override
 	public void insertShippedDate(String order_id) throws SQLException {
 		Timestamp now = new Timestamp(System.currentTimeMillis());
-		String sql = "update member_order set ship_date =? where order_id =?";
-		jdbcTemplate.update(sql, now, order_id);
+		String sql = "update member_order set ship_date =?, status=? where order_id =?";
+		jdbcTemplate.update(sql, now, 3,order_id);
 
 	}
 
