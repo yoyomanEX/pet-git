@@ -47,6 +47,10 @@
 	  
 	  
   }
+  
+  function lick(){
+	  alert("按我")
+  }
   </script>
 
 </head>
@@ -61,8 +65,12 @@
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="./index.html">
+      <br>
+       <h3 style="color:#B700FF;font-size:28px">pET◖⚆ᴥ⚆◗陪你</h3>
+       <h2 style="color:#FF0059;font-weight: bold;"> 管理員後台</h2>
 <%--         <img src="${pageContext.request.contextPath}/assets/img/brand/blue.png" class="navbar-brand-img" alt="..."> --%>
       </a>
+      <hr class="my-3">
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
         <li class="nav-item dropdown">
@@ -352,7 +360,7 @@
                                     </c:otherwise>
                                  </c:choose>
                                  
-                                
+
                                  
                                  
                              </form>

@@ -8,9 +8,9 @@
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-4 col-md-4 col-xl-6">
-						<div id="logo">
-							<a href="index.html"><img src="img/Logo.png" alt="" title="" /></a>
-						</div>
+<!-- 						<div id="logo"> -->
+<!-- 							<a href="index.html"><img src="img/Logo.png" alt="" title="" /></a> -->
+<!-- 						</div> -->
 					</div>
 					<div class="col-8 col-md-8 col-xl-6 ">
 						<div class="sub_header_social_icon float-right">

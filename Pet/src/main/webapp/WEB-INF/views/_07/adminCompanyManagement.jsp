@@ -152,21 +152,10 @@ $(document).ready(function(){
 		    });
 		   function showObtainedCompany(data) {
 					var c1=JSON.parse(data);
-
-<<<<<<< HEAD
 					var txt ="<th>編號<th>廠商統編<th>廠商名稱<th>Email<th>地址<th>連絡電話<th>聯絡人<th>重新上架";
 
-=======
->>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
 					var txt ="<th style='font-size: 15px;'>編號</th><th style='font-size: 15px;'>廠商統編</th><th style='font-size: 15px;'>廠商名稱</th><th style='font-size: 15px;'>Email</th><th style='font-size: 15px;'>地址</th><th style='font-size: 15px;'>連絡電話</th><th style='font-size: 15px;'>聯絡人</th><th style='font-size: 15px;'>重新上架</th>";
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
->>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
 					for(i=0;i<c1.length;i++){
 						txt +="<tr><td>"+c1[i].id+"</td>";
 						txt +="<td>"+c1[i].company_id+"</td>";

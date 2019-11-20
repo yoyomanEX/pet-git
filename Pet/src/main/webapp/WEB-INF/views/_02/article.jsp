@@ -47,16 +47,6 @@
 
 	// 		});
 	//     });
-
-	function clickDelete() {
-		alert("删除成功");
-		//     	var msg = "請問確定要刪除嗎???刪除後無法回復";
-		//     	if (confirm(msg)==true){
-		//     	   return true;
-		//     	}else{
-		//         return false;
-		//     	}
-	}
 </script>
 
  <script>
@@ -109,7 +99,7 @@
 //   			dataType: "text",
   			type:"post",
   			success:function (data){
-  				alert(data);
+//   				alert(data);
   				unprocessedArticle(data);
   			}
   		});
@@ -549,7 +539,7 @@
 										<tbody>
 											<c:forEach items="${arts }" var="art" varStatus="s">
 												<tr>
-													<td style="width: 15%" align="center">${fn:substring(art.postTime, 0 ,19)}</td>
+													<td style="width: 15%" align="center">${fn:substring(art.postTime, 0 ,21)}</td>
 													<td style="width: 48%">
 													   <a href="<spring:url value='postblog?id=${art.no}' />" class="post-title"  style="color:	#3C3C3C">${art.title}</a>
 													</td>
@@ -565,7 +555,7 @@
 														<form action="${pageContext.request.contextPath}/GetDeleteblog" method="post">
 															<input type="hidden" value="${art.no}" id="no" name="no">
 															<!--       <input type="submit" name="Delete" class="btn btn-danger" onclick="clickDelete()"  value="刪除" /> -->
-															<button onclick="clickDelete()" name="Delete" class="btn btn-danger fa fa-trash-alt" aria-hidden="true" type="submit"></button>
+															<button onclick="return confirm('請問確定要刪除嗎???刪除後無法回復') " name="Delete" class="btn btn-danger fa fa-trash-alt" aria-hidden="true" type="submit"></button>
 														</form>
 													</td>
 												</tr>

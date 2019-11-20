@@ -7,6 +7,7 @@ import com.web.model._02.ArticleBean;
 import com.web.model._02.LikeCountBean;
 import com.web.model._02.ReplyBean;
 import com.web.model._02.ReportBean;
+import com.web.model._02.StyleBean;
 
 public interface ArticleService {
 
@@ -21,6 +22,8 @@ public interface ArticleService {
 	public List<ArticleBean> getAll();
 	
 	public List<ArticleBean> getfindBy(String title);  //模糊查詢
+	
+	public List<ArticleBean> getArticlesByMemberNo2(String memberNo);
 	
 	public List<ArticleBean> getArticlesByMemberNo(String memberNo) ;
 	
@@ -70,6 +73,10 @@ public interface ArticleService {
 	public ArrayList<ArticleBean> queryArticleByCategories4(String p1); 
 	
 //	public ArrayList<ArticleBean> queryByCategories();
+	
+	public void addStyle(StyleBean sb);
+	
+	public void editStyle(StyleBean sb);
 	
 	
 }

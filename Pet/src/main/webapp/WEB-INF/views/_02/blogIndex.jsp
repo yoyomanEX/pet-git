@@ -69,7 +69,7 @@ background-attachment: fixed;
 					style="background-image: url(img/waterfall/001.jpg);"></div>
 				<!-- Post Content -->
 				<div class="hero-slides-content">
-					<p>MAY 8, 2018 / story</p>
+					<p>MAY 8, 2018 / news</p>
 					<a href="#" class="post-title">
 						<h4>動物眼中的世界</h4>
 					</a>
@@ -153,7 +153,7 @@ background-attachment: fixed;
 					style="background-image: url(img/waterfall/009.jpg);"></div>
 				<!-- Post Content -->
 				<div class="hero-slides-content">
-					<p>MAY 8, 2018 / story</p>
+					<p>MAY 8, 2018 / news</p>
 					<a href="#" class="post-title">
 						<h4>力量動物卡：你的靈性生活指南</h4>
 					</a>
@@ -268,7 +268,7 @@ background-attachment: fixed;
 
 													<span class="cl8">
 														<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-															knowledge
+															news
 														</a>
 
 														<span class="f1-s-3 m-rl-3">
@@ -300,7 +300,7 @@ background-attachment: fixed;
 
 													<span class="cl8">
 														<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-															knowledge
+															news
 														</a>
 
 														<span class="f1-s-3 m-rl-3">
@@ -329,7 +329,7 @@ background-attachment: fixed;
 
 													<span class="cl8">
 														<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-															knowledge
+															news
 														</a>
 
 														<span class="f1-s-3 m-rl-3">
@@ -358,7 +358,7 @@ background-attachment: fixed;
 
 													<span class="cl8">
 														<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-															knowledge
+															news
 														</a>
 
 														<span class="f1-s-3 m-rl-3">

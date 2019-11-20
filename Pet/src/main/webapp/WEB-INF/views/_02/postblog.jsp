@@ -89,7 +89,7 @@ function myFunction() {
 
  <script>
     $(document).ready(function(){
-		$("#button2").click(function(){
+		$("#btnreport").click(function(){
 				alert("已收到您的檢舉，會盡快為您處理");
 		});
     });
@@ -107,7 +107,76 @@ function countdown() {
 	setTimeout('countdown()', 1000);
 	}
 	</script>
+<script>
 
+//文章分類
+$(document).ready(function() {
+	$("#button1").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogfood",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button2").click(function(){
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogtravel",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button3").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogbeauty",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button4").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getbloganother",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+</script>
 </head>
     
 
@@ -161,7 +230,7 @@ function countdown() {
         <div class="container">
             <div class="row justify-content-center">
                 <!-- Blog Posts Area -->
-                <div class="col-12 col-lg-8">
+                <div class="col-12 col-lg-8"  id="petblog">
                     <div class="blog-posts-area">
 
                         <!-- Post Details Area -->
@@ -169,7 +238,7 @@ function countdown() {
                             <div class="post-thumbnail mb-30">
                             </div>
                             <div class="post-content">
-                                <p class="post-date"> ${fn:substring(art.postTime, 0 ,10)}  / foody</p>
+                                <p class="post-date"> ${fn:substring(art.postTime, 0 ,10)}</p>
                                 <h4 class="post-title" style="font-family:標楷體"> ${art.title}</h4>
                                 <div class="post-meta">
                                     
@@ -249,7 +318,7 @@ function countdown() {
              <input type="hidden" class="form-control" id="member_Id" name="member_Id" placeholder="member_Id" readonly="true" value="${LoginOK.member_Id }">
              <input type="hidden" value="${art.no}" id="rpid" name="rpid">
              <textarea style="resize:none; height:250px" class="w3-input w3-border w3-margin-bottom" placeholder="請輸入原因" id="message" name="message" autofocus ></textarea>
-          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit" id="button2">傳送</button>
+          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit" id="btnreport">傳送</button>
  
         </div>
       </form>
@@ -298,7 +367,7 @@ function countdown() {
                                    <c:if test="${LoginOK.member_Id == art.memberId }"><%-- 如果登入帳號和留言帳號一樣才會出現修改和刪除--%>
 										<div style="float:right">
 												
-										<button type="button" id="update${art.no}" class="btn btn-outline-info " onclick="modifyComm(${cb.commNo},${mb.articleNo},'${cb.memberId}')">修改</button>
+										<button type="button" id="update${art.no}" class="btn btn-outline-info " onclick="modifyComm(${cb.commNo},${mb.articleNo},${cb.memberId})">修改</button>
 										<button type="button" name="delete"  class="btn btn-outline-danger " onclick="confirmDelete('${art.no}')">刪除</button>
 															
 										</div>
@@ -393,15 +462,16 @@ function countdown() {
 						<div class="p-t-50">
 							<div class="how2 how2-cl4 flex-s-c" style="padding-top:10px">
 								<h3 class="f1-m-2 cl3 tab01-title">
-									Categories
+									文章分類
 								</h3>
 							</div>
 							<div style="padding-top:20px">
 							<ol >
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i> Drink</span> <span>(18)</span></a></li>
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i> Foody</span> <span>(28)</span></a></li>
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i> Tea</span> <span>(15)</span></a></li>
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i> Coffee</span> <span>(27)</span></a></li>
+<!-- 							<button id="button1">按我</button> -->
+                                <li><a href="#" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp美食</span> <span></span></a></li>
+                                <li><a href="#" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp旅遊</span> <span></span></a></li>
+                                <li><a href="#" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp保養</span> <span></span></a></li>
+                                <li><a href="#" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp知識</span> <span></span></a></li>
                             </ol>
 							</div>
 						</div>
@@ -524,10 +594,6 @@ function countdown() {
 	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 	<!-- custom js -->
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-	<!-- 瀑布流 js -->
-	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
 </body>
 
 </html>

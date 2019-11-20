@@ -59,58 +59,6 @@
 
 <%-- <script src="${pageContext.request.contextPath}/js/jquery.js"></script> --%>
 <script src="${pageContext.request.contextPath}/js/ckeditor/ckeditor.js"></script>
-<script>
-	//     $(document).ready(function(){   //button的id不能相同，所以如果用迴圈增加刪除紐，只會有一個有反應
-	// 		$("#button2").click(function(){
-	// 			alert("删除成功");
-
-	// 		});
-	//     });
-
-	function clickDelete() {
-		alert("删除成功");
-		//     	var msg = "請問確定要刪除嗎???刪除後無法回復";
-		//     	if (confirm(msg)==true){
-		//     	   return true;
-		//     	}else{
-		//         return false;
-		//     	}
-	}
-</script>
-
-<script>
-	var jq1 = $.noConflict(); //因為會跟套件衝突，所以所有$換成jq1
-	jq1(function() {
-		var dateFormat = "mm/dd/yy/", from = jq1("#from").datepicker({
-			dateFormat : "yy/mm/dd",
-			defaultDate : "+1w",
-			changeMonth : true,
-			numberOfMonths : 1
-		//調要幾個日期選擇器
-		}).on("change", function() {
-			to.datepicker("option", "minDate", getDate(this));
-		}), to = jq1("#to").datepicker({
-			defaultDate : "+1w",
-			dateFormat : "yy/mm/dd",
-			changeMonth : true,
-			numberOfMonths : 1
-		}).on("change", function() {
-			from.datepicker("option", "maxDate", getDate(this));
-		});
-
-		function getDate(element) {
-			var date;
-			try {
-				date = $.datepicker.parseDate(dateFormat, element.value);
-			} catch (error) {
-				date = null;
-			}
-
-			return date;
-		}
-	});
-</script>
-
 <style>
 .flex-container {
 	display: -webkit-flex;
@@ -166,6 +114,7 @@ h3 {
 	$(document).ready(function() {
 		$(".flex-item").addClass("fadeIn")
 	})
+	
 </script>
 
 <title>pET ʕ•ᴥ•ʔ 陪你</title>
@@ -578,11 +527,16 @@ h3 {
 
 										<a href="<spring:url value='myblog2'/>">
 											<div class="flex-item" id="flex-item-1">
-												<h3 style="color: black">樣式1</h3>
+											<form action="${pageContext.request.contextPath}/myblog2" method="post">
+												<button type="submit" id="style1" name="style1" value="style1" class="btn btn-default;opacity:0.2"><h3 style="color: black">樣式1</h3></button>
+											</form>
+											
 											</div>
 										</a> <a href="<spring:url value='myblog'/>">
 											<div class="flex-item" id="flex-item-2">
-												<h3 style="color: black">樣式2</h3>
+											<form action="${pageContext.request.contextPath}/myblog" method="post">
+												<button id="style2" name="style2" value="style2" class="btn btn-default;opacity:0.2"><h3 style="color: black">樣式2</h3></button>
+											</form>
 											</div>
 										</a>
 
