@@ -25,9 +25,10 @@
 <!-- style CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/DataTables/datatables.min.css"> --%>
-<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
-</script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/DataTables/DataTables-1.10.20/js/jquery.dataTables.js"></script>
+<script
+	src="${pageContext.request.contextPath}/assets/js/plugins/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/DataTables/DataTables-1.10.20/js/jquery.dataTables.js"></script>
 <script>
 	var sum = 0;
 	var buycar = new Object();
@@ -209,7 +210,8 @@
 		$("#myTable").DataTable({
 			"searching" : false,
 			"bLengthChange" : false,
-			"pageLength" :8
+			"pageLength" : 8,
+			"bInfo" : false
 		});
 		
 	});
@@ -476,7 +478,6 @@
 					<tbody>
 					<c:forEach items="${products}" var="pro">
 						<c:if test="${pro.status == 1}">
-							
 							<tr>
 								<td>
 									<img alt="ʕ•ᴥ•ʔ" class='productImg' src="${pageContext.request.contextPath}/06/downloadFile/${pro.product_id}.jpg">
@@ -484,7 +485,7 @@
 								<td>
 									<a class="checkPro" productId="${pro.product_id}" href="">${pro.product_name}</a>
 								</td>
-								<td>${pro.price}$</td>
+								<td>$${pro.price}</td>
 								<td>
 									<c:choose>
 										<c:when test="${pro.amount==0}">

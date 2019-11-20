@@ -41,11 +41,18 @@
 		$("#myTable").DataTable({
 			"searching" : false,
 			"bLengthChange" : false,
-			"pageLength" : 8
+			"pageLength" : 8,
+			"ordering": false,
+			"bInfo" : false
 		});
 	});
 </script>
-
+<style>
+.productImg {
+	width: 130px;
+	height: 90px;
+}
+</style>
 
 </head>
 <body id="page-top">
@@ -357,19 +364,17 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">會員訂單詳情</h1>
-					
+					<h1 class="h3 mb-2 text-gray-800">會員訂單</h1>
+
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">DataTables
-								Example</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Order Detail</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="myTable" width="100%"
 									cellspacing="0">
-
 									<thead>
 										<tr>
 											<th>訂單日期</th>
@@ -382,9 +387,10 @@
 									<c:forEach var='list' items='${orderList}'>
 										<tbody>
 											<tr>
-												<td>${list.order_date}</td>
+												<td><fmt:formatDate value="${list.order_date}"
+														pattern="yyyy-MM-dd HH:mm"></fmt:formatDate></td>
 												<td>${list.order_id}</td>
-												<td>${list.total}$</td>
+												<td>$ ${list.total}</td>
 												<c:choose>
 													<c:when test="${list.payment_status ==1}">
 														<td style="color: #FF2D2D;">新訂單尚未付款</td>
@@ -405,19 +411,19 @@
 													</c:when>
 												</c:choose>
 												<td><input type="button" class="showDetail"
-													orderid="${list.order_id}" value="checkʕ•ᴥ•ʔ " /></td>
+													orderid="${list.order_id}" value="check me↙ " /></td>
 											</tr>
-										
+
+											<tr orderid="${list.order_id}"
+												style="display: none; color: #3763e6">
+												<td>商品圖片</td>
+												<td>商品名稱</td>
+												<td>數量</td>
+												<td>合計金額</td>
+												<td>是否免運</td>
+											</tr>
 											<c:forEach var='detailList' items='${orderListDetail}'>
 												<c:if test='${list.order_id == detailList.order_id}'>
-													<tr orderid="${list.order_id}"
-														style="display: none; color: #3763e6">
-														<td>商品圖片</td>
-														<td>商品名稱</td>
-														<td>數量</td>
-														<td>合計金額</td>
-														<td>是否免運</td>
-													</tr>
 													<tr orderid="${list.order_id}"
 														style="display: none; color: #3763e6">
 														<td><img alt="ʕ•ᴥ•ʔ" class='productImg'
