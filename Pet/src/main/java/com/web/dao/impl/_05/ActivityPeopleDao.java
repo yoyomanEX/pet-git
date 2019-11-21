@@ -1,8 +1,10 @@
-package com.web.dao.impl._01;
+package com.web.dao.impl._05;
 
 import java.util.List;
 
-import com.web.model._01.ActivityPeopleBean;
+import com.web.model._05.ActivityPeopleBean;
+
+
 
 public interface ActivityPeopleDao {
 	//參加活動

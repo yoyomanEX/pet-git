@@ -1,13 +1,18 @@
-package com.web.service.impl._01;
+package com.web.service.impl._05;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.web.dao.impl._05.ActivityPeopleDao;
+import com.web.model._05.ActivityPeopleBean;
 
-import com.web.dao.impl._01.ActivityPeopleDao;
-import com.web.model._01.ActivityPeopleBean;
-
+@Service
+@Transactional
+@EnableTransactionManagement
 public class ActivityPeopleServiceImpl implements ActivityPeopleService {
 	
 	@Autowired

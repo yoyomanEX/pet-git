@@ -1,5 +1,6 @@
-package com.web.service.impl._01;
+package com.web.service.impl._05;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.web.dao.impl._01.PetActivityDao;
-import com.web.model._01.ActivityPeopleBean;
+import com.web.dao.impl._05.PetActivityDao;
 import com.web.model._01.AdminBean;
-import com.web.model._01.PetActivityBean;
+import com.web.model._05.ActivityPeopleBean;
+import com.web.model._05.PetActivityBean;
+
+
 @Service
 @Transactional
 @EnableTransactionManagement
@@ -39,13 +42,19 @@ public class PetActivityServiceImpl implements PetActivityService {
 	}
 
 	@Override
-	public List<PetActivityBean> queryMemberPetActivity(List<ActivityPeopleBean> list) {
+	public ArrayList<PetActivityBean> queryMemberPetActivity(List<ActivityPeopleBean> list) {
 		return petActivityDao.queryMemberPetActivity(list);
 	}
 
 	@Override
 	public List<PetActivityBean> queryAllPetActivity() {
 		return petActivityDao.queryAllPetActivity();
+	}
+
+	@Override
+	public PetActivityBean getActivityById(Integer activity_id) {
+		
+		return petActivityDao.getActivityById(activity_id);
 	}
 
 }

@@ -2,20 +2,24 @@
 
 
 import java.io.Serializable;
-import java.sql.Blob;
-import java.sql.Clob;
+import java.util.HashSet;
+import java.util.Set;
 
-import java.sql.Timestamp;
-
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.web.model._05.PetActivityBean;
 
 @XmlRootElement(name="memberBean")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -42,6 +46,10 @@ public class MemberBean implements Serializable {
 	private String fileName;
 	@XmlElement(name = "memberPet")
 	private int memberPet;
+	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinTable(name = "activitypeople",joinColumns = {
+	@JoinColumn(name="member_Id")},inverseJoinColumns = {@JoinColumn(name="activity_id")})
+	private Set<PetActivityBean>activitys=new HashSet<PetActivityBean>();
 	
 	
 	@Column(name = "member_Id")
@@ -116,6 +124,12 @@ public class MemberBean implements Serializable {
 		this.memberPet = memberPet;
 	}
 
+	public Set<PetActivityBean> getActivitys() {
+		return activitys;
+	}
+	public void setActivitys(Set<PetActivityBean> activitys) {
+		this.activitys = activitys;
+	}
 
 		
 }

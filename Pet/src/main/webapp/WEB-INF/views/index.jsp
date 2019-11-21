@@ -89,7 +89,7 @@
 											<a class="dropdown-item" href="hospital.jsp">醫院資訊</a> <a
 												class="dropdown-item" href="question.jsp">PET PET Q&A</a>
 										</div></li>
-									<li class="nav-item"><a href="contact.html"
+									<li class="nav-item"><a href="<spring:url value='/memberjoinactivity'/>"
 										class="nav-link">Contact</a></li>
 								</ul>
 							</div>

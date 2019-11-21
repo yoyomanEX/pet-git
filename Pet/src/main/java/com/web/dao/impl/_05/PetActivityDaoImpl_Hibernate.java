@@ -1,5 +1,6 @@
-package com.web.dao.impl._01;
+package com.web.dao.impl._05;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -9,9 +10,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.web.model._01.ActivityPeopleBean;
 import com.web.model._01.AdminBean;
-import com.web.model._01.PetActivityBean;
+import com.web.model._05.ActivityPeopleBean;
+import com.web.model._05.PetActivityBean;
+
+
 @Repository
 public class PetActivityDaoImpl_Hibernate implements PetActivityDao {
 	SessionFactory factory;
@@ -76,16 +79,27 @@ public class PetActivityDaoImpl_Hibernate implements PetActivityDao {
 	}
 
 	@Override
-	public List<PetActivityBean> queryMemberPetActivity(List<ActivityPeopleBean> list) {
-		List<PetActivityBean> list1=null;
+	public ArrayList<PetActivityBean> queryMemberPetActivity(List<ActivityPeopleBean> list) {
+		ArrayList<PetActivityBean> list1 = new ArrayList<PetActivityBean>();
 		for(ActivityPeopleBean activityPeopleBean:list) {
 			PetActivityBean pab=null;
 			Integer id = activityPeopleBean.getActivity_id();
+			System.out.println("拉拉拉拉拉"+id);
 			String hql = "FROM PetActivityBean p WHERE p.activity_id = :aid";
 			pab=(PetActivityBean) getSession().createQuery(hql).setParameter("aid", id).uniqueResult();
+			System.out.println("寶哥"+pab);
 			list1.add(pab);
 		}
 		return list1;
+	}
+
+	@Override
+	public PetActivityBean getActivityById(Integer activity_id) {
+		PetActivityBean pab=getSession().get(PetActivityBean.class, activity_id);
+//		if (pab==null) {
+//			throw new ProductNotFoundException("產品編號:"+activity_id+"找不到");
+//		}
+		return pab;
 	}
 
 }
