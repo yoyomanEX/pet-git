@@ -87,18 +87,17 @@ public class FriendController {
 	}
 
 	@RequestMapping("/memberblog/{member_Id}")
-	public String getProductsByCategory(@PathVariable("member_Id") String member_Id, Model model,MyBlogBean mbb,HttpServletRequest request) {
+	public String getProductsByCategory(@PathVariable("member_Id") String member_Id, Model model,HttpServletRequest request) {
 		List<ArticleBean> art = Artservice.getArticlesByMemberNo(member_Id);
 		HttpSession session = request.getSession();
 		MemberBean mid = (MemberBean) session.getAttribute("LoginOK");
 		String mid1 = mid.getMember_Id();
+		MyBlogBean mbb=new MyBlogBean();
 		mbb.setUserid(member_Id);
 		mbb.setOtherid(mid1);
-		System.out.println("mbb::"+mbb.getOtherid());
-		System.out.println("mbb::"+mbb.getUserid());
 		Myblogservice.comehome(mbb);
 		model.addAttribute("arts", art);
-		return "_03/memberblog";
+		return "_02/myblog";
 	}
 
 	@RequestMapping("/friendlist")

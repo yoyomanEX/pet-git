@@ -14,6 +14,7 @@
     <title>pET ʕ•ᴥ•ʔ 陪你</title>
     <link rel="icon" href="img/about_icon.png">
     
+    <script src="<c:url value="/js/jquery/jquery-2.2.4.min.js"/>"> </script>  
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <!-- animate CSS -->
@@ -30,10 +31,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
-   
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/util.min.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">  
@@ -194,7 +191,7 @@ $(document).ready(function() {
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h1>${LoginOK.member_Id}blog</h1>
+                            <h1>blog</h1>
                         </div>
                     </div>
                 </div>
@@ -252,13 +249,13 @@ $(document).ready(function() {
                                 <h4 class="post-title" style="font-family:標楷體"> ${art.title}</h4>
                                 <div class="post-meta">
                                     
-                               
+                               <!-- Button trigger modal -->
                                  <c:choose>
                                    <c:when test="${empty LoginOK}">
                                    <button style="font-size:16px;padding:6px" class="btn btn-danger" onclick="myFunction()">檢舉</button>
                                    </c:when>
                                    <c:when test="${!empty LoginOK}">
-                                   <button style="font-size:16px;padding:6px" class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" >檢舉</button>
+                                   <button style="font-size:16px;padding:6px" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">檢舉</button>
                                    </c:when>
                                  </c:choose>
                                  
@@ -290,7 +287,7 @@ $(document).ready(function() {
                         <div class="post-tags-share d-flex justify-content-between align-items-center"></div>
                         
 <!--     Modal      -->
-<div class="w3-container">
+
 <div style="float:right">
   
 <!--   <button style="padding:3px;margin-bottom:7px" class="btn btn-primary" >留言</button> -->
@@ -311,27 +308,33 @@ $(document).ready(function() {
        </c:choose>
    
   </span>
-
 </div>  
-  <div id="id01" class="w3-modal">
-    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
 
-      <div class="w3-center"><br>
-        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-<!--         <h4 style="font-size:25px;font-weight: bold; font-family:標楷體">檢舉原因</h4> -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:#FFE6D9">
+        <div style="text-align:center;">
+        <h4 class="modal-title" id="exampleModalLongTitle" style="font-size:35px;font-weight: bold; font-family:標楷體;color:#FF2D2D">❀文章檢舉原因</h4>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-
-      <form class="w3-container" action="${pageContext.request.contextPath}/addReportblog" method="post">
+      <div class="modal-body">
+        <form action="${pageContext.request.contextPath}/addReportblog" method="post">
      
-        <div class="w3-section" style="text-align:center;">
-          <label style="font-size:25px;font-weight: bold; font-family:標楷體;"><b>檢舉原因</b></label>
+        <div>
              <input type="hidden" class="form-control" id="member_Id" name="member_Id" placeholder="member_Id" readonly="true" value="${LoginOK.member_Id }">
              <input type="hidden" value="${art.no}" id="rpid" name="rpid">
-             <textarea style="resize:none; height:250px" class="w3-input w3-border w3-margin-bottom" placeholder="請輸入原因" id="message" name="message" autofocus ></textarea>
-          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit" id="btnreport">傳送</button>
- 
+             <textarea style="font-size:25px;resize:none; height:200px;width:460px;" class="form-control" placeholder="&nbsp&nbsp請輸入......" id="message" name="message" autofocus ></textarea>
+             <button style="float:right" type="submit" class="btn btn-lg btn-info" id="btnreport">傳送</button>
         </div>
       </form>
+      </div>
     </div>
   </div>
 </div>

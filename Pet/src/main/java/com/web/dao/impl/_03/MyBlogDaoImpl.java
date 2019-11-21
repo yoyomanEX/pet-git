@@ -31,7 +31,7 @@ public class MyBlogDaoImpl implements MyBlogDao {
 
 	@Override
 	public List<MyBlogBean> getByUser(String userid) {
-		String hql="SELECT DISTINCT FROM MyBlogBean WHERE userid=:userid";
+		String hql="FROM MyBlogBean WHERE userid=:userid";
 		List<MyBlogBean>list=new ArrayList<>();
 		Session session = factory.getCurrentSession();
 		list=session.createQuery(hql).setParameter("userid", userid).getResultList();

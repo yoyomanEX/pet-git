@@ -67,7 +67,11 @@ public class ArticleController {
 	}
 	
 	MyBlogService myblogservice;
-
+	@Autowired
+	public void setMyBlogService(MyBlogService myblogservice) {
+		this.myblogservice = myblogservice;
+	}
+	
 	ServletContext context;
 
 	@Autowired
@@ -149,6 +153,7 @@ public class ArticleController {
 //		}
 		List<MyBlogBean> visit = myblogservice.getByUser(member);
 		model.addAttribute("visit", visit);
+		System.out.println("visitvisit=" + visit);
 		
 		List<ArticleBean> art = service.getArticlesByMemberNo2(member);
 		model.addAttribute("arts", art);
