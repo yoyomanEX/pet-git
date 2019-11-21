@@ -240,8 +240,8 @@ $(document).ready(function() {
                             <!-- Thumbnail -->
                             <div style="padding-top:20px">
                             <div class="about-thumbnail">
-<!--                                 <img width='60' height='72' src='getPicture' /> -->
-                                <img width='200' height='300' src="img/single_adopt_5.png" />
+                                <img width='60' height='72' src='getPicture' />
+<!--                                 <img width='200' height='300' src="img/single_adopt_5.png" /> -->
                             </div>
                             <!-- Content -->
                             <div class="widget-content text-center" style="padding-bottom:40px">
@@ -308,6 +308,37 @@ $(document).ready(function() {
                            </c:forEach>
                            </div>
                         </div>
+                        
+                         <!--  -->
+						<div class="p-t-50" style="padding-top:30px">
+							<div class="how2 how2-cl4 flex-s-c" style="padding-top:10px">
+								<h3 class="f1-m-2 cl3 tab01-title">
+									誰來我家
+								</h3>
+							</div>
+							<div style="padding-top:20px">
+							<ol class="popular-tags d-flex flex-wrap" >
+                            <li>
+                                  <img src="img/post/post_5.png" alt="">&nbsp&nbsp
+                            </li>
+                            <li>
+                                  <img src="img/post/post_6.png" alt="">&nbsp&nbsp
+                            </li>
+                            <li>
+                                  <img src="img/post/post_7.png" alt="">&nbsp&nbsp
+                            </li>
+                            <li>
+                                  <img src="img/post/post_8.png" alt="">&nbsp&nbsp
+                            </li>
+                            <li>
+                                  <img src="img/post/post_9.png" alt="">&nbsp&nbsp
+                            </li>
+                            <li>
+                                  <img src="img/post/post_10.png" alt="">&nbsp&nbsp
+                            </li>
+                        </ol>
+							</div>
+						</div>
 
          
 
@@ -347,6 +378,7 @@ $(document).ready(function() {
     <!-- ##### Footer Area Start ##### -->
     
     <jsp:include page="footer.jsp" />
+
     
     <!-- footer part end-->
     

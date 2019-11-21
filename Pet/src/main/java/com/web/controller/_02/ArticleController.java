@@ -50,6 +50,7 @@ import com.web.model._02.LikeCountBean;
 import com.web.model._02.ReplyBean;
 import com.web.model._02.ReportBean;
 import com.web.model._02.StyleBean;
+import com.web.model._07.MemberOrderBean;
 import com.web.service.impl._02.ArticleService;
 import com.web.util.JSONFileUpload;
 
@@ -87,7 +88,7 @@ public class ArticleController {
 	public String articlestyle(Model model) {
 		return "_02/articlestyle";
 	}
-	
+
 //	public String articlestyle1(Model model, HttpServletRequest request) {
 //		HttpSession session = request.getSession();
 //		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
@@ -100,13 +101,12 @@ public class ArticleController {
 //			return "myblog2";
 //		}
 //		return "_02/articlestyle";
-		
+
 //		HttpSession session = request.getSession();
 //		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 //		loginToken.setStyle(1);
 //        	return "_02/myblog";   
 //	}
-	
 
 	@RequestMapping("/blogIndex")
 	public String articleBlog(Model model, HttpServletRequest request) {
@@ -126,14 +126,24 @@ public class ArticleController {
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 //		System.out.println(loginToken);
 		String member = loginToken.getMember_Id();
-		StyleBean sb = new StyleBean();
-			sb.setNo(2);
-			sb.setMemberId(member);
-			service.addStyle(sb);
-			
+//		StyleBean sb = new StyleBean();
+//		sb.setNo(false);
+//		sb.setMemberId(member);
+//        service.addStyle(sb);
 
-	
-		
+//		String Style1Button = request.getParameter("style1");
+//		String Style2Button = request.getParameter("style2");	
+//		if ("style2".equals(Style1Button) && sb.getNo() == true) { // 0为false.myblog，1为true.myblog2 
+//			sb.setNo(false);
+//			sb.setMemberId(sb.getMemberId());
+//			service.editStyle(sb);
+//            
+//		}else if ("style1".equals(Style2Button) && sb.getNo() == false) { // 0为false.myblog，1为true.myblog2
+//			sb.setNo(true);
+//			sb.setMemberId(sb.getMemberId());
+//			service.editStyle(sb);
+//		}
+
 		List<ArticleBean> art = service.getArticlesByMemberNo2(member);
 		model.addAttribute("arts", art);
 
@@ -144,19 +154,18 @@ public class ArticleController {
 		model.addAttribute("artsss", arts);
 
 		return "_02/myblog";
+
 	}
-	
+
 	@RequestMapping("/myblog2")
 	public String myblog2(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
-//		System.out.println(loginToken);
 		String member = loginToken.getMember_Id();
-		StyleBean sb = new StyleBean();
-			sb.setNo(1);
-			sb.setMemberId(member);
-			service.addStyle(sb);
-	
+//		StyleBean sb = new StyleBean();
+//		sb.setNo(true);
+//		sb.setMemberId(member);
+//		service.addStyle(sb);
 
 		List<ArticleBean> art = service.getArticlesByMemberNo2(member);
 		model.addAttribute("arts", art);
@@ -168,6 +177,7 @@ public class ArticleController {
 		model.addAttribute("artsss", arts);
 
 		return "_02/myblog2";
+
 	}
 
 	@RequestMapping("/getblogfood")
@@ -307,7 +317,8 @@ public class ArticleController {
 	}
 
 	@RequestMapping(value = "/addArticle", method = RequestMethod.POST)
-	public String processAddNewArticle(@ModelAttribute("ArticleBean") ArticleBean bean,Model model, HttpServletRequest request) throws ParseException, java.text.ParseException {
+	public String processAddNewArticle(@ModelAttribute("ArticleBean") ArticleBean bean, Model model,
+			HttpServletRequest request) throws ParseException, java.text.ParseException {
 		HttpSession session = request.getSession();
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String member = loginToken.getMember_Id();
@@ -318,7 +329,7 @@ public class ArticleController {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 //		String postTime = request.getParameter("postTime");
-        String tag = request.getParameter("tag");
+		String tag = request.getParameter("tag");
 
 		if (bean.getTitle() == null || bean.getTitle().trim().length() == 0) {
 			errorMessage.put("titleNull", "請輸入標題");
@@ -349,7 +360,7 @@ public class ArticleController {
 			bean.setReport(false);
 			bean.setLikeCount(0);
 			bean.setAvailable(true);
-			
+
 			MultipartFile picture = bean.getArticleImage();
 			System.out.println("picturepicture=" + picture);
 			if (picture.getSize() == 0) {
@@ -383,12 +394,11 @@ public class ArticleController {
 		}
 
 	}
-	
-	
+
 	@RequestMapping(value = "/getArtPicture/{no}")
 	public ResponseEntity<byte[]> getPicture(HttpServletRequest reponse, @PathVariable Integer no) {
 //		System.out.println("picture=" + no);
-		
+
 		byte[] body = null;
 		ResponseEntity<byte[]> re = null;
 		MediaType mediaType = null;
@@ -408,7 +418,7 @@ public class ArticleController {
 		re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
 		return re;
 	}
-	
+
 	private byte[] toByteArray(String filepath) {
 		byte[] result = null;
 		try (InputStream is = context.getResourceAsStream(filepath);
@@ -424,7 +434,6 @@ public class ArticleController {
 		}
 		return result;
 	}
-	
 
 	@RequestMapping(value = "/editArticle")
 	public String getEditNewArticle(Model model, HttpServletRequest request) {
@@ -779,5 +788,17 @@ public class ArticleController {
 		return "redirect:/adminarticle";
 	}
 	
-	
+	     // URL為 /members, 搭配 GET方法可以傳回所有紀錄。
+		// produces屬性說明產生之資料的格式: produces = "application/vnd.ms-excel"
+		// 本方法可以Excel格式傳回所有Member紀錄
+		@RequestMapping(value = "/blogXML", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
+		public String queryArticleExcel(Model model, HttpServletRequest request,HttpServletResponse response) throws IOException {
+			request.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html;charset=UTF-8");
+			List<ArticleBean> art = service.getAll();
+			System.out.println("test excel="+art);
+			model.addAttribute("artCharts", art);
+			return "_02/admin_article";
+		}
+
 }

@@ -11,14 +11,14 @@ public class StyleBean {
 	
 	@Id
 	@Column(name = "style_no")
-	private Integer no;
+	private boolean no;
 	private String memberId;
 	
 	
-	public Integer getNo() {
+	public boolean getNo() {
 		return no;
 	}
-	public void setNo(Integer no) {
+	public void setNo(boolean no) {
 		this.no = no;
 	}
 	public String getMemberId() {

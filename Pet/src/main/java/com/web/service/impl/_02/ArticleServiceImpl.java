@@ -225,6 +225,8 @@ public class ArticleServiceImpl implements ArticleService{
 		dao.editStyle(sb);	
 	}
 
+
+
 //	@Transactional
 //	@Override
 //	public ArrayList<ArticleBean> queryByCategories() {

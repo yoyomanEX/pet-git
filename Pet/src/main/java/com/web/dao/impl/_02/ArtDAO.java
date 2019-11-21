@@ -84,4 +84,5 @@ public interface ArtDAO {
 	
 	public void editStyle(StyleBean sb);
 
+
 }
