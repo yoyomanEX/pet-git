@@ -47,6 +47,7 @@ public class MemberBean implements Serializable {
 	@XmlElement(name = "memberPet")
 	private int memberPet;
 	private MultipartFile  filImage;
+	private String checkPassword;
 	
 	@Transient
 	@XmlTransient
@@ -55,6 +56,14 @@ public class MemberBean implements Serializable {
 	}
 	public void setFilImage(MultipartFile filImage) {
 		this.filImage = filImage;
+	}
+	@Transient
+	@XmlTransient
+	public String getCheckPassword() {
+		return checkPassword;
+	}
+	public void setCheckPassword(String checkPassword) {
+		this.checkPassword = checkPassword;
 	}
 	
 	@Id

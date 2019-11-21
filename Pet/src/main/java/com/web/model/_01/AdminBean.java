@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 //@XmlRootElement(name="memberBean")
 //@XmlAccessorType(XmlAccessType.FIELD)
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 @Table(name = "admin")
 public class AdminBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	@Id
+	
 	//@XmlElement(name = "member_Id")
 	private String admin_Id;
 	//@XmlElement(name = "name")
@@ -24,7 +25,15 @@ public class AdminBean implements Serializable {
 	private String adminImage;
 	//@XmlElement(name = "fileName")
 	private String fileName;
-	
+	private String checkPassword;
+	@Transient
+	public String getCheckPassword() {
+		return checkPassword;
+	}
+	public void setCheckPassword(String checkPassword) {
+		this.checkPassword = checkPassword;
+	}
+	@Id
 	@Column(name = "admin_Id")
 	public String getAdmin_Id() {
 		return admin_Id;
