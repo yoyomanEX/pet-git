@@ -404,10 +404,6 @@
 	<script src="js/owl.carousel.min.js"></script>
 	<!-- custom js -->
 	<script src="js/custom.js"></script>
-	<!-- 瀑布流 js -->
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/masonry.pkgd.min.js"></script>
-	<script src="js/imagesloaded.pkgd.min.js"></script>
 
 
 </body>

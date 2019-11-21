@@ -370,18 +370,18 @@ $(document).ready(function() {
 						<form action="${pageContext.request.contextPath}/articlelike" method="post">
                                     <input type="hidden" class="form-control" id="memberId" name="memberId" placeholder="memberId" readonly="true" value="${LoginOK.member_Id }">
                                     <input type="hidden" value="${art.no}" name="no">
-                                    <button type="button"  class="btn foode-btn btn-sm" id="showmessage2">回覆</button> 
-                                    <input type="text" class="form-control" id="hidemessage2"  style="display:none" name="inputcomm" placeholder="留言....">
+<!--                                     <button type="button"  class="btn foode-btn btn-sm" id="showmessage2">回覆</button>  -->
+<!--                                     <input type="text" class="form-control" id="hidemessage2"  style="display:none" name="inputcomm" placeholder="留言...."> -->
                         </form>                
                         
-                                   <c:if test="${LoginOK.member_Id == art.memberId }"><%-- 如果登入帳號和留言帳號一樣才會出現修改和刪除--%>
-										<div style="float:right">
+<%--                                    <c:if test="${LoginOK.member_Id == art.memberId }">如果登入帳號和留言帳號一樣才會出現修改和刪除 --%>
+<!-- 										<div style="float:right"> -->
 												
-										<button type="button" id="update${art.no}" class="btn btn-outline-info " onclick="modifyComm(${cb.commNo},${mb.articleNo},${cb.memberId})">修改</button>
-										<button type="button" name="delete"  class="btn btn-outline-danger " onclick="confirmDelete('${art.no}')">刪除</button>
+<%-- 										<button type="button" id="update${art.no}" class="btn btn-outline-info " onclick="modifyComm(${cb.commNo},${mb.articleNo},${cb.memberId})">修改</button> --%>
+<%-- 										<button type="button" name="delete"  class="btn btn-outline-danger " onclick="confirmDelete('${art.no}')">刪除</button> --%>
 															
-										</div>
-							       </c:if>
+<!-- 										</div> -->
+<%-- 							       </c:if> --%>
                                             
                                         </div>
                                     </div>
