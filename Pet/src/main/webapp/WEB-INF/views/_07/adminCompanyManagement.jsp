@@ -337,7 +337,7 @@ $(document).ready(function(){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="${pageContext.request.contextPath}/views/maps.jsp">
+            <a class="nav-link " href="${pageContext.request.contextPath}/_08/adminContent">
               <i class="ni ni-pin-3 text-orange"></i> Maps
             </a>
           </li>

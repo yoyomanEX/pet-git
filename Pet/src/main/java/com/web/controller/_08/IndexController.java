@@ -38,7 +38,7 @@ import com.web.service.impl._08.index.ContentService;
 @RequestMapping(value = "_08")
 public class IndexController {
 	//Backstage
-	@RequestMapping(value = "/admin0123")
+	@RequestMapping(value = "/adminContent")
 	public String backstage() {
 		return "_08/AdminBackstage";
 	}
@@ -71,7 +71,7 @@ public class IndexController {
 	public String showAnnounceFront(Model model) {
 	List<AnnouncementBean> list = annService.qryAllAnnouncement();
 	model.addAttribute("allAnnouncements", list);
-	return "_08/showAnnounce";
+	return "index";
 }
 	@RequestMapping(value = "/announcements/{title}", method = RequestMethod.GET)
 	public String getAnnByTitle(@PathVariable("title") String title, Model model) {

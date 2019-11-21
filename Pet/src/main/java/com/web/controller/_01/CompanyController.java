@@ -159,5 +159,13 @@ public class CompanyController {
 		return "_01/ttt";
 
 	}
+	//廠商登出
+	@RequestMapping(value = "/_01.getCompanyLogout")
+	public String getCompanyLogout(Model model, HttpServletRequest request) {
+		model.addAttribute("CompanyBean", new CompanyBean());
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "_01/companylogin";
+	}
 
 }
