@@ -9,8 +9,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <title>pET ʕ•ᴥ•ʔ 陪你</title>
     <link rel="icon" href="img/about_icon.png">
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <!-- animate CSS -->
@@ -24,11 +26,97 @@
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css">
     <!-- style CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"> 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
-    
-     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    <script type="text/javascript" src="<c:url value="/js/jquery/jquery-2.2.4.min.js"/>"></script>
+<!--===============================================================================================-->
+	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">  
+     
+<style>
+section {
+background-image: url(img/dog_bg.jpg);
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+
+/* background-position: 50% -15%; */
+}
+</style>
+<script>
+
+//文章分類
+$(document).ready(function() {
+	$("#button1").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogfood",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button2").click(function(){
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogtravel",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button3").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogbeauty",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button4").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getbloganother",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+
+</script>
+
 </head>
 
 <body>
@@ -36,6 +124,23 @@
 
 <jsp:include page="header.jsp" />
     <!-- Header part end-->
+    
+    
+    <!--::breadcrumb part start::-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h1>${LoginOK.member_Id}blog</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--::breadcrumb part start::-->
 
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
@@ -63,169 +168,52 @@
                 <div class="col-12 col-lg-8">
                     <div class="blog-posts-area">
 
-                        <!-- Featured Post Area -->
-                        <div class="featured-posts">
-                            <a href="#"><img src="img/blog-img/1.jpg" alt=""></a>
-                            <!-- Featured Post Content -->
-                            <div class="featured-post-content">
-                                <p>MAY 8, 2018 / foody</p>
-                                <a href="#" class="post-title">
-                                    <h2>Quick Vegan Enchiladas with Sweet Potato Sauce</h2>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <span>
-
-
-
+       
                         <!-- Single Blog Post -->
-                        <div class="single-blog-post d-flex flex-wrap mt-50">
+                        <div class="single-blog-post d-flex flex-wrap" id="petblog">
                             <!-- Thumbnail -->
-                            
-                            
-                            
                             <c:forEach items="${arts }" var="art" varStatus="s">
-                            
-                            <div class="post-thumbnail mb-50">
-                                <a href="#"><img src="img/blog-img/8.jpg" alt=""></a>
-                            </div>
-                            
+                          
+                            <c:choose>
+                                <c:when test="${art.coverImage==null}">
+                                <div class="post-thumbnail mb-50"></div>
+                                </c:when>
+                              <c:otherwise>
+                                <div class="post-thumbnail mb-50">
+                                    <img width='450' height='500' src='<c:url value="/getArtPicture/${art.no }"/>'/>
+                                </div>
+                              </c:otherwise>
+                              </c:choose>
                             <!-- Content -->
                             <div class="post-content mb-50">
-                                <p class="post-date">${fn:substring(art.postTime, 0 ,20)} / foody</p>
-                                                            
-                                <a href="#" class="post-title">
-                                    <h4>${art.title}</h4>
-                                </a>
+                                <p class="post-date">${fn:substring(art.postTime, 0 ,20)}</p>                       
+                                <div class="post-title">
+                                    <a href="<spring:url value='postblog?id=${art.no}' />" class="post-title">
+                                        <h4>${art.title}</h4>
+                                    </a>
+                                </div>
                                 <div class="post-meta">
                                     <a href="#"><span>by</span> ${art.memberId}</a>
                                     <a href="#"><i class="fa fa-thumbs-up"></i>&nbsp&nbsp${art.likeCount}</a>
-                              
                                 </div>
-                                <p class="post-excerpt">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
-                                
-                                                                
-                                <a href="${pageContext.request.contextPath}/postblog?id=${art.no}" class="read-more-btn">Continue Reading
-<%--                                 <a href="<spring:url value='postblog?id=${art.no}' />" class="read-more-btn">Continue Reading --%>
+                                <p class="post-excerpt">${fn:substring(art.content, 0 ,20)}</p>                         
+                                <a href="<spring:url value='postblog?id=${art.no}' />" class="read-more-btn">Continue Reading  
                                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                                 </a>
                             </div>
-                            
                              </c:forEach>
-                            
-                            
                             <!-- Post Curve Line -->
                             <img class="post-curve-line" src="img/core-img/post-curve-line.png" alt="">
                         </div>
 
 
-
-
-
-
-                        <!-- Single Blog Post -->
-                        <div class="single-blog-post d-flex flex-wrap mt-50">
-                            <!-- Thumbnail -->
-                            <div class="post-thumbnail mb-50">
-                                <a href="#"><img src="img/blog-img/9.jpg" alt=""></a>
-                            </div>
-                            <!-- Content -->
-                            <div class="post-content mb-50">
-                                <p class="post-date">MAY 12, 2018 / drinks</p>
-                                <a href="#" class="post-title">
-                                    <h4>Grain-Free Sweet &amp; Savory Activated Walnut Granola</h4>
-                                </a>
-                                <div class="post-meta">
-                                    <a href="#"><span>by</span> Sarah Jenks</a>
-                                    <a href="#"><i class="fa fa-eye"></i> 192</a>
-                                    <a href="#"><i class="fa fa-comments"></i> 08</a>
-                                </div>
-                                <p class="post-excerpt">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
-                                <a href="#" class="read-more-btn">Continue Reading <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                            </div>
-                            <!-- Post Curve Line -->
-                            <img class="post-curve-line" src="img/core-img/post-curve-line.png" alt="">
-                        </div>
-
-                        <!-- Single Blog Post -->
-                        <div class="single-blog-post d-flex flex-wrap mt-50">
-                            <!-- Thumbnail -->
-                            <div class="post-thumbnail mb-50">
-                                <a href="#"><img src="img/blog-img/10.jpg" alt=""></a>
-                            </div>
-                            <!-- Content -->
-                            <div class="post-content mb-50">
-                                <p class="post-date">MAY 15, 2018 / Coffee</p>
-                                <a href="#" class="post-title">
-                                    <h4>Self-Care Interview Series: Gabrielle Russomagno</h4>
-                                </a>
-                                <div class="post-meta">
-                                    <a href="#"><span>by</span> Sarah Jenks</a>
-                                    <a href="#"><i class="fa fa-eye"></i> 192</a>
-                                    <a href="#"><i class="fa fa-comments"></i> 08</a>
-                                </div>
-                                <p class="post-excerpt">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
-                                <a href="#" class="read-more-btn">Continue Reading <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                            </div>
-                            <!-- Post Curve Line -->
-                            <img class="post-curve-line" src="img/core-img/post-curve-line.png" alt="">
-                        </div>
-
-                        <!-- Single Blog Post -->
-                        <div class="single-blog-post d-flex flex-wrap mt-50">
-                            <!-- Thumbnail -->
-                            <div class="post-thumbnail mb-50">
-                                <a href="#"><img src="img/blog-img/11.jpg" alt=""></a>
-                            </div>
-                            <!-- Content -->
-                            <div class="post-content mb-50">
-                                <p class="post-date">MAY 20, 2018 / foody</p>
-                                <a href="#" class="post-title">
-                                    <h4>Green Skillet Pizza with Asparagus and Pesto</h4>
-                                </a>
-                                <div class="post-meta">
-                                    <a href="#"><span>by</span> Sarah Jenks</a>
-                                    <a href="#"><i class="fa fa-eye"></i> 192</a>
-                                    <a href="#"><i class="fa fa-comments"></i> 08</a>
-                                </div>
-                                <p class="post-excerpt">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
-                                <a href="#" class="read-more-btn">Continue Reading <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                            </div>
-                            <!-- Post Curve Line -->
-                            <img class="post-curve-line" src="img/core-img/post-curve-line.png" alt="">
-                        </div>
-
-                        <!-- Single Blog Post -->
-                        <div class="single-blog-post d-flex flex-wrap mt-50">
-                            <!-- Thumbnail -->
-                            <div class="post-thumbnail mb-50">
-                                <a href="#"><img src="img/blog-img/12.jpg" alt=""></a>
-                            </div>
-                            <!-- Content -->
-                            <div class="post-content mb-50">
-                                <p class="post-date">MAY 28, 2018 / health</p>
-                                <a href="#" class="post-title">
-                                    <h4>Green Skillet Pizza with Asparagus and Pesto</h4>
-                                </a>
-                                <div class="post-meta">
-                                    <a href="#"><span>by</span> Sarah Jenks</a>
-                                    <a href="#"><i class="fa fa-eye"></i> 192</a>
-                                    <a href="#"><i class="fa fa-comments"></i> 08</a>
-                                </div>
-                                <p class="post-excerpt">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
-                                <a href="#" class="read-more-btn">Continue Reading <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                            </div>
-                            <!-- Post Curve Line -->
-                            <img class="post-curve-line" src="img/core-img/post-curve-line.png" alt="">
-                        </div>
 
                     </div>
 
                     <!-- Pager -->
                     <ol class="foode-pager mt-50">
-                        <li><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Newer</a></li>
-                        <li><a href="#">Older <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> 上一頁</a></li>
+                        <li><a href="#">下一頁 <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
                     </ol>
                 </div>
 
@@ -234,142 +222,137 @@
                     <div class="post-sidebar-area">
 
                         <!-- ##### Single Widget Area ##### -->
-                        <div class="single-widget-area mt-0">
-                            <form class="search-form" action="#" method="post">
-                                <input type="search" name="search" class="form-control" placeholder="Search...">
-                                <button><i class="fa fa-send"></i></button>
-                            </form>
-                        </div>
+<!--                         <div class="single-widget-area mt-0"> -->
+<!--                             <form class="search-form" action="#" method="post"> -->
+<!--                                 <input type="search" name="search" class="form-control" placeholder="Search..."> -->
+<!--                                 <button><i class="fa fa-send"></i></button> -->
+<!--                             </form> -->
+<!--                         </div> -->
 
                         <!-- ##### Single Widget Area ##### -->
                         <div class="single-widget-area">
                             <!-- Title -->
-                            <div class="widget-title">
-                                <h6>About Me</h6>
-                            </div>
+                            <div class="how2 how2-cl4 flex-s-c" style="padding-top:10px">
+								<h3 class="f1-m-2 cl3 tab01-title">
+									關於我
+								</h3>
+							</div>
                             <!-- Thumbnail -->
+                            <div style="padding-top:20px">
                             <div class="about-thumbnail">
                                 <img width='60' height='72' src='getPicture' />
+<!--                                 <img width='200' height='300' src="img/single_adopt_5.png" /> -->
                             </div>
                             <!-- Content -->
-                            <div class="widget-content text-center">
+                            <div class="widget-content text-center" style="padding-bottom:40px">
                                 <img src="img/core-img/signature.png" alt="">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
                             </div>
-                        </div>
-
-                        <!-- ##### Single Widget Area ##### -->
-                        <div class="single-widget-area">
-                            <!-- Title -->
-                            <div class="widget-title">
-                                <h6>Categories</h6>
                             </div>
-                            <ol class="foode-catagories">
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> Drink</span> <span>(18)</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> Foody</span> <span>(28)</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> Tea</span> <span>(15)</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> Coffee</span> <span>(27)</span></a></li>
+                        </div>
+                        
+                        
+                         <!--  -->
+						<div class="p-t-50">
+							<div class="how2 how2-cl4 flex-s-c" style="padding-top:10px">
+								<h3 class="f1-m-2 cl3 tab01-title">
+									文章分類
+								</h3>
+							</div>
+							<div style="padding-top:20px">
+							<ol >
+                                <li><a href="#" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp美食</span> <span></span></a></li>
+                                <li><a href="#" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp旅遊</span> <span></span></a></li>
+                                <li><a href="#" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp保養</span> <span></span></a></li>
+                                <li><a href="#" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp知識</span> <span></span></a></li>
                             </ol>
-                        </div>
+							</div>
+						</div>
+
 
                         <!-- ##### Single Widget Area ##### -->
                         <div class="single-widget-area">
                             <!-- Title -->
-                            <div class="widget-title">
-                                <h6>Latest Posts</h6>
-                            </div>
+                           <div class="how2 how2-cl4 flex-s-c" style="padding-top:10px">
+								<h3 class="f1-m-2 cl3 tab01-title">
+									推薦文章
+								</h3>
+							</div>
+                            <div style="padding-top:30px">
+                            <c:forEach items="${artss }" var="art" varStatus="s">
 
                             <!-- Single Latest Posts -->
                             <div class="single-latest-post d-flex">
+                               
+                               <c:choose>
+                                <c:when test="${art.coverImage==null}">
+                                <div class="post-thumb"></div>
+                                </c:when>
+                              <c:otherwise>
                                 <div class="post-thumb">
-                                    <img src="img/blog-img/lp1.jpg" alt="">
+                                    <img src='<c:url value="/getArtPicture/${art.no }"/>'/>
                                 </div>
+                              </c:otherwise>
+                              </c:choose>
+                               
+                                
                                 <div class="post-content">
-                                    <a href="#" class="post-title">
-                                        <h6>Weeknight Ponzu Pasta</h6>
+                                    <a href="<spring:url value='postblog?id=${art.no}' />" class="post-title">
+                                        <h6>${art.title}</h6>
                                     </a>
-                                    <a href="#" class="post-author"><span>by</span> Erin Alderson</a>
+                                    <a href="#"><i></i>${fn:substring(art.postTime, 0 ,10)}</a>
+                                    <div style="float:right">by${art.memberId}</div> 
                                 </div>
                             </div>
 
-                            <!-- Single Latest Posts -->
-                            <div class="single-latest-post d-flex">
-                                <div class="post-thumb">
-                                    <img src="img/blog-img/lp2.jpg" alt="">
-                                </div>
-                                <div class="post-content">
-                                    <a href="#" class="post-title">
-                                        <h6>The Most Popular Recipe Last Month</h6>
-                                    </a>
-                                    <a href="#" class="post-author"><span>by</span> Erin Alderson</a>
-                                </div>
-                            </div>
-
-                            <!-- Single Latest Posts -->
-                            <div class="single-latest-post d-flex">
-                                <div class="post-thumb">
-                                    <img src="img/blog-img/lp3.jpg" alt="">
-                                </div>
-                                <div class="post-content">
-                                    <a href="#" class="post-title">
-                                        <h6>A Really Good Chana Masala</h6>
-                                    </a>
-                                    <a href="#" class="post-author"><span>by</span> Erin Alderson</a>
-                                </div>
-                            </div>
-
-                            <!-- Single Latest Posts -->
-                            <div class="single-latest-post d-flex">
-                                <div class="post-thumb">
-                                    <img src="img/blog-img/lp4.jpg" alt="">
-                                </div>
-                                <div class="post-content">
-                                    <a href="#" class="post-title">
-                                        <h6>Spicy Instant Pot Taco Soup</h6>
-                                    </a>
-                                    <a href="#" class="post-author"><span>by</span> Erin Alderson</a>
-                                </div>
-                            </div>
-
-                            <!-- Single Latest Posts -->
-                            <div class="single-latest-post d-flex">
-                                <div class="post-thumb">
-                                    <img src="img/blog-img/lp5.jpg" alt="">
-                                </div>
-                                <div class="post-content">
-                                    <a href="#" class="post-title">
-                                        <h6>Lime Leaf Miso Soup</h6>
-                                    </a>
-                                    <a href="#" class="post-author"><span>by</span> Erin Alderson</a>
-                                </div>
-                            </div>
-
+                           </c:forEach>
+                           </div>
                         </div>
+                        
+                         <!--  -->
+						<div class="p-t-50" style="padding-top:30px">
+							<div class="how2 how2-cl4 flex-s-c" style="padding-top:10px">
+								<h3 class="f1-m-2 cl3 tab01-title">
+									誰來我家
+								</h3>
+							</div>
+							<div style="padding-top:20px">
+							<ol class="popular-tags d-flex flex-wrap" >
+                            <li>
+                                  <img src="img/post/post_5.png" alt="">&nbsp&nbsp
+                            </li>
+                            <li>
+                                  <img src="img/post/post_6.png" alt="">&nbsp&nbsp
+                            </li>
+                            <li>
+                                  <img src="img/post/post_7.png" alt="">&nbsp&nbsp
+                            </li>
+                            <li>
+                                  <img src="img/post/post_8.png" alt="">&nbsp&nbsp
+                            </li>
+                            <li>
+                                  <img src="img/post/post_9.png" alt="">&nbsp&nbsp
+                            </li>
+                            <li>
+                                  <img src="img/post/post_10.png" alt="">&nbsp&nbsp
+                            </li>
+                        </ol>
+							</div>
+						</div>
 
-                       
-                        <!-- ##### Single Widget Area ##### -->
-                        <div class="single-widget-area">
-                            <!-- Title -->
-                            <div class="widget-title">
-                                <h6>Archives</h6>
-                            </div>
-                            <ol class="foode-archives">
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> January 2018</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> February 2018</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> March 2018</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> April 2018</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> May 2018</span></a></li>
-                            </ol>
-                        </div>
+         
 
                         <!-- ##### Single Widget Area ##### -->
                         <div class="single-widget-area">
                             <!-- Title -->
-                            <div class="widget-title">
-                                <h6>popular tags</h6>
-                            </div>
+                            <div class="how2 how2-cl4 flex-s-c" style="padding-top:10px">
+								<h3 class="f1-m-2 cl3 tab01-title">
+									popular tags
+								</h3>
+							</div>
                             <!-- Tags -->
-                            <ol class="popular-tags d-flex flex-wrap">
+                            <div style="padding-top:30px">
+                            <ol class="popular-tags d-flex flex-wrap" >
                                 <li><a href="#">Creative</a></li>
                                 <li><a href="#">Unique</a></li>
                                 <li><a href="#">Template</a></li>
@@ -380,6 +363,7 @@
                                 <li><a href="#">food</a></li>
                                 <li><a href="#">Idea</a></li>
                             </ol>
+                            </div>
                         </div>
 
                     </div>
@@ -389,70 +373,17 @@
     </section>
     <!-- ##### Blog Content Area End ##### -->
 
-    <!-- ##### Instagram Area Start ##### -->
-    <div class="follow-us-instagram">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading">
-                        <h2>Follow Us On Instagram</h2>
-                        <span>@foodeblog</span>
-                    </div>
-                </div>
-            </div>
 
-<div class="row">
-				<div class="col-12">
-					<div class="instagram-slides owl-carousel">
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet1.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet5.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet2.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet4.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-
-
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet6.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet3.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- ##### Instagram Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
     
     <jsp:include page="footer.jsp" />
+
     
     <!-- footer part end-->
     
     
-        <!-- ##### All Javascript Script ##### -->
+    <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
@@ -462,8 +393,7 @@
     <!-- All Plugins js -->
     <script src="${pageContext.request.contextPath}/js/plugins/plugins.js"></script>
     <!-- Active js -->
-    <script src="${pageContext.request.contextPath}/js/active.js"></script>
-    
+    <script src="${pageContext.request.contextPath}/js/active.js"></script>    
     <!-- popper js -->
 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
 	<!-- bootstrap js -->
@@ -478,10 +408,7 @@
 	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 	<!-- custom js -->
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-	<!-- 瀑布流 js -->
-	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
+
 </body>
 
 </html>

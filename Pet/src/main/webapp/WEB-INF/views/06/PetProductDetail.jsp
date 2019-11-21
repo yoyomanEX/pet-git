@@ -179,7 +179,7 @@
 		});
 		//點選商品加入購物車
 		$("#addToCar").click(function() {
-			$('#orderSubmit').attr('action', "${pageContext.request.contextPath}/06/addProductsToCar");
+			$('#orderSubmit').attr('action', "${pageContext.request.contextPath}/06/addProductToCar");
 			$('#orderSubmit').submit();
 		});
 		//清空購物車
@@ -386,7 +386,7 @@
 				<br>
 				<br>
 				<br>
-				<h3>價格:${product.price}$</h3>
+				<h3>價格：$ ${product.price}</h3>
 				<c:choose>
 					<c:when test="${product.amount==0}">
 						<input type="hidden" name="amount" value="0" class="textNum" style="text-align: center;" />

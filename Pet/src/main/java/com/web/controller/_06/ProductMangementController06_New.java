@@ -60,7 +60,7 @@ public class ProductMangementController06_New {
 	}
 	
 	/**
-	 * 判別傳入字串回傳DB內相同資料 查詢商品資料
+	 * 判別傳入字串回傳DB內相同資料，查詢商品資料
 	 * @param petBean
 	 */
 
@@ -73,10 +73,14 @@ public class ProductMangementController06_New {
 	}
 	
 	
+	/**
+	 * 判別傳入字串回傳DB內相同資料，查訂單資料
+	 * @param petBean
+	 */
+	
 	@RequestMapping("/queryOrder")
 	public String orderQuery(HttpServletRequest request,Model model) throws Exception {
 		String orderSearch = request.getParameter("orderSearch");
-		System.out.println("orderSearch="+orderSearch);
 		List<OrderBean> orderList = petDao.queryOrder(orderSearch);
 		List <OrderDetailBean>orderDetailBeans =petDao.totalOrderDetail();	
 		model.addAttribute("orderList", orderList);

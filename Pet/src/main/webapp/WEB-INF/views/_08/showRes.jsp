@@ -52,7 +52,7 @@
 				<div class="row align-items-center">
 					<div class="col-4 col-md-4 col-xl-6">
 						<div id="logo">
-							<a href="index.html"><img src="img/Logo.png" alt="" title="" /></a>
+							<a href="${pageContext.request.contextPath}/"><img src="img/Logo.png" alt="" title="" /></a>
 						</div>
 					</div>
 					<div class="col-8 col-md-8 col-xl-6 ">
@@ -82,8 +82,8 @@
 								id="navbarSupportedContent">
 								<ul class="navbar-nav">
 									<li class="nav-item active"><a class="nav-link active"
-										href="index.jsp">Home</a></li>
-									<li class="nav-item"><a href="travel.jsp" class="nav-link">𨑨迌
+										href="${pageContext.request.contextPath}/">Home</a></li>
+									<li class="nav-item"><a href="_08/announcements__Front" class="nav-link">𨑨迌
 											食飯</a></li>
 									<li class="nav-item"><a href="#" class="nav-link">交朋友</a>
 									</li>

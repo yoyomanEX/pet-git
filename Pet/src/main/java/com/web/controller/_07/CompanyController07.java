@@ -244,5 +244,10 @@ public class CompanyController07 {
 		
 	
 	}
+	
+	@RequestMapping("/adminCompanyManagement07")
+	public String adminCompanyManagement07() {
+		return "/_07/adminCompanyManagement";
+	}
 
 }

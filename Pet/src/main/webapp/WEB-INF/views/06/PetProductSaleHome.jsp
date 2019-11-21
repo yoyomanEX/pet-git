@@ -26,19 +26,20 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <!-- Flexslider 圖片輪播套件 -->
 <link href="http://cdn.bootcss.com/flexslider/2.6.3/flexslider.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
-	
-</script>
+
+
+
+
+<script src="${pageContext.request.contextPath}/assets/js/plugins/jquery/dist/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/flexslider/2.6.3/jquery.flexslider.min.js"></script>
-<script type="text/javascript" src="../lib/jquery_pagination/jquery.pagination.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/DataTables/DataTables-1.10.20/js/jquery.dataTables.js"></script>
 <script>
 	var sum = 0;
 	var buycar = new Object();
 
 	$(function() {
-
 		$(".flexslider").flexslider({
-			slideshowSpeed : 5000,
+			slideshowSpeed : 4000,
 		});
 		totalName();
 		totalNum();
@@ -161,13 +162,15 @@
 				}
 			});
 		});
-		$("#productSearch").keypress(function(){
-			var productSearch=$("#productSearch").val();
-			
+		
+		//按下ENTER搜尋商品
+		$("#productSearch").keypress(function() {
+			var productSearch = $("#productSearch").val();
+
 			$.ajax({
 				url : '${pageContext.request.contextPath}/06/productSearch',
 				type : 'post',
-				data :"&productSearch="+productSearch,
+				data : "&productSearch=" + productSearch,
 				headers : {
 					Accept : "text/html"
 				},
@@ -177,10 +180,14 @@
 				}
 			});
 		});
-	});
-	
-	
 		
+		$("#myTable").DataTable({
+			"searching" : false,
+			"bLengthChange" : false,
+			"pageLength" :8
+		});
+
+	});
 
 	$(function() {
 		//點選商品頁超連結 執行SUBMIT動作 傳到該商品詳細資料頁面
@@ -215,6 +222,8 @@
 	});
 </script>
 <style type="text/css">
+
+
 #shoppingCart {
 	position: fixed;
 	top: 30%;
@@ -242,7 +251,7 @@
 }
 
 .flexslider {
-	margin-left: 300px;
+	margin-left: 350px;
 	height: 560px;
 	width: 800px;
 	text-align: center;
@@ -387,7 +396,7 @@
 	<div id="pageBackground">
 		<div id="sidebar_left">
 			<h3>pETʕ•ᴥ•ʔ 陪你購物</h3>
-			<input class="buttonSearch" placeholder="請輸入商品名稱"  type="text" id="productSearch">
+			<input class="buttonSearch" placeholder="請輸入商品名稱" type="text" id="productSearch">
 			<button type='submit' class="button" id='allProducts' style="vertical-align: middle">
 				<span>全部商品</span>
 			</button>

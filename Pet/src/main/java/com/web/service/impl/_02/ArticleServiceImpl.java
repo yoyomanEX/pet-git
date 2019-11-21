@@ -1,5 +1,6 @@
 package com.web.service.impl._02;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.web.model._02.ArticleBean;
 import com.web.model._02.LikeCountBean;
 import com.web.model._02.ReplyBean;
 import com.web.model._02.ReportBean;
+import com.web.model._02.StyleBean;
 
 @Service
 public class ArticleServiceImpl implements ArticleService{
@@ -98,11 +100,6 @@ public class ArticleServiceImpl implements ArticleService{
 		return dao.getReplysByArticle(articleno);
 	}
 
-//	@Transactional
-//	@Override
-//	public ReplyBean getReplyById(int no) {
-//		return dao.getReplyById(no);
-//	}
 
 //	@Transactional
 //	@Override
@@ -115,6 +112,12 @@ public class ArticleServiceImpl implements ArticleService{
 	public void addReport(ReportBean rb) {
 		dao.addReport(rb);
 		
+	}
+	
+	@Transactional
+	@Override
+	public List<ArticleBean> getArticlesByMemberNo2(String memberNo)  {
+		return dao.getArticlesByMemberNo2(memberNo);
 	}
 
 	@Transactional
@@ -160,6 +163,80 @@ public class ArticleServiceImpl implements ArticleService{
 	public List<ArticleBean> getArticleByLike() {
 		return dao.getArticleByLike();
 	}
+
+	@Transactional
+	@Override
+	public ArrayList<ArticleBean> queryArticleByDate(String p1,String d1,String d2){
+		return dao.queryArticleByDate(p1, d1, d2);
+	}
+
+	@Transactional
+	@Override
+	public List<ArticleBean> getArticleByDate(String memberNo) {
+		return dao.getArticleByDate(memberNo);
+	}
+
+	@Transactional
+	@Override
+	public List<ArticleBean> getArticlelikeByMember(String memberNo) {
+		return dao.getArticlelikeByMember(memberNo);
+	}
+
+	@Transactional
+	@Override
+	public void deleteReply(ReplyBean replyno) {
+		dao.deleteReply(replyno);
+		
+	}
+
+	@Transactional
+	@Override
+	public ArrayList<ArticleBean> queryArticleByCategories1(String p1) {
+		return dao.queryArticleByCategories1(p1);
+	}
+
+	@Transactional
+	@Override
+	public ArrayList<ArticleBean> queryArticleByCategories2(String p1) {
+		return dao.queryArticleByCategories2(p1);
+	}
+
+	@Transactional
+	@Override
+	public ArrayList<ArticleBean> queryArticleByCategories3(String p1) {
+		return dao.queryArticleByCategories3(p1);
+	}
+
+	@Transactional
+	@Override
+	public ArrayList<ArticleBean> queryArticleByCategories4(String p1) {
+		return dao.queryArticleByCategories4(p1);
+	}
+
+	@Transactional
+	@Override
+	public void addStyle(StyleBean sb) {
+		dao.addStyle(sb);
+	}
+
+	@Transactional
+	@Override
+	public void editStyle(StyleBean sb) {
+		dao.editStyle(sb);	
+	}
+
+
+
+//	@Transactional
+//	@Override
+//	public ArrayList<ArticleBean> queryByCategories() {
+//		return dao.queryByCategories();
+//	}
+	
+	
+	
+	
+
 	
 }
 

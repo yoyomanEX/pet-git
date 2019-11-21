@@ -26,8 +26,8 @@ public class ContentServiceImpl implements ContentService {
 	}
 	@Transactional
 	@Override
-	public ContentBean qryContentById(Integer contId) {
-		return contDAO.qryContentById(contId);
+	public ContentBean qryContentById(Integer content_id) {
+		return contDAO.qryContentById(content_id);
 	}
 	@Transactional
 	@Override

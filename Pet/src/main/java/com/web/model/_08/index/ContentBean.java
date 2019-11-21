@@ -32,13 +32,12 @@ public class ContentBean implements Serializable{
 	public ContentBean() {}
 	
 	public ContentBean(int content_id, String content_title, String content_sub, Blob content_img,
-			MultipartFile contentImg, String content_fileName, String content_loc, String content_tag) {
+			String content_fileName, String content_loc, String content_tag) {
 		super();
 		this.content_id = content_id;
 		this.content_title = content_title;
 		this.content_sub = content_sub;
 		this.content_img = content_img;
-		this.contentImg = contentImg;
 		this.content_fileName = content_fileName;
 		this.content_loc = content_loc;
 		this.content_tag = content_tag;
@@ -98,11 +97,10 @@ public class ContentBean implements Serializable{
 	public MultipartFile getContentImg() {
 		return contentImg;
 	}
-	@Transient
 	public void setContentImg(MultipartFile contentImg) {
 		this.contentImg = contentImg;
 	}
-
+	@Column(name = "content_fileName")
 	public String getContent_fileName() {
 		return content_fileName;
 	}

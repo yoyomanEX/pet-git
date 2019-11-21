@@ -347,10 +347,10 @@
 		<div class="container">
 			<div class="row">
 				<c:forEach var='ann' items='${allAnnouncements}'>
-					<div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
-						<div class="thumbnail" style="width: 320px; height: 340px">
-							<img width='100' height='200'
-								src="<c:url value='/getPicture/${ann.announce_id}' />" />
+					<div class="col-sm-6 col-md-3" >
+						<div class="thumbnail" >
+							<img 
+								src="<c:url value='/getAnnPicture/${ann.announce_id}' />" />
 							<div class="caption">
 								<p>
 									<b style='font-size: 16px;'>${ann.announce_title}</b>

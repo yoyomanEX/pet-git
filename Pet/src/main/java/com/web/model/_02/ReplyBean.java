@@ -29,6 +29,7 @@ public class ReplyBean implements Serializable{
 	private Date postTime;
 	private String memberId;
 	private Integer article_no;
+	private String message;
 	
 //	@Transient
 //	private String rnoString;
@@ -102,6 +103,13 @@ public class ReplyBean implements Serializable{
 
 	public void setArticle_no(Integer article_no) {
 		this.article_no = article_no;
+	}
+	
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	@Override

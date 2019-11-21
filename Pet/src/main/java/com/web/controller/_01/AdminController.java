@@ -72,9 +72,12 @@ public class AdminController {
 		AdminBean loginToken = (AdminBean) session.getAttribute("AdminLoginOK");
 		String n1 = loginToken.getName();
 
+
 		System.out.println("n1:" + n1);
 
-		return "/_07/adminCompanyManagement";
+		return "/_01/adminManagement";
+
+
 
 	}
 

@@ -6,7 +6,7 @@ import com.web.model._08.index.ContentBean;
 
 public interface ContentService {
 	public List<ContentBean> qryAllContent();
-	public ContentBean qryContentById(Integer contId);
+	public ContentBean qryContentById(Integer content_id);
 	public List<ContentBean> qryContentByTitle(String title);
 	public void insertContent(ContentBean contBean);
 	public void updateContent(Integer contId, ContentBean contBean);

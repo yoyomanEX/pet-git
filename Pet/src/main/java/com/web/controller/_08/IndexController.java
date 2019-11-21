@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
@@ -19,10 +20,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.web.model._08.index.AnnouncementBean;
 import com.web.model._08.index.ContentBean;
@@ -62,26 +67,79 @@ public class IndexController {
 	model.addAttribute("allAnnouncements", list);
 	return "_08/announcements";
 }
+	@RequestMapping(value = "/announcements__Front", method = RequestMethod.GET, produces = "text/html")
+	public String showAnnounceFront(Model model) {
+	List<AnnouncementBean> list = annService.qryAllAnnouncement();
+	model.addAttribute("allAnnouncements", list);
+	return "_08/showAnnounce";
+}
 	@RequestMapping(value = "/announcements/{title}", method = RequestMethod.GET)
 	public String getAnnByTitle(@PathVariable("title") String title, Model model) {
 		List<AnnouncementBean> announcements = annService.qryAnnounceByTitle(title);
 		model.addAttribute("announcements", announcements);
 		return "_08/announcements";
 	}
+	
+	@RequestMapping(value = "/announcements/add", method = RequestMethod.GET)
+	public String getAddNewAnnounceForm(Model model) {
+		AnnouncementBean ann = new AnnouncementBean();
+		model.addAttribute("AnnouncementBean", ann);
+		return "_08/addAnnounce";
+	}
+	@RequestMapping(value = "/announcements/add", method = RequestMethod.POST)
+	public String processAddNewAnnounceForm(@ModelAttribute("AnnouncementBean") AnnouncementBean ann, BindingResult result) {
+		String[] suppressedFields = result.getSuppressedFields();
+		if (suppressedFields.length > 0) {
+			throw new RuntimeException("嘗試傳入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
+		}
+		MultipartFile annImage = ann.getAnnImg();
+		String originalFilename = annImage.getOriginalFilename();
+		ann.setAnnounce_fileName(originalFilename);
+		// 建立Blob物件，交由 Hibernate 寫入資料庫
+		if(annImage != null && !annImage.isEmpty()) {
+			try {
+				byte[] b = annImage.getBytes();
+				Blob blob = new SerialBlob(b);
+				ann.setAnnounce_img(blob);
+			}catch(Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+			}
+		}
+		annService.insertAnnounce(ann);
+		String rootDirectory = context.getRealPath("/");
+		String ext = "";
+		if(!originalFilename.isEmpty()) {
+			ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+			
+			try {
+				File imageFolder = new File(rootDirectory, "images");
+				if(!imageFolder.exists()) imageFolder.mkdirs();
+				File file = new File(imageFolder, "Announce-" + ann.getAnnounce_id() + ext);
+				annImage.transferTo(file);
+			}catch(Exception e){
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+			}
+		}
+//		else {}
+		return "redirect:/_08/announcements";
+	}
 	@RequestMapping("/announcement")
 	public String getAnnById(@RequestParam("annId") Integer annId, Model model) {
 		model.addAttribute("announcement", annService.qryAnnouncementById(annId));
 		return "_08/announce_single";
 	}
-	@RequestMapping(value = "/getPicture/{annId}", method = RequestMethod.GET)
-	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer annId) {
+	@RequestMapping(value = "/getAnnPicture/{announce_id}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer announce_id) {
 		String filePath = "/resources/images/NoImage.jpg";
 
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();
 		String filename = "";
 		int len = 0;
-		AnnouncementBean bean = annService.qryAnnouncementById(annId);
+		AnnouncementBean bean = annService.qryAnnouncementById(announce_id);
+		System.out.println("beanbean="+bean);
 		if (bean != null) {
 			Blob blob = bean.getAnnounce_img();
 			filename = bean.getAnnounce_fileName();
@@ -137,26 +195,77 @@ public class IndexController {
 	model.addAttribute("allcontents", list);
 	return "_08/contents";
 }
+	@RequestMapping(value = "/contents_Front", method = RequestMethod.GET, produces = "text/html")
+	public String showContentFront(Model model) {
+	List<ContentBean> list = contService.qryAllContent();
+	model.addAttribute("allcontents", list);
+	return "_08/showContent";
+}
 	@RequestMapping(value = "/contents/{title}", method = RequestMethod.GET)
 	public String getcontByTitle(@PathVariable("title") String title, Model model) {
 		List<ContentBean> contents = contService.qryContentByTitle(title);
 		model.addAttribute("contents", contents);
 		return "_08/contents";
 	}
+	@RequestMapping(value = "/contents/add", method = RequestMethod.GET)
+	public String getAddNewContentForm(Model model) {
+		ContentBean c = new ContentBean();
+		model.addAttribute("ContentBean", c);
+		return "_08/addContent";
+	}
+	@RequestMapping(value = "/contents/add", method = RequestMethod.POST)
+	public String processAddNewContentForm(@ModelAttribute("ContentBean") ContentBean cont, BindingResult result) {
+		String[] suppressedFields = result.getSuppressedFields();
+		if (suppressedFields.length > 0) {
+			throw new RuntimeException("嘗試傳入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
+		}
+		MultipartFile contentImg = cont.getContentImg();
+		String originalFilename = contentImg.getOriginalFilename();
+		cont.setContent_fileName(originalFilename);
+		// 建立Blob物件，交由 Hibernate 寫入資料庫
+		if(contentImg != null && !contentImg.isEmpty()) {
+			try {
+				byte[] b = contentImg.getBytes();
+				Blob blob = new SerialBlob(b);
+				cont.setContent_img(blob);
+			}catch(Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+			}
+		}
+		contService.insertContent(cont);
+		String rootDirectory = context.getRealPath("/");
+		String ext = "";
+		if(!originalFilename.isEmpty()) {
+			ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+			
+			try {
+				File imageFolder = new File(rootDirectory, "images");
+				if(!imageFolder.exists()) imageFolder.mkdirs();
+				File file = new File(imageFolder, "Content-" + cont.getContent_id() + ext);
+				contentImg.transferTo(file);
+			}catch(Exception e){
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+			}
+		}
+//		else {}
+		return "redirect:/_08/contents";
+	}
 	@RequestMapping("/content")
 	public String getcontById(@RequestParam("contId") Integer contId, Model model) {
 		model.addAttribute("content", contService.qryContentById(contId));
 		return "_08/contounce_single";
 	}
-	@RequestMapping(value = "/getPicture/{contId}", method = RequestMethod.GET)
-	public ResponseEntity<byte[]> getPictureCont(HttpServletResponse resp, @PathVariable Integer contId) {
+	@RequestMapping(value = "/getContPicture/{content_id}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getPictureCont(HttpServletResponse resp, @PathVariable Integer content_id) {
 		String filePath = "/resources/images/NoImage.jpg";
 
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();
 		String filename = "";
 		int len = 0;
-		ContentBean bean = contService.qryContentById(contId);
+		ContentBean bean = contService.qryContentById(content_id);
 		if (bean != null) {
 			Blob blob = bean.getContent_img();
 			filename = bean.getContent_fileName();

@@ -82,7 +82,7 @@
      		 <li class="nav-item">
        		 	<a class="nav-link" href="companyOrderCharts">
        		   <i class="fas fa-fw fa-chart-area"></i>
-          	<span>統計報表</span></a>
+          	<span>銷售報表</span></a>
     		  </li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -304,7 +304,7 @@
         <!-- Begin Page Content內文開始 -->
       
       <!-- Begin Page Content -->
-				<div class="container-fluid" style='padding:200px;'>
+				<div class="container-fluid" style='padding:100px;'>
 				<h1 style="font-size: 55px;">您已進入pET ʕ•ᴥ•ʔ 廠商後台管理頁面<h1>
          		<div class="row">
 
