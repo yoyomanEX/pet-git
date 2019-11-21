@@ -219,7 +219,7 @@
 			<div id="content">
 				<br>
 				<table
-					style="text-align: center; width: 1100px; font-family: Microsoft JhengHei; font-size: 20px; font-weight: bold;"
+					style="text-align: center; width: 80%; font-family: Microsoft JhengHei; font-size: 20px; font-weight: bold;"
 					border=1">
 
 					<c:forEach var='list' items='${orderList}'>
