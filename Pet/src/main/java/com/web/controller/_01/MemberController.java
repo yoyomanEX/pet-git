@@ -351,5 +351,13 @@ public class MemberController {
 		return "index";
 
 	}
+	
+	@RequestMapping("/_01.memberManagement")
+	 public String friendlist(String mid1, Model model, HttpServletRequest request) {
+	  HttpSession session = request.getSession();
+	  session.getAttribute("LoginOK");
+	  
+	  return "_01/memberManagement";
+	 }
 
 }
