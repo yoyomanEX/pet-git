@@ -6,11 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 @Entity
 @Table(name = "company")
 public class CompanyBean implements Serializable{
 	private static final long serialVersionUID = 1L;
-	@Id
+	
 	private int id;
 	private String company_id;
 	private String company_name;
@@ -20,7 +21,15 @@ public class CompanyBean implements Serializable{
 	private String company_email;
 	private String contact_name;
 	private int status;
-	
+	private String checkPassword;
+	@Transient
+	public String getCheckPassword() {
+		return checkPassword;
+	}
+	public void setCheckPassword(String checkPassword) {
+		this.checkPassword = checkPassword;
+	}
+	@Id
 	@Column(name = "id")
 	public int getId() {
 		return id;

@@ -34,18 +34,22 @@
               <form:form modelAttribute="AdminBean" action='_01.saveAdmin' method='POST' class="user">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <form:input path='admin_Id' class="form-control form-control-user" placeholder="帳號"/><span id="sp1"></span>
+                    <form:input path='admin_Id' class="form-control form-control-user" placeholder="帳號"/>
+                    <form:errors path="admin_Id" cssStyle="color: red;"/>
                   </div>
                   <div class="col-sm-6">
                   	<form:input path='name' class="form-control form-control-user" placeholder="暱稱"/>
+                    <form:errors path="name" cssStyle="color: red;"/>
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                   	<form:input path='password' type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password"/>
+                    <form:errors path="password" cssStyle="color: red;"/>
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                    <form:input path='checkPassword' class="form-control form-control-user"  placeholder="Repeat Password"/>
+                  	<form:errors path="checkPassword" cssStyle="color: red;"/>
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block">
