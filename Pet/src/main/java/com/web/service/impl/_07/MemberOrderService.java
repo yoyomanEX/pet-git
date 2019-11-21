@@ -39,6 +39,8 @@ public interface MemberOrderService {
 	
 //	MemberOrderBean queryProductAmountByDate(String p1, String d1, String d2);
 	
-	ArrayList<MemberOrderBean> queryAllOrder();
+//	ArrayList<MemberOrderBean> queryAllOrder();
+
+	ArrayList<MemberOrderBean> queryOrderChartsList(String p1, String p2, String p3);
 }
 

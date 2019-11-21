@@ -76,59 +76,6 @@
   } );
 </script>
 
-<!-- excel表 -->
- <script type="text/javascript">
-// jq1(document).ready(function(){
-// 	var company_id =jq1("#company_id").val();
-// 	jq1(".clickmeC").click(function() {
-// 		jq1.ajax({
-// 			url:"companyOrderList.xls",
-// 			data:{
-// 				key1:jq1("#from").val(),
-// 				key2:jq1("#to").val(),
-// 				key3:company_id,
-// 				key4:jq1("#status1").val()
-// 			},
-//  			contentType: "application/vnd.ms-excel;charset = utf-8",
-// 			type:"post",
-// 			success:function (data){
-// 				alert(data);
-// 				orderList(data)
-// 			}
-// 		});
-// 	});
-// });
-// function orderList(data) {
- 	
-// 	var unprocess=JSON.parse(data);
-// 	var txt ="<tr><th>訂單日期</th><th>訂單編號</th><th>訂購人</th><th>收貨人</th><th>地址</th><th>總金額</th><th>出貨日期</th>";
-// 	for(i=0;i<unprocess.length;i++){
-// 		var order_date = "";
-// 		if(unprocess[i].order_date != '' && typeof unprocess[i].order_date != 'undefined'){
-// 			var v1 = new Date(unprocess[i].order_date);
-// 			order_date = v1.getFullYear()+"-"+(v1.getMonth()+1)+"-"+addZero(v1.getDate(),2)+" "+addZero(v1.getHours(),2)+":"+addZero(v1.getMinutes(),2)+":"+addZero(v1.getSeconds(),2);
-// 		}
-		
-// 		var ship_date = "";
-// 		if(unprocess[i].ship_date){
-// 			var v1 = new Date(unprocess[i].ship_date);
-// 			ship_date = v1.getFullYear()+"-"+(v1.getMonth()+1)+"-"+addZero(v1.getDate(),2)+" "+addZero(v1.getHours(),2)+":"+addZero(v1.getMinutes(),2)+":"+addZero(v1.getSeconds(),2);
-// 		}
-// 		txt +="<tr style='background-color:#F0F0F0;' id='title"+i+"'><td>"+ order_date;
-// 		txt +="<td>"+unprocess[i].order_id;
-// 		txt +="<td>"+unprocess[i].member_id;
-// 		txt +="<td>"+unprocess[i].recipient;
-// 		txt +="<td>"+unprocess[i].address;
-// 		txt +="<td>"+unprocess[i].total;
-// 		txt +="<td>"+ship_date;
-// 		txt +="<tr>";
-// 	}
-// // 	document.getElementById("dataTable").innerHTML=txt;
-// }
-
-
-
-</script>
 
 <!-- 報表查詢(依日期) -->
 <script type="text/javascript">
@@ -137,7 +84,7 @@ jq1(document).ready(function(){
 	var company_id =jq1("#company_id").val();
 	jq1(".clickmeC").click(function() {
 		jq1.ajax({
-			url:"queryOrderByStatus",
+			url:"queryOrderByStatus.xls",
 			data:{
 				key1:jq1("#from").val(),
 				key2:jq1("#to").val(),
@@ -147,7 +94,7 @@ jq1(document).ready(function(){
 // 			dataType: "text",
 			type:"post",
 			success:function (data){
-// 				alert(data);
+ 		//		alert(data);
  				processedOrder(data);
 			}
 		});
@@ -329,7 +276,7 @@ function showDetail(data,p) {
 					<i class=""></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-					Pet陪你<br> 廠商後台系統
+					Petʕ•ᴥ•ʔ<br> 廠商後台系統
 				</div>
 			</a>
 			<!-- Divider -->
@@ -344,8 +291,13 @@ function showDetail(data,p) {
 
 			<!-- Heading -->
 			<!-- 			<div class="sidebar-heading">XXXXXXX</div> -->
-
-
+			<!-- Nav Item - 前台頁面-->
+			<li class="nav-item">
+			<a class="nav-link collapsed" href="index.html"> 
+				<span style='margin-left: 10px;' class='btn btn-danger'>pET寵物網</span></a>
+			
+			</li>
+			
 			<!-- Nav Item - 商品管理-->
 			<li class="nav-item"><a class="nav-link collapsed"
 				href="CompanyManagement" data-toggle="" data-target="#collapsePages"
@@ -360,36 +312,12 @@ function showDetail(data,p) {
 			<!-- Nav Item - 統計報表 -->
 			<li class="nav-item active"><a class="nav-link" href="companyOrderCharts"> <i
 					class="fas fa-fw fa-chart-area"></i> <span>銷售報表</span></a></li>
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-cog"></i> <span>廠商資料修改</span>
-			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Components:</h6>
-						<a class="collapse-item" href="buttons.html">Buttons</a> <a
-							class="collapse-item" href="cards.html">Cards</a>
-					</div>
-				</div></li>
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>聯絡我們</span>
-			</a>
-				<div id="collapseUtilities" class="collapse"
-					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Utilities:</h6>
-						<a class="collapse-item" href="utilities-color.html">Colors</a> <a
-							class="collapse-item" href="utilities-border.html">Borders</a> <a
-							class="collapse-item" href="utilities-animation.html">Animations</a>
-						<a class="collapse-item" href="utilities-other.html">Other</a>
-					</div>
-				</div></li>
+			 <!-- Nav Item - Charts -->
+     		 <li class="nav-item">
+       		 	<a class="nav-link" href="companyContent">
+       		   <i class="fas fa-fw fa-wrench"></i>
+          	<span>聯絡我們</span></a>
+    		  </li>
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
@@ -584,6 +512,11 @@ function showDetail(data,p) {
 								aria-labelledby="userDropdown">
 
 								<div class="dropdown-divider"></div>
+								 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  				<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+              		 			 修改資料
+                				</a>
+								
 								<a class="dropdown-item" href="#" data-toggle="modal"
 									data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -607,18 +540,23 @@ function showDetail(data,p) {
 					
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-					  <a> <label for="from">訂單起日</label> 
+						
+					   
+					  <form id='orderReports' style='float: left;' action="${pageContext.request.contextPath}/companyOrderList1.xls">
+					  <a> <label for="from">訂單起日</label>
 					  <input type="text" id="from" name="startdate"> 
 					  <input type="hidden" value='${CompanyLoginOK.company_id}' name='company_id' id='company_id'> 
 					  <label for="to">~訂單迄日</label> 
 					  <input type="text" id="to" name="enddate">
 					  <input type="hidden" id='status1' value="3">
 					</a>
+					</form>
 					<a style='padding-right: 100px;'>
-						<button id='clickmeS' class='clickmeC'>查詢</button>
+						<button  class='clickmeC'>查詢</button>
 					</a> 
-					<a href='${pageContext.request.contextPath}/companyOrderList.xls' class='btn btn-success'>EXCEL下載</a>
-					<a href='#' class='clickmeC btn btn-danger'>PDF下載</a>
+					<a href='#' onclick='excelReport();' class='btn btn-success'>EXCEL下載</a>
+					
+					
 				</div>
 				<div id="tabs">
   			<ul>
@@ -647,19 +585,7 @@ function showDetail(data,p) {
 					</tr>
 				</table>
             </div>
-           
-</div>
-				
-				
-					<!-- CHARTS CIRCLE -->
-<!-- 				<table class='columns'> -->
-<!-- 				 	<tr> -->
-<!-- 				 		<td><div  id='piechart_div' style="border:1px solid #ccc;"></div></td> -->
-<!-- 		                <td><div id='barchart_div' style="border:1px solid #ccc"></div></td> -->
-<!-- 					</tr> -->
-<!-- 				</table> -->
-				<!-- /.container-fluid -->
-
+           </div>
 			</div>
 			<!-- End of Main Content -->
 
@@ -726,8 +652,9 @@ function showDetail(data,p) {
 	<script src="js/demo/datatables-demo.js"></script>
 
 	<script>
-   		
-   
+   		function excelReport(){
+   			$('#orderReports').submit();
+   		}
    </script>
 
 </body>

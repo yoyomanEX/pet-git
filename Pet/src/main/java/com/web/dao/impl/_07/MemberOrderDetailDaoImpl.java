@@ -59,9 +59,10 @@ public class MemberOrderDetailDaoImpl implements MemberOrderDetailDao {
 	public ArrayList<MemberOrderDetailBean> queryOrderChartsList(String p1,String p2,String p3) {
 		Session session = factory.getCurrentSession();
 		NativeQuery query = session
-				.createSQLQuery("SELECT member_order.order_id, 0 as company_id,"
-						+ "member_order.total,member_order_detail.product_id,"
-						+ "member_order_detail.product_name"
+				.createSQLQuery("SELECT member_order.order_id,member_order.company_id,"
+						+ "member_order.order_date,member_order_detail.product_id,"
+						+ "member_order_detail.product_name,member_order_detail.amount,"
+						+ "member_order.total,member_order.ship_date "
 						+ "FROM member_order INNER JOIN member_order_detail "
 						+ "ON member_order.order_id = member_order_detail.order_id "
 						+ "where member_order.order_date >= '"+p1+"' "

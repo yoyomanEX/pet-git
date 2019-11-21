@@ -79,12 +79,20 @@ public class MemberOrderServiceImpl implements MemberOrderService {
 //	public MemberOrderBean queryProductAmountByDate(String p1, String d1, String d2) {
 //		return eDao.queryProductAmountByDate(p1, d1, d2);
 //	}
+//	@Override
+//	@Transactional
+//	public ArrayList<MemberOrderBean> queryAllOrder(){
+//		return eDao.queryAllOrder();
+//		
+//	}
+	
 	@Override
 	@Transactional
-	public ArrayList<MemberOrderBean> queryAllOrder(){
-		return eDao.queryAllOrder();
+	public ArrayList<MemberOrderBean> queryOrderChartsList(String p1,String p2,String p3){
+		return eDao.queryOrderChartsList(p1, p2, p3);
 		
 	}
+	
 	
 	
 }

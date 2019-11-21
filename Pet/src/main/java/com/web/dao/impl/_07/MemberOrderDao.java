@@ -28,7 +28,9 @@ public interface MemberOrderDao {
 	public void processedShippedOrder(MemberOrderBean p1);
 
 	//測試用
-	ArrayList<MemberOrderBean> queryAllOrder();
+	//ArrayList<MemberOrderBean> queryAllOrder();
+
+	ArrayList<MemberOrderBean> queryOrderChartsList(String p1, String p2, String p3);
 
 	
 

@@ -48,7 +48,7 @@
 						<div class="sub_header_social_icon float-right">
 							<a href="#"><i class="flaticon-phone"></i>02</a>
 							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">Longin</a>
-							<a href="friendlist" class="btn_1 d-none d-md-inline-block">account</a>
+							<a href="memberManagement" class="btn_1 d-none d-md-inline-block">account</a>
 						</div>
 					</div>
 				</div>

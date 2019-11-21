@@ -323,7 +323,7 @@ $(document).ready(function(){
             </div>
           </div>
         </form>
-        <!-- Navigation -->
+<!--         Navigation 左側 -->
         <ul class="navbar-nav">
           <li class="nav-item  class=" active" ">
           <a class=" nav-link active " href=" ${pageContext.request.contextPath}/index.jsp"> <i class="ni ni-tv-2 text-primary"></i> Dashboard
@@ -444,7 +444,7 @@ $(document).ready(function(){
     </nav>
     <!-- End Navbar -->
     <!-- Header -->
-    <!-- Header -->
+
     <div class="header bg-gradient-primary pb-3 pt-3 pt-md-8">
       <div class="container-fluid">
         <div class="header-body">

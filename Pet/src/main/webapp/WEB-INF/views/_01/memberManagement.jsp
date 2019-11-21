@@ -1,88 +1,95 @@
+<!-- 會員後台index頁 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
+
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
-<link rel="icon" href="img/about_icon.png">
-<!-- Custom fonts for this template -->
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
+
+<!--   <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> -->
+<script type="text/javascript"
+	src="<c:url value="/js/jquery/jquery-2.2.4.min.js"/>">
+	
+</script>
+<script src="${pageContext.request.contextPath}/js/ckeditor/ckeditor.js"></script>
+
+
+<script>
+	//     $(document).ready(function(){   //button的id不能相同，所以如果用迴圈增加刪除紐，只會有一個有反應
+	// 		$("#button2").click(function(){
+	// 			alert("删除成功");
+
+	// 		});
+	//     });
+	function myFunction() {
+		document.getElementById("frm1").submit();
+	}
+	function clickDelete() {
+		alert("删除成功");
+		//     	var msg = "請問確定要刪除嗎???刪除後無法回復";
+		//     	if (confirm(msg)==true){
+		//     	return true;
+		//     	}else{
+		//     	return false;
+		//     	}
+	}
+	function room() {
+		window
+				.open(
+						'dogroom',
+						'newwindow',
+						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+	}
+	function catroom() {
+		window
+				.open(
+						'catroom',
+						'newwindow',
+						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+	}
+	function petroom() {
+		window
+				.open(
+						'petroom',
+						'newwindow',
+						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+	}
+</script>
+
+
+<title>pET ʕ•ᴥ•ʔ 陪你</title>
+
+<!-- Custom fonts for this template-->
+<link
+	href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 
-<!-- Custom styles for this template -->
-<link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-<!-- Custom styles for this page -->
-<link href="vendor/datatables/dataTables.bootstrap4.min.css"
+<!-- Custom styles for this template-->
+<link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css"
 	rel="stylesheet">
-<style>
-.img1 {
-	width: 150px;
-	height: 150px;
-}
-</style>
-
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- 判斷日期格式 -->
-<script>
-  var jq1=$.noConflict();
-  jq1( function() {
-    var dateFormat = "yy-mm-dd",
-      from = jq1( "#from" )
-        .datepicker({
-          dateFormat: 'yy-mm-dd',
-          defaultDate: "+1w",
-          changeMonth: true,
-          numberOfMonths: 2
-        })
-        .on( "change", function() {
-          to.datepicker( "option", "minDate", getDate( this ) );
-        }),
-      to = jq1( "#to" ).datepicker({
-     	dateFormat: 'yy-mm-dd',
-        defaultDate: "+1w",
-        changeMonth: true,
-        numberOfMonths: 2
-      })
-      .on( "change", function() {
-        from.datepicker( "option", "maxDate", getDate( this ) );
-      });
- 
-    function getDate( element ) {
-      var date;
-      try {
-        date = jq1.datepicker.parseDate(dateFormat, element.value );
-      } catch( error ) {
-        date = null;
-      }
- 
-      return date;
-    }
-  } );
-</script>
-
-
-
 
 </head>
+
 <body id="page-top">
+
+	<!-- Page Wrapper -->
 	<div id="wrapper">
+
 		<!-- Sidebar -->
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
@@ -91,72 +98,121 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="companyManagementIndex">
-				<div class="sidebar-brand-icon rotate-n-15">
-					<i class=""></i>
-				</div>
-				<div class="sidebar-brand-text mx-3">
-					Pet陪你<br> 廠商後台系統
-				</div>
+				href="index"> <!--         <div class="sidebar-brand-icon rotate-n-15"> -->
+				<!--           <i class="fas fa-laugh-wink"></i> --> <!--         </div> -->
+				<div class="sidebar-brand-text mx-3">pET ʕ•ᴥ•ʔ 陪你</div>
 			</a>
+
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<!-- 			<li class="nav-item"><a class="nav-link" href="index.html"> -->
-			<!-- 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span> -->
-			<!-- 			</a></li> -->
+			<li class="nav-item active"><a class="nav-link"
+				href="index.html"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
+			</li>
+
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
 			<!-- Heading -->
-			<!-- 			<div class="sidebar-heading">XXXXXXX</div> -->
+			<div class="sidebar-heading">Interface</div>
 
-
-			<!-- Nav Item - 商品管理-->
-			<li class="nav-item"><a class="nav-link collapsed"
-				href="CompanyManagement" data-toggle="" data-target="#collapsePages"
-				aria-controls="collapsePages"> <i class="fas fa-fw fa-table"></i>
-					<span>商品管理</span>
-			</a></li>
-			<!-- Nav Item - 訂單紀錄 -->
-			<li class="nav-item active"><a class="nav-link"
-				href="orderManagement"> <i style='width: 17px'
-					class="fas fa-fw fa-chart-area"></i> <span>訂單管理</span></a></li>
-
-			<!-- Nav Item - 統計報表 -->
-			<li class="nav-item"><a class="nav-link" href=""> <i
-					class="fas fa-fw fa-chart-area"></i> <span>統計報表</span></a></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
 				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-cog"></i> <span>廠商資料修改</span>
+					class="far fa-edit"></i> <span>文章後台</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Components:</h6>
-						<a class="collapse-item" href="buttons.html">Buttons</a> <a
-							class="collapse-item" href="cards.html">Cards</a>
+						<h6 class="collapse-header">文章管理</h6>
+						<a class="collapse-item" href="<spring:url value='/article'/>">文章列表</a>
+						<a class="collapse-item" href="<spring:url value='myblog'/>">我的部落格首頁</a>
+
 					</div>
 				</div></li>
+
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseUtilities"
 				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>聯絡我們</span>
+					class="fas fa-fw fa-wrench"></i> <span>好友</span>
 			</a>
 				<div id="collapseUtilities" class="collapse"
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Utilities:</h6>
-						<a class="collapse-item" href="utilities-color.html">Colors</a> <a
-							class="collapse-item" href="utilities-border.html">Borders</a> <a
-							class="collapse-item" href="utilities-animation.html">Animations</a>
-						<a class="collapse-item" href="utilities-other.html">Other</a>
+						<h6 class="collapse-header">好友清單</h6>
+						<a class="collapse-item" href="friendlist">好友列表</a> <a
+							class="collapse-item" href="application">申請列表</a> <a
+							class="collapse-item" href="waiting">等候回覆</a>
+					</div>
+				</div>
+				
+				</li>
+
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseOne"
+				aria-expanded="true" aria-controls="collapseOne"> <i
+					class="fas fa-paw"></i> <span>寵物聊天室</span>
+			</a>
+				<div id="collapseOne" class="collapse"
+					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a href='#' class="collapse-item" onclick="room()"><i
+							class="fas fa-dog"></i>汪汪聊天室</a> <a href='#' class="collapse-item"
+							onclick="catroom()"><i class="fas fa-cat"></i> 喵喵聊天室</a> <a
+							href='#' class="collapse-item" onclick="petroom()"><i
+							class="fas fa-hippo"></i> PET聊天室</a>
 					</div>
 				</div></li>
+
+<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="${pageContext.request.contextPath}/06/PetOrderAll"> <i
+
+			
+		
+					 class="fas fa-paw"></i> <span>會員訂單</span>
+			</a></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+
+			<!-- Heading -->
+			<div class="sidebar-heading">Addons</div>
+
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapsePages"
+				aria-expanded="true" aria-controls="collapsePages"> <i
+					class="fas fa-fw fa-folder"></i> <span>Pages</span>
+			</a>
+				<div id="collapsePages" class="collapse"
+					aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">Login Screens:</h6>
+						<a class="collapse-item" href="login.html">Login</a> <a
+							class="collapse-item" href="register.html">Register</a> <a
+							class="collapse-item" href="forgot-password.html">Forgot
+							Password</a>
+						<div class="collapse-divider"></div>
+						<h6 class="collapse-header">Other Pages:</h6>
+						<a class="collapse-item" href="404.html">404 Page</a> <a
+							class="collapse-item" href="blank.html">Blank Page</a>
+					</div>
+				</div></li>
+
+			<!-- Nav Item - Charts -->
+			<li class="nav-item"><a class="nav-link" href="charts.html">
+					<i class="fas fa-fw fa-chart-area"></i> <span>Charts</span>
+			</a></li>
+
+			<!-- Nav Item - Tables -->
+			<li class="nav-item"><a class="nav-link" href="tables.html">
+					<i class="fas fa-fw fa-table"></i> <span>Tables</span>
+			</a></li>
+
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
@@ -185,20 +241,24 @@
 					</button>
 
 					<!-- Topbar Search -->
-					<form
+					<form action="${pageContext.request.contextPath}/findBySearch"
+						method="post"
 						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 						<div class="input-group">
-							<input type="text" name='product_name'
+							<input type="text" name="title"
 								class="form-control bg-light border-0 small"
-								placeholder="Search for.." aria-label="Search"
+								placeholder="Search for..." aria-label="Search"
 								aria-describedby="basic-addon2">
 							<div class="input-group-append">
-								<button class="btn btn-primary" type="button">
+
+								<button class="btn btn-primary" type="submit">
 									<i class="fas fa-search fa-sm"></i>
 								</button>
+
 							</div>
 						</div>
 					</form>
+
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
@@ -343,23 +403,27 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">歡迎回來～${CompanyLoginOK.company_name}</span>
-								<!--                 <img class="img-profile rounded-circle" src=""> -->
+								class="mr-2 d-none d-lg-inline text-gray-600 small">你好，${LoginOK.member_Id }</span>
+								<img class="img-profile rounded-circle"
+								src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
-
+								<a class="dropdown-item" href="#"> <i
+									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+								</a> <a class="dropdown-item" href="#"> <i
+									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+									Settings
+								</a> <a class="dropdown-item" href="#"> <i
+									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+									Activity Log
+								</a>
 								<div class="dropdown-divider"></div>
-								 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  				<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-              		  				修改資料
-                				</a>
-								
 								<a class="dropdown-item" href="#" data-toggle="modal"
 									data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-									登出
+									Logout
 								</a>
 							</div></li>
 
@@ -370,157 +434,58 @@
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-
-					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">查詢訂單</h1>
-					<p class="mb-4">
-						<a>ORDER QUERY</a>.
-					</p>
-					<form:form action="${pageContext.request.contextPath}/processed" method="POST">
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<a> <label for="from">訂單起日</label> 
-					<input type="text" id="from" name="startdate"> 
-					<input type="hidden" value='${CompanyLoginOK.company_id}' name='company_id' id='company_id'> 
-					<label for="to">~訂單迄日</label> 
-					<input type="text" id="to" name="enddate">
-					</a> 
-					<a style='padding-right: 100px;'>
-					 <label for="" class="t1">商品狀態</label>
-					 <select name='status' id='status1'>
-							<option value='1'>未處理</option>
-							<option value="2">已處理未出貨</option>
-							<option value="3">已處理已出貨</option>
-					</select>
-						<button id='clickmeS'>查詢</button>
-					</a> 
-					</form:form>
-					<a href="orderManagement">返回訂單管理</a> 
-						</div>
-					<!-- DataTales Example -->
-
-			<div class="card shadow mb-4">
-			<div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <tr>
-                  <thead>
-                    <tr>
-                      <th>訂單編號</th><th>訂單日期</th><th>訂購人</th><th>收件人</th>
-                      <th>寄送地址</th><th>售價</th><th>出貨日期</th><th>接單</th>
-                    </tr>
-                  </thead>
-                    <c:forEach items="${unprocessedOrder}" var="p1" varStatus="s">
-								<tr style="background-color: #F0F0F0;" id='title1'>
-									<td>${p1.order_id}
-									<td>${p1.order_date}
-									<td>${p1.member_id}
-									<td>${p1.recipient}
-									<td>${p1.address}
-									<td>${p1.total}
-									<td><input type="text" value='${p1.ship_date}'> 
-									<td>
-									<form method="post" action="${pageContext.request.contextPath}/processed">
-									<input type="submit" value='接單'>
-									<input type="hidden" name="order_id" value="${p1.order_id}"> 
-									<input type="hidden" value="${p1.status}" name='status'>
-									<input type="hidden" value="${p1.company_id}" name='company_id'>							
-									</form>
-									<c:set var="count" value="${s.count}" />
-								<tr>	
-								<th><th>訂購明細<th>產品編號<th>產品名稱<th>數量<th><th><th><th>
-								<c:set var="d" scope="session" value="${p1.order_id}"/>
-								<c:forEach items="${orderDetail}" var="p2" varStatus="s">
-								<c:if test="${d eq p2.order_id}">
-								<tr class='panel'><td>
-									<td>
-									<td>${p2.product_id}
-									<td>${p2.product_name}
-									<td>${p2.amount}
-									<td>
-									<td>
-									<td>
-									<td>
-								</c:if>
-								</c:forEach>
-						</c:forEach>
-				</table>
-					<h3 class="count1">共${count}筆商品資料</h3>    
-              </div>
-            </div>
-          </div>
-				</div>
-				<!-- /.container-fluid -->
+				<h1 style="padding: 160px;font-size:50px; ">Dear ${LoginOK.name} <br>您已進入pET ʕ•ᴥ•ʔ 寵物網 會員管理 </h1>
 
 			</div>
-			<!-- End of Main Content -->
+			<!-- End of Page Wrapper -->
 
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; PET陪你寵物網 2019</span>
+			<!-- Scroll to Top Button-->
+			<a class="scroll-to-top rounded" href="#page-top"> <i
+				class="fas fa-angle-up"></i>
+			</a>
+
+			<!-- Logout Modal-->
+			<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Ready to
+								Leave?</h5>
+							<button class="close" type="button" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body">Select "Logout" below if you are
+							ready to end your current session.</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary" type="button"
+								data-dismiss="modal">Cancel</button>
+							<a class="btn btn-primary" href="login.html">Logout</a>
+						</div>
 					</div>
 				</div>
-			</footer>
-			<!-- End of Footer -->
-
-		</div>
-		<!-- End of Content Wrapper -->
-
-	</div>
-
-	<!-- End of Page Wrapper -->
-
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">確定要登出嗎?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">您真的要離開 PET陪你寵物網 廠商管理系統嗎Q_Q</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">取消</button>
-					<a class="btn btn-primary"
-						href="${pageContext.request.contextPath}/login.jsp">登出</a>
-				</div>
 			</div>
-		</div>
-	</div>
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="js/sb-admin-2.min.js"></script>
-
-	<!-- Page level plugins -->
-	<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-	<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-	<!-- Page level custom scripts -->
-	<script src="js/demo/datatables-demo.js"></script>
-
-	<script>
-   		
-   
-   </script>
-
+			<!-- Bootstrap core JavaScript-->
+			<script
+				src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
+			<script
+				src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+			<!-- Core plugin JavaScript-->
+			<script
+				src="${pageContext.request.contextPath}/vendor/jquery-easing/jquery.easing.min.js"></script>
+			<!-- Custom scripts for all pages-->
+			<script src="${pageContext.request.contextPath}/js/sb-admin-2.min.js"></script>
+			<!-- Page level plugins -->
+			<script
+				src="${pageContext.request.contextPath}/vendor/chart.js/Chart.min.js"></script>
+			<!-- Page level custom scripts -->
+			<script
+				src="${pageContext.request.contextPath}/js/demo/chart-area-demo.js"></script>
+			<script
+				src="${pageContext.request.contextPath}/js/demo/chart-pie-demo.js"></script>
 </body>
+
 </html>

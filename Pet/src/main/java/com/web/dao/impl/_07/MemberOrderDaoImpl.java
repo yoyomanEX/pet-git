@@ -28,12 +28,12 @@ public class MemberOrderDaoImpl implements MemberOrderDao {
 
 	}
 	//測試用
-	@Override
-	public ArrayList<MemberOrderBean> queryAllOrder() {
-		Session session = factory.getCurrentSession();
-		Query query = session.createQuery("from MemberOrderBean where company_id = 25251111");
-		return (ArrayList<MemberOrderBean>) query.list();
-	}
+//	@Override
+//	public ArrayList<MemberOrderBean> queryAllOrder() {
+//		Session session = factory.getCurrentSession();
+//		Query query = session.createQuery("from MemberOrderBean where company_id = 25251111");
+//		return (ArrayList<MemberOrderBean>) query.list();
+//	}
 
 	
 	
@@ -102,6 +102,24 @@ public class MemberOrderDaoImpl implements MemberOrderDao {
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
 
+	}
+	
+	@Override
+	public ArrayList<MemberOrderBean> queryOrderChartsList(String p1,String p2,String p3) {
+		Session session = factory.getCurrentSession();
+		NativeQuery query = session
+				.createSQLQuery("SELECT 0 as member_id,1 as status,"
+						+ "member_order.order_id,member_order.company_id,"
+						+ "member_order.order_date,member_order_detail.product_id as RECIPIENT,"
+						+ "member_order_detail.product_name as address,member_order_detail.amount as Phone,"
+						+ "member_order.total as total,member_order.ship_date "
+						+ "FROM member_order INNER JOIN member_order_detail "
+						+ "ON member_order.order_id = member_order_detail.order_id "
+						+ "where member_order.order_date >= '"+p1+"' "
+						+ "and member_order.order_date <='"+p2+"' "
+						+ "and member_order.company_id='"+p3+"'"
+						+ "and member_order.status = 3 and member_order.order_id = member_order_detail.order_id");
+		return (ArrayList<MemberOrderBean>) query.addEntity(MemberOrderBean.class).list();
 	}
 
 	
