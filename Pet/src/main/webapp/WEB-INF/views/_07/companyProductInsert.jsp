@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,7 +150,7 @@ document.addEventListener("DOMContentLoaded",
 <!-- 			<div class="sidebar-heading">XXXXXXX</div> -->
 				<!-- Nav Item - 前台頁面-->
 			<li class="nav-item">
-			<a class="nav-link collapsed" href="index.html"> 
+			<a href="<spring:url value='/'/>" class="nav-link collapsed"> 
 				<span style='margin-left: 10px;' class='btn btn-danger'>pET寵物網</span></a>
 			
 			</li>

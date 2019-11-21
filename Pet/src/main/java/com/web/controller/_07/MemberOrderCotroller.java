@@ -8,11 +8,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.web.model._07.MemberOrderBean;
+
 import com.web.model._07.MemberOrderDetailBean;
 import com.web.service.impl._07.MemberOrderDetailService;
 import com.web.service.impl._07.MemberOrderService;
@@ -328,7 +331,7 @@ public class MemberOrderCotroller {
 		String enddate = request.getParameter("enddate") + " 23:59:59";
 
 		
-		ArrayList<MemberOrderBean> orderList = service.queryOrderChartsList(startdate, enddate, company_id);
+		ArrayList<Map> orderList = service.queryOrderChartsList(startdate, enddate, company_id);
 		System.out.println("test excel="+orderList);
 		model.addAttribute("orderCharts", orderList);
 		
@@ -336,23 +339,23 @@ public class MemberOrderCotroller {
 		
 	}
 	
-	// URL為 /members, 搭配 GET方法可以傳回所有紀錄。
-		// produces屬性說明產生之資料的格式: produces = "application/pdf"
-		// 本方法可以 PDF格式傳回所有Member紀錄
-		@RequestMapping(value = "/companyOrderList2", method = RequestMethod.GET, 
-				produces = "application/pdf")
-		public String queryAllMembersPDF(Model model,HttpServletRequest request,HttpServletResponse response) {
-			String company_id = request.getParameter("company_id");
-			System.out.println(company_id);
-			String startdate = request.getParameter("startdate") + " 00:00:00";
-			String enddate = request.getParameter("enddate") + " 23:59:59";
-
-			
-			ArrayList<MemberOrderBean> orderList = service.queryOrderChartsList(startdate, enddate, company_id);
-			System.out.println("test pdf="+orderList);
-			model.addAttribute("orderChartsPdf", orderList);
-			
-			return "_07/showOrders";
-		}
+//	// URL為 /members, 搭配 GET方法可以傳回所有紀錄。
+//		// produces屬性說明產生之資料的格式: produces = "application/pdf"
+//		// 本方法可以 PDF格式傳回所有Member紀錄
+//		@RequestMapping(value = "/companyOrderList2", method = RequestMethod.GET, 
+//				produces = "application/pdf")
+//		public String queryAllMembersPDF(Model model,HttpServletRequest request,HttpServletResponse response) {
+//			String company_id = request.getParameter("company_id");
+//			System.out.println(company_id);
+//			String startdate = request.getParameter("startdate") + " 00:00:00";
+//			String enddate = request.getParameter("enddate") + " 23:59:59";
+//
+//			
+//			ArrayList<MemberOrderBean> orderList = service.queryOrderChartsList(startdate, enddate, company_id);
+//			System.out.println("test pdf="+orderList);
+//			model.addAttribute("orderChartsPdf", orderList);
+//			
+//			return "_07/showOrders";
+//		}
 
 }

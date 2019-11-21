@@ -119,51 +119,52 @@ public class MultipleOrdersExcelView extends AbstractXlsView {
 //		styleDate.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
 //		styleDate.setAlignment(CellStyle.ALIGN_CENTER);
 		
-       ArrayList<MemberOrderBean> orderBean = (ArrayList<MemberOrderBean>) model.get("orderCharts"); //model.addAttribute的key在controller裡
+       ArrayList<Map> orderBean = (ArrayList<Map>) model.get("orderCharts"); //model.addAttribute的key在controller裡
         
 		Set<String> set = model.keySet();
 		Row row = null;
 		Cell cell = null;
 		
-
-		for(MemberOrderBean m : orderBean) {
+		System.out.println("orderBean===>"+orderBean);
+		
+		for(Map m : orderBean) {
 			colCount = 0;
+			
 			
 			row = sheet.createRow(rowCount++);
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleDate);
-			cell.setCellValue(m.getOrder_date());
+			
+			cell.setCellValue(m.get("order_date") == null ? "" : m.get("order_date").toString());
 			
 			
 			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleName);
-			cell.setCellValue(m.getOrder_id());
+			cell.setCellValue(m.get("order_id") == null ? "" : m.get("order_id").toString());
 			
 			cell = row.createCell(colCount++);
-//			cell.setCellStyle(styleDate);
 			cell.setCellStyle(styleRight);
 			//product_id
-			cell.setCellValue(Integer.parseInt(m.getRecipient()));
+			cell.setCellValue(m.get("product_id") == null ? "" : m.get("product_id").toString());
 			
 			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleName);
 			//product_name
-			cell.setCellValue(m.getAddress());
+			cell.setCellValue(m.get("product_name") == null ? "" : m.get("product_name").toString());
 			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleName);
-			//amount
-			cell.setCellValue(m.getPhone());
+			cell.setCellValue(m.get("amount")==null ? "0" :m.get("amount").toString());
 			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleRight);
-			cell.setCellValue(m.getTotal());
+			cell.setCellValue(m.get("total") == null ? "0" : m.get("total").toString());
 			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleDate);
-			cell.setCellValue(m.getShip_date());
+			cell.setCellValue(m.get("ship_date") == null ? "" : m.get("ship_date").toString());
 			
 		}
 		int columnCount = sheet.getRow(0).getLastCellNum();

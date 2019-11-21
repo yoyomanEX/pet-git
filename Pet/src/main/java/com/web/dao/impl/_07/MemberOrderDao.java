@@ -1,11 +1,12 @@
 package com.web.dao.impl._07;
 
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.Map;
 
 import com.web.model._07.MemberOrderBean;
-import com.web.model._07.MemberOrderDetailBean;
+
+
 
 
 public interface MemberOrderDao {
@@ -30,7 +31,7 @@ public interface MemberOrderDao {
 	//測試用
 	//ArrayList<MemberOrderBean> queryAllOrder();
 
-	ArrayList<MemberOrderBean> queryOrderChartsList(String p1, String p2, String p3);
+	ArrayList<Map> queryOrderChartsList(String p1, String p2, String p3);
 
 	
 

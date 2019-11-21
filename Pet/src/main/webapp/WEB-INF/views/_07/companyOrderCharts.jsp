@@ -293,7 +293,7 @@ function showDetail(data,p) {
 			<!-- 			<div class="sidebar-heading">XXXXXXX</div> -->
 			<!-- Nav Item - 前台頁面-->
 			<li class="nav-item">
-			<a class="nav-link collapsed" href="index.html"> 
+			<a href="<spring:url value='/'/>" class="nav-link collapsed"> 
 				<span style='margin-left: 10px;' class='btn btn-danger'>pET寵物網</span></a>
 			
 			</li>
@@ -554,7 +554,9 @@ function showDetail(data,p) {
 					<a style='padding-right: 100px;'>
 						<button  class='clickmeC'>查詢</button>
 					</a> 
-					<a href='#' onclick='excelReport();' class='btn btn-success'>EXCEL下載</a>
+					<a href='#' onclick='excelReport();' class='btn btn-success'>
+					EXCEL下載
+					</a>
 					
 					
 				</div>

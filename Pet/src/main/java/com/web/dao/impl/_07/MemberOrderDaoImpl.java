@@ -7,11 +7,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.web.model._02.ReportBean;
 import com.web.model._07.MemberOrderBean;
+
 import com.web.model._07.MemberOrderDetailBean;
 
 @Repository
@@ -105,21 +107,21 @@ public class MemberOrderDaoImpl implements MemberOrderDao {
 	}
 	
 	@Override
-	public ArrayList<MemberOrderBean> queryOrderChartsList(String p1,String p2,String p3) {
+	public ArrayList<Map> queryOrderChartsList(String p1,String p2,String p3) {
 		Session session = factory.getCurrentSession();
 		NativeQuery query = session
-				.createSQLQuery("SELECT 0 as member_id,1 as status,"
-						+ "member_order.order_id,member_order.company_id,"
-						+ "member_order.order_date,member_order_detail.product_id as RECIPIENT,"
-						+ "member_order_detail.product_name as address,member_order_detail.amount as Phone,"
-						+ "member_order.total as total,member_order.ship_date "
+				.createSQLQuery("SELECT member_order.order_id,member_order.company_id,"
+						+ "member_order.order_date,member_order_detail.product_id,"
+						+ "member_order_detail.product_name,member_order_detail.amount,"
+						+ "member_order_detail.total,member_order.ship_date "
 						+ "FROM member_order INNER JOIN member_order_detail "
 						+ "ON member_order.order_id = member_order_detail.order_id "
 						+ "where member_order.order_date >= '"+p1+"' "
 						+ "and member_order.order_date <='"+p2+"' "
 						+ "and member_order.company_id='"+p3+"'"
 						+ "and member_order.status = 3 and member_order.order_id = member_order_detail.order_id");
-		return (ArrayList<MemberOrderBean>) query.addEntity(MemberOrderBean.class).list();
+		query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE); 
+		return (ArrayList<Map>) query.getResultList();
 	}
 
 	

@@ -65,7 +65,7 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<!-- Nav Item - 前台頁面-->
 			<li class="nav-item">
-			<a class="nav-link collapsed" href="index.html"> 
+			<a href="<spring:url value='/'/>" class="nav-link collapsed"> 
 				<span style='margin-left: 10px;' class='btn btn-danger'>pET寵物網</span></a>
 			
 			</li>

@@ -2,6 +2,7 @@ package com.web.service.impl._07;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -88,7 +89,7 @@ public class MemberOrderServiceImpl implements MemberOrderService {
 	
 	@Override
 	@Transactional
-	public ArrayList<MemberOrderBean> queryOrderChartsList(String p1,String p2,String p3){
+	public ArrayList<Map> queryOrderChartsList(String p1,String p2,String p3){
 		return eDao.queryOrderChartsList(p1, p2, p3);
 		
 	}
