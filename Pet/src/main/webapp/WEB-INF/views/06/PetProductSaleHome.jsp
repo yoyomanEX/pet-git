@@ -38,14 +38,8 @@
 	var buycar = new Object();
 
 	$(function() {
-
-		$("#myTable").DataTable({
-			"searching" : false,
-			"bLengthChange" : false
-		});
-
 		$(".flexslider").flexslider({
-			slideshowSpeed : 5000,
+			slideshowSpeed : 4000,
 		});
 		totalName();
 		totalNum();
@@ -186,6 +180,13 @@
 				}
 			});
 		});
+		
+		$("#myTable").DataTable({
+			"searching" : false,
+			"bLengthChange" : false,
+			"pageLength" :8
+		});
+
 	});
 
 	$(function() {
@@ -221,6 +222,8 @@
 	});
 </script>
 <style type="text/css">
+
+
 #shoppingCart {
 	position: fixed;
 	top: 30%;
@@ -248,7 +251,7 @@
 }
 
 .flexslider {
-	margin-left: 300px;
+	margin-left: 350px;
 	height: 560px;
 	width: 800px;
 	text-align: center;
