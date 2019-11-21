@@ -38,7 +38,7 @@ import com.web.service.impl._08.index.ContentService;
 @RequestMapping(value = "_08")
 public class IndexController {
 	//Backstage
-	@RequestMapping(value = "/admin0123")
+	@RequestMapping(value = "/adminContent")
 	public String backstage() {
 		return "_08/AdminBackstage";
 	}
