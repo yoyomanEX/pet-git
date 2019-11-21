@@ -342,7 +342,7 @@ public class MemberController {
 		return result;
 
 	}
-	//登出
+	//會員登出
 	@RequestMapping(value = "/_01.getLogout")
 	public String getLogout(Model model, HttpServletRequest request) {
 		model.addAttribute("MemberBean", new MemberBean());

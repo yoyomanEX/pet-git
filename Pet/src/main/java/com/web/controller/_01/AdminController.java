@@ -159,7 +159,7 @@ public class AdminController {
 		return "_01/ttt";
 
 	}
-	
+	//管理員登出
 	@RequestMapping(value = "/_01.getAdminLogout")
 	public String getAdminLogout(Model model, HttpServletRequest request) {
 		model.addAttribute("AdminBean", new AdminBean());
