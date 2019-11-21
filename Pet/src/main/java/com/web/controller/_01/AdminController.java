@@ -159,4 +159,12 @@ public class AdminController {
 		return "_01/ttt";
 
 	}
+	
+	@RequestMapping(value = "/_01.getAdminLogout")
+	public String getAdminLogout(Model model, HttpServletRequest request) {
+		model.addAttribute("AdminBean", new AdminBean());
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "_01/adminlogin";
+	}
 }
