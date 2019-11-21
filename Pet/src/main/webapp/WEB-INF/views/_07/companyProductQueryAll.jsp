@@ -15,7 +15,7 @@
 <meta name="author" content="">
 
 <title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
-
+<link rel="icon" href="img/about_icon.png">
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -47,7 +47,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="CompanyManagement">
+				href="companyManagementIndex">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class=""></i>
 				</div>
@@ -88,9 +88,9 @@
 				
 			<!-- Nav Item - 統計報表 -->
      		 <li class="nav-item">
-       		 	<a class="nav-link" href="">
+       		 	<a class="nav-link" href="companyOrderCharts">
        		   <i class="fas fa-fw fa-chart-area"></i>
-          	<span>統計報表</span></a>
+          	<span>銷售報表</span></a>
     		  </li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -324,8 +324,8 @@
             <div class="card-header py-3">	 
              <form method="post" action='nonSaleProductList' id='nonSale'>
               <h6  class="m-0 font-weight-bold text-primary" > 
-              	<a href='companyProductInsert1'>新增商品</a>
-              	<a onclick="nonSale();" style="padding-left: 900px;" href='#'>
+              	<a href='companyProductInsert1' class='btn btn-info'>新增商品</a>
+              	<a class='btn-default' onclick="nonSale();" style="padding-left: 800px;" href='#'>
               	下架商品區</a>
               	<input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
               </h6>
@@ -340,16 +340,10 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>商品編號</th><th>商品圖片</th><th>商品名稱</th><th>售價</th>
-                      <th>數量</th><th>商品描述</th><th>修改</th><th>下架</th>
+                      <th style='width:11%;'>商品編號</th><th style='width:10%;'>商品圖片</th><th style='width:15%;'>商品名稱</th><th style='width:8%;'>售價</th>
+                      <th style='width:8%;'>數量</th><th>商品描述</th><th style='width:8%;'>修改</th><th style='width:8%;'>下架</th>
                     </tr>
                   </thead>
-<!--                   <tfoot> -->
-<!--                     <tr> -->
-<!--                        <th>商品編號</th><th>商品圖片</th><th>商品名稱</th><th>售價</th> -->
-<!--                       <th>數量</th><th>商品描述</th><th>修改</th><th>下架</th> -->
-<!--                     </tr> -->
-<!--                   </tfoot> -->
                   <tbody>
                     <c:forEach items="${allProduct}" var="p1" varStatus="s">
 								<tr>

@@ -2,6 +2,7 @@
 
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,10 +15,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.web.model._05.PetActivityBean;
 
@@ -27,7 +32,7 @@ import com.web.model._05.PetActivityBean;
 @Table(name = "member")
 public class MemberBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	@Id
+	
 	@XmlElement(name = "member_Id")
 	private String member_Id;
 	@XmlElement(name = "name")
@@ -41,17 +46,35 @@ public class MemberBean implements Serializable {
 	@XmlElement(name = "tel")
 	private int tel;
 	@XmlElement(name = "memberImage")
-	private String memberImage;
+	private Blob memberImage;
 	@XmlElement(name = "fileName")
 	private String fileName;
 	@XmlElement(name = "memberPet")
 	private int memberPet;
-	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinTable(name = "activitypeople",joinColumns = {
-	@JoinColumn(name="member_Id")},inverseJoinColumns = {@JoinColumn(name="activity_id")})
+	
 	private Set<PetActivityBean>activitys=new HashSet<PetActivityBean>();
+	private MultipartFile  filImage;
+	private String checkPassword;
+
 	
+	@Transient
+	@XmlTransient
+	public MultipartFile getFilImage() {
+		return filImage;
+	}
+	public void setFilImage(MultipartFile filImage) {
+		this.filImage = filImage;
+	}
+	@Transient
+	@XmlTransient
+	public String getCheckPassword() {
+		return checkPassword;
+	}
+	public void setCheckPassword(String checkPassword) {
+		this.checkPassword = checkPassword;
+	}
 	
+	@Id
 	@Column(name = "member_Id")
 	public String getMember_Id() {
 		return member_Id;
@@ -101,10 +124,10 @@ public class MemberBean implements Serializable {
 	}
 	
 	@Column(name = "memberImage")
-	public String getMemberImage() {
+	public Blob getMemberImage() {
 		return memberImage;
 	}
-	public void setMemberImage(String memberImage) {
+	public void setMemberImage(Blob memberImage) {
 		this.memberImage = memberImage;
 	}
 	
@@ -123,7 +146,9 @@ public class MemberBean implements Serializable {
 	public void setMemberPet(int memberPet) {
 		this.memberPet = memberPet;
 	}
-
+	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinTable(name = "activitypeople",joinColumns = {
+	@JoinColumn(name="member_Id")},inverseJoinColumns = {@JoinColumn(name="activity_id")})
 	public Set<PetActivityBean> getActivitys() {
 		return activitys;
 	}

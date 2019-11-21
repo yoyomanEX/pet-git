@@ -73,6 +73,14 @@ public class CompanyController07 {
 		loginToken.getCompany_id();
 		return "/_07/companyManagement";	
 	}
+	@RequestMapping("companyManagementIndex")
+	public String companyManagementIndex(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		CompanyBean loginToken = (CompanyBean) session.getAttribute("CompanyLoginOK");
+		loginToken.getCompany_id();
+		return "/_07/companyManagementIndex";	
+	}
+	
 	
 	
 	// 廠商申請表格
@@ -235,6 +243,11 @@ public class CompanyController07 {
 		service.acceptByCompanyId(bean);
 		
 	
+	}
+	
+	@RequestMapping("/adminCompanyManagement07")
+	public String adminCompanyManagement07() {
+		return "/_07/adminCompanyManagement";
 	}
 
 }

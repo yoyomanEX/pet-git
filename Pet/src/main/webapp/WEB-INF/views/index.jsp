@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="utf-8">
@@ -30,30 +31,88 @@
 <link rel="stylesheet" href="css/index.css">
 <!-- 瀑布流 CSS -->
 <link rel="stylesheet" href="waterfall.css">
+<!-- 111111111111111111111111111111111111 -->
+
 
 </head>
 
 <body>
 	<!--::header part start::-->
 	<header class="header_area">
-		<div class="sub_header">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-4 col-md-4 col-xl-6">
-						<div id="logo">
-							<a href="index.html"><img src="img/Logo.png" alt="" title="" /></a>
-						</div>
-					</div>
-					<div class="col-8 col-md-8 col-xl-6 ">
-						<div class="sub_header_social_icon float-right">
-							<a href="#"><i class="flaticon-phone"></i>02</a>
+
+	
+	<!-- Topbar -->
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					
+					<c:choose>
+   						<c:when test="${empty LoginOK}">
+   							<div class="sub_header_social_icon float-right">
 							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">Longin</a>
-							<a href="friendlist" class="btn_1 d-none d-md-inline-block">account</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+							</div>
+    					</c:when>
+    
+    					<c:otherwise>
+    						<ul class="navbar-nav ml-auto">
+
+							<div class="topbar-divider d-none d-sm-block"></div>
+
+							<!-- Nav Item - User Information -->
+							<li class="nav-item dropdown no-arrow"><a
+								class="nav-link dropdown-toggle" href="#" id="userDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> <span
+									class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:20px">你好，${LoginOK.member_Id }</span>
+									<img class="img-profile rounded-circle" width='60' height='60' src='getPicture' />
+							</a> <!-- Dropdown - User Information -->
+								<div
+									class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+									aria-labelledby="userDropdown">
+									<a class="dropdown-item" href="${pageContext.request.contextPath}/_01.memberManagement"> <i
+										class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 會員中心
+									</a> <a class="dropdown-item" href="_01.updataMemberPage"> <i
+										class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+										修改會員
+									</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="${pageContext.request.contextPath}/_01.getLogout" 
+										> <i
+										class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+										Logout
+									</a>
+								</div></li>
+
+						</ul>
+    					</c:otherwise>
+					</c:choose>
+					
+					
+
+				</nav>
+				<!-- End of Topbar -->
+	
+<!-- 		<div class="sub_header"> -->
+<!-- 			<div class="container"> -->
+<!-- 				<div class="row align-items-center"> -->
+<!-- 					<div class="col-4 col-md-4 col-xl-6"> -->
+<!-- 						<div id="logo"> -->
+<!-- 							<a href="index.html"><img src="img/Logo.png" alt="" title="" /></a> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-8 col-md-8 col-xl-6 "> -->
+<%-- 						<c:if test="${empty LoginOK}"> --%>
+<!-- 							<div class="sub_header_social_icon float-right"> -->
+<!-- 							<a href="#"><i class="flaticon-phone"></i>02</a> -->
+<!-- 							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">Longin</a> -->
+<!-- 							<a href="friendlist" class="btn_1 d-none d-md-inline-block">account</a> -->
+<!-- 						</div> -->
+<%-- 						</c:if> --%>
+						
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+
 		<div class="main_menu">
 			<div class="container">
 				<div class="row">
@@ -70,27 +129,30 @@
 								id="navbarSupportedContent">
 								<ul class="navbar-nav">
 									<li class="nav-item active"><a class="nav-link active"
-										href="index.jsp">Home</a></li>
-									<li class="nav-item"><a href="travel.jsp" class="nav-link">𨑨迌
-											食飯</a></li>
-									<li class="nav-item"><a href="#" class="nav-link">交朋友</a>
+										href="<spring:url value='/'/>">Home</a></li>
+									<li class="nav-item"><a
+										href="<spring:url value='/_08/contents_Front'/>"
+										class="nav-link">𨑨迌 食飯</a></li>
+									<li class="nav-item"><a href="#" class="nav-link">寵物跑跳碰</a>
 									</li>
-									<li class="nav-item">
-									<a href="<spring:url value='/06/petProductSale'/>" class="nav-link">PET陪你購物</a>
-									</li>
-									<li>
-									<a href="<spring:url value='/blogIndex'/>" class="nav-link">blog</a>
-									</li>
+									<li class="nav-item"><a
+										href="<spring:url value='/06/petProductSale'/>"
+										class="nav-link">PET陪你購物</a></li>
+									<li><a href="<spring:url value='/blogIndex'/>"
+										class="nav-link">PET-Blog</a></li>
 									<li class="nav-item dropdown"><a
 										class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 										role="button" data-toggle="dropdown" aria-haspopup="true"
-										aria-expanded="false"> PET PET 醫療站 </a>
+										aria-expanded="false"> PET PET 資訊欄 </a>
 										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-											<a class="dropdown-item" href="hospital.jsp">醫院資訊</a> <a
-												class="dropdown-item" href="question.jsp">PET PET Q&A</a>
+											<a class="dropdown-item" href="_08/hospitalsFront">醫院資訊</a> <a
+												class="dropdown-item" href="_08/hotelsFront">旅館資訊</a> <a
+												class="dropdown-item" href="_08/resFront">餐廳資訊</a>
 										</div></li>
-									<li class="nav-item"><a href="<spring:url value='/memberjoinactivity'/>"
-										class="nav-link">Contact</a></li>
+
+									<li class="nav-item"><a href="#" class="nav-link">PET
+											PET Q&A</a></li>
+
 								</ul>
 							</div>
 						</nav>
@@ -235,70 +297,106 @@
 
 	<!-- 瀑布流文章 waterfall content here -->
 
-						<div id="#">
-							<div class="#">
-								<img src="img/waterfall/1">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/2">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/3">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/4">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/5">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/6">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/7">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/8">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/9">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/10">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/11">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/12">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/13">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/14">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/15">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/16">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/17">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/18">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/19">
-							</div>
-							<div class="#">
-								<img src="img/waterfall/20">
-							</div>
-						</div>
-					
+	<!-- 						<div id="#"> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/1"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/2"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/3"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/4"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/5"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/6"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/7"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/8"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/9"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/10"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/11"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/12"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/13"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/14"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/15"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/16"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/17"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/18"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/19"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/20"> -->
+	<!-- 							</div> -->
+	<!-- 						</div> -->
+
 	<!-- waterfall content end -->
+	<!--Announcement part start::-->
+	<div style="height: 30px"></div>
+	<section class="container">
+		<div class="row">
+			<c:forEach var='ann' items='${allAnnouncements}'>
+				<div class="col-sm-6 col-md-3">
+					<div class="thumbnail">
+						<%-- 						<c:choose> --%>
+						<%-- 						<c:when test="${announce_img==null }"> --%>
+						<!-- 						123 -->
+						<%-- 						</c:when> --%>
+						<%-- 						<c:otherwise> --%>
+						<img src="<c:url value='getAnnPicture/${ann.announce_id}' />" />
+						<%-- 						</c:otherwise> --%>
+						<%-- 						</c:choose> --%>
+						<div class="caption">
+							<p>
+								<b style='font-size: 16px;'>${ann.announce_title}</b>
+							</p>
+							<p>${ann.announce_sub}</p>
+							<p>
+								<%-- 								<a href="<spring:url value='/announcement?id=${ann.announce_id}' />" --%>
+								<!-- 									class="btn btn-primary"> <span -->
+								<!-- 									class="glyphicon-info-sigh glyphicon"></span>詳細資料 -->
+								<!-- 								</a> <a -->
+								<%-- 									href="<spring:url value='/product.json?id=${ann.announce_id}' />" --%>
+								<!-- 									class="btn btn-primary">  -->
+								<!-- 								</a> -->
+							</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</section>
+	<!-- Announcement part end-->
 
 	<!-- footer part start-->
 	<footer class="footer_area padding_top">
@@ -329,12 +427,12 @@
 					<h4>Menu</h4>
 					<ul>
 						<li><a href="#">home</a></li>
-						<li><a href="#">Travel & Food</a></li>
-						<li><a href="#">Activity</a></li>
-						<li><a href="#">Shopping</a></li>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Information</a></li>
-						<li><a href="#">Contact</a></li>
+						<li><a href="#">𨑨迌食飯</a></li>
+						<li><a href="#">寵物跑跳碰</a></li>
+						<li><a href="#">PET陪你購物</a></li>
+						<li><a href="#">PET-Blog</a></li>
+						<li><a href="#">PET PET 資訊欄</a></li>
+						<li><a href="#">PET PET Q&A</a></li>
 					</ul>
 				</div>
 				<div
@@ -399,10 +497,13 @@
 	<script src="js/owl.carousel.min.js"></script>
 	<!-- custom js -->
 	<script src="js/custom.js"></script>
+
 	<!-- 瀑布流 js -->
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/masonry.pkgd.min.js"></script>
 	<script src="js/imagesloaded.pkgd.min.js"></script>
+<!--11111111111111111111111111  -->
+
 
 
 </body>

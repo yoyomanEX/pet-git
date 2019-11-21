@@ -12,7 +12,7 @@
 <meta name="author" content="">
 
 <title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
-
+<link rel="icon" href="img/about_icon.png">
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -38,7 +38,41 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- 判斷日期格式 -->
+
+<script>
+function detail(index) {
+		if($(".title" + index).length > 0){
+			$(".title" + index).remove();
+		}else{
+			$.ajax({
+				url:"queryDetail",
+				data:{
+					key1:$("#order_id"+index).val()    				
+				},
+				type:"post",
+				success:function (data){
+// 					alert(data);
+	 				showDetail(data, index);
+				}
+			});
+		}
+	}
+	function showDetail(data, index) {
+		var empss=JSON.parse(data);
+		var txt ="<tr class='title" + index + "'><th></th><th>產品編號</th><th>產品名稱</th><th>數量</th><th>單價</th></tr>";
+		for(i=0;i<empss.length;i++){	
+			txt +="<tr class='title" + index + "'><td>";
+			txt +="<td>"+empss[i].product_id+"</td>";
+			txt +="<td>"+empss[i].product_name+"</td>";
+			txt +="<td>"+empss[i].amount+"</td>";
+			txt +="<td>"+empss[i].total + "</td></tr>";
+		}
+		$("#title" + index).after(txt);
+	}
+</script>
+
+
+
 
 </head>
 <body>
@@ -52,7 +86,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="CompanyManagement">
+				href="companyManagementIndex">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class=""></i>
 				</div>
@@ -86,8 +120,8 @@
 					class="fas fa-fw fa-chart-area"></i> <span>訂單管理</span></a></li>
 
 			<!-- Nav Item - 統計報表 -->
-			<li class="nav-item"><a class="nav-link" href=""> <i
-					class="fas fa-fw fa-chart-area"></i> <span>統計報表</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="companyOrderCharts"> <i
+					class="fas fa-fw fa-chart-area"></i> <span>銷售報表</span></a></li>
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
@@ -334,38 +368,53 @@
 					</p>
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">
-									 <a href="orderManagement">返回訂單管理</a> 
-							</h6>
+							<form style="float:left;margin-right: 20px;" method="post" action='unprocessedOrder' id='unprocessed'>
+                      					<a href='#' class='btn btn-success' onclick="unprocessed();">
+                      					未處理訂單                	
+                      					<input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
+                      					<input type="hidden" value="1" name='status'>
+                      					</a>	
+                      				</form>
+									<form style="float:left;margin-right: 20px;" method="post" action='unshippedOrder' id='unshipped'>
+                          		    	<a class='btn btn-success active' onclick="unshipped();" href='#'>未出貨訂單</a>
+                          					<input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
+                          					<input type="hidden" value="2" name='status'>
+                          		   </form>
+									<form method="post" action='shippedOrder' id='shipped'>
+                          				<a class='btn btn-success' onclick="shipped();" href='#'>已出貨訂單</a>
+                          					<input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
+                          					<input type="hidden" value="3" name='status'>
+                          			</form> 
 						</div>
 					<!-- DataTales Example -->
 
 					<div class="card shadow mb-4">
 
-						            <div class="card-body">
+			<div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>訂購日期</th><th>訂單編號</th><th>訂購人</th><th>收件人</th>
-                      <th>寄送地址</th><th>售價</th><th>出貨</th>
+                      <th>訂單編號</th><th>訂購日期</th><th>訂購人</th><th>收件人</th>
+                      <th>寄送地址</th><th>總金額</th><th>出貨</th>
                     </tr>
                   </thead>
                   <tbody>
                     <c:forEach items="${unshippedOrder}" var="p1" varStatus="s">
-								<tr>
-									<form method="post" action="${pageContext.request.contextPath}/changeToShipped">
+								<tr style="background-color: #F0F0F0;" id='title${s.index}'>
+									<form method="post" action="${pageContext.request.contextPath}/changeToShipped"></a>
+									<td>${p1.order_id}</td>
 									<td><input type="hidden" id='order_date' name='order_date' value="${p1.ship_date}">${p1.order_date}
-									<td><input type="hidden" id='order_id' name='order_id' value="${p1.order_id}">${p1.order_id}
 									<td><input type="hidden" id='member_id' name='member_id' value="${p1.member_id}}">${p1.member_id}
 									<td><input type="hidden" id='recipient' name='recipient' value="${p1.recipient}}">${p1.recipient}
 									<td><input type="hidden" id='address' name='address' value="${p1.address}}">${p1.address}
 									<td><input type="hidden" id='total' name='total' value="${p1.total}}">${p1.total}
 									<td>
-									<input type="submit" value='出貨'>
+									<input type="submit" value='出貨' onclick="return confirm('訂單編號${p1.order_id}，確認出貨嗎?')">
 									<input type="hidden" name="order_id" value="${p1.order_id}"> 
 									<input type="hidden" value="${p1.status}" name='status'>
 									<input type="hidden" value="${p1.company_id}" name='company_id'>							
+									<a style="padding-left: 20px;" href='#' onclick='detail(${s.index});'>訂單明細<input type="hidden" id='order_id${s.index}' name='order_id' value="${p1.order_id}"><img src='img/arrowdown.png'></a>
 									</form>
 									<c:set var="count" value="${s.count}" />
 								
@@ -444,10 +493,17 @@
 	<!-- Page level custom scripts -->
 	<script src="js/demo/datatables-demo.js"></script>
 
-	<script>
-   		
-   
-   </script>
+<script>
+		function unprocessed() {
+			$("#unprocessed").submit();
+		}
+		function unshipped() {
+			$("#unshipped").submit();
+		}
+		function shipped() {
+			$("#shipped").submit();
+		}
+	</script>	
 
 </body>
 </html>

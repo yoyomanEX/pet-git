@@ -78,7 +78,7 @@ public class FriendServiceImpl implements FriendService {
 			List<MemberBean> a2 = dao.getByUserId(mid.get(i));
 			mda.setMid(a2.get(0).getMember_Id());
 			mda.setName(a2.get(0).getName());
-			mda.setImage(a2.get(0).getMemberImage());
+//			mda.setImage(a2.get(0).getMemberImage());
 			mda.setStatus(a1.get(0).getStatus());
 			list.add(mda);
 		}

@@ -28,7 +28,7 @@
           <div class="col-lg-7">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                <h1 class="h4 text-gray-900 mb-4">管理員修改</h1>
               </div>
               <form:form modelAttribute="AdminBean" action='_01.updataAdmin' method='POST' class="user">
                 <div class="form-group row">
@@ -37,11 +37,17 @@
                   </div>
                   <div class="col-sm-6">
                   	<form:input path='name' class="form-control form-control-user" placeholder="暱稱" value="${AdminLoginOK.name }"/>
+                    <form:errors path="name" cssStyle="color: red;"/>
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                  	<form:input path='password' type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" value="${AdminLoginOK.password }"/>
+                  	<form:input path='password' type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password"/>
+                    <form:errors path="password" cssStyle="color: red;"/>
+                  </div>
+                  <div class="col-sm-6">
+                    <form:input path='checkPassword' class="form-control form-control-user"  placeholder="Repeat Password"/>
+                  	<form:errors path="checkPassword" cssStyle="color: red;"/>
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block">

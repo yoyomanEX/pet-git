@@ -3,7 +3,8 @@
 <%@ taglib prefix='form' uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <head>
-
+  <meta name="google-signin-client_id" content="應用編號">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <meta charset="utf-8">
   
   <title>SB Admin 2 - Login</title>
@@ -14,7 +15,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-warning">
 
   <div class="container">
 
@@ -31,7 +32,7 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">會員登入</h1>
                   </div>
                   <form:form modelAttribute="MemberBean" action='_01.loginMember' method='POST' class="user">
                     <div class="form-group">
@@ -50,19 +51,16 @@
                       Login
                     </button>
                     <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
+                    <div  data-onsuccess="onSignIn" class="btn btn-google btn-user btn-block">
+                    	<i class="fab fa-google fa-fw"></i> Login with Google
+                    </div>
                   </form:form>
                   <hr>
                   <div class="text-center">
                     <a class="small" href="forgot-password.html">Forgot Password?</a>
                   </div>
                   <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
+                    <a class="small" href="_01.saveMemberPage">Create an Account!</a>
                   </div>
                 </div>
               </div>
@@ -75,7 +73,30 @@
     </div>
 
   </div>
+<script>
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); 
+  console.log('Name: ' + profile.getName());
+  console.log('Given Name: ' + profile.getGivenName());
+  console.log('Family Name: ' + profile.getFamilyName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); 
+}
+    
+ $.get("https://script.google.com/macros/s/Your_Sheet_ID/exec", {
+                "name": profile.getName(),
+                "email": profile.getEmail(),
+   });
+}
 
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
 </body>
 
 </html>

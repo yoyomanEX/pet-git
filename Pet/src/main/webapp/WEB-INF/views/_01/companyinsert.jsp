@@ -28,26 +28,31 @@
           <div class="col-lg-7">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                <h1 class="h4 text-gray-900 mb-4">註冊廠商</h1>
               </div>
               <form:form modelAttribute="CompanyBean" action='_01.saveCompany' method='POST' class="user">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <form:input path='company_id' class="form-control form-control-user" placeholder="帳號"/><span id="sp1"></span>
+                  	<form:errors path="company_id" cssStyle="color: red;"/>
                   </div>
                   <div class="col-sm-6">
                   	<form:input path='company_name' class="form-control form-control-user" placeholder="暱稱"/>
+                  	<form:errors path="company_name" cssStyle="color: red;"/>
                   </div>
                 </div>
                 <div class="form-group">
                    <form:input path='company_email' type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address"/>
+                   <form:errors path="company_email" cssStyle="color: red;"/>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                   	<form:input path='company_password' type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password"/>
+                    <form:errors path="company_password" cssStyle="color: red;"/>
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                    <form:input path='checkPassword' class="form-control form-control-user"  placeholder="Repeat Password"/>
+                    <form:errors path="checkPassword" cssStyle="color: red;"/>
                   </div>
                 </div>
                 <div class="form-group">
@@ -64,21 +69,9 @@
                 <button type="submit" class="btn btn-primary btn-user btn-block">
                   Register Account
                	</button>
-                <hr>
-                <a href="index.html" class="btn btn-google btn-user btn-block">
-                  <i class="fab fa-google fa-fw"></i> Register with Google
-                </a>
-                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                  <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                </a>
+                
               </form:form>
-              <hr>
-              <div class="text-center">
-                <a class="small" href="forgot-password.html">Forgot Password?</a>
-              </div>
-              <div class="text-center">
-                <a class="small" href="login.html">Already have an account? Login!</a>
-              </div>
+              
             </div>
           </div>
         </div>

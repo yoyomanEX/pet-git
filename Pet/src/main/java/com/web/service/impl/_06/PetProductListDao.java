@@ -28,11 +28,11 @@ public interface PetProductListDao {
 
 	public String order_id() throws SQLException;
 
-	public List<OrderBean> confirmOrder(OrderBean orderBean) throws SQLException;
+	public OrderBean confirmOrder(OrderBean orderBean) throws SQLException;
 
-	public List<OrderBean> confirmOrderDetail(OrderBean orderBean, String[] product_ids, String[] product_names, String[] amounts, String[] prices) throws SQLException;
+	public List<OrderDetailBean> confirmOrderDetail(OrderBean orderBean, String[] product_ids, String[] product_names, String[] amounts, String[] prices) throws SQLException;
 
-	public List<OrderBean> orderAll(int Member_id);
+	public List<OrderBean> orderAll(String userId);
 
 	public List<OrderDetailBean> orderDetail(List<OrderBean> orderList);
 
@@ -42,7 +42,13 @@ public interface PetProductListDao {
 
 	void closeConn();
 
-	public List<PetProductListBean> confirmbBuy(String[] product_ids, String[] amounts);
+	public List<PetProductListBean> confirmbBuy(String orderN);
+
+	public void updateECpay(String TradeNo,String orderN);
+
+	void updateECpayErr(String RtnCode,String TradeNo, String orderN);
+
+	public List<PetProductListBean> productSearch(String searchName);
 
 
 }

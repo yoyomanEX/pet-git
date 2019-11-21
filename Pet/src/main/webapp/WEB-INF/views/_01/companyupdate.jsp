@@ -28,7 +28,7 @@
           <div class="col-lg-7">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                <h1 class="h4 text-gray-900 mb-4">廠商修改</h1>
               </div>
               <form:form modelAttribute="CompanyBean" action='_01.updataCompany' method='POST' class="user">
                 <div class="form-group row">
@@ -37,14 +37,21 @@
                   </div>
                   <div class="col-sm-6">
                   	<form:input path='company_name' class="form-control form-control-user" placeholder="暱稱" value="${CompanyLoginOK.company_name }"/>
+                    <form:errors path="company_name" cssStyle="color: red;"/>
                   </div>
                 </div>
                 <div class="form-group">
                    <form:input path='company_email' type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" value="${CompanyLoginOK.company_email }"/>
+                   <form:errors path="company_email" cssStyle="color: red;"/>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                  	<form:input path='company_password' type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" value="${CompanyLoginOK.company_password }"/>
+                  	<form:input path='company_password' type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password"/>
+                    <form:errors path="company_password" cssStyle="color: red;"/>
+                  </div>
+                  <div class="col-sm-6">
+                    <form:input path='checkPassword' class="form-control form-control-user"  placeholder="Repeat Password"/>
+                    <form:errors path="checkPassword" cssStyle="color: red;"/>
                   </div>
                 </div>
                 <div class="form-group">
