@@ -7,6 +7,7 @@ import com.web.model._02.ArticleBean;
 import com.web.model._02.LikeCountBean;
 import com.web.model._02.ReplyBean;
 import com.web.model._02.ReportBean;
+import com.web.model._02.StyleBean;
 
 public interface ArtDAO {
 	
@@ -27,6 +28,8 @@ public interface ArtDAO {
 	public List<ArticleBean> getfindBy(String title);  //模糊查詢
 	
 	public List<ArticleBean> getArticlesByMemberNo(String memberNo) ;    // 只看的到會員自己的文章
+	
+	public List<ArticleBean> getArticlesByMemberNo2(String memberNo);
 	
 //	-------------------
 	
@@ -77,5 +80,9 @@ public interface ArtDAO {
 	
 //	public ArrayList<ArticleBean> queryByCategories();
 	
+	public void addStyle(StyleBean sb);
+	
+	public void editStyle(StyleBean sb);
+
 
 }

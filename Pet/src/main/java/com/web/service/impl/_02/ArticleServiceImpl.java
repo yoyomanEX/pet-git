@@ -12,6 +12,7 @@ import com.web.model._02.ArticleBean;
 import com.web.model._02.LikeCountBean;
 import com.web.model._02.ReplyBean;
 import com.web.model._02.ReportBean;
+import com.web.model._02.StyleBean;
 
 @Service
 public class ArticleServiceImpl implements ArticleService{
@@ -112,6 +113,12 @@ public class ArticleServiceImpl implements ArticleService{
 		dao.addReport(rb);
 		
 	}
+	
+	@Transactional
+	@Override
+	public List<ArticleBean> getArticlesByMemberNo2(String memberNo)  {
+		return dao.getArticlesByMemberNo2(memberNo);
+	}
 
 	@Transactional
 	@Override
@@ -191,20 +198,34 @@ public class ArticleServiceImpl implements ArticleService{
 	@Transactional
 	@Override
 	public ArrayList<ArticleBean> queryArticleByCategories2(String p1) {
-		return dao.queryArticleByCategories1(p1);
+		return dao.queryArticleByCategories2(p1);
 	}
 
 	@Transactional
 	@Override
 	public ArrayList<ArticleBean> queryArticleByCategories3(String p1) {
-		return dao.queryArticleByCategories1(p1);
+		return dao.queryArticleByCategories3(p1);
 	}
 
 	@Transactional
 	@Override
 	public ArrayList<ArticleBean> queryArticleByCategories4(String p1) {
-		return dao.queryArticleByCategories1(p1);
+		return dao.queryArticleByCategories4(p1);
 	}
+
+	@Transactional
+	@Override
+	public void addStyle(StyleBean sb) {
+		dao.addStyle(sb);
+	}
+
+	@Transactional
+	@Override
+	public void editStyle(StyleBean sb) {
+		dao.editStyle(sb);	
+	}
+
+
 
 //	@Transactional
 //	@Override

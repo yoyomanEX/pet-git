@@ -28,8 +28,8 @@
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
     
-     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
-     
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    
 <style>
 body {
 background-image: url(img/007-bg017.jpg);
@@ -40,6 +40,78 @@ background-attachment: fixed;
 /* background-position: 50% -15%; */
 }
 </style>
+<script>
+
+//文章分類
+$(document).ready(function() {
+	$("#button1").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogfood",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button2").click(function(){
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogtravel",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button3").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogbeauty",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button4").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getbloganother",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+
+</script>
 </head>
 
 <body>
@@ -55,7 +127,7 @@ background-attachment: fixed;
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h1>${LoginOK.member_Id}blog</h1>
+                            <h1>blog</h1>
                         </div>
                     </div>
                 </div>
@@ -92,7 +164,7 @@ background-attachment: fixed;
 
        
                         <!-- Single Blog Post -->
-                        <div class="single-blog-post d-flex flex-wrap">
+                        <div class="single-blog-post d-flex flex-wrap" id="petblog">
                             <!-- Thumbnail -->
                            
                             <c:forEach items="${arts }" var="art" varStatus="s">
@@ -106,7 +178,7 @@ background-attachment: fixed;
                                 </c:when>
                               <c:otherwise>
                                 <div class="post-thumbnail mb-50">
-                                    <img width='450' height='500' src='<c:url value="/getPicture/${art.no }"/>'/>
+                                    <img width='600' height='500' src='<c:url value="/getArtPicture/${art.no }"/>'/>
                                 </div>
                               </c:otherwise>
                               </c:choose>
@@ -131,34 +203,8 @@ background-attachment: fixed;
                                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                                 </a>
                             </div>
-                            
-                            
-                            <article class="blog_item">
-                        <div class="blog_item_img">
-                          <img class="card-img rounded-0" src="img/blog/single_blog_1.png" alt="">
-                          <a href="#" class="blog_item_date">
-                            <h3>${fn:substring(art.postTime, 0 ,10)} </h3>
-                          </a>
-                        </div>
-                        
-                        <div class="blog_details">
-                            <a class="d-inline-block" href="<spring:url value='postblog?id=${art.no}' />">
-                                <h2>${art.title}</h2>
-                            </a>
-                            <p>${fn:substring(art.content, 0 ,40)} </p>
-                            <ul class="blog-info-link">
-                              <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                              <li><a href="#"><i class="fa fa-comments"></i>留言</a></li>
-                            </ul>
-                        </div>
-                      </article>
-                      
-                      
                              </c:forEach>
                              
-                             
-                            
-                            
                             <!-- Post Curve Line -->
                             <img class="post-curve-line" src="img/core-img/post-curve-line.png" alt="">
                         </div>
@@ -176,27 +222,27 @@ background-attachment: fixed;
 
 <div class="col-lg-4">
                   <div class="blog_right_sidebar">
-                      <aside class="single_sidebar_widget search_widget">
-                          <form action="#">
-                            <div class="form-group">
-                              <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder = 'Search Keyword' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
-                                <div class="input-group-append">
-                                  <button class="btn" type="button"><i class="ti-search"></i></button>
-                                </div>
-                              </div>
-                            </div>
-                            <button class="button rounded-0 primary-bg text-white w-100" type="submit">Search</button>
-                          </form>
-                      </aside>
+<!--                       <aside class="single_sidebar_widget search_widget"> -->
+<!--                           <form action="#"> -->
+<!--                             <div class="form-group"> -->
+<!--                               <div class="input-group mb-3"> -->
+<!--                                 <input type="text" class="form-control" placeholder = 'Search Keyword' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'"> -->
+<!--                                 <div class="input-group-append"> -->
+<!--                                   <button class="btn" type="button"><i class="ti-search"></i></button> -->
+<!--                                 </div> -->
+<!--                               </div> -->
+<!--                             </div> -->
+<!--                             <button class="button rounded-0 primary-bg text-white w-100" type="submit">Search</button> -->
+<!--                           </form> -->
+<!--                       </aside> -->
                       
                       <aside class="single_sidebar_widget newsletter_widget">
                         <h4 class="widget_title"><i class="fa fa-user-circle-o"></i>&nbsp&nbsp關於我</h4>
 
                         <div style=>
                             <div class="about-thumbnail" align="center">
-<!--                                 <img width='60' height='72' src='getPicture' /> -->
-                                <img width='200' height='300' src="img/single_adopt_5.png" />
+                                <img width='60' height='72' src='getPicture' />
+<!--                                 <img width='200' height='300' src="img/single_adopt_5.png" /> -->
                             </div>
                             <!-- Content -->
                             <div class="widget-content text-center" style="padding-bottom:40px">
@@ -210,118 +256,47 @@ background-attachment: fixed;
                       <aside class="single_sidebar_widget post_category_widget">
                         <h4 class="widget_title">Category</h4>
                         <ul class="list cat-list">
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Resaurant food</p>
-                                    <p>(37)</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Travel news</p>
-                                    <p>(10)</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Modern technology</p>
-                                    <p>(03)</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Product</p>
-                                    <p>(11)</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Inspiration</p>
-                                    <p>21</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex">
-                                    <p>Health Care (21)</p>
-                                    <p>09</p>
-                                </a>
-                            </li>
+                            <li><a href="#" class="d-flex" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp美食</span> <span></span></a></li>
+                            <li><a href="#" class="d-flex" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp旅遊</span> <span></span></a></li>
+                            <li><a href="#" class="d-flex" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp保養</span> <span></span></a></li>
+                            <li><a href="#" class="d-flex" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp知識</span> <span></span></a></li>
                         </ul>
                       </aside>
 
                       <aside class="single_sidebar_widget popular_post_widget">
                           <h3 class="widget_title"><i class="fa fa-heart"></i>&nbsp&nbsp推薦文章</h3>
+                         
+                         <c:forEach items="${artss }" var="art" varStatus="s">
                           <div class="media post_item">
-                              <img src="img/post/post_1.png" alt="post">
+                              <c:choose>
+                                <c:when test="${art.coverImage==null}">
+                                 <div class="post-thumb"></div>
+                                </c:when>
+                              <c:otherwise>
+                                <div class="post-thumb">
+                                    <img width="50" height="50" src='<c:url value="/getArtPicture/${art.no }"/>'/>
+                                </div>
+                              </c:otherwise>
+                              </c:choose>
                               <div class="media-body">
-                                  <a href="single-blog.html">
-                                      <h3>From life was you fish...</h3>
+                                  <a href="<spring:url value='postblog?id=${art.no}' />" class="post-title">
+                                        <h6>${art.title}</h6>
                                   </a>
-                                  <p>January 12, 2019</p>
+                                  <p>${fn:substring(art.postTime, 0 ,10)}</p>
                               </div>
                           </div>
-                          <div class="media post_item">
-                              <img src="img/post/post_2.png" alt="post">                              
-                              <div class="media-body">
-                                  <a href="single-blog.html">
-                                      <h3>The Amazing Hubble</h3>
-                                  </a>
-                                  <p>02 Hours ago</p>
-                              </div>
-                          </div>
-                          <div class="media post_item">
-                              <img src="img/post/post_3.png" alt="post">                              
-                              <div class="media-body">
-                                  <a href="single-blog.html">
-                                      <h3>Astronomy Or Astrology</h3>
-                                  </a>
-                                  <p>03 Hours ago</p>
-                              </div>
-                          </div>
-                          <div class="media post_item">
-                              <img src="img/post/post_4.png" alt="post">
-                              <div class="media-body">
-                                  <a href="single-blog.html">
-                                      <h3>Asteroids telescope</h3>
-                                  </a>
-                                  <p>01 Hours ago</p>
-                              </div>
-                          </div>
+                         </c:forEach>
+                          
                       </aside>
 
                       <aside class="single_sidebar_widget instagram_feeds">
                         <h4 class="widget_title"><i class="fa fa-home"></i>&nbsp&nbsp誰來我家</h4>
                         <ul class="instagram_row flex-wrap">
+                           <c:forEach var='visit' items='${visit}'>
                             <li>
-                                <a href="#">
-                                  <img class="img-fluid" src="img/post/post_5.png" alt="">
-                                </a>
+                                  <img src="getMbPicture/${visit.otherid}" width="80" height="80" alt="">&nbsp&nbsp
                             </li>
-                            <li>
-                                <a href="#">
-                                  <img class="img-fluid" src="img/post/post_6.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                  <img class="img-fluid" src="img/post/post_7.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                  <img class="img-fluid" src="img/post/post_8.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                  <img class="img-fluid" src="img/post/post_9.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                  <img class="img-fluid" src="img/post/post_10.png" alt="">
-                                </a>
-                            </li>
+                 	      		</c:forEach>
                         </ul>
                       </aside>
 
@@ -352,8 +327,7 @@ background-attachment: fixed;
     <!-- All Plugins js -->
     <script src="${pageContext.request.contextPath}/js/plugins/plugins.js"></script>
     <!-- Active js -->
-    <script src="${pageContext.request.contextPath}/js/active.js"></script>
-    
+    <script src="${pageContext.request.contextPath}/js/active.js"></script>    
     <!-- popper js -->
 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
 	<!-- bootstrap js -->
@@ -368,10 +342,6 @@ background-attachment: fixed;
 	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 	<!-- custom js -->
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-	<!-- 瀑布流 js -->
-	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
 </body>
 
 </html>

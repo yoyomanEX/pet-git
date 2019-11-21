@@ -33,37 +33,80 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 	$(document).ready(function() {
-		$("#test").click(function() {
+		$("#messagesDropdown").click(function() {
 			$.ajax({
-				url : "friends",
+				url : "friendlist2",
 				type : "post",
 				success : function(data) {
-					showCompany(data);
+					showfriends(data);
 				}
 			});
 		});
 	});
-
-	function myFunction() {
-		document.getElementById("frm1").submit();
+	var Stop;
+	$(document).ready(function() {
+		Stop=setInterval(cartnumber,5000)//預設5000毫秒自動重複執行cartnumber()函數
+		})
+		function cartnumber() {
+			$.ajax({
+				url : "notice",
+				type : "post",
+				success : function(data) {
+					console.log("ok");
+					if(data.length!=0){
+						$(".fa-bell").addClass("fa-2x");
+						$(".fa-bell").addClass("text-danger");
+					}
+					showNotice(data);
+				}
+			});
+		}
+	function NoticeClick(){
+		clearInterval(Stop);
+		$(".fa-bell").removeClass("fa-2x");
+		$(".fa-bell").removeClass("text-danger");
 	}
 
-	function showCompany(data) {
-		var txt = "<th>編號<th>廠商統編<th>廠商名稱<th>Email<th>地址<th>連絡電話<th>聯絡人<th>接受申請<th>拒絕申請";
+	function showNotice(data) {
+		var txt = "";
 		for (i = 0; i < data.length; i++) {
-			txt += "<tr><td>" + data[i].id;
-			txt += "<td>" + data[i].mid;
-			txt += "<td>" + data[i].name;
-			txt += "<td>" + data[i].image;
-			txt += "<td>" + data[i].status;
-			txt += "<td><button onclick='accept("
-					+ i
-					+ ");'><input type='hidden' id='status1"+i+"' value='1'><input type='hidden' id='company_id1"+i+"' value=\""+data[i].company_id+"\">接受</button>";
-			txt += "<td><button onclick='reject("
-					+ i
-					+ ");'><input type='hidden' id='status2"+i+"' value='9'><input type='hidden' id='company_id2"+i+"' value=\""+data[i].company_id+"\">拒絕</button>";
-		}
-		document.getElementById("dataTable").innerHTML = txt;
+			if(data[i].friendstatus!=null){
+			txt += '<a class="dropdown-item d-flex align-items-center" href="waiting"><div class="dropdown-list-image mr-3">'
+					+ '<img class="rounded-circle"'
+					+'width="60" height="60" src="'
+					+'getMbPicture/'+data[i].otherid+'">'
+					+ '</div><div class="font-weight-bold"><div class="text-truncate">'
+					+ data[i].otherid + '向您申請好友</div></div></a>';}
+			if(data[i].messagestatus!=null){
+			txt += '<a class="dropdown-item d-flex align-items-center" href="waiting"><div class="dropdown-list-image mr-3">'
+				+ '<img class="rounded-circle"'
+				+'width="60" height="60" src="'
+				+'getMbPicture/'+data[i].otherid+'">'
+				+ '</div><div class="font-weight-bold"><div class="text-truncate">'
+				+'您的文章'+data[i].articlebean.title+'有新留言</div></div></a>';		
+		}}
+		document.getElementById("test1").innerHTML = txt;
+	}
+
+	function showfriends(data) {
+		var txt = "";
+		for (i = 0; i < data.length; i++) {
+			txt += '<a class="dropdown-item d-flex align-items-center" onclick="talk('+data[i].mid+')" >'
+			+'<div class="dropdown-list-image mr-3">'
+				+ '<img class="rounded-circle"'
+				+'width="60" height="60" src="'
+				+'getMbPicture/'+data[i].mid+'">'
+				+ '</div><div class="font-weight-bold"><div class="text-truncate">'
+				+ '向'+data[i].mid + '道聲招呼，開始你們的聊天吧!</div></div></a>';
+		document.getElementById("test2").innerHTML = txt;
+	}}
+	
+	function talk(id){
+		window
+		.open(
+				'onebyonechat?friendid='+id,
+				'newwindow',
+				'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
 	}
 </script>
 
@@ -245,109 +288,33 @@
 
 						<!-- Nav Item - Alerts -->
 						<li class="nav-item dropdown no-arrow mx-1"><a
-							class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
+							class="nav-link dropdown-toggle" href="#" id="alertsDropdown" onclick="NoticeClick()"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
-								<span class="badge badge-danger badge-counter">3+</span>
+<!-- 								<span class="badge badge-danger badge-counter">3+</span> -->
 						</a> <!-- Dropdown - Alerts -->
 							<div
 								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="alertsDropdown">
-								<h6 class="dropdown-header">Alerts Center</h6>
-								<a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="mr-3">
-										<div class="icon-circle bg-primary">
-											<i class="fas fa-file-alt text-white"></i>
-										</div>
-									</div>
-									<div>
-										<div class="small text-gray-500">December 12, 2019</div>
-										<span class="font-weight-bold">A new monthly report is
-											ready to download!</span>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="mr-3">
-										<div class="icon-circle bg-success">
-											<i class="fas fa-donate text-white"></i>
-										</div>
-									</div>
-									<div>
-										<div class="small text-gray-500">December 7, 2019</div>
-										$290.29 has been deposited into your account!
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="mr-3">
-										<div class="icon-circle bg-warning">
-											<i class="fas fa-exclamation-triangle text-white"></i>
-										</div>
-									</div>
-									<div>
-										<div class="small text-gray-500">December 2, 2019</div>
-										Spending Alert: We've noticed unusually high spending for your
-										account.
-									</div>
-								</a> <a class="dropdown-item text-center small text-gray-500"
-									href="#">Show All Alerts</a>
+								<h6 class="dropdown-header">Message Center</h6>
+								<div id='test1'></div>
+								<a class="dropdown-item text-center small text-gray-500"
+									href="#">Read More Message</a>
 							</div></li>
 
 						<!-- Nav Item - Messages -->
 						<li class="nav-item dropdown no-arrow mx-1"><a
-							class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
+							class="nav-link dropdown-toggle" href="#" id="messagesDropdown" 
 							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <!-- Counter - Messages --> <span
-								class="badge badge-danger badge-counter">7</span>
+							aria-expanded="false"><i class="fas fa-envelope fa-fw"></i> <!-- Counter - Messages --> 
+<!-- 							<span	class="badge badge-danger badge-counter">7</span> -->
 						</a> <!-- Dropdown - Messages -->
 							<div
 								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="messagesDropdown">
-								<h6 class="dropdown-header">Message Center</h6>
-								<a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-										<div class="status-indicator bg-success"></div>
-									</div>
-									<div class="font-weight-bold">
-										<div class="text-truncate">Hi there! I am wondering if
-											you can help me with a problem I've been having.</div>
-										<div class="small text-gray-500">Emily Fowler · 58m</div>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-										<div class="status-indicator"></div>
-									</div>
-									<div>
-										<div class="text-truncate">I have the photos that you
-											ordered last month, how would you like them sent to you?</div>
-										<div class="small text-gray-500">Jae Chun · 1d</div>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-										<div class="status-indicator bg-warning"></div>
-									</div>
-									<div>
-										<div class="text-truncate">Last month's report looks
-											great, I am very happy with the progress so far, keep up the
-											good work!</div>
-										<div class="small text-gray-500">Morgan Alvarez · 2d</div>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-										<div class="status-indicator bg-success"></div>
-									</div>
-									<div>
-										<div class="text-truncate">Am I a good boy? The reason I
-											ask is because someone told me that people say this to all
-											dogs, even if they aren't good...</div>
-										<div class="small text-gray-500">Chicken the Dog · 2w</div>
-									</div>
-								</a> <a class="dropdown-item text-center small text-gray-500"
+								<h6 class="dropdown-header">Freind Center</h6>
+								<div id='test2'></div>
+								<a class="dropdown-item text-center small text-gray-500"
 									href="#">Read More Messages</a>
 							</div></li>
 
@@ -399,7 +366,7 @@
 						<a href="index.html">&larr; Back to Dashboard</a>
 					</div>
 					<button id='test'>test</button>
-					<form action='friends' id='frm1' method="post">
+					<form action='friendlist2' id='frm1' method="post">
 						<button type="button" onclick="myFunction()">a</button>
 					</form>
 					<div>

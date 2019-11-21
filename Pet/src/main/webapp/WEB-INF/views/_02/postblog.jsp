@@ -14,6 +14,7 @@
     <title>pET ʕ•ᴥ•ʔ 陪你</title>
     <link rel="icon" href="img/about_icon.png">
     
+    <script src="<c:url value="/js/jquery/jquery-2.2.4.min.js"/>"> </script>  
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <!-- animate CSS -->
@@ -30,10 +31,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
-   
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/util.min.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">  
@@ -89,7 +86,7 @@ function myFunction() {
 
  <script>
     $(document).ready(function(){
-		$("#button2").click(function(){
+		$("#btnreport").click(function(){
 				alert("已收到您的檢舉，會盡快為您處理");
 		});
     });
@@ -107,14 +104,83 @@ function countdown() {
 	setTimeout('countdown()', 1000);
 	}
 	</script>
+<script>
 
+//文章分類
+$(document).ready(function() {
+	$("#button1").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogfood",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button2").click(function(){
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogtravel",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button3").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogbeauty",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button4").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getbloganother",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+</script>
 </head>
     
 
 <body>
     <!--::header part start::-->
     
-    <jsp:include page="header.jsp" /> 
+    <jsp:include page="header.jsp" />
     
     <!-- Header part end-->
     
@@ -125,7 +191,7 @@ function countdown() {
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h1>${LoginOK.member_Id}blog</h1>
+                            <h1>blog</h1>
                         </div>
                     </div>
                 </div>
@@ -161,7 +227,7 @@ function countdown() {
         <div class="container">
             <div class="row justify-content-center">
                 <!-- Blog Posts Area -->
-                <div class="col-12 col-lg-8">
+                <div class="col-12 col-lg-8"  id="petblog">
                     <div class="blog-posts-area">
 
                         <!-- Post Details Area -->
@@ -169,17 +235,27 @@ function countdown() {
                             <div class="post-thumbnail mb-30">
                             </div>
                             <div class="post-content">
-                                <p class="post-date"> ${fn:substring(art.postTime, 0 ,10)}  / foody</p>
+                              <c:choose>
+                                <c:when test="${art.coverImage==null}">
+                                <div class="post-thumbnail mb-50"></div>
+                                </c:when>
+                              <c:otherwise>
+                                <div class="post-thumbnail mb-50">
+                                    <img width='600' height='500' src='<c:url value="/getArtPicture/${art.no }"/>'/>
+                                </div>
+                              </c:otherwise>
+                              </c:choose>
+                                <p class="post-date"> ${fn:substring(art.postTime, 0 ,10)}</p>
                                 <h4 class="post-title" style="font-family:標楷體"> ${art.title}</h4>
                                 <div class="post-meta">
                                     
-                               
+                               <!-- Button trigger modal -->
                                  <c:choose>
                                    <c:when test="${empty LoginOK}">
                                    <button style="font-size:16px;padding:6px" class="btn btn-danger" onclick="myFunction()">檢舉</button>
                                    </c:when>
                                    <c:when test="${!empty LoginOK}">
-                                   <button style="font-size:16px;padding:6px" class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'" >檢舉</button>
+                                   <button style="font-size:16px;padding:6px" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">檢舉</button>
                                    </c:when>
                                  </c:choose>
                                  
@@ -211,7 +287,7 @@ function countdown() {
                         <div class="post-tags-share d-flex justify-content-between align-items-center"></div>
                         
 <!--     Modal      -->
-<div class="w3-container">
+
 <div style="float:right">
   
 <!--   <button style="padding:3px;margin-bottom:7px" class="btn btn-primary" >留言</button> -->
@@ -232,27 +308,33 @@ function countdown() {
        </c:choose>
    
   </span>
-
 </div>  
-  <div id="id01" class="w3-modal">
-    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
 
-      <div class="w3-center"><br>
-        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-<!--         <h4 style="font-size:25px;font-weight: bold; font-family:標楷體">檢舉原因</h4> -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:#FFE6D9">
+        <div style="text-align:center;">
+        <h4 class="modal-title" id="exampleModalLongTitle" style="font-size:35px;font-weight: bold; font-family:標楷體;color:#FF2D2D">❀文章檢舉原因</h4>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-
-      <form class="w3-container" action="${pageContext.request.contextPath}/addReportblog" method="post">
+      <div class="modal-body">
+        <form action="${pageContext.request.contextPath}/addReportblog" method="post">
      
-        <div class="w3-section" style="text-align:center;">
-          <label style="font-size:25px;font-weight: bold; font-family:標楷體;"><b>檢舉原因</b></label>
+        <div>
              <input type="hidden" class="form-control" id="member_Id" name="member_Id" placeholder="member_Id" readonly="true" value="${LoginOK.member_Id }">
              <input type="hidden" value="${art.no}" id="rpid" name="rpid">
-             <textarea style="resize:none; height:250px" class="w3-input w3-border w3-margin-bottom" placeholder="請輸入原因" id="message" name="message" autofocus ></textarea>
-          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit" id="button2">傳送</button>
- 
+             <textarea style="font-size:25px;resize:none; height:200px;width:460px;" class="form-control" placeholder="&nbsp&nbsp請輸入......" id="message" name="message" autofocus ></textarea>
+             <button style="float:right" type="submit" class="btn btn-lg btn-info" id="btnreport">傳送</button>
         </div>
       </form>
+      </div>
     </div>
   </div>
 </div>
@@ -291,18 +373,18 @@ function countdown() {
 						<form action="${pageContext.request.contextPath}/articlelike" method="post">
                                     <input type="hidden" class="form-control" id="memberId" name="memberId" placeholder="memberId" readonly="true" value="${LoginOK.member_Id }">
                                     <input type="hidden" value="${art.no}" name="no">
-                                    <button type="button"  class="btn foode-btn btn-sm" id="showmessage2">回覆</button> 
-                                    <input type="text" class="form-control" id="hidemessage2"  style="display:none" name="inputcomm" placeholder="留言....">
+<!--                                     <button type="button"  class="btn foode-btn btn-sm" id="showmessage2">回覆</button>  -->
+<!--                                     <input type="text" class="form-control" id="hidemessage2"  style="display:none" name="inputcomm" placeholder="留言...."> -->
                         </form>                
                         
-                                   <c:if test="${LoginOK.member_Id == art.memberId }"><%-- 如果登入帳號和留言帳號一樣才會出現修改和刪除--%>
-										<div style="float:right">
+<%--                                    <c:if test="${LoginOK.member_Id == art.memberId }">如果登入帳號和留言帳號一樣才會出現修改和刪除 --%>
+<!-- 										<div style="float:right"> -->
 												
-										<button type="button" id="update${art.no}" class="btn btn-outline-info " onclick="modifyComm(${cb.commNo},${mb.articleNo},'${cb.memberId}')">修改</button>
-										<button type="button" name="delete"  class="btn btn-outline-danger " onclick="confirmDelete('${art.no}')">刪除</button>
+<%-- 										<button type="button" id="update${art.no}" class="btn btn-outline-info " onclick="modifyComm(${cb.commNo},${mb.articleNo},${cb.memberId})">修改</button> --%>
+<%-- 										<button type="button" name="delete"  class="btn btn-outline-danger " onclick="confirmDelete('${art.no}')">刪除</button> --%>
 															
-										</div>
-							       </c:if>
+<!-- 										</div> -->
+<%-- 							       </c:if> --%>
                                             
                                         </div>
                                     </div>
@@ -393,15 +475,16 @@ function countdown() {
 						<div class="p-t-50">
 							<div class="how2 how2-cl4 flex-s-c" style="padding-top:10px">
 								<h3 class="f1-m-2 cl3 tab01-title">
-									Categories
+									文章分類
 								</h3>
 							</div>
 							<div style="padding-top:20px">
 							<ol >
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i> Drink</span> <span>(18)</span></a></li>
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i> Foody</span> <span>(28)</span></a></li>
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i> Tea</span> <span>(15)</span></a></li>
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i> Coffee</span> <span>(27)</span></a></li>
+<!-- 							<button id="button1">按我</button> -->
+                                <li><a href="#" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp美食</span> <span></span></a></li>
+                                <li><a href="#" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp旅遊</span> <span></span></a></li>
+                                <li><a href="#" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp保養</span> <span></span></a></li>
+                                <li><a href="#" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp知識</span> <span></span></a></li>
                             </ol>
 							</div>
 						</div>
@@ -524,10 +607,6 @@ function countdown() {
 	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 	<!-- custom js -->
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-	<!-- 瀑布流 js -->
-	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
 </body>
 
 </html>

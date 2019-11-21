@@ -123,7 +123,8 @@
 		$("#myTable").DataTable({
 			"searching" : false,
 			"bLengthChange" : false,
-			"pageLength" : 8
+			"pageLength" : 8,
+			"bInfo" : false
 		});
 	})
 </script>
@@ -233,13 +234,14 @@
 						<tbody>
 							<%--items=表示處理的陣列跟集合 要循環的訊息 var=用來儲存目前元素的值--%>
 							<c:forEach items="${products}" var="pro">
+							<c:if test="${pro.status==1}">
 								<tr>
 									<td><img alt="ʕ•ᴥ•ʔ" class='productImg'
 										src="${pageContext.request.contextPath}/06/downloadFile/${pro.product_id}.jpg">
 									</td>
 									<td><a class="checkPro" productId="${pro.product_id}"
 										href="">${pro.product_name}</a></td>
-									<td>${pro.price}$</td>
+									<td>$${pro.price}</td>
 									<td><c:choose>
 											<c:when test="${pro.amount==0}">
 												<input type="hidden" name="amount" value="0" class="textNum"
@@ -266,7 +268,9 @@
 											</c:otherwise>
 										</c:choose></td>
 								</tr>
+								</c:if>
 							</c:forEach>
+							
 						</tbody>
 					</table>
 				</div>

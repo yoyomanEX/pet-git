@@ -6,6 +6,7 @@ import java.util.Locale;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 
+import com.web.view.MultipleArticleExcelView;
 import com.web.view.MultipleOrdersExcelView;
 
 
@@ -17,6 +18,8 @@ public class ExcelViewResolver implements ViewResolver{
 		View view = null;
 		if (viewName.startsWith("_07/showOrders")) {
 			view = new MultipleOrdersExcelView();
+		}else if(viewName.startsWith("_02/admin_article")) {
+			view = new MultipleArticleExcelView();
 		}
 //		 else if (viewName.startsWith("_01/cnvr/displayMember"))  {
 //			view = new MultipleOrdersExcelView();
@@ -24,5 +27,6 @@ public class ExcelViewResolver implements ViewResolver{
 		System.out.println("ExcelViewResolver, viewName=" + viewName + ", return value=" + view);
 		return view;
       }
+	
 	
 }

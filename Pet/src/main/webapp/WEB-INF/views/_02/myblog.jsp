@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"> 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    <script type="text/javascript" src="<c:url value="/js/jquery/jquery-2.2.4.min.js"/>"></script>
 <!--===============================================================================================-->
 	
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">  
@@ -43,6 +44,79 @@ background-attachment: fixed;
 /* background-position: 50% -15%; */
 }
 </style>
+<script>
+
+//文章分類
+$(document).ready(function() {
+	$("#button1").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogfood",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button2").click(function(){
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogtravel",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button3").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogbeauty",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button4").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getbloganother",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+
+</script>
+
 </head>
 
 <body>
@@ -51,6 +125,7 @@ background-attachment: fixed;
 <jsp:include page="header.jsp" />
     <!-- Header part end-->
     
+    
     <!--::breadcrumb part start::-->
     <section class="breadcrumb breadcrumb_bg">
         <div class="container">
@@ -58,7 +133,7 @@ background-attachment: fixed;
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h1>${LoginOK.member_Id}blog</h1>
+                            <h1>blog</h1>
                         </div>
                     </div>
                 </div>
@@ -95,13 +170,10 @@ background-attachment: fixed;
 
        
                         <!-- Single Blog Post -->
-                        <div class="single-blog-post d-flex flex-wrap">
+                        <div class="single-blog-post d-flex flex-wrap" id="petblog">
                             <!-- Thumbnail -->
-                           
                             <c:forEach items="${arts }" var="art" varStatus="s">
-                            
-                            
-                            
+                          
                             <c:choose>
                                 <c:when test="${art.coverImage==null}">
                                 <div class="post-thumbnail mb-50"></div>
@@ -112,11 +184,9 @@ background-attachment: fixed;
                                 </div>
                               </c:otherwise>
                               </c:choose>
-                            
                             <!-- Content -->
                             <div class="post-content mb-50">
-                                <p class="post-date">${fn:substring(art.postTime, 0 ,20)} / foody</p>
-                                                            
+                                <p class="post-date">${fn:substring(art.postTime, 0 ,20)}</p>                       
                                 <div class="post-title">
                                     <a href="<spring:url value='postblog?id=${art.no}' />" class="post-title">
                                         <h4>${art.title}</h4>
@@ -125,23 +195,13 @@ background-attachment: fixed;
                                 <div class="post-meta">
                                     <a href="#"><span>by</span> ${art.memberId}</a>
                                     <a href="#"><i class="fa fa-thumbs-up"></i>&nbsp&nbsp${art.likeCount}</a>
-                              
                                 </div>
-                                <p class="post-excerpt">${fn:substring(art.content, 0 ,20)}</p>
-                                
-                                                                
-                                <a href="<spring:url value='postblog?id=${art.no}' />" class="read-more-btn">Continue Reading
-<%--                                 <a href="<spring:url value='postblog?id=${art.no}' />" class="read-more-btn">Continue Reading --%>
+                                <p class="post-excerpt">${fn:substring(art.content, 0 ,20)}</p>                         
+                                <a href="<spring:url value='postblog?id=${art.no}' />" class="read-more-btn">Continue Reading  
                                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                                 </a>
                             </div>
-                            
-                      
                              </c:forEach>
-                             
-                             
-                            
-                            
                             <!-- Post Curve Line -->
                             <img class="post-curve-line" src="img/core-img/post-curve-line.png" alt="">
                         </div>
@@ -152,8 +212,8 @@ background-attachment: fixed;
 
                     <!-- Pager -->
                     <ol class="foode-pager mt-50">
-                        <li><i class="fa fa-long-arrow-left" aria-hidden="true"><input id="pUp" onclick="pageUp()" class="btn foode-btn btn-sm" value="上一頁"></i></a></li>
-                        <li><input id="pDown" onclick="pageDown()" class="btn foode-btn btn-sm" value="下一頁"> <i class="fa fa-long-arrow-right" aria-hidden="true"></i></li>
+                        <li><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> 上一頁</a></li>
+                        <li><a href="#">下一頁 <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
                     </ol>
                 </div>
 
@@ -162,12 +222,12 @@ background-attachment: fixed;
                     <div class="post-sidebar-area">
 
                         <!-- ##### Single Widget Area ##### -->
-                        <div class="single-widget-area mt-0">
-                            <form class="search-form" action="#" method="post">
-                                <input type="search" name="search" class="form-control" placeholder="Search...">
-                                <button><i class="fa fa-send"></i></button>
-                            </form>
-                        </div>
+<!--                         <div class="single-widget-area mt-0"> -->
+<!--                             <form class="search-form" action="#" method="post"> -->
+<!--                                 <input type="search" name="search" class="form-control" placeholder="Search..."> -->
+<!--                                 <button><i class="fa fa-send"></i></button> -->
+<!--                             </form> -->
+<!--                         </div> -->
 
                         <!-- ##### Single Widget Area ##### -->
                         <div class="single-widget-area">
@@ -180,8 +240,8 @@ background-attachment: fixed;
                             <!-- Thumbnail -->
                             <div style="padding-top:20px">
                             <div class="about-thumbnail">
-<!--                                 <img width='60' height='72' src='getPicture' /> -->
-                                <img width='200' height='300' src="img/single_adopt_5.png" />
+                                <img width='60' height='72' src='getPicture' />
+<!--                                 <img width='200' height='300' src="img/single_adopt_5.png" /> -->
                             </div>
                             <!-- Content -->
                             <div class="widget-content text-center" style="padding-bottom:40px">
@@ -201,10 +261,10 @@ background-attachment: fixed;
 							</div>
 							<div style="padding-top:20px">
 							<ol >
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp美食</span> <span>(18)</span></a></li>
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp旅遊</span> <span>(28)</span></a></li>
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp保養</span> <span>(15)</span></a></li>
-                                <li><a href="#"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp知識</span> <span>(27)</span></a></li>
+                                <li><a href="#" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp美食</span> <span></span></a></li>
+                                <li><a href="#" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp旅遊</span> <span></span></a></li>
+                                <li><a href="#" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp保養</span> <span></span></a></li>
+                                <li><a href="#" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp知識</span> <span></span></a></li>
                             </ol>
 							</div>
 						</div>
@@ -248,6 +308,25 @@ background-attachment: fixed;
                            </c:forEach>
                            </div>
                         </div>
+                        
+                         <!--  -->
+						<div class="p-t-50" style="padding-top:30px">
+							<div class="how2 how2-cl4 flex-s-c" style="padding-top:10px">
+								<h3 class="f1-m-2 cl3 tab01-title">
+									誰來我家
+								</h3>
+							</div>
+							<div style="padding-top:20px">
+							<ol class="popular-tags d-flex flex-wrap" >
+								<c:forEach var='visit' items='${visit}'>
+                            <li>
+                                  <img src="getMbPicture/${visit.otherid}" width="80" height="80" alt="">&nbsp&nbsp
+                            </li>
+                 	      		</c:forEach>
+                        </ol>
+
+							</div>
+						</div>
 
          
 
@@ -287,6 +366,7 @@ background-attachment: fixed;
     <!-- ##### Footer Area Start ##### -->
     
     <jsp:include page="footer.jsp" />
+
     
     <!-- footer part end-->
     
@@ -316,10 +396,7 @@ background-attachment: fixed;
 	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 	<!-- custom js -->
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-	<!-- 瀑布流 js -->
-	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
+
 </body>
 
 </html>

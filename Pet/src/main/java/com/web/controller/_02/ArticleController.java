@@ -49,7 +49,11 @@ import com.web.model._02.ArticleBean;
 import com.web.model._02.LikeCountBean;
 import com.web.model._02.ReplyBean;
 import com.web.model._02.ReportBean;
+import com.web.model._02.StyleBean;
+import com.web.model._03.MyBlogBean;
+import com.web.model._07.MemberOrderBean;
 import com.web.service.impl._02.ArticleService;
+import com.web.service.impl._03.MyBlogService;
 import com.web.util.JSONFileUpload;
 
 @Controller
@@ -61,7 +65,13 @@ public class ArticleController {
 	public void setService(ArticleService service) {
 		this.service = service;
 	}
-
+	
+	MyBlogService myblogservice;
+	@Autowired
+	public void setMyBlogService(MyBlogService myblogservice) {
+		this.myblogservice = myblogservice;
+	}
+	
 	ServletContext context;
 
 	@Autowired
@@ -83,9 +93,28 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/articlestyle")
-	public String article2(Model model) {
+	public String articlestyle(Model model) {
 		return "_02/articlestyle";
 	}
+
+//	public String articlestyle1(Model model, HttpServletRequest request) {
+//		HttpSession session = request.getSession();
+//		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+//		String style1Button = request.getParameter("style1");
+//		String style2Button = request.getParameter("style2");
+//		
+//		if ("style1".equals(style1Button)&&loginToken.getStyle()==1){
+//        	return "myblog";      	
+//		}else if("style2".equals(style2Button)&&loginToken.getStyle()==2) {
+//			return "myblog2";
+//		}
+//		return "_02/articlestyle";
+
+//		HttpSession session = request.getSession();
+//		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+//		loginToken.setStyle(1);
+//        	return "_02/myblog";   
+//	}
 
 	@RequestMapping("/blogIndex")
 	public String articleBlog(Model model, HttpServletRequest request) {
@@ -105,7 +134,28 @@ public class ArticleController {
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 //		System.out.println(loginToken);
 		String member = loginToken.getMember_Id();
-		List<ArticleBean> art = service.getArticlesByMemberNo(member);
+//		StyleBean sb = new StyleBean();
+//		sb.setNo(false);
+//		sb.setMemberId(member);
+//        service.addStyle(sb);
+
+//		String Style1Button = request.getParameter("style1");
+//		String Style2Button = request.getParameter("style2");	
+//		if ("style2".equals(Style1Button) && sb.getNo() == true) { // 0为false.myblog，1为true.myblog2 
+//			sb.setNo(false);
+//			sb.setMemberId(sb.getMemberId());
+//			service.editStyle(sb);
+//            
+//		}else if ("style1".equals(Style2Button) && sb.getNo() == false) { // 0为false.myblog，1为true.myblog2
+//			sb.setNo(true);
+//			sb.setMemberId(sb.getMemberId());
+//			service.editStyle(sb);
+//		}
+		List<MyBlogBean> visit = myblogservice.getByUser(member);
+		model.addAttribute("visit", visit);
+		System.out.println("visitvisit=" + visit);
+		
+		List<ArticleBean> art = service.getArticlesByMemberNo2(member);
 		model.addAttribute("arts", art);
 
 		List<ArticleBean> arts = service.getArticleByDate(member);
@@ -113,17 +163,72 @@ public class ArticleController {
 
 		List<ArticleBean> artss = service.getArticlelikeByMember(member);
 		model.addAttribute("artsss", arts);
-		
-		ArrayList<ArticleBean> c1 = service.queryArticleByCategories1(member);
-		model.addAttribute("c1", c1);
-		ArrayList<ArticleBean> c2 = service.queryArticleByCategories1(member);
-		model.addAttribute("c2", c2);
-		ArrayList<ArticleBean> c3 = service.queryArticleByCategories1(member);
-		model.addAttribute("c3", c3);
-		ArrayList<ArticleBean> c4 = service.queryArticleByCategories1(member);
-		model.addAttribute("c4", c4);
 
 		return "_02/myblog";
+
+	}
+
+	@RequestMapping("/myblog2")
+	public String myblog2(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+		String member = loginToken.getMember_Id();
+//		StyleBean sb = new StyleBean();
+//		sb.setNo(true);
+//		sb.setMemberId(member);
+//		service.addStyle(sb);
+
+		List<ArticleBean> art = service.getArticlesByMemberNo2(member);
+		model.addAttribute("arts", art);
+
+		List<ArticleBean> arts = service.getArticleByDate(member);
+		model.addAttribute("artss", arts);
+
+		List<ArticleBean> artss = service.getArticlelikeByMember(member);
+		model.addAttribute("artsss", arts);
+
+		return "_02/myblog2";
+
+	}
+
+	@RequestMapping("/getblogfood")
+	public String getblogfood(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+		String member = loginToken.getMember_Id();
+		ArrayList<ArticleBean> c1 = service.queryArticleByCategories1(member);
+		session.setAttribute("c1", c1);
+		return "_02/food";
+	}
+
+	@RequestMapping("/getblogtravel")
+	public String getblogtravel(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+		String member = loginToken.getMember_Id();
+		ArrayList<ArticleBean> c2 = service.queryArticleByCategories2(member);
+		session.setAttribute("c2", c2);
+		return "_02/travel";
+	}
+
+	@RequestMapping("/getblogbeauty")
+	public String getblogbeauty(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+		String member = loginToken.getMember_Id();
+		ArrayList<ArticleBean> c3 = service.queryArticleByCategories3(member);
+		session.setAttribute("c3", c3);
+		return "_02/beauty";
+	}
+
+	@RequestMapping("/getbloganother")
+	public String getbloganother(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+		String member = loginToken.getMember_Id();
+		ArrayList<ArticleBean> c4 = service.queryArticleByCategories4(member);
+		session.setAttribute("c4", c4);
+		return "_02/another";
 	}
 
 	@RequestMapping("/postblog")
@@ -223,8 +328,8 @@ public class ArticleController {
 	}
 
 	@RequestMapping(value = "/addArticle", method = RequestMethod.POST)
-	public String processAddNewArticle(@ModelAttribute("ArticleBean") ArticleBean bean, BindingResult result,
-			Model model, HttpServletRequest request) throws ParseException, java.text.ParseException {
+	public String processAddNewArticle(@ModelAttribute("ArticleBean") ArticleBean bean, Model model,
+			HttpServletRequest request) throws ParseException, java.text.ParseException {
 		HttpSession session = request.getSession();
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String member = loginToken.getMember_Id();
@@ -235,8 +340,7 @@ public class ArticleController {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 //		String postTime = request.getParameter("postTime");
-		String categories = request.getParameter("categories");
-
+		String tag = request.getParameter("tag");
 
 		if (bean.getTitle() == null || bean.getTitle().trim().length() == 0) {
 			errorMessage.put("titleNull", "請輸入標題");
@@ -267,42 +371,29 @@ public class ArticleController {
 			bean.setReport(false);
 			bean.setLikeCount(0);
 			bean.setAvailable(true);
-			bean.setCategories(Integer.parseInt(categories));
 
-			MultipartFile articleImage = bean.getArticleImage();
-			String originalFilename = articleImage.getOriginalFilename();
-			bean.setFileName(originalFilename);
-
-			// 建立Blob物件，交由 Hibernate 寫入資料庫
-			if (articleImage != null && !articleImage.isEmpty()) {
+			MultipartFile picture = bean.getArticleImage();
+			System.out.println("picturepicture=" + picture);
+			if (picture.getSize() == 0) {
+				Blob blob = null;
+				bean.setCoverImage(blob);
+			} else {
 				try {
-					byte[] b = articleImage.getBytes();
+					byte[] b = picture.getBytes();
 					Blob blob = new SerialBlob(b);
 					bean.setCoverImage(blob);
-				} catch (Exception e) {
+				} catch (IOException e) {
 					e.printStackTrace();
-					throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+				} catch (SerialException e) {
+					e.printStackTrace();
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
+
 			}
 
 			service.addArticle(bean);
-			String rootDirectory = context.getRealPath("/");
-			String ext = "";
-			if (!originalFilename.isEmpty()) {
 
-				ext = originalFilename.substring(originalFilename.lastIndexOf(".")); // 若為空值會顯示-1...exception
-//			String rootDirectory = context.getRealPath("/");
-				try {
-					File imageFolder = new File(rootDirectory, "images");
-					if (!imageFolder.exists())
-						imageFolder.mkdirs();
-					File file = new File(imageFolder, bean.getNo() + ext);
-					articleImage.transferTo(file);
-				} catch (Exception e) {
-					e.printStackTrace();
-					throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
-				}
-			}
 //			List<ArticleBean> art = service.getAll();
 //			model.addAttribute("arts", art);
 //			return "_02/article";
@@ -318,57 +409,41 @@ public class ArticleController {
 	@RequestMapping(value = "/getArtPicture/{no}")
 	public ResponseEntity<byte[]> getPicture(HttpServletRequest reponse, @PathVariable Integer no) {
 //		System.out.println("picture=" + no);
-		String filePath = "/resources/img/blog-img/lp1.jpg";
 
-		byte[] media = null;
+		byte[] body = null;
+		ResponseEntity<byte[]> re = null;
+		MediaType mediaType = null;
 		HttpHeaders headers = new HttpHeaders();
-		String filename = "";
-		int len = 0;
-		ArticleBean bean = service.getArticleById(no);
-
-		if (bean != null) {
-			Blob blob = bean.getCoverImage();
-			filename = bean.getFileName();
-			if (blob != null) {
-				try {
-					len = (int) blob.length();
-					media = blob.getBytes(1, len);
-				} catch (SQLException e) {
-					throw new RuntimeException("Controller的getPicture()發生SQLException: " + e.getMessage());
-				}
-			} else {
-				media = toByteArray(filePath);
-				filename = filePath;
-			}
-		} else {
-			media = toByteArray(filePath);
-			filename = filePath;
-		}
-
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
-		String mimeType = context.getMimeType(filename);
-		MediaType mediaType = MediaType.valueOf(mimeType);
-		System.out.println("mediaType =" + mediaType);
-		headers.setContentType(mediaType);
-		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
-		return responseEntity;
+		ArticleBean bean = service.getArticleById(no);
+		Blob blob = bean.getCoverImage();
+		if (blob != null) {
+			body = blobToByteArray(blob);
+
+		} else {
+			String path = null;
+			path = noImage;
+			body = fileToByteArray(path);
+
+		}
+		re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
+		return re;
 	}
 
 	private byte[] toByteArray(String filepath) {
-		byte[] b = null;
-		String realPath = context.getRealPath(filepath);
-		try {
-			File file = new File(realPath);
-			long size = file.length();
-			b = new byte[(int) size];
-			InputStream fis = context.getResourceAsStream(filepath);
-			fis.read(b);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		byte[] result = null;
+		try (InputStream is = context.getResourceAsStream(filepath);
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();) {
+			byte[] b = new byte[819200];
+			int len = 0;
+			while ((len = is.read(b)) != -1) {
+				baos.write(b, 0, len);
+			}
+			result = baos.toByteArray();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return b;
+		return result;
 	}
 
 	@RequestMapping(value = "/editArticle")
@@ -387,14 +462,13 @@ public class ArticleController {
 		HttpSession session = request.getSession();
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String member = loginToken.getMember_Id();
-
 		String no = request.getParameter("no");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 //		String postTime = request.getParameter("postTime");
 		String LikeButton = request.getParameter("like");
 		String LockButton = request.getParameter("lock");
-		String categories = request.getParameter("categories"); 
+		String categories = request.getParameter("categories");
 
 		// 目前時間
 		Date date = new Date();
@@ -418,15 +492,14 @@ public class ArticleController {
 //		String time = df.format(new Date());
 //      Timestamp ts = Timestamp.valueOf(time);
 //		Timestamp ts = new Timestamp(System.currentTimeMillis());
-
 //		bean.setPostTime(ts);
-		
+
 		MultipartFile picture = bean.getArticleImage();
 		System.out.println("picturepicture=" + picture);
-		if(picture.getSize()==0) {
+		if (picture.getSize() == 0) {
 			Blob blob = null;
 			bean.setCoverImage(blob);
-		}else {
+		} else {
 			try {
 				byte[] b = picture.getBytes();
 				Blob blob = new SerialBlob(b);
@@ -438,7 +511,7 @@ public class ArticleController {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
+
 		}
 
 		service.editArticle(bean, Integer.parseInt(no));
@@ -450,10 +523,10 @@ public class ArticleController {
 		model.addAttribute("arts", art);
 
 		return "redirect:/article";
-
 	}
-	
+
 	String noImage = "/images/NoImage.png";
+
 	@RequestMapping(value = "/getArtPicture", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletRequest request) {
 		byte[] body = null;
@@ -464,19 +537,19 @@ public class ArticleController {
 		String no = request.getParameter("no");
 		ArticleBean ab = service.getArticleById(Integer.parseInt(no));
 		Blob blob = ab.getCoverImage();
-		if(blob!=null) {
+		if (blob != null) {
 			body = blobToByteArray(blob);
-			
-		}else {
+
+		} else {
 			String path = null;
 			path = noImage;
 			body = fileToByteArray(path);
-			
+
 		}
 		re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
 		return re;
 	}
-	
+
 	private byte[] fileToByteArray(String path) {
 		byte[] result = null;
 		try (InputStream is = context.getResourceAsStream(path);
@@ -492,7 +565,7 @@ public class ArticleController {
 		}
 		return result;
 	}
-	
+
 	public byte[] blobToByteArray(Blob blob) {
 		byte[] result = null;
 		try (InputStream is = blob.getBinaryStream(); ByteArrayOutputStream baos = new ByteArrayOutputStream();) {
@@ -511,28 +584,10 @@ public class ArticleController {
 
 	@RequestMapping(value = "/findBySearch")
 	public String processFindByArticle(Model model, HttpServletRequest request) {
-
 		String title = request.getParameter("title");
-
 		List<ArticleBean> title1 = service.getfindBy(title);
-
 		model.addAttribute("arts", title1);
-
 		return "_02/searchArticle";
-
-	}
-
-	@RequestMapping(value = "/findBySearchblog")
-	public String processFindByArticleblog(Model model, HttpServletRequest request) {
-
-		String title = request.getParameter("title");
-
-		List<ArticleBean> title1 = service.getfindBy(title);
-
-		model.addAttribute("arts", title1);
-
-		return "_02/blogIndex";
-
 	}
 
 	@RequestMapping(value = "/addReplyblog")
@@ -565,7 +620,6 @@ public class ArticleController {
 
 		} else {
 			String AuthorSS = (loginToken.getMember_Id());
-
 			String content = request.getParameter("content");
 
 //		rb.setMemberId(member);
@@ -591,10 +645,8 @@ public class ArticleController {
 //		System.out.println("no=" + no);
 
 		ArticleBean ab = service.getArticleById(no);
-		System.out.println("ab=" + ab);
-
+//		System.out.println("ab=" + ab);
 		String ArticleNoS = Integer.toString(ab.getNo());
-
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String member = (loginToken.getMember_Id());
 		String content = request.getParameter("message");
@@ -613,7 +665,6 @@ public class ArticleController {
 		model.addAttribute("ArticleBean", ab);
 
 		return "redirect:/postblog?id=" + ArticleNoS;
-
 	}
 
 	@RequestMapping(value = "/articlelike")
@@ -673,7 +724,6 @@ public class ArticleController {
 				service.editArticle(ab, no);
 			}
 
-//		model.addAttribute("id", no);
 			return "redirect:/postblog?id=" + ArticleNoS;
 		}
 	}
@@ -684,23 +734,23 @@ public class ArticleController {
 			throws IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		
+
 		String memderId = request.getParameter("key3");
-		System.out.println("memderId="+memderId);
+		System.out.println("memderId=" + memderId);
 		String startdate = request.getParameter("key1") + " 00:00:00";
 		String enddate = request.getParameter("key2") + " 23:59:59";
-        System.out.println("enddate="+enddate);
+		System.out.println("enddate=" + enddate);
 
 		ArrayList<ArticleBean> queryAllArticleByDate = service.queryArticleByDate(memderId, startdate, enddate);
 
 		Gson gson = new Gson();
 		String json = gson.toJson(queryAllArticleByDate);
 		response.getWriter().print(json);
-		System.out.println("jsob=" + queryAllArticleByDate);
+//		System.out.println("json=" + queryAllArticleByDate);
 
 	}
 
-//站方文章後台adminarticle
+//站方文章後台
 	@RequestMapping("/adminarticle")
 	public String list(Model model, HttpServletRequest request) {
 		List<ArticleBean> art = service.getAll();
@@ -718,24 +768,20 @@ public class ArticleController {
 		response.getCharacterEncoding();
 //			ArticleBean no = (ArticleBean) model.getAttribute("arts");
 		String reportno = request.getParameter("reportno");
-		System.out.println("reportnoreportno=" + reportno);
+//		System.out.println("reportnoreportno=" + reportno);
 
 		ReportBean rb = service.getReportByArticle(Integer.parseInt(reportno));
-		System.out.println("rbrb=" + rb);
+//		System.out.println("rbrb=" + rb);
 
 		HttpSession session = request.getSession();
 		session.setAttribute("rbs", rb);
-
 //	        model.addAttribute("rbs", rb);
-
 		return rb;
-
 	}
 
 	@RequestMapping(value = "/adminlockarticle")
-	public String processAddLockForm(@RequestParam("no") Integer no, Model model, HttpServletRequest request,
-			HttpSession session) {
-		System.out.println("lockno=" + no);
+	public String processAddLockForm(@RequestParam("no") Integer no, Model model, HttpServletRequest request) {
+//		System.out.println("lockno=" + no);
 		ArticleBean ab = service.getArticleById(no);
 
 		String LockButton = request.getParameter("lock");
@@ -750,7 +796,20 @@ public class ArticleController {
 			ab.setAvailable(true);
 			service.editArticle(ab, no);
 		}
-
 		return "redirect:/adminarticle";
 	}
+	
+	     // URL為 /members, 搭配 GET方法可以傳回所有紀錄。
+		// produces屬性說明產生之資料的格式: produces = "application/vnd.ms-excel"
+		// 本方法可以Excel格式傳回所有Member紀錄
+		@RequestMapping(value = "/blogXML", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
+		public String queryArticleExcel(Model model, HttpServletRequest request,HttpServletResponse response) throws IOException {
+			request.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html;charset=UTF-8");
+			List<ArticleBean> art = service.getAll();
+			System.out.println("test excel="+art);
+			model.addAttribute("artCharts", art);
+			return "_02/admin_article";
+		}
+
 }

@@ -3,17 +3,21 @@ package com.web.dao.impl._02;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
 
+import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.web.model._01.MemberBean;
 import com.web.model._02.ArticleBean;
 import com.web.model._02.LikeCountBean;
 import com.web.model._02.ReplyBean;
 import com.web.model._02.ReportBean;
+import com.web.model._02.StyleBean;
 import com.web.model._07.MemberOrderBean;
 
 @Repository
@@ -118,29 +122,35 @@ public class ArticleDAOImpl implements ArtDAO {
 		
 	}
 	
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ArticleBean> getArticlesByMemberNo(String memberNo) {      
-//		Session session = factory.getCurrentSession();
-//		Query query = session.createQuery("FROM ArticleBean bb WHERE bb.member_Id = : member_Id");
-//		List<ArticleBean> list = (List<ArticleBean>) query.list();
-//
-//	    return query.list();
-	    
-	
-		
-	    String hql = "FROM ArticleBean bb WHERE bb.memberId = : memberId order by postTime DESC";
-	    Session session = null;
-	    List<ArticleBean> list = new ArrayList<>();
-	    session = factory.getCurrentSession();
+		Session session = null;
+		session = factory.getCurrentSession();
+	    String hql = "FROM ArticleBean bb WHERE bb.memberId = : memberId order by postTime DESC";   
+	    List<ArticleBean> list = new ArrayList<>();  
 	    list = session.createQuery(hql).setParameter("memberId", memberNo).list();
 	    return list;
-	   
+	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ArticleBean> getArticlesByMemberNo2(String memberNo) {      
+		Session session = factory.getCurrentSession();
+		Query query = session.createQuery("FROM ArticleBean bb WHERE bb.memberId = : memberId order by postTime DESC");
+		query.setFirstResult(0);
+	    query.setMaxResults(5);
+	    List list = query.setParameter("memberId", memberNo).list();
+	    return query.list();
+	    
+//		Session session = null;
+//		session = factory.getCurrentSession();
+//	    String hql = "FROM ArticleBean bb WHERE bb.memberId = : memberId order by postTime DESC";   
+//	    List<ArticleBean> list = new ArrayList<>();  
+//	    list = session.createQuery(hql).setParameter("memberId", memberNo).list();
+//	    return list;
 	}
 	
-
 
 	@Override
 	public void addReply(ReplyBean reply) {
@@ -350,7 +360,22 @@ public class ArticleDAOImpl implements ArtDAO {
 				.setParameter("memberId", p1).getResultList();
 	    return query;   
 	}
+
+
+	@Override
+	public void addStyle(StyleBean sb) {
+		Session session = factory.getCurrentSession();
+	    session.save(sb);
+	}
+
+
+	@Override
+	public void editStyle(StyleBean sb) {
+		Session session = factory.getCurrentSession();
+		session.update(sb);
+		
+	}
 	
-
-
+	
+	
 }
