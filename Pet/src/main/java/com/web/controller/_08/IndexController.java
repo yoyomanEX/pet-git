@@ -71,7 +71,7 @@ public class IndexController {
 	public String showAnnounceFront(Model model) {
 	List<AnnouncementBean> list = annService.qryAllAnnouncement();
 	model.addAttribute("allAnnouncements", list);
-	return "_08/showAnnounce";
+	return "index";
 }
 	@RequestMapping(value = "/announcements/{title}", method = RequestMethod.GET)
 	public String getAnnByTitle(@PathVariable("title") String title, Model model) {

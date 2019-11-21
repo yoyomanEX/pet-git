@@ -48,12 +48,7 @@ public class RootAppConfig {
     public DataSource dataSource() {
         ComboPooledDataSource ds = new ComboPooledDataSource();
         ds.setUser("sasa");
-
-<<<<<<< HEAD
         ds.setPassword("P@ssw0rd");
-=======
-        ds.setPassword("word");
->>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git
 
 
         try {
