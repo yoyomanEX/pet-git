@@ -47,8 +47,9 @@ public class RootAppConfig {
 	@Bean
     public DataSource dataSource() {
         ComboPooledDataSource ds = new ComboPooledDataSource();
-        ds.setUser("sasa");
-        ds.setPassword("word");
+        
+        ds.setUser("sa");
+        ds.setPassword("passw0rd");
 
         try {
             ds.setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");
