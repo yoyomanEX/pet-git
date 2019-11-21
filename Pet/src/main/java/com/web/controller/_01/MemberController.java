@@ -1,5 +1,4 @@
 
-
 package com.web.controller._01;
 
 import java.io.ByteArrayOutputStream;
@@ -23,12 +22,17 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.web.model._01.LogoutBean;
 import com.web.model._01.MemberBean;
 import com.web.model._01.PetBean;
+import com.web.model._01.validators.MemberValidator;
 import com.web.service.impl._01.MemberService;
 import com.web.service.impl._01.PetService;
 
@@ -70,7 +74,7 @@ public class MemberController {
 	public String memberloginPage(Model model) {
 		model.addAttribute("MemberBean", new MemberBean());
 		return "_01/memberlogin";
-		
+
 	}
 
 	// 會員登入
@@ -84,12 +88,12 @@ public class MemberController {
 		MemberBean b1 = memberService.checkIDPassword(userId, password);
 		System.out.println(b1);
 
-		if (b1 != null) {
+		if (b1!=null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("LoginOK", b1);
 			return "redirect: login";// 登入成功
 		} else {
-			return "forward: loginErr";// 登入失敗
+			return "forward:/loginErr";// 登入失敗
 		}
 	}
 
@@ -106,8 +110,8 @@ public class MemberController {
 
 	// 登入失敗
 	@RequestMapping(value = "loginErr")
-	public String loginErr() {
-		return "_01/login";
+	public String loginErr(@ModelAttribute("MemberBean") MemberBean memberBean) {
+		return "_01/memberlogin";
 
 	}
 
@@ -121,14 +125,49 @@ public class MemberController {
 
 	// 註冊會員
 	@RequestMapping(value = "/_01.saveMember", method = RequestMethod.POST)
-	public String saveMember(MemberBean memberBean) {
+	public String saveMember(@ModelAttribute("MemberBean") MemberBean memberBean, BindingResult result) {
+		// 驗證註冊會員的格式
+		MemberValidator v1 = new MemberValidator();
+		v1.validate(memberBean, result);
+		if (result.hasErrors()) {
+			List<ObjectError> list = result.getAllErrors();
+			for (ObjectError error : list) {
+				System.out.println("有錯誤：" + error);
+			}
+			return "_01/memberinsert";
+		}
 		// 判斷會員帳號是否註冊過
 		boolean f1 = memberService.idExists(memberBean.getMember_Id());
 		if (f1 != true) {
+			// 上傳圖片
+			MultipartFile picture = memberBean.getFilImage();
+			if (picture.getSize() == 0) {
+				System.out.println("picture1:" + picture.getSize());
+				Blob blob = null;
+				memberBean.setMemberImage(blob);
+			} else {
+				System.out.println("picture2:" + picture.getSize());
+				try {
+					byte[] b = picture.getBytes();
+					Blob blob = new SerialBlob(b);
+					memberBean.setMemberImage(blob);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SerialException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+
 			memberService.saveMember(memberBean);
 			return "redirect: member";// 註冊成功
 		} else {
-			return "forward: memberErr";// 註冊失敗
+			return "forward:/memberErr";// 註冊失敗
 		}
 	}
 
@@ -140,7 +179,7 @@ public class MemberController {
 
 	// 註冊失敗
 	@RequestMapping(value = "memberErr")
-	public String memberErr() {
+	public String memberErr(@ModelAttribute("MemberBean") MemberBean memberBean) {
 		return "_01/memberinsert";
 	}
 
@@ -198,15 +237,26 @@ public class MemberController {
 
 	// 修改會員
 	@RequestMapping(value = "/_01.updataMember", method = RequestMethod.POST)
-	public String updataMember(MemberBean mb, HttpServletRequest request) {
-
+	public String updataMember(@ModelAttribute("MemberBean") MemberBean mb, HttpServletRequest request,
+			BindingResult result) {
+		// 驗證修改會員的格式
+		MemberValidator v1 = new MemberValidator();
+		v1.validate(mb, result);
+		if (result.hasErrors()) {
+			List<ObjectError> list = result.getAllErrors();
+			for (ObjectError error : list) {
+				System.out.println("有錯誤：" + error);
+			}
+			return "_01/memberupdate";
+		}
+		// 上傳圖片
 		MultipartFile picture = mb.getFilImage();
-		if(picture.getSize() == 0) {
-			System.out.println("picture1:"+picture.getSize());
-			Blob blob =null;
+		if (picture.getSize() == 0) {
+			System.out.println("picture1:" + picture.getSize());
+			Blob blob = null;
 			mb.setMemberImage(blob);
-		}else {
-			System.out.println("picture2:"+picture.getSize());
+		} else {
+			System.out.println("picture2:" + picture.getSize());
 			try {
 				byte[] b = picture.getBytes();
 				Blob blob = new SerialBlob(b);
@@ -221,22 +271,20 @@ public class MemberController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
-		
 
 		memberService.updataMember(mb);
 		HttpSession session = request.getSession();
 		session.setAttribute("LoginOK", mb);
 
-
 		return "_01/ttt";
 	}
-	
+
 	String noImage = "/images/NoImage.png";
-	
-	//讀取會員大頭貼
-	//<img width='60' height='72' src='getPicture' />
+
+	// 讀取會員大頭貼
+	// <img width='60' height='72' src='getPicture' />
 	@RequestMapping(value = "/getPicture", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletRequest request) {
 		byte[] body = null;
@@ -247,22 +295,22 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		Blob blob = loginToken.getMemberImage();
-		if(blob!=null) {
+		if (blob != null) {
 			body = blobToByteArray(blob);
-			
-		}else {
+
+		} else {
 			String path = null;
 			path = noImage;
 			body = fileToByteArray(path);
-			
+
 		}
 		re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
 		return re;
 	}
-	
+
 	@Autowired
 	ServletContext context;
-	
+
 	private byte[] fileToByteArray(String path) {
 		byte[] result = null;
 		try (InputStream is = context.getResourceAsStream(path);
@@ -278,7 +326,7 @@ public class MemberController {
 		}
 		return result;
 	}
-	
+
 	public byte[] blobToByteArray(Blob blob) {
 		byte[] result = null;
 		try (InputStream is = blob.getBinaryStream(); ByteArrayOutputStream baos = new ByteArrayOutputStream();) {
@@ -294,6 +342,14 @@ public class MemberController {
 		return result;
 
 	}
+	//登出
+	@RequestMapping(value = "/_01.getLogout")
+	public String getLogout(Model model, HttpServletRequest request) {
+		model.addAttribute("MemberBean", new MemberBean());
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "index";
+
+	}
 
 }
-

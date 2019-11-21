@@ -37,18 +37,27 @@
                   </div>
                   <div class="col-sm-6">
                   	<form:input path='name' class="form-control form-control-user" placeholder="暱稱"  value="${LoginOK.name }"/>
+                  	<form:errors path="name" cssStyle="color: red;"/>
                   </div>
                 </div>
                 <div class="form-group">
                    <form:input path='email' type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="email" value="${LoginOK.email }"/>
+                	<form:errors path="email" cssStyle="color: red;"/>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                   	<form:input path='password' type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="password" value="${LoginOK.password }"/>
+                  	<form:errors path="password" cssStyle="color: red;"/>
                   </div>
                   <div class="col-sm-6">
-                    <form:input path='tel'  class="form-control form-control-user"  placeholder="電話"  value="${LoginOK.tel }"/>
+                    <form:input path='checkPassword' class="form-control form-control-user"  placeholder="Repeat Password"/>
+                    <form:errors path="checkPassword" cssStyle="color: red;"/>                
                   </div>
+                </div>
+                <div class="form-group row">
+                	<div class="col-sm-6 mb-3 mb-sm-0">
+                    	<form:input path='tel'  class="form-control form-control-user"  placeholder="電話"  value="${LoginOK.tel }"/>
+                    </div>
                 </div>
                 <div class="form-group">
                    <form:input path='address'  class="form-control form-control-user"  placeholder="住址" value="${LoginOK.address }"/>
