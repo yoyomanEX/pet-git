@@ -5,21 +5,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!-- Page Wrapper -->
 <script>
-	//     $(document).ready(function(){   //button的id不能相同，所以如果用迴圈增加刪除紐，只會有一個有反應
-	// 		$("#button2").click(function(){
-	// 			alert("删除成功");
-
-	// 		});
-	//     });
-	function clickDelete() {
-		alert("删除成功");
-		//     	var msg = "請問確定要刪除嗎???刪除後無法回復";
-		//     	if (confirm(msg)==true){
-		//     	return true;
-		//     	}else{
-		//     	return false;
-		//     	}
-	}
 	function room() {
 		window
 				.open(
