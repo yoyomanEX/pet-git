@@ -14,6 +14,8 @@ import com.web.model._02.ArticleBean;
 import com.web.model._02.LikeCountBean;
 import com.web.model._02.ReplyBean;
 import com.web.model._02.ReportBean;
+import com.web.model._02.StyleBean;
+import com.web.model._07.MemberOrderBean;
 
 @Repository
 public class ArticleDAOImpl implements ArtDAO {
@@ -57,7 +59,8 @@ public class ArticleDAOImpl implements ArtDAO {
 		bean.setLikeCount(article.getLikeCount());
 		bean.setReport(article.getReport());
 		bean.setAvailable(article.getAvailable());
-//		bean.setArticleImage(article.getArticleImage());
+		bean.setCoverImage(article.getCoverImage());
+		bean.setCategories(article.getCategories());
 
 	}
 
@@ -119,23 +122,32 @@ public class ArticleDAOImpl implements ArtDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ArticleBean> getArticlesByMemberNo(String memberNo) {      
-//		Session session = factory.getCurrentSession();
-//		Query query = session.createQuery("FROM ArticleBean bb WHERE bb.member_Id = : member_Id");
-//		List<ArticleBean> list = (List<ArticleBean>) query.list();
-//
-//	    return query.list();
-	    
-	
-		
-	    String hql = "FROM ArticleBean bb WHERE bb.memberId = : memberId order by postTime DESC";
-	    Session session = null;
-	    List<ArticleBean> list = new ArrayList<>();
-	    session = factory.getCurrentSession();
+		Session session = null;
+		session = factory.getCurrentSession();
+	    String hql = "FROM ArticleBean bb WHERE bb.memberId = : memberId order by postTime DESC";   
+	    List<ArticleBean> list = new ArrayList<>();  
 	    list = session.createQuery(hql).setParameter("memberId", memberNo).list();
 	    return list;
-	   
-
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ArticleBean> getArticlesByMemberNo2(String memberNo) {      
+		Session session = factory.getCurrentSession();
+		Query query = session.createQuery("FROM ArticleBean bb WHERE bb.memberId = : memberId order by postTime DESC");
+		query.setFirstResult(0);
+	    query.setMaxResults(5);
+	    List list = query.setParameter("memberId", memberNo).list();
+	    return query.list();
+	    
+//		Session session = null;
+//		session = factory.getCurrentSession();
+//	    String hql = "FROM ArticleBean bb WHERE bb.memberId = : memberId order by postTime DESC";   
+//	    List<ArticleBean> list = new ArrayList<>();  
+//	    list = session.createQuery(hql).setParameter("memberId", memberNo).list();
+//	    return list;
+	}
+	
 
 	@Override
 	public void addReply(ReplyBean reply) {
@@ -150,6 +162,13 @@ public class ArticleDAOImpl implements ArtDAO {
 		Session session = factory.getCurrentSession();
 	    session.save(reply);
 		
+	}
+	
+	@Override
+	public void deleteReply(ReplyBean replyno){
+		Session session = factory.getCurrentSession();
+//		getSession().delete(no);
+		session.delete(replyno);
 	}
 
 
@@ -245,18 +264,114 @@ public class ArticleDAOImpl implements ArtDAO {
 
 	@Override
 	public List<ArticleBean> getArticleByLike() {
-
 	    Session session = factory.getCurrentSession();
 	    Query query = session.createQuery("from ArticleBean order by likeCount DESC");
 	    query.setFirstResult(0);
 	    query.setMaxResults(5);
 	    query.list();
 	    return (ArrayList<ArticleBean>) query.list();
-	    
-	    
-	    
 	}
 	
+	@Override
+	public List<ArticleBean> getArticlelikeByMember(String memberNo) {
+	    Session session = factory.getCurrentSession();
+	    Query query = session.createQuery("from ArticleBean lb WHERE lb.memberId = :memberId order by likeCount DESC");
+	    query.setFirstResult(0);
+	    query.setMaxResults(5);
+	    List list = query.setParameter("memberId", memberNo).list();
+	    return query.list();
+	}
+	
+	@Override
+	public List<ArticleBean> getArticleByDate(String memberNo) {
+	    Session session = factory.getCurrentSession();
+	    Query query = session.createQuery("from ArticleBean lb WHERE lb.memberId = :memberId order by postTime ASC");
+	    query.setFirstResult(0);
+	    query.setMaxResults(5);
+	    List list = query.setParameter("memberId", memberNo).list();
+	    return query.list();
+
+	   
+	}
+	
+	//依日期搜尋文章
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<ArticleBean> queryArticleByDate(String p1,String d1,String d2) {
+		Session session = factory.getCurrentSession();
+		ArrayList<ArticleBean> query = (ArrayList<ArticleBean>) session.createQuery
+				("from ArticleBean ab WHERE ab.memberId = :memberId and ab.postTime > :postTime1 and ab.postTime < :postTime2")
+				.setParameter("memberId", p1).setParameter("postTime1", d1).setParameter("postTime2", d2).getResultList();
+		
+		System.out.println("queryquery=" + query);
+		return query;
+	
+	}
+	
+	//文章分類搜尋
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public ArrayList<ArticleBean> queryByCategories() { 
+//		Session session = factory.getCurrentSession();
+//		ArrayList<ArticleBean> query = (ArrayList<ArticleBean>) session.createQuery
+//				("FROM ArticleBean ab WHERE ab.categories = '1'").getResultList();
+//	    return query;   
+//	}
+//	
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<ArticleBean> queryArticleByCategories1(String p1) { 
+		Session session = factory.getCurrentSession();
+		ArrayList<ArticleBean> query = (ArrayList<ArticleBean>) session.createQuery
+				("FROM ArticleBean ab WHERE ab.memberId = :memberId and ab.categories = '1'")
+				.setParameter("memberId", p1).getResultList();
+	    return query;   
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<ArticleBean> queryArticleByCategories2(String p1) { 
+		Session session = factory.getCurrentSession();
+		ArrayList<ArticleBean> query = (ArrayList<ArticleBean>) session.createQuery
+				("FROM ArticleBean ab WHERE ab.memberId = :memberId and ab.categories = '2'")
+				.setParameter("memberId", p1).getResultList();
+	    return query;   
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<ArticleBean> queryArticleByCategories3(String p1) { 
+		Session session = factory.getCurrentSession();
+		ArrayList<ArticleBean> query = (ArrayList<ArticleBean>) session.createQuery
+				("FROM ArticleBean ab WHERE ab.memberId = :memberId and ab.categories = '3'")
+				.setParameter("memberId", p1).getResultList();
+	    return query;   
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<ArticleBean> queryArticleByCategories4(String p1) { 
+		Session session = factory.getCurrentSession();
+		ArrayList<ArticleBean> query = (ArrayList<ArticleBean>) session.createQuery
+				("FROM ArticleBean ab WHERE ab.memberId = :memberId and ab.categories = '4'")
+				.setParameter("memberId", p1).getResultList();
+	    return query;   
+	}
 
 
+	@Override
+	public void addStyle(StyleBean sb) {
+		Session session = factory.getCurrentSession();
+	    session.save(sb);
+	}
+
+
+	@Override
+	public void editStyle(StyleBean sb) {
+		Session session = factory.getCurrentSession();
+		session.update(sb);
+		
+	}
+	
+	
 }

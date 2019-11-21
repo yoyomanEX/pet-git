@@ -26,4 +26,16 @@ public class MemberOrderDetailServiceImpl implements MemberOrderDetailService {
 	public ArrayList<MemberOrderDetailBean> queryByOrderId(MemberOrderDetailBean p1) {
 		return eDao.queryByOrderId(p1);
 	}
+	//計算商品數量(by日期)
+	@Override
+	@Transactional
+	public ArrayList<MemberOrderDetailBean> queryOrderProductTotalAmount(String p1,String p2,String p3){
+		return eDao.queryOrderProductTotalAmount(p1, p2,p3);
+		
+	}
+	@Override
+	public ArrayList<MemberOrderDetailBean> queryOrderChartsList(String p1, String p2, String p3) {
+		return eDao.queryOrderChartsList(p1, p2, p3);
+	}
+
 }

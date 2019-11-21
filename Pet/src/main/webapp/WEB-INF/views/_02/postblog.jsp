@@ -13,6 +13,7 @@
     
     <title>pET ʕ•ᴥ•ʔ 陪你</title>
     <link rel="icon" href="img/about_icon.png">
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <!-- animate CSS -->
@@ -26,17 +27,28 @@
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css">
     <!-- style CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-    
+   
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-   
-  
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/util.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">  
+	   
+<style>
+section {
+background-image: url(img/dog_bg.jpg);
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+
+/* background-position: 50% -15%; */
+}
+</style>
+
 <script>
 $(document).ready(function(){
 	$("#autobutton").click(function(){
@@ -54,6 +66,13 @@ $(document).ready(function(){
 	
 })
 
+$(document).ready(function(){
+	$("#showmessage2").click(function(){
+		$("#hidemessage2").toggle();
+		
+	})
+	
+})
 
 function  confirmDelete(no) {
 	alert("Blog ID===" + no)
@@ -70,7 +89,7 @@ function myFunction() {
 
  <script>
     $(document).ready(function(){
-		$("#button2").click(function(){
+		$("#btnreport").click(function(){
 				alert("已收到您的檢舉，會盡快為您處理");
 		});
     });
@@ -88,7 +107,76 @@ function countdown() {
 	setTimeout('countdown()', 1000);
 	}
 	</script>
+<script>
 
+//文章分類
+$(document).ready(function() {
+	$("#button1").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogfood",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button2").click(function(){
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogtravel",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button3").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getblogbeauty",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+
+$(document).ready(function() {
+	$("#button4").click(function(){
+// 		alert("成功");
+		$.ajax({
+  			url:"${pageContext.request.contextPath}/getbloganother",
+  			type:"post",
+  			headers : {
+				Accept : "text/html, application/xhtml+xml, */*"
+			},
+  			success:function (data){
+  				$("#petblog").empty();
+  				$("#petblog").append(data);
+  			}
+  		});
+	});
+})
+</script>
 </head>
     
 
@@ -98,6 +186,22 @@ function countdown() {
     <jsp:include page="header.jsp" /> 
     
     <!-- Header part end-->
+    
+    <!--::breadcrumb part start::-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h1>${LoginOK.member_Id}blog</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--::breadcrumb part start::-->
     
     <c:choose>
             <c:when test="${art.available==true}">
@@ -126,7 +230,7 @@ function countdown() {
         <div class="container">
             <div class="row justify-content-center">
                 <!-- Blog Posts Area -->
-                <div class="col-12 col-lg-8">
+                <div class="col-12 col-lg-8"  id="petblog">
                     <div class="blog-posts-area">
 
                         <!-- Post Details Area -->
@@ -134,7 +238,7 @@ function countdown() {
                             <div class="post-thumbnail mb-30">
                             </div>
                             <div class="post-content">
-                                <p class="post-date"> ${fn:substring(art.postTime, 0 ,10)}  / foody</p>
+                                <p class="post-date"> ${fn:substring(art.postTime, 0 ,10)}</p>
                                 <h4 class="post-title" style="font-family:標楷體"> ${art.title}</h4>
                                 <div class="post-meta">
                                     
@@ -214,7 +318,7 @@ function countdown() {
              <input type="hidden" class="form-control" id="member_Id" name="member_Id" placeholder="member_Id" readonly="true" value="${LoginOK.member_Id }">
              <input type="hidden" value="${art.no}" id="rpid" name="rpid">
              <textarea style="resize:none; height:250px" class="w3-input w3-border w3-margin-bottom" placeholder="請輸入原因" id="message" name="message" autofocus ></textarea>
-          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit" id="button2">傳送</button>
+          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit" id="btnreport">傳送</button>
  
         </div>
       </form>
@@ -247,17 +351,26 @@ function countdown() {
                                         </div>
                                         <!-- Comment Content -->
                                         <div class="comment-content">
+                                            <div style="padding-bottom:20px">
                                             <span class="comment-date">${fn:substring(art.postTime, 0 ,20)} </span>
                                             <h5>${art.memberId}</h5>
                                             <p>${art.content}</p>
+                                            </div>
                                             
+						<form action="${pageContext.request.contextPath}/articlelike" method="post">
+                                    <input type="hidden" class="form-control" id="memberId" name="memberId" placeholder="memberId" readonly="true" value="${LoginOK.member_Id }">
+                                    <input type="hidden" value="${art.no}" name="no">
+                                    <button type="button"  class="btn foode-btn btn-sm" id="showmessage2">回覆</button> 
+                                    <input type="text" class="form-control" id="hidemessage2"  style="display:none" name="inputcomm" placeholder="留言....">
+                        </form>                
+                        
                                    <c:if test="${LoginOK.member_Id == art.memberId }"><%-- 如果登入帳號和留言帳號一樣才會出現修改和刪除--%>
-										<span>
+										<div style="float:right">
 												
-										<button type="button" id="update${art.no}" class="btn btn-outline-info btn-sm" onClick="modifyComm(${cb.commNo},${mb.articleNo},'${cb.memberId}')">修改</button>
-										<button type="button" name="delete"  class="btn btn-outline-danger btn-sm" onClick="confirmDelete('${art.no}')">刪除</button>
+										<button type="button" id="update${art.no}" class="btn btn-outline-info " onclick="modifyComm(${cb.commNo},${mb.articleNo},${cb.memberId})">修改</button>
+										<button type="button" name="delete"  class="btn btn-outline-danger " onclick="confirmDelete('${art.no}')">刪除</button>
 															
-										</span>
+										</div>
 							       </c:if>
                                             
                                         </div>
@@ -319,138 +432,115 @@ function countdown() {
                     </div>
                 </div>
 
-                <!-- Blog Sidebar Area -->
+<!-- Blog Sidebar Area -->
                 <div class="col-12 col-sm-9 col-md-6 col-lg-4">
                     <div class="post-sidebar-area">
 
                         <!-- ##### Single Widget Area ##### -->
-                        <div class="single-widget-area mt-0">
+                        <div class="single-widget-area">
                             <!-- Title -->
-                            <div class="widget-title">
-                                <h6>Categories</h6>
+                            <div class="how2 how2-cl4 flex-s-c" style="padding-top:10px">
+								<h3 class="f1-m-2 cl3 tab01-title">
+									關於我
+								</h3>
+							</div>
+                            <!-- Thumbnail -->
+                            <div style="padding-top:40px">
+                            <div class="about-thumbnail">
+                                <img width='60' height='72' src='getPicture' />
                             </div>
-                            <ol class="foode-catagories">
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> Drink</span> <span>(18)</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> Foody</span> <span>(28)</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> Tea</span> <span>(15)</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> Coffee</span> <span>(27)</span></a></li>
+                            <!-- Content -->
+                            <div class="widget-content text-center" style="padding-bottom:20px">
+                                <img src="img/core-img/signature.png" alt="">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
+                            </div>
+                            </div>
+                        </div>
+                        
+                        
+                         <!--  -->
+						<div class="p-t-50">
+							<div class="how2 how2-cl4 flex-s-c" style="padding-top:10px">
+								<h3 class="f1-m-2 cl3 tab01-title">
+									文章分類
+								</h3>
+							</div>
+							<div style="padding-top:20px">
+							<ol >
+<!-- 							<button id="button1">按我</button> -->
+                                <li><a href="#" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp美食</span> <span></span></a></li>
+                                <li><a href="#" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp旅遊</span> <span></span></a></li>
+                                <li><a href="#" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp保養</span> <span></span></a></li>
+                                <li><a href="#" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp知識</span> <span></span></a></li>
                             </ol>
-                        </div>
+							</div>
+						</div>
+
 
                         <!-- ##### Single Widget Area ##### -->
                         <div class="single-widget-area">
                             <!-- Title -->
-                            <div class="widget-title">
-                                <h6>Latest Posts</h6>
-                            </div>
+                           <div class="how2 how2-cl4 flex-s-c" style="padding-top:10px">
+								<h3 class="f1-m-2 cl3 tab01-title">
+									推薦文章
+								</h3>
+							</div>
+                            <div style="padding-top:30px">
+                            <c:forEach items="${artss }" var="art" varStatus="s">
 
                             <!-- Single Latest Posts -->
                             <div class="single-latest-post d-flex">
+                               
+                               <c:choose>
+                                <c:when test="${art.coverImage==null}">
+                                <div class="post-thumb"></div>
+                                </c:when>
+                              <c:otherwise>
                                 <div class="post-thumb">
-                                    <img src="img/blog-img/lp1.jpg" alt="">
+                                    <img src='<c:url value="/getArtPicture/${art.no }"/>'/>
                                 </div>
+                              </c:otherwise>
+                              </c:choose>
+                               
+                                
                                 <div class="post-content">
-                                    <a href="#" class="post-title">
-                                        <h6>Weeknight Ponzu Pasta</h6>
+                                    <a href="<spring:url value='postblog?id=${art.no}' />" class="post-title">
+                                        <h6>${art.title}</h6>
                                     </a>
-                                    <a href="#" class="post-author"><span>by</span> Erin Alderson</a>
+                                    <a href="#"><i></i>${fn:substring(art.postTime, 0 ,10)}</a>
+                                    <div style="float:right">by${art.memberId}</div> 
                                 </div>
                             </div>
 
-                            <!-- Single Latest Posts -->
-                            <div class="single-latest-post d-flex">
-                                <div class="post-thumb">
-                                    <img src="img/blog-img/lp2.jpg" alt="">
-                                </div>
-                                <div class="post-content">
-                                    <a href="#" class="post-title">
-                                        <h6>The Most Popular Recipe Last Month</h6>
-                                    </a>
-                                    <a href="#" class="post-author"><span>by</span> Erin Alderson</a>
-                                </div>
-                            </div>
-
-                            <!-- Single Latest Posts -->
-                            <div class="single-latest-post d-flex">
-                                <div class="post-thumb">
-                                    <img src="img/blog-img/lp3.jpg" alt="">
-                                </div>
-                                <div class="post-content">
-                                    <a href="#" class="post-title">
-                                        <h6>A Really Good Chana Masala</h6>
-                                    </a>
-                                    <a href="#" class="post-author"><span>by</span> Erin Alderson</a>
-                                </div>
-                            </div>
-
-                            <!-- Single Latest Posts -->
-                            <div class="single-latest-post d-flex">
-                                <div class="post-thumb">
-                                    <img src="img/blog-img/lp4.jpg" alt="">
-                                </div>
-                                <div class="post-content">
-                                    <a href="#" class="post-title">
-                                        <h6>Spicy Instant Pot Taco Soup</h6>
-                                    </a>
-                                    <a href="#" class="post-author"><span>by</span> Erin Alderson</a>
-                                </div>
-                            </div>
-
-                            <!-- Single Latest Posts -->
-                            <div class="single-latest-post d-flex">
-                                <div class="post-thumb">
-                                    <img src="img/blog-img/lp5.jpg" alt="">
-                                </div>
-                                <div class="post-content">
-                                    <a href="#" class="post-title">
-                                        <h6>Lime Leaf Miso Soup</h6>
-                                    </a>
-                                    <a href="#" class="post-author"><span>by</span> Erin Alderson</a>
-                                </div>
-                            </div>
-
+                           </c:forEach>
+                           </div>
                         </div>
 
-                        <!-- ##### Single Widget Area ##### -->
-                        <div class="single-widget-area">
-                            <!-- Adds -->
-                            <a href="#"><img src="img/blog-img/add.png" alt=""></a>
-                        </div>
+         
 
                         <!-- ##### Single Widget Area ##### -->
                         <div class="single-widget-area">
                             <!-- Title -->
-                            <div class="widget-title">
-                                <h6>Archives</h6>
-                            </div>
-                            <ol class="foode-archives">
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> January 2018</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> February 2018</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> March 2018</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> April 2018</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-stop" aria-hidden="true"></i> May 2018</span></a></li>
-                            </ol>
-                        </div>
-
-                        <!-- ##### Single Widget Area ##### -->
-<!--                         <div class="single-widget-area"> -->
-<!--                             Title -->
-<!--                             <div class="widget-title"> -->
-<!--                                 <h6>popular tags</h6> -->
-<!--                             </div> -->
+                            <div class="how2 how2-cl4 flex-s-c" style="padding-top:10px">
+								<h3 class="f1-m-2 cl3 tab01-title">
+									popular tags
+								</h3>
+							</div>
                             <!-- Tags -->
-<!--                             <ol class="popular-tags d-flex flex-wrap"> -->
-<!--                                 <li><a href="#">Creative</a></li> -->
-<!--                                 <li><a href="#">Unique</a></li> -->
-<!--                                 <li><a href="#">Template</a></li> -->
-<!--                                 <li><a href="#">Photography</a></li> -->
-<!--                                 <li><a href="#">travel</a></li> -->
-<!--                                 <li><a href="#">lifestyle</a></li> -->
-<!--                                 <li><a href="#">Wordpress Template</a></li> -->
-<!--                                 <li><a href="#">food</a></li> -->
-<!--                                 <li><a href="#">Idea</a></li> -->
-<!--                             </ol> -->
-<!--                         </div> -->
+                            <div style="padding-top:30px">
+                            <ol class="popular-tags d-flex flex-wrap" >
+                                <li><a href="#">Creative</a></li>
+                                <li><a href="#">Unique</a></li>
+                                <li><a href="#">Template</a></li>
+                                <li><a href="#">Photography</a></li>
+                                <li><a href="#">travel</a></li>
+                                <li><a href="#">lifestyle</a></li>
+                                <li><a href="#">Wordpress Template</a></li>
+                                <li><a href="#">food</a></li>
+                                <li><a href="#">Idea</a></li>
+                            </ol>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -459,61 +549,6 @@ function countdown() {
     </section>
     <!-- ##### Blog Content Area End ##### -->
 
-    <!-- ##### Instagram Area Start ##### -->
-    <div class="follow-us-instagram">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading">
-                        <h2>Follow Us On Instagram</h2>
-                        <span>@pET-blog</span>
-                    </div>
-                </div>
-            </div>
-
-<div class="row">
-				<div class="col-12">
-					<div class="instagram-slides owl-carousel">
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet1.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet5.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet2.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet4.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-
-
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet6.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-
-						<!-- Single Instagram Slide -->
-						<div class="single-instagram-slide">
-							<img src="img/blog-img/pet3.jpg" alt=""> <a href="#"><i
-								class="fa fa-instagram"></i>Follow Me</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- ##### Instagram Area End ##### -->
 	
 	</c:when>
         <c:otherwise>
@@ -534,7 +569,7 @@ function countdown() {
     <!-- footer part end-->
     
     
-        <!-- ##### All Javascript Script ##### -->
+    <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
     <script src="${pageContext.request.contextPath}/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
@@ -545,8 +580,6 @@ function countdown() {
     <script src="${pageContext.request.contextPath}/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="${pageContext.request.contextPath}/js/active.js"></script>
-    
-    
 	<!-- popper js -->
 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
 	<!-- bootstrap js -->
@@ -561,10 +594,6 @@ function countdown() {
 	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 	<!-- custom js -->
 	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-	<!-- 瀑布流 js -->
-	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
 </body>
 
 </html>

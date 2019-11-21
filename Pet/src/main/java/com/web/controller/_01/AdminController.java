@@ -68,7 +68,7 @@ public class AdminController {
 
 		System.out.println("n1:" + n1);
 
-		return "/_07/adminCompanyManagement";
+		return "/_01/adminManagement";
 
 
 	}

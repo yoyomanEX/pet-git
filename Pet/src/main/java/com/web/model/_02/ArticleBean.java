@@ -47,7 +47,7 @@ public class ArticleBean implements Serializable{
 	private Boolean available;
 	private Blob coverImage;	
 	private String fileName;
-	
+	private Integer categories;
 	
 //	@Transient
 //	private String noString;
@@ -100,6 +100,7 @@ public class ArticleBean implements Serializable{
 		this.postTime = postTime;
 	}
 	
+	@Column(name = "memberId")
 	public String getMemberId() {
 		return memberId;
 	}
@@ -143,24 +144,7 @@ public class ArticleBean implements Serializable{
 		this.articleImage = articleImage;
 	}
 	
-	
-	//有toString會列印內容， 沒toString只會印出路徑位置 ->方便抓bug
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ArticleBean [no=");
-		builder.append(no);
-		builder.append(", title=");
-		builder.append(title);
-		builder.append(", content=");
-		builder.append(content);
-		builder.append(", likeCount=");
-		builder.append(likeCount);
-		builder.append(", postTime=");
-		builder.append(postTime);
-		builder.append("]");
-		return builder.toString();
-	}
+
 	public Blob getCoverImage() {
 		return coverImage;
 	}
@@ -173,5 +157,46 @@ public class ArticleBean implements Serializable{
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+	public Integer getCategories() {
+		return categories;
+	}
+	public void setCategories(Integer categories) {
+		this.categories = categories;
+	}
+	
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ArticleBean [articleImage=");
+		builder.append(articleImage);
+		builder.append(", no=");
+		builder.append(no);
+		builder.append(", title=");
+		builder.append(title);
+		builder.append(", content=");
+		builder.append(content);
+		builder.append(", likeCount=");
+		builder.append(likeCount);
+		builder.append(", postTime=");
+		builder.append(postTime);
+		builder.append(", memberId=");
+		builder.append(memberId);
+		builder.append(", report=");
+		builder.append(report);
+		builder.append(", available=");
+		builder.append(available);
+		builder.append(", coverImage=");
+		builder.append(coverImage);
+		builder.append(", fileName=");
+		builder.append(fileName);
+		builder.append(", categories=");
+		builder.append(categories);
+		builder.append("]");
+		return builder.toString();
+	}
 
+
+	
+	
 }

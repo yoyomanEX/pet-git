@@ -135,15 +135,17 @@ public class ProductInfoController {
 
 	@RequestMapping("/addProductsToCar")
 	public String petProductCarJoin(Model model, HttpServletRequest request, HttpSession session) throws Exception {
+		
+		
 		List<PetProductListBean> pro = (List<PetProductListBean>) session.getAttribute("productsInCar");
 		String[] productIds = request.getParameterValues("productId");
 		String[] amounts = request.getParameterValues("amount");
+		
 		if ((pro == null) || (pro.isEmpty())) { // 如果購物車是空的就叫出SESSION把資料塞進去並返回原頁面
 
 			List<PetProductListBean> productsInCar = petProductDao.addProducts(productIds, amounts);
 			session.setAttribute("productsInCar", productsInCar);
 			List<PetProductListBean> products = petProductDao.productInfo();
-
 			model.addAttribute("productsInCar", productsInCar);
 			model.addAttribute("products", products);
 			return "06/PetProductSale";
@@ -338,6 +340,7 @@ public class ProductInfoController {
 		} else {
 			MemberBean member = (MemberBean) session.getAttribute("LoginOK");
 			String memberId = member.getMember_Id();
+			System.out.println(memberId);
 			List<OrderBean> orderList = petProductDao.orderAll(memberId);
 			List<OrderDetailBean> orderListDetail = petProductDao.orderDetail(orderList);
 			model.addAttribute("orderList", orderList);

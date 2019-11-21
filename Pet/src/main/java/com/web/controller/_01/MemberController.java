@@ -60,7 +60,7 @@ public class MemberController {
 //		return "_01/memberinsert";
 		// 會員登入
 //		return "_01/memberlogin";
-//		return null;
+		
 		return "index";
 
 	}

@@ -12,33 +12,31 @@
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
- <title>pET ʕ•ᴥ•ʔ 陪你</title>
-  <link rel="icon" href="img/about_icon.png">
+<title>pET ʕ•ᴥ•ʔ 陪你</title>
+<link rel="icon" href="img/about_icon.png">
 
 <!-- Custom fonts for this template -->
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
 <!-- Custom styles for this template -->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
 <!-- Custom styles for this page -->
-<link href="vendor/datatables/dataTables.bootstrap4.min.css"
-	rel="stylesheet">
-<script type="text/javascript" src="<c:url value="/js/jquery/jquery-2.2.4.min.js"/>">
-	
-</script>
+<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<script type="text/javascript" src="<c:url value="/js/jquery/jquery-2.2.4.min.js"/>"></script>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- Custom fonts for this template-->
+<link href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<!-- Custom styles for this template-->
+<link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet">
 
 <%-- <script src="${pageContext.request.contextPath}/js/jquery.js"></script> --%>
 <script src="${pageContext.request.contextPath}/js/ckeditor/ckeditor.js"></script>
@@ -49,16 +47,6 @@
 
 	// 		});
 	//     });
-
-	function clickDelete() {
-		alert("删除成功");
-		//     	var msg = "請問確定要刪除嗎???刪除後無法回復";
-		//     	if (confirm(msg)==true){
-		//     	   return true;
-		//     	}else{
-		//         return false;
-		//     	}
-	}
 </script>
 
  <script>
@@ -96,22 +84,45 @@
       return date;
     }
   } );
+  
+  
+  jq1(document).ready(function(){
+		var article_no =jq1("#no").val();
+		jq1("#clickmeS").click(function() {
+			jq1.ajax({
+  			url:"queryArticleByDate",
+  			data:{
+  				key1:jq1("#from").val(),
+  				key2:jq1("#to").val(),
+  				key3:article_no,
+  			},
+//   			dataType: "text",
+  			type:"post",
+  			success:function (data){
+//   				alert(data);
+  				unprocessedArticle(data);
+  			}
+  		});
+		});
+});
+  
+  function unprocessedArticle(data){
+	  var unprocess=JSON.parse(data);
+	  var txt ="<thead align='center'><tr style='font-family: 標楷體; font-size: 20px' align='center'><th >日期<th>標題<th>作者<th>編輯<th>刪除</tr></thead>";
+// 	  var txt ="<tfoot align='center'><tr style='font-family: 標楷體; font-size: 20px' align='center'><th >日期<th>標題<th>作者<th>編輯<th>刪除</tr></tfoot>";
+	  for(i=0;i<unprocess.length;i++){
+		  txt +="<tr><td style='width: 15%'>"+unprocess[i].postTime;
+		  txt +="<td style='width: 48%'><a href='<spring:url value='postblog?id="+unprocess[i].no+"' />' class='post-title'  style='color:#3C3C3C'>"+unprocess[i].title;
+		  txt +="<td style='width: 10%' align='center'>"+unprocess[i].memberId;		  
+		  txt +="<td style='width: 8%' align='center'><form action='${pageContext.request.contextPath}/editArticle' method='post'><input type='hidden' value='"+unprocess[i].no+"' id='no' name='no'><button class='far fa-edit btn btn-primary' type='submit'>&nbsp編輯</button></form>";
+		  txt +="<td style='width: 8%' align='center'><form action='${pageContext.request.contextPath}/GetDeleteblog' method='post'><input type='hidden' value='"+unprocess[i].no+"' id='no' name='no'><button onclick='clickDelete()' name='Delete' class='btn btn-danger fa fa-trash-alt' aria-hidden='true' type='submit'></button></form>";
+		  txt +="</tr>";
+	  }
+	  document.getElementById("dataTable").innerHTML=txt;
+  }
   </script>
 
-<title>pET ʕ•ᴥ•ʔ 陪你</title>
-<link rel="icon" href="img/about_icon.png">
 
-<!-- Custom fonts for this template-->
-<link
-	href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-
-<!-- Custom styles for this template-->
-<link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css"
-	rel="stylesheet">
 
 </head>
 
@@ -139,6 +150,10 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
+			<!-- Divider -->
+			<hr class="sidebar-divider my-0">
+
+			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active"><a class="nav-link"
 				href="index.html"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
 			</li>
@@ -152,18 +167,62 @@
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-cog"></i> <span>文章後台</span>
+				aria-expanded="true" aria-controls="collapseTwo"> <i class="far fa-edit"></i> <span>文章後台</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">文章管理</h6>
-						<a class="collapse-item" href="<spring:url value="/article"/>">文章列表</a>
-						<a class="collapse-item" href="<spring:url value="myblog"/>">我的部落格首頁</a>
+						<a class="collapse-item" href="<spring:url value='/articlestyle'/>">
+						<i class="fa fa-camera"></i>&nbsp&nbsp部落格樣式管理</a>
+						<a class="collapse-item" href="<spring:url value='/article'/>">
+						<i class="fa fa-paint-brush"></i>&nbsp&nbsp文章列表</a>
+						<a class="collapse-item" href="<spring:url value='myblog'/>">
+						<i class="fa fa-home"></i>&nbsp&nbsp我的部落格首頁</a>
 
 					</div>
 				</div></li>
+
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseUtilities"
+				aria-expanded="true" aria-controls="collapseUtilities"> <i
+					class="fas fa-fw fa-wrench"></i> <span>好友</span>
+			</a>
+				<div id="collapseUtilities" class="collapse"
+					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">好友清單</h6>
+						<a class="collapse-item" href="friendlist">好友列表</a> <a
+							class="collapse-item" href="application">申請列表</a> <a
+							class="collapse-item" href="waiting">等候回覆</a>
+					</div>
+				</div></li>
+
+			<!-- Nav Item - Utilities Collapse Menu -->
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapseOne"
+				aria-expanded="true" aria-controls="collapseOne"> <i
+					class="fas fa-paw"></i> <span>寵物聊天室</span>
+			</a>
+				<div id="collapseOne" class="collapse"
+					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+							<a href='#' class="collapse-item" onclick="room()"><i
+							class="fas fa-dog"></i>汪汪聊天室</a>
+							 <a class="collapse-item"
+							href="catroom"><i class="fas fa-cat"></i> 喵喵聊天室</a> <a
+							class="collapse-item" href="petroom"><i class="fas fa-hippo"></i>
+							PET聊天室</a>
+					</div>
+				</div></li>
+				
+						<!-- Nav Item - Utilities Collapse Menu -->
+
+			<li class="nav-item"><a class="nav-link collapsed" href="${pageContext.request.contextPath}/06/PetOrderAll"> <i
+
+					class="fas fa-paw"></i> <span>會員訂單</span></a></li>
+
 
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -409,7 +468,7 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">你好，${LoginOK.member_Id }</span>
+								class="mr-2 d-none d-lg-inline text-gray-600 small"  style="font-size:20px">你好，${LoginOK.member_Id }</span>
 								<img class="img-profile rounded-circle"
 								src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
 						</a> <!-- Dropdown - User Information -->
@@ -451,13 +510,14 @@
 
 						<div class="card-header py-3">
 							<label for="from" style="font-family: 標楷體; font-size: 25px">發文日期&nbsp從</label>
-							<input type="text" id="from" name="from"> <label for="to"
-								style="font-family: 標楷體; font-size: 25px">到</label> <input
-								type="text" id="to" name="to">
-							<button type="submit">查詢</button>
+							<input type="text" id="from" name="from">
+							<input type="hidden" value="${LoginOK.member_Id}" name='no' id='no'> 
+							<label for="to" style="font-family: 標楷體; font-size: 25px">到</label> 
+							<input type="text" id="to" name="to">
+							<button id='clickmeS'>查詢</button>
 							<div style="float:right">
-							<a href="<spring:url value='addArticle'/>" class="btn btn-success"> 
-							   <span class="glyphicon-info-sigh glyphicon" style="font-size:20px"></span>新增文章
+							<a href="<spring:url value='addArticle'/>" class="far fa-file-alt btn btn-success"> 
+							   <span class="glyphicon-info-sigh glyphicon" style="font-size:20px"></span>發表新文章
 							</a>
 							</div>
 						</div>
@@ -466,8 +526,7 @@
 						<div class="card shadow mb-4">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table class="table table-striped table-bordered" id="dataTable" width="100%"
-										cellspacing="0">
+									<table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
 										<thead align="center">
 											<tr>
 												<th style="font-family: 標楷體; font-size: 20px">日期</th>
@@ -477,44 +536,26 @@
 												<th style="font-family: 標楷體; font-size: 20px">刪除</th>
 											</tr>
 										</thead>
-										<tfoot align="center">
-											<tr>
-												<th style="font-family: 標楷體; font-size: 20px">日期</th>
-												<th style="font-family: 標楷體; font-size: 20px">標題</th>
-												<th style="font-family: 標楷體; font-size: 20px">作者</th>
-												<th style="font-family: 標楷體; font-size: 20px">編輯</th>
-												<th style="font-family: 標楷體; font-size: 20px">刪除</th>
-											</tr>
-										</tfoot>
 										<tbody>
 											<c:forEach items="${arts }" var="art" varStatus="s">
 												<tr>
-													<td style="width: 10%" align="center">${fn:substring(art.postTime, 0 ,10)}
-													</td>
+													<td style="width: 15%" align="center">${fn:substring(art.postTime, 0 ,21)}</td>
 													<td style="width: 48%">
 													   <a href="<spring:url value='postblog?id=${art.no}' />" class="post-title"  style="color:	#3C3C3C">${art.title}</a>
 													</td>
 													<td style="width: 10%" align="center">${art.memberId}</td>
-
-
 													<td style="width: 8%" align="center">
-														<form
-															action="${pageContext.request.contextPath}/editArticle"
-															method="post">
-															<input type="hidden" value="${art.no}" name="no">
-															<input class="btn btn-primary" type="submit" value="編輯" />
+														<form action="${pageContext.request.contextPath}/editArticle" method="post">
+															<input type="hidden" value="${art.no}" id="no" name="no">
+															<button class="far fa-edit btn btn-primary" type="submit" >&nbsp編輯</button>
 														</form>
 													</td>
 
 													<td style="width: 8%" align="center">
-														<form
-															action="${pageContext.request.contextPath}/GetDeleteblog"
-															method="post">
-															<input type="hidden" value="${art.no}" name="no">
+														<form action="${pageContext.request.contextPath}/GetDeleteblog" method="post">
+															<input type="hidden" value="${art.no}" id="no" name="no">
 															<!--       <input type="submit" name="Delete" class="btn btn-danger" onclick="clickDelete()"  value="刪除" /> -->
-															<button onclick="clickDelete()" name="Delete"
-																class="btn btn-danger fa fa-trash-alt"
-																aria-hidden="true" type="submit"></button>
+															<button onclick="return confirm('請問確定要刪除嗎???刪除後無法回復') " name="Delete" class="btn btn-danger fa fa-trash-alt" aria-hidden="true" type="submit"></button>
 														</form>
 													</td>
 												</tr>
@@ -535,7 +576,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2019</span>
+						<span>Copyright &copy; PET陪你寵物網 2019</span>
 					</div>
 				</div>
 			</footer>
