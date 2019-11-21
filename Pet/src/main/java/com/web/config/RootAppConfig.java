@@ -47,9 +47,9 @@ public class RootAppConfig {
 	@Bean
     public DataSource dataSource() {
         ComboPooledDataSource ds = new ComboPooledDataSource();
-        ds.setUser("sa");
+        ds.setUser("sasa");
 
-        ds.setPassword("password");
+        ds.setPassword("word");
 
 
         try {

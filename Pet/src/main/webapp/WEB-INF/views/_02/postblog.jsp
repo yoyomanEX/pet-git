@@ -183,7 +183,7 @@ $(document).ready(function() {
 <body>
     <!--::header part start::-->
     
-    <jsp:include page="header.jsp" /> 
+    <jsp:include page="header.jsp" />
     
     <!-- Header part end-->
     
@@ -238,6 +238,16 @@ $(document).ready(function() {
                             <div class="post-thumbnail mb-30">
                             </div>
                             <div class="post-content">
+                              <c:choose>
+                                <c:when test="${art.coverImage==null}">
+                                <div class="post-thumbnail mb-50"></div>
+                                </c:when>
+                              <c:otherwise>
+                                <div class="post-thumbnail mb-50">
+                                    <img width='600' height='500' src='<c:url value="/getArtPicture/${art.no }"/>'/>
+                                </div>
+                              </c:otherwise>
+                              </c:choose>
                                 <p class="post-date"> ${fn:substring(art.postTime, 0 ,10)}</p>
                                 <h4 class="post-title" style="font-family:標楷體"> ${art.title}</h4>
                                 <div class="post-meta">

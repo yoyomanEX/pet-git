@@ -3,13 +3,16 @@ package com.web.dao.impl._02;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
 
+import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.web.model._01.MemberBean;
 import com.web.model._02.ArticleBean;
 import com.web.model._02.LikeCountBean;
 import com.web.model._02.ReplyBean;
@@ -372,6 +375,7 @@ public class ArticleDAOImpl implements ArtDAO {
 		session.update(sb);
 		
 	}
+	
 	
 	
 }

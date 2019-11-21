@@ -180,7 +180,7 @@ $(document).ready(function() {
                                 </c:when>
                               <c:otherwise>
                                 <div class="post-thumbnail mb-50">
-                                    <img src='<c:url value="/getArtPicture/${art.no }"/>'/>
+                                    <img width='600' height='500' src='<c:url value="/getArtPicture/${art.no }"/>'/>
                                 </div>
                               </c:otherwise>
                               </c:choose>
@@ -243,8 +243,8 @@ $(document).ready(function() {
 
                         <div style=>
                             <div class="about-thumbnail" align="center">
-<!--                                 <img width='60' height='72' src='getPicture' /> -->
-                                <img width='200' height='300' src="img/single_adopt_5.png" />
+                                <img width='60' height='72' src='getPicture' />
+<!--                                 <img width='200' height='300' src="img/single_adopt_5.png" /> -->
                             </div>
                             <!-- Content -->
                             <div class="widget-content text-center" style="padding-bottom:40px">
