@@ -48,9 +48,7 @@ public class RootAppConfig {
     public DataSource dataSource() {
         ComboPooledDataSource ds = new ComboPooledDataSource();
         ds.setUser("sa");
-
-
-        ds.setPassword("password");
+        ds.setPassword("P@ssw0rd");
 
 
         try {

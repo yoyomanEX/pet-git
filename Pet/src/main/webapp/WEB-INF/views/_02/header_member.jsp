@@ -4,6 +4,47 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!-- Page Wrapper -->
+<script>
+	//     $(document).ready(function(){   //button的id不能相同，所以如果用迴圈增加刪除紐，只會有一個有反應
+	// 		$("#button2").click(function(){
+	// 			alert("删除成功");
+
+	// 		});
+	//     });
+	function myFunction() {
+		document.getElementById("frm1").submit();
+	}
+	function clickDelete() {
+		alert("删除成功");
+		//     	var msg = "請問確定要刪除嗎???刪除後無法回復";
+		//     	if (confirm(msg)==true){
+		//     	return true;
+		//     	}else{
+		//     	return false;
+		//     	}
+	}
+	function room() {
+		window
+				.open(
+						'dogroom',
+						'newwindow',
+						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+	}
+	function catroom() {
+		window
+				.open(
+						'catroom',
+						'newwindow',
+						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+	}
+	function petroom() {
+		window
+				.open(
+						'petroom',
+						'newwindow',
+						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+	}
+</script>
 	<div id="wrapper">
 
 		<!-- Sidebar -->
@@ -59,8 +100,7 @@
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>好友</span>
+				aria-expanded="true" aria-controls="collapseUtilities"> <i class="fa fa-child"></i><span>&nbsp&nbspPET好朋友</span>
 			</a>
 				<div id="collapseUtilities" class="collapse"
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -91,9 +131,7 @@
 				
 						<!-- Nav Item - Utilities Collapse Menu -->
 
-			<li class="nav-item"><a class="nav-link collapsed" href="${pageContext.request.contextPath}/06/PetOrderAll"> <i
-
-					class="fas fa-paw"></i> <span>會員訂單</span></a></li>
+			<li class="nav-item"><a class="nav-link collapsed" href="${pageContext.request.contextPath}/06/PetOrderAll"> <i class="fas fa-bone"></i> <span>會員訂單</span></a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">

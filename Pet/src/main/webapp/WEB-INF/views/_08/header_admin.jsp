@@ -110,17 +110,17 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="${pageContext.request.contextPath}/views/profile.jsp">
+            <a class="nav-link " href="${pageContext.request.contextPath}/_06/shippingManagement">
               <i class="ni ni-single-02 text-yellow"></i> 出貨管理
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="${pageContext.request.contextPath}/views/tables.jsp">
+            <a class="nav-link " href="${pageContext.request.contextPath}/_06/productList">
               <i class="ni ni-bullet-list-67 text-red"></i> 商品管理
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/views/login.jsp">
+            <a class="nav-link" href="${pageContext.request.contextPath}/adminCompanyManagement07">
               <i class="ni ni-key-25 text-info"></i> 廠商管理
             </a>
           </li>
