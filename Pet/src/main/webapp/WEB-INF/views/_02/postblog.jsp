@@ -63,13 +63,13 @@ $(document).ready(function(){
 	
 })
 
-$(document).ready(function(){
-	$("#showmessage2").click(function(){
-		$("#hidemessage2").toggle();
+// $(document).ready(function(){
+// 	$("#showmessage2").click(function(){
+// 		$("#hidemessage2").toggle();
 		
-	})
+// 	})
 	
-})
+// })
 
 function  confirmDelete(no) {
 	alert("Blog ID===" + no)
@@ -287,7 +287,7 @@ $(document).ready(function() {
                         <div class="post-tags-share d-flex justify-content-between align-items-center"></div>
                         
 <!--     Modal      -->
-
+<div>
 <div style="float:right">
   
 <!--   <button style="padding:3px;margin-bottom:7px" class="btn btn-primary" >留言</button> -->
@@ -308,11 +308,9 @@ $(document).ready(function() {
        </c:choose>
    
   </span>
+
 </div>  
-
-
-
-<!-- Modal -->
+  <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -338,6 +336,7 @@ $(document).ready(function() {
     </div>
   </div>
 </div>
+</div>
 
 
                         <!-- Related Post Area -->
@@ -348,8 +347,8 @@ $(document).ready(function() {
 
                             
                         <!-- Comment Area Start -->
-                        <div id="hidemessage" class="comment_area clearfix" style="display:none">
-                       
+<!--                         <div id="hidemessage" class="comment_area clearfix" style="display:none"> -->
+                        <div  class="comment_area clearfix" >
                         
                             <c:forEach items="${arts }" var="art" varStatus="s" >
                             <c:set var="count" value="${s.count }"/>

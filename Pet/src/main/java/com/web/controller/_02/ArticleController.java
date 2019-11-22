@@ -51,9 +51,11 @@ import com.web.model._02.ReplyBean;
 import com.web.model._02.ReportBean;
 import com.web.model._02.StyleBean;
 import com.web.model._03.MyBlogBean;
+import com.web.model._03.NoticeBean;
 import com.web.model._07.MemberOrderBean;
 import com.web.service.impl._02.ArticleService;
 import com.web.service.impl._03.MyBlogService;
+import com.web.service.impl._03.NoticeService;
 import com.web.util.JSONFileUpload;
 
 @Controller
@@ -70,6 +72,12 @@ public class ArticleController {
 	@Autowired
 	public void setMyBlogService(MyBlogService myblogservice) {
 		this.myblogservice = myblogservice;
+	}
+	
+	NoticeService Noticeservice;
+	@Autowired
+	public void setNoticeService(NoticeService Noticeservice) {
+		this.Noticeservice = Noticeservice;
 	}
 	
 	ServletContext context;
@@ -134,6 +142,7 @@ public class ArticleController {
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 //		System.out.println(loginToken);
 		String member = loginToken.getMember_Id();
+		System.out.println("member::"+member);
 //		StyleBean sb = new StyleBean();
 //		sb.setNo(false);
 //		sb.setMemberId(member);
@@ -595,7 +604,7 @@ public class ArticleController {
 			@ModelAttribute("ReplyBean") ReplyBean rb, HttpServletRequest request, HttpSession session)
 			throws ParseException {
 
-//		System.out.println("no=" + no);
+		System.out.println("nonono=" + no);
 		ArticleBean ab = service.getArticleById(no);
 		model.addAttribute("art", ab);
 
@@ -632,7 +641,13 @@ public class ArticleController {
 
 			List<ReplyBean> art = service.getReplysByArticle(no);
 			model.addAttribute("arts", art);
-
+			
+			NoticeBean nb=new NoticeBean();
+			nb.setOtherid(AuthorSS);
+			System.out.println("nb::"+art.get(0).getMemberId());
+			nb.setUserid(art.get(0).getMemberId());
+			nb.setArticleid(no);
+			Noticeservice.addMessageNotice(nb);
 			return "redirect:/postblog?id=" + ArticleNoS;
 
 		}
