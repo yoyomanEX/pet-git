@@ -12,7 +12,7 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="section-heading">
-					<h2>Follow Us @pET-blog</h2>
+<!-- 					<h2>Follow Us @pET-blog</h2> -->
 				</div>
 			</div>
 		</div>

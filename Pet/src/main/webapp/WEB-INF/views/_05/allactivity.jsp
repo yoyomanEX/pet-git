@@ -4,30 +4,73 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<title>All Activity</title>
-<link rel="stylesheet"
-	href="css/teacher.css"
-	type="text/css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>pET ʕ•ᴥ•ʔ 陪你</title>
+    <link rel="icon" href="img/about_icon.png">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css">
+    <!-- themify CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/themify-icons.css">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/flaticon.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"> 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    <script type="text/javascript" src="<c:url value="/js/jquery/jquery-2.2.4.min.js"/>"></script>
+<!--===============================================================================================-->
+	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">  
+     
+<style>
+body {
+background-image: url(img/dog_bg.jpg);
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
 
+/* background-position: 50% -15%; */
+}
+</style>
 </head>
+
 <body>
-	<section>
-		<div>
-			<div class="container" style="text-align: center">
-				<h1>活動清單</h1>
-			</div>
-		</div>
-	</section>
-	<hr
-		style="height: 1px; border: none; color: #333; background-color: #333;">
-	<section class="container">
+    <!--::header part start::-->
+
+<jsp:include page="header.jsp" />
+    <!-- Header part end-->
+    
+    
+    <!--::breadcrumb part start::-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h1>blog</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--::breadcrumb part start::-->
+
+	<section class="container" style="padding-top:100px">
 		<div class="row">
 			<c:forEach var='activity' items='${allactivity}'>
-				<div class="col-sm-6 col-md-3" style="width: 360px; height: 360px ">
+				<div class="col-sm-6 col-md-3" style="width: 360px; height: 360px;border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;margin:10px">
 					<div  class="thumbnail" style="width: 320px; height: 340px">
 						<div>
 						<img width="200px" height="100px"
@@ -57,5 +100,31 @@
 			</c:forEach>
 		</div>
 	</section>
+	
+	<jsp:include page="footer.jsp" />
+
+    <!-- jquery plugins here-->
+    <!-- jquery -->
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- counterup js -->
+    <script src="js/jquery.counterup.min.js"></script>
+    <!-- waypoints js -->
+    <script src="js/waypoints.min.js"></script>
+    <!-- easing js -->
+    <script src="js/jquery.magnific-popup.js"></script>
+    <!-- particles js -->
+    <script src="js/owl.carousel.min.js"></script>
+
+    <script src="js/contact.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
 </body>
 </html>

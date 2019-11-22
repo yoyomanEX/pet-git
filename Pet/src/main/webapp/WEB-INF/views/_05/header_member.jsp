@@ -130,8 +130,10 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
+
 			<li class="nav-item active"><a href="<spring:url value='/'/>" class="nav-link"> 
 			 <i class="fas fa-fw fa-tachometer-alt"></i> <span>PET首頁</span></a>
+
 			</li>
 
 			<!-- Divider -->
