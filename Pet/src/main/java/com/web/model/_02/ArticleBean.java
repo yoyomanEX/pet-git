@@ -45,6 +45,7 @@ public class ArticleBean implements Serializable{
 	private String memberId;
 	private Boolean report;
 	private Boolean available;
+	@JsonIgnore
 	private Blob coverImage;	
 	private String fileName;
 	private Integer categories;

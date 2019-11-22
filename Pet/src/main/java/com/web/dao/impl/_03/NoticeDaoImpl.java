@@ -40,7 +40,10 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 
 	@Override
-	public void deleteMeStatusByUser(String userid) {
+	public void deleteMeStatusByUser(String userid,Integer articleid) {
+		String hql="DELETE NoticeBean WHERE userid=:userid and messagestatus='Y' and articleid=:articleid";
+		Session session = factory.getCurrentSession();
+		session.createQuery(hql).setParameter("articleid", articleid).setParameter("userid", userid).executeUpdate();
 	}
 
 	@Override

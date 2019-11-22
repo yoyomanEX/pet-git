@@ -30,11 +30,12 @@ public class MyBlogDaoImpl implements MyBlogDao {
 	}
 
 	@Override
-	public List<MyBlogBean> getByUser(String userid) {
-		String hql="FROM MyBlogBean WHERE userid=:userid";
-		List<MyBlogBean>list=new ArrayList<>();
+	public List<String> getByUser(String userid) {
+		String hql="SELECT DISTINCT mbb.otherid FROM MyBlogBean mbb WHERE mbb.userid=:userid";
+		List<String>list=new ArrayList();
 		Session session = factory.getCurrentSession();
-		list=session.createQuery(hql).setParameter("userid", userid).getResultList();
+		 list= session.createQuery(hql).setParameter("userid", userid).getResultList();
+
 		return list;
 	}
 
