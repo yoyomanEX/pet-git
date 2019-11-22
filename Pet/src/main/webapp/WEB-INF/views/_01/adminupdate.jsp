@@ -47,12 +47,12 @@
                     <form:errors path="password" cssStyle="color: red;"/>
                   </div>
                   <div class="col-sm-6">
-                    <form:input path='checkPassword' class="form-control form-control-user"  placeholder="Repeat Password"/>
+                    <form:input path='checkPassword' type="password" class="form-control form-control-user"  placeholder="Repeat Password"/>
                   	<form:errors path="checkPassword" cssStyle="color: red;"/>
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block">
-                  Register Account
+                  	送出
                	</button>
               </form:form>
             </div>

@@ -151,11 +151,9 @@
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">
-                  <img class="img-profile rounded-circle" width='60' height='60' src='getPicture' />
-                </span>
+                
                 <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold" style="font-size:30px">你好，${LoginOK.member_Id }</span>
+                  <span class="mb-0 text-sm  font-weight-bold" style="font-size:30px">你好，${AdminLoginOK.name }</span>
                 </div>
               </div>
             </a>
@@ -165,8 +163,8 @@
               </div>
 <!--               <a class="dropdown-item" href="friendlist">  -->
 <!--               <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 會員中心</a>  -->
-<!-- 			  <a class="dropdown-item" href="_01.updataMemberPage">  -->
-<!-- 			  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>修改會員</a> -->
+			  <a class="dropdown-item" href="_01.updataAdminPage"> 
+			  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>修改資料</a>
               <a class="dropdown-item" href="${pageContext.request.contextPath}/_01.getAdminLogout"> 
               <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout</a>
               
@@ -180,7 +178,7 @@
     <!-- Header -->
     
 <!--     改背景色 -->
-    <div class="header bg-gradient-primary pb-5 pt-5 pt-md-8">
+    <div class="header bg-gradient-primary pb-5 pt-5 pt-md-5">
       <div class="container-fluid">
         <div class="header-body">
           <!-- Card stats -->

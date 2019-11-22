@@ -295,7 +295,7 @@ public class ArticleController {
 		String filename = String.valueOf(date.getTime() + "." + ext);
 
 		InputStream in = upload.getInputStream();
-		String basePath = "C:\\Pet\\apache-tomcat-9.0.22\\imgUpload\\";
+		String basePath = "C:\\imgUpload\\";
 		// System.out.println("basePath:" + basePath);
 		File outputFilePath = new File(basePath + filename);
 		// System.out.println("outputFilePath=" + outputFilePath);
@@ -321,7 +321,7 @@ public class ArticleController {
 
 	@RequestMapping("/blogBrowse")
 	public String blogBrowse(HttpServletRequest request, Model model) {
-		String basePath = "C:\\Pet\\apache-tomcat-9.0.22\\imgUpload\\";
+		String basePath = "C:\\imgUpload\\";
 		File folder = new File(basePath);
 		model.addAttribute("files", folder.listFiles());
 		model.addAttribute("CKEditorFuncNum", request.getParameter("CKEditorFuncNum"));
