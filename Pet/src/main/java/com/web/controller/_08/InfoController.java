@@ -57,11 +57,29 @@ public class InfoController {
 	// produces屬性說明產生之資料的格式: produces ="text/html"
 	// 本方法可以html格式傳回所有Hospital紀錄
 	@RequestMapping(value = "/hospitalsFront", method = RequestMethod.GET, produces = "text/html")
+	public String qryHospitalsFront(Model model, HttpServletRequest req) {
+//		List<HospitalBean> hospitals = hosService.qryAllHospital();
+//		model.addAttribute("allHospitals", hospitals);
+		return "_08/showHospitals";
+	}
+
+	// URL為 /hospitals, 搭配 GET方法可以傳回所有hospital紀錄。
+	// produces屬性說明產生之資料的格式: produces ="text/html"
+	// 本方法可以html格式傳回所有Hospital紀錄
+	@RequestMapping(value = "/hospitalsFront2", method = RequestMethod.GET, produces = "text/html")
 	public String qryAllHospitalsFront(Model model, HttpServletRequest req) {
 		List<HospitalBean> hospitals = hosService.qryAllHospital();
 		model.addAttribute("allHospitals", hospitals);
-		return "_08/showHospitals";
+		return "_08/showHospitals2";
 	}
+//	// 以HTML格式顯示單筆Hospital資料
+//		@RequestMapping(value = "/hospitals_name", method = RequestMethod.GET, produces = "text/html")
+//		public String getHospitalByName(@PathVariable String name, Model model) {
+////			HospitalBean hosBean = hosService.qryHosByName(name);
+////			model.addAttribute(hosBean);
+////			return "_08/displayHospital";
+//		}
+//	
 
 	// 送回可以新增hospital資料的空白表單
 	@RequestMapping(value = "/getEmptyHospitalForm", method = RequestMethod.GET)

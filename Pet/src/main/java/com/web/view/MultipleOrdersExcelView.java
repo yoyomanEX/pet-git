@@ -1,6 +1,7 @@
+//_07廠商用 excel表下載
 package com.web.view;
 
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,7 +21,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.web.servlet.view.document.AbstractXlsView;
 
 import com.web.model._07.MemberOrderBean;
-
 
 
 public class MultipleOrdersExcelView extends AbstractXlsView {
@@ -119,35 +119,53 @@ public class MultipleOrdersExcelView extends AbstractXlsView {
 //		styleDate.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
 //		styleDate.setAlignment(CellStyle.ALIGN_CENTER);
 		
-//        List<MemberOrderDetailBean> detailBean = (List<MemberOrderDetailBean>) model.get("orderCharts"); //model.addAttribute的key在controller裡
-        List<MemberOrderBean> detailBean = (List<MemberOrderBean>) model.get("orderCharts"); //model.addAttribute的key在controller裡
+       ArrayList<Map> orderBean = (ArrayList<Map>) model.get("orderCharts"); //model.addAttribute的key在controller裡
         
 		Set<String> set = model.keySet();
 		Row row = null;
 		Cell cell = null;
-		for(MemberOrderBean m : detailBean) {
+		
+		System.out.println("orderBean===>"+orderBean);
+		
+		for(Map m : orderBean) {
 			colCount = 0;
+			
+			
 			row = sheet.createRow(rowCount++);
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleDate);
-			cell.setCellValue(m.getOrder_date());
 			
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleDate);
-			cell.setCellValue(m.getShip_date());
+			cell.setCellValue(m.get("order_date") == null ? "" : m.get("order_date").toString());
 			
 			
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleName);
-			cell.setCellValue(m.getOrder_id());
 			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleName);
-			cell.setCellValue(m.getMember_id());
+			cell.setCellValue(m.get("order_id") == null ? "" : m.get("order_id").toString());
 			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleRight);
-			cell.setCellValue(m.getTotal());
+			//product_id
+			cell.setCellValue(m.get("product_id") == null ? "" : m.get("product_id").toString());
+			
+			
+			cell = row.createCell(colCount++);
+			cell.setCellStyle(styleName);
+			//product_name
+			cell.setCellValue(m.get("product_name") == null ? "" : m.get("product_name").toString());
+			
+			cell = row.createCell(colCount++);
+			cell.setCellStyle(styleName);
+			cell.setCellValue(m.get("amount")==null ? "0" :m.get("amount").toString());
+			
+			cell = row.createCell(colCount++);
+			cell.setCellStyle(styleRight);
+			cell.setCellValue(m.get("total") == null ? "0" : m.get("total").toString());
+			
+			cell = row.createCell(colCount++);
+			cell.setCellStyle(styleDate);
+			cell.setCellValue(m.get("ship_date") == null ? "" : m.get("ship_date").toString());
+			
 		}
 		int columnCount = sheet.getRow(0).getLastCellNum();
 		for (int i=0; i < columnCount; i++){
@@ -156,8 +174,8 @@ public class MultipleOrdersExcelView extends AbstractXlsView {
 	}
 
 	private void createExcelHeaders(Workbook workbook) {
-		String[] labels = {"訂購日期","訂單編號","出貨日期","會員編號","總金額"};
-		
+		//String[] labels = {"訂購日期","出貨日期","會員編號","總金額"};
+		String[] labels = {"訂購日期","訂單編號","商品編號","商品名稱","數量","金額","出貨日期"};
 		
 		CellStyle titleStyle = workbook.createCellStyle();
 		

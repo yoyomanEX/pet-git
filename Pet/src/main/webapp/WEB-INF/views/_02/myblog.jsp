@@ -133,7 +133,7 @@ $(document).ready(function() {
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h1>${LoginOK.member_Id}blog</h1>
+                            <h1>blog</h1>
                         </div>
                     </div>
                 </div>
@@ -318,25 +318,13 @@ $(document).ready(function() {
 							</div>
 							<div style="padding-top:20px">
 							<ol class="popular-tags d-flex flex-wrap" >
+								<c:forEach var='visit' items='${visit}'>
                             <li>
-                                  <img src="img/post/post_5.png" alt="">&nbsp&nbsp
+                                  <img src="getMbPicture/${visit.otherid}" width="80" height="80" alt="">&nbsp&nbsp
                             </li>
-                            <li>
-                                  <img src="img/post/post_6.png" alt="">&nbsp&nbsp
-                            </li>
-                            <li>
-                                  <img src="img/post/post_7.png" alt="">&nbsp&nbsp
-                            </li>
-                            <li>
-                                  <img src="img/post/post_8.png" alt="">&nbsp&nbsp
-                            </li>
-                            <li>
-                                  <img src="img/post/post_9.png" alt="">&nbsp&nbsp
-                            </li>
-                            <li>
-                                  <img src="img/post/post_10.png" alt="">&nbsp&nbsp
-                            </li>
+                 	      		</c:forEach>
                         </ol>
+
 							</div>
 						</div>
 

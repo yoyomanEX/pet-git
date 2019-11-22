@@ -66,10 +66,11 @@
 		var messageObject = JSON.parse(event.data);
 		var username = '${ memberName }';
 		var html
+		var result1 = messageObject.content.indexOf("不在線上");
 		if (username === messageObject.sendName) {
 			html = '<div class="chat-item item-right clearfix"><span class="img fr"></span><span class="message fr">'
 					+ messageObject.content + '</span></div>'
-		} else {
+		}else {
 			html = '<div class="chat-item item-left clearfix rela"><span class="abs uname">'
 					+ messageObject.sendName
 					+ '</span><span class="img fl"></span><span class="fl message">'

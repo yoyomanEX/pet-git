@@ -18,34 +18,25 @@
   <link href="${pageContext.request.contextPath}/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="${pageContext.request.contextPath}/assets/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
-  
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  
+<!--   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->  
   <link href="css/adminarticle.css" rel="stylesheet">
-  <style>
-  .city {display:none}
-  </style>
-  
-
   <!-- Custom fonts for this template -->
   <link href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" rel="stylesheet">
-
   <!-- Custom styles for this page -->
   <link href="${pageContext.request.contextPath}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   
   <script>
   function myonoffswitch(){
-	  document.getElementById('id01');  
+	  document.getElementById('exampleModalCenter');  
   }
   </script>
+  
+  <style>
+  .city {display:none}
+  </style>
 
 </head>
 
@@ -102,8 +93,9 @@
 								<c:choose>
 									<c:when test="${art.report==true}">
 
-										<button class="rebt btn btn-danger" id="reportno" name="reportno" value="${art.no}"  style="font-size: 20px">有檢舉</button>
-										
+<%-- 										<button class="rebt btn btn-danger" id="reportno" name="reportno" value="${art.no}"  style="font-size: 20px">有檢舉</button> --%>
+										<!-- Button trigger modal -->
+                                        <button type="button" style="font-size: 20px" class="rebt btn btn-danger" id="reportno" name="reportno" value="${art.no}" data-toggle="modal" data-target="#exampleModalCenter">有檢舉</button>
 									    
 									</c:when>
 									<c:otherwise>
@@ -115,22 +107,6 @@
 							
                       </td>
                       <td> 
-<%--                         <form action="${pageContext.request.contextPath}/adminlockarticle" method="post"> --%>
-                            
-<%-- 								<c:choose> --%>
-<%-- 									<c:when test="${art.available==true}"> --%>
-<%--                                         <input type="hidden" value="${art.no}" name="no"> --%>
-<!-- 										<button type="submit" class="btn btn-info" id="lock" name="lock" value="lock" style="font-size: 20px">未封鎖</button> -->
-
-<%-- 									</c:when> --%>
-<%-- 									<c:otherwise> --%>
-<%--                                         <input type="hidden" value="${art.no}" name="no"> --%>
-<!-- 										<button type="submit" class="btn btn-danger" id="lock" name="lock" value="lock" style="font-size: 20px">已封鎖</button> -->
-
-<%-- 									</c:otherwise> --%>
-<%-- 								</c:choose> --%>
-<!-- 					      </form> -->
-					      
 					      <form action="${pageContext.request.contextPath}/adminlockarticle" method="post">
                                   
                                     <input type="hidden" value="${art.no}" name="no">
@@ -144,14 +120,7 @@
                                         <button id="lock" name="lock" value="lock" style="font-size: 20px" class="far fa-frown btn btn-danger" aria-hidden="true" type="submit">&nbsp已封鎖</button>
                                     </c:otherwise>
                                  </c:choose>
-                                 
-
-                                 
-                                 
-                             </form>
-					      
-					      
-					      
+                            </form> 
                       </td>
                     </tr>
                   </c:forEach>   
@@ -179,54 +148,68 @@
     <!-- End of Content Wrapper -->
 
 
-  </div>
-  <!-- End of Page Wrapper -->
-  
-<div id="id01" class="w3-modal">
- <div class="w3-modal-content w3-card-4 w3-animate-zoom">
-  <header class="w3-container w3-blue"> 
-   <span onclick="document.getElementById('id01').style.display='none'" 
-   class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>
-   <h2 style="font-family:標楷體;font-size:40px;padding:10px;color:white;" align="center">檢舉內容</h2>
-  </header>
 
-  <div class="w3-bar w3-border-bottom">
-   <button class="tablink w3-bar-item w3-button"></button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:#0080FF" align="center">
+        <h5 style="font-family:標楷體;font-size:40px;padding:10px;color:white;" align="center" class="modal-title" id="exampleModalCenterTitle">檢舉內容</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <h5 style="font-family:標楷體;font-size:30px">檢舉人</h5>
+          <p id="remember" style="font-family:標楷體;font-size:25px;color:#4F4F4F"></p>
+      <hr>
+          <h5 style="font-family:標楷體;font-size:30px">檢舉原因</h5>
+          <p id="recontent" style="font-family:標楷體;font-size:25px;color:#4F4F4F"></p>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- <div id="id01" class="w3-modal"> -->
+<!--  <div class="w3-modal-content w3-card-4 w3-animate-zoom"> -->
+<!--   <header class="w3-container w3-blue">  -->
+<!--    <span onclick="document.getElementById('id01').style.display='none'"  -->
+<!--    class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span> -->
+<!--    <h2 style="font-family:標楷體;font-size:40px;padding:10px;color:white;" align="center">檢舉內容</h2> -->
+<!--   </header> -->
+
+<!--   <div class="w3-bar w3-border-bottom"> -->
+<!--    <button class="tablink w3-bar-item w3-button"></button> -->
 <!--    <button class="tablink w3-bar-item w3-button" onclick="openCity(event, 'time')">檢舉時間</button> -->
 <!--    <button class="tablink w3-bar-item w3-button" onclick="openCity(event, 'content')">檢舉原因</button> -->
-  </div>
+<!--   </div> -->
   
-             <table align="center">
-                    <tr style="width:500px">
+<!--              <table align="center"> -->
+<!--                     <tr style="width:500px"> -->
 <!--                       <th style="font-family:標楷體;font-size:30px" align="center">檢舉時間</th> -->
 
-                      <th style="font-family:標楷體;font-size:30px">檢舉人</th>
-                      <th style="width:100px"></th>
-                      <th style="width:100px"></th>
-                      <th style="font-family:標楷體;font-size:30px">檢舉原因</th>
-                    </tr>
-                    <tr style="width:500px">
+<!--                       <th style="font-family:標楷體;font-size:30px">檢舉人</th> -->
+<!--                       <th style="width:100px"></th> -->
+<!--                       <th style="width:100px"></th> -->
+<!--                       <th style="font-family:標楷體;font-size:30px">檢舉原因</th> -->
+<!--                     </tr> -->
+<!--                     <tr style="width:500px"> -->
 <!--                       <td id="retime" style="width:20%;font-family:標楷體;font-size:25px"></td> -->
 
-                      <td id="remember" style="font-family:標楷體;font-size:25px"></td>
-                      <td style="width:100px"></td>
-                      <td style="width:100px"></td>
-                      <td id="recontent" style="font-family:標楷體;font-size:25px"></td>
-                    </tr>
-              </table>
+<!--                       <td id="remember" style="font-family:標楷體;font-size:25px"></td> -->
+<!--                       <td style="width:100px"></td> -->
+<!--                       <td style="width:100px"></td> -->
+<!--                       <td id="recontent" style="font-family:標楷體;font-size:25px"></td> -->
+<!--                     </tr> -->
+<!--               </table> -->
 
 
-
-
-  
 <!--   <div class="w3-container w3-light-grey w3-padding"> -->
 <!--    <button class="w3-button w3-right w3-white w3-border" onclick="document.getElementById('id01').style.display='none'">Close</button> -->
 <!--   </div> -->
-  
- </div>
-</div>
+<!--  </div> -->
+<!-- </div> -->
 
-</div>
 
 
   <!-- Scroll to Top Button-->
@@ -234,29 +217,7 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
   
-        </div>
-      </div>
-
-  </div>
   <!--   Core   -->
   <script src="${pageContext.request.contextPath}/assets/js/plugins/jquery/dist/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

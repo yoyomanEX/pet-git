@@ -102,29 +102,32 @@ fieldset {
 </style>
 </head>
 <body bgcolor="#fdf5e6">
-	<header class="header_area">
-		<div class="sub_header">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-4 col-md-4 col-xl-6">
-						<div id="logo">
-							<a href="index.html">
-								<img src="img/Logo.png" alt="" title="" />
-							</a>
-						</div>
-					</div>
-					<div class="col-8 col-md-8 col-xl-6 ">
-						<div class="sub_header_social_icon float-right">
-							<a href="#">
-								<i class="flaticon-phone"></i>
-								+02 213 - 256 (365)
-							</a>
-							<a href="#" class="btn_1 d-none d-md-inline-block">Become a Volunteer</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+<!--::header part start::-->
+<!-- 	<header class="header_area"> -->
+<!-- 		<div class="sub_header"> -->
+<!-- 			<div class="container"> -->
+<!-- 				<div class="row align-items-center"> -->
+<!-- 					<div class="col-4 col-md-4 col-xl-6"> -->
+<!-- 						<div id="logo"> -->
+<!-- 							<a href="index.html"> -->
+<!-- 								<img src="img/Logo.png" alt="" title="" /> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-8 col-md-8 col-xl-6 "> -->
+<!-- 						<div class="sub_header_social_icon float-right"> -->
+<!-- 							<a href="#"> -->
+<!-- 								<i class="flaticon-phone"></i> -->
+<!-- 								+02 213 - 256 (365) -->
+<!-- 							</a> -->
+<!-- 							<a href="#" class="btn_1 d-none d-md-inline-block">Become a Volunteer</a> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+		<!-- Header part end-->
+		<jsp:include page="header.jsp" />
 		<div class="main_menu">
 			<div class="container">
 				<div class="row">
@@ -177,5 +180,6 @@ fieldset {
 			查看出貨狀況唷！
 		</h2>
 	</div>
+		<jsp:include page="footer.jsp" />
 </body>
 </html>

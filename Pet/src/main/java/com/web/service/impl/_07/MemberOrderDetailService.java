@@ -15,6 +15,6 @@ public interface MemberOrderDetailService {
 	
 	ArrayList<MemberOrderDetailBean> queryOrderProductTotalAmount(String p1, String p2, String p3);
 	
-	ArrayList<MemberOrderDetailBean> queryOrderChartsList(String p1, String p2, String p3);
+//	ArrayList<MemberOrderDetailBean> queryOrderChartsList(String p1, String p2, String p3);
 }
 

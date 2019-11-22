@@ -29,9 +29,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
 <style>
 body {
 background-image: url(img/007-bg017.jpg);
@@ -129,7 +127,7 @@ $(document).ready(function() {
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h1>${LoginOK.member_Id}blog</h1>
+                            <h1>blog</h1>
                         </div>
                     </div>
                 </div>
@@ -294,36 +292,11 @@ $(document).ready(function() {
                       <aside class="single_sidebar_widget instagram_feeds">
                         <h4 class="widget_title"><i class="fa fa-home"></i>&nbsp&nbsp誰來我家</h4>
                         <ul class="instagram_row flex-wrap">
+                           <c:forEach var='visit' items='${visit}'>
                             <li>
-                                <a href="#">
-                                  <img class="img-fluid" src="img/post/post_5.png" alt="">
-                                </a>
+                                  <img src="getMbPicture/${visit.otherid}" width="80" height="80" alt="">&nbsp&nbsp
                             </li>
-                            <li>
-                                <a href="#">
-                                  <img class="img-fluid" src="img/post/post_6.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                  <img class="img-fluid" src="img/post/post_7.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                  <img class="img-fluid" src="img/post/post_8.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                  <img class="img-fluid" src="img/post/post_9.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                  <img class="img-fluid" src="img/post/post_10.png" alt="">
-                                </a>
-                            </li>
+                 	      		</c:forEach>
                         </ul>
                       </aside>
 
@@ -354,8 +327,7 @@ $(document).ready(function() {
     <!-- All Plugins js -->
     <script src="${pageContext.request.contextPath}/js/plugins/plugins.js"></script>
     <!-- Active js -->
-    <script src="${pageContext.request.contextPath}/js/active.js"></script>
-    
+    <script src="${pageContext.request.contextPath}/js/active.js"></script>    
     <!-- popper js -->
 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
 	<!-- bootstrap js -->

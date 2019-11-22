@@ -50,8 +50,10 @@ import com.web.model._02.LikeCountBean;
 import com.web.model._02.ReplyBean;
 import com.web.model._02.ReportBean;
 import com.web.model._02.StyleBean;
+import com.web.model._03.MyBlogBean;
 import com.web.model._07.MemberOrderBean;
 import com.web.service.impl._02.ArticleService;
+import com.web.service.impl._03.MyBlogService;
 import com.web.util.JSONFileUpload;
 
 @Controller
@@ -63,7 +65,13 @@ public class ArticleController {
 	public void setService(ArticleService service) {
 		this.service = service;
 	}
-
+	
+	MyBlogService myblogservice;
+	@Autowired
+	public void setMyBlogService(MyBlogService myblogservice) {
+		this.myblogservice = myblogservice;
+	}
+	
 	ServletContext context;
 
 	@Autowired
@@ -143,7 +151,10 @@ public class ArticleController {
 //			sb.setMemberId(sb.getMemberId());
 //			service.editStyle(sb);
 //		}
-
+		List<MyBlogBean> visit = myblogservice.getByUser(member);
+		model.addAttribute("visit", visit);
+		System.out.println("visitvisit=" + visit);
+		
 		List<ArticleBean> art = service.getArticlesByMemberNo2(member);
 		model.addAttribute("arts", art);
 

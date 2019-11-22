@@ -29,9 +29,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/util.min.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/util.min.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
 	
 <style>
 section {

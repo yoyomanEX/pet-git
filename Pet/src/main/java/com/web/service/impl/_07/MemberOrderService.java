@@ -3,10 +3,8 @@ package com.web.service.impl._07;
 import java.util.ArrayList;
 import java.util.Map;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import com.web.model._07.MemberOrderBean;
-import com.web.model._07.MemberOrderDetailBean;
+
 
 public interface MemberOrderService {
 
@@ -39,6 +37,8 @@ public interface MemberOrderService {
 	
 //	MemberOrderBean queryProductAmountByDate(String p1, String d1, String d2);
 	
-	ArrayList<MemberOrderBean> queryAllOrder();
+//	ArrayList<MemberOrderBean> queryAllOrder();
+
+	ArrayList<Map> queryOrderChartsList(String p1, String p2, String p3);
 }
 

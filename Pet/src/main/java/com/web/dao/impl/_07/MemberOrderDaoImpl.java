@@ -7,11 +7,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.web.model._02.ReportBean;
 import com.web.model._07.MemberOrderBean;
+
 import com.web.model._07.MemberOrderDetailBean;
 
 @Repository
@@ -28,12 +30,12 @@ public class MemberOrderDaoImpl implements MemberOrderDao {
 
 	}
 	//測試用
-	@Override
-	public ArrayList<MemberOrderBean> queryAllOrder() {
-		Session session = factory.getCurrentSession();
-		Query query = session.createQuery("from MemberOrderBean where company_id = 25251111");
-		return (ArrayList<MemberOrderBean>) query.list();
-	}
+//	@Override
+//	public ArrayList<MemberOrderBean> queryAllOrder() {
+//		Session session = factory.getCurrentSession();
+//		Query query = session.createQuery("from MemberOrderBean where company_id = 25251111");
+//		return (ArrayList<MemberOrderBean>) query.list();
+//	}
 
 	
 	
@@ -102,6 +104,24 @@ public class MemberOrderDaoImpl implements MemberOrderDao {
 		Query query = session.createQuery(hql);
 		query.executeUpdate();
 
+	}
+	
+	@Override
+	public ArrayList<Map> queryOrderChartsList(String p1,String p2,String p3) {
+		Session session = factory.getCurrentSession();
+		NativeQuery query = session
+				.createSQLQuery("SELECT member_order.order_id,member_order.company_id,"
+						+ "member_order.order_date,member_order_detail.product_id,"
+						+ "member_order_detail.product_name,member_order_detail.amount,"
+						+ "member_order_detail.total,member_order.ship_date "
+						+ "FROM member_order INNER JOIN member_order_detail "
+						+ "ON member_order.order_id = member_order_detail.order_id "
+						+ "where member_order.order_date >= '"+p1+"' "
+						+ "and member_order.order_date <='"+p2+"' "
+						+ "and member_order.company_id='"+p3+"'"
+						+ "and member_order.status = 3 and member_order.order_id = member_order_detail.order_id");
+		query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE); 
+		return (ArrayList<Map>) query.getResultList();
 	}
 
 	

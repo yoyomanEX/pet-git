@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -29,10 +30,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.web.model._01.LogoutBean;
 import com.web.model._01.MemberBean;
 import com.web.model._01.PetBean;
+
 import com.web.model._01.validators.MemberValidator;
+
 import com.web.service.impl._01.MemberService;
 import com.web.service.impl._01.PetService;
 
@@ -56,6 +58,7 @@ public class MemberController {
 	public MemberController() {
 
 	}
+
 
 	@RequestMapping(value = "/")
 	public String home(Model model) {
@@ -342,7 +345,7 @@ public class MemberController {
 		return result;
 
 	}
-	//登出
+	//會員登出
 	@RequestMapping(value = "/_01.getLogout")
 	public String getLogout(Model model, HttpServletRequest request) {
 		model.addAttribute("MemberBean", new MemberBean());
@@ -351,5 +354,14 @@ public class MemberController {
 		return "index";
 
 	}
+	
+	@RequestMapping("/_01.memberManagement")
+	 public String friendlist(String mid1, Model model, HttpServletRequest request) {
+	  HttpSession session = request.getSession();
+	  session.getAttribute("LoginOK");
+	  
+	  return "_01/memberManagement";
+	 }
+
 
 }

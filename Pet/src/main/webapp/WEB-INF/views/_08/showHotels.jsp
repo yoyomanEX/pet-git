@@ -46,78 +46,30 @@
 
 <body>
 	<!--::header part start::-->
-	<header class="header_area">
-		<div class="sub_header">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-4 col-md-4 col-xl-6">
-						<div id="logo">
-							<a href="index.html"><img src="img/Logo.png" alt="" title="" /></a>
-						</div>
-					</div>
-					<div class="col-8 col-md-8 col-xl-6 ">
-						<div class="sub_header_social_icon float-right">
-							<a href="#"><i class="flaticon-phone"></i>02</a> <a
-								href="_01.memberloginPage"
-								class="btn_1 d-none d-md-inline-block">Longin</a> <a
-								href="friendlist" class="btn_1 d-none d-md-inline-block">account</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="main_menu">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<nav class="navbar navbar-expand-lg navbar-light">
-							<button class="navbar-toggler" type="button"
-								data-toggle="collapse" data-target="#navbarSupportedContent"
-								aria-controls="navbarSupportedContent" aria-expanded="false"
-								aria-label="Toggle navigation">
-								<i class="ti-menu"></i>
-							</button>
-
-							<div class="collapse navbar-collapse justify-content-center"
-								id="navbarSupportedContent">
-								<ul class="navbar-nav">
-									<li class="nav-item active"><a class="nav-link active"
-										href="${pageContext.request.contextPath}/">Home</a></li>
-									<li class="nav-item"><a href="_08/announcements__Front" class="nav-link">𨑨迌
-											食飯</a></li>
-									<li class="nav-item"><a href="#" class="nav-link">交朋友</a>
-									</li>
-									<li class="nav-item"><a
-										href="<spring:url value='/06/petProductSale'/>"
-										class="nav-link">PET陪你購物</a></li>
-									<li><a href="<spring:url value='/blogIndex'/>"
-										class="nav-link">blog</a></li>
-									<li class="nav-item dropdown"><a
-										class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-										role="button" data-toggle="dropdown" aria-haspopup="true"
-										aria-expanded="false"> PET PET 資訊欄 </a>
-										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-											<a class="dropdown-item" href="${pageContext.request.contextPath}/_08/hospitalsFront">醫院資訊</a>
-											<a class="dropdown-item" href="${pageContext.request.contextPath}/_08/hotelsFront">旅館資訊</a> 
-											<a class="dropdown-item" href="${pageContext.request.contextPath}/_08/resFront">餐廳資訊</a>   
-											<a class="dropdown-item" href="question.jsp">PET PET Q&A</a>
-										</div></li>
-									<li class="nav-item"><a href="contact.html"
-										class="nav-link">Contact</a></li>
-								</ul>
-							</div>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+	<jsp:include page="header.jsp"></jsp:include>
 	<!-- Header part end-->
+	<!-- banner part start-->
+	<section class="banner_part">
+		<div class="container">
+			<div class="row align-content-center">
+				<div class="col-lg-7 col-xl-6">
+					<div class="banner_text">
+						<h5>Welcome to pET ʕ•ᴥ•ʔ 陪你</h5>
+						<h1>PET pET ʕ•ᴥ•ʔ 資訊欄</h1>
+						<a href="#" class="btn_1">our service</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 <body>
 	<p>
-	<hr>
 	<div align="center">
-		<h2>Hotel資料</h2>
+		<p style="height:80px;">
+		<h1 align="center">PET你ʕ•ᴥ•ʔ去旅行</h1>
+		<p>
+		<div align="center">
+		<h2 style="margin:30px;">旅館資料</h2>
 		<c:if test='${empty allHotels}'>
 		查無醫院資料<br>
 		</c:if>
@@ -126,13 +78,11 @@
 				<c:if test='${vs.first}'>
 					<c:out value="<table border='1'>" escapeXml='false' />
 					<c:out
-						value="<tr><td>編輯</td><td>ID</td><td>NAME</td><td>ADDRESS</td><td>TEL</td>"
+						value="<tr><td>ID</td><td>NAME</td><td>ADDRESS</td><td>TEL</td>"
 						escapeXml='false' />
 				</c:if>
 
 				<tr>
-					<td width='70'>
-<%-- 					<a href='hotels/${hotels.hotel_id}'> Update</a></td> --%>
 					<td>${hotels.hotel_id}</td>
 					<td>${hotels.hotel_name}</td>
 					<td>${hotels.hotel_address}</td>
@@ -144,12 +94,10 @@
 				</c:if>
 			</c:forEach>
 		</c:if>
-		<p />
+		<p style="height:80px;"/>
 		<%-- 			<a href='${pageContext.request.contextPath}/_08/admin0123'>回到_08---管理</a> --%>
 	</div>
-	<hr>
 	</div>
-	<hr>
 
 	<!-- footer part start-->
 	<footer class="footer_area padding_top">
