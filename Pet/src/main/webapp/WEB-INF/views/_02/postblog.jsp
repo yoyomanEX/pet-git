@@ -33,7 +33,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/util.min.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">  
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css"> 
+	
+	<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> 
 	   
 <style>
 section {
@@ -284,16 +286,9 @@ $(document).ready(function() {
                             </div>
                         </div>
 
-                        <!-- Post Tags & Share -->
-                        <div class="post-tags-share d-flex justify-content-between align-items-center"></div>
-                        
-<!--     Modal      -->
-<div>
-<div style="float:right">
-  
-<!--   <button style="padding:3px;margin-bottom:7px" class="btn btn-primary" >留言</button> -->
 
-<span>
+<div style="float:right">
+  <span>
    <c:forEach items="${arts }" var="art" varStatus="s" >
    <c:set var="count" value="${s.count }"/>
    </c:forEach>
@@ -309,8 +304,12 @@ $(document).ready(function() {
        </c:choose>
    
   </span>
-
-</div>  
+</div>
+                        <!-- Post Tags & Share -->
+                        <div class="post-tags-share d-flex justify-content-between align-items-center"></div>
+                        
+<!--     Modal      -->
+<div>  
   <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -348,8 +347,8 @@ $(document).ready(function() {
 
                             
                         <!-- Comment Area Start -->
-<!--                         <div id="hidemessage" class="comment_area clearfix" style="display:none"> -->
-                        <div  class="comment_area clearfix" >
+                        <div id="hidemessage" class="comment_area clearfix" style="display:none">
+<!--                         <div  class="comment_area clearfix" > -->
                         
                             <c:forEach items="${arts }" var="art" varStatus="s" >
                             <c:set var="count" value="${s.count }"/>
@@ -360,7 +359,7 @@ $(document).ready(function() {
                                     <div class="comment-wrapper d-flex">
                                         <!-- Comment Meta -->
                                         <div class="comment-author">
-                                             <img width='600' height='500' src='<c:url value="/getPicture"/>'/>
+                                             <img width='600' height='500' src='<c:url value="/getReplyPicture/${art.no }"/>'/>
                                         </div>
                                         <!-- Comment Content -->
                                         <div class="comment-content">
@@ -412,7 +411,7 @@ $(document).ready(function() {
                                         <div class="col-12">
                                             <div class="form-group">
 <%--                                                 <input type="text" class="form-control" id="Name" name="Name" placeholder="Name" value="${param.Name}"> --%>
-                                                <input type="text" class="form-control" id="member_Id" name="member_Id" placeholder="member_Id" readonly="true" value="${LoginOK.member_Id }">
+                                                <input type="text" class="form-control" id="member_Id" name="member_Id" placeholder="member_Id" readonly="true" value="${LoginOK.name }">
                                                 <input type="hidden" value="${art.no}" id="id" name="id">
                                             </div>
                                         </div>
@@ -460,12 +459,12 @@ $(document).ready(function() {
                             <!-- Thumbnail -->
                             <div style="padding-top:40px">
                             <div class="about-thumbnail">
-                                <img width='60' height='72' src='getPicture' />
+                                <img width='60' height='72' src='${pageContext.request.contextPath}/getAboutPicture/${art.no } ' />
                             </div>
                             <!-- Content -->
                             <div class="widget-content text-center" style="padding-bottom:20px">
                                 <img src="img/core-img/signature.png" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
+                                
                             </div>
                             </div>
                         </div>
@@ -480,11 +479,10 @@ $(document).ready(function() {
 							</div>
 							<div style="padding-top:20px">
 							<ol >
-<!-- 							<button id="button1">按我</button> -->
-                                <li><a href="#" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp美食</span> <span></span></a></li>
-                                <li><a href="#" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp旅遊</span> <span></span></a></li>
-                                <li><a href="#" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp保養</span> <span></span></a></li>
-                                <li><a href="#" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp知識</span> <span></span></a></li>
+                                <li><a href="#" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp寵物報報</span> <span></span></a></li>
+                                <li><a href="#" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp寵物美容保養</span> <span></span></a></li>
+                                <li><a href="#" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp寵物旅遊 </span> <span></span></a></li>
+                                <li><a href="#" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp其他</span> <span></span></a></li>
                             </ol>
 							</div>
 						</div>

@@ -345,6 +345,7 @@ public class ArticleController {
 		HttpSession session = request.getSession();
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String member = loginToken.getMember_Id();
+		Blob aboutme = loginToken.getMemberImage();
 		HashMap<String, String> errorMessage = new HashMap<>();
 		request.setAttribute("ErrMsg", errorMessage);
 
@@ -383,6 +384,7 @@ public class ArticleController {
 			bean.setReport(false);
 			bean.setLikeCount(0);
 			bean.setAvailable(true);
+			bean.setFileName(aboutme);
 
 			MultipartFile picture = bean.getArticleImage();
 			System.out.println("picturepicture=" + picture);
@@ -429,6 +431,30 @@ public class ArticleController {
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 		ArticleBean bean = service.getArticleById(no);
 		Blob blob = bean.getCoverImage();
+		if (blob != null) {
+			body = blobToByteArray(blob);
+
+		} else {
+			String path = null;
+			path = noImage;
+			body = fileToByteArray(path);
+
+		}
+		re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
+		return re;
+	}
+	
+	@RequestMapping(value = "/getAboutPicture/{no}")
+	public ResponseEntity<byte[]> getAboutmePicture(HttpServletRequest reponse, @PathVariable Integer no) {
+//		System.out.println("picture=" + no);
+
+		byte[] body = null;
+		ResponseEntity<byte[]> re = null;
+		MediaType mediaType = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		ArticleBean bean = service.getArticleById(no);
+		Blob blob = bean.getFileName();
 		if (blob != null) {
 			body = blobToByteArray(blob);
 
@@ -631,6 +657,13 @@ public class ArticleController {
 			return "redirect:/postblog?id=" + ArticleNoS;
 
 		} else {
+			
+			
+			Blob blob = loginToken.getMemberImage();
+			rb.setReplyImage(blob);
+			
+			
+			
 			String AuthorSS = (loginToken.getMember_Id());
 			String content = request.getParameter("content");
 
@@ -641,6 +674,7 @@ public class ArticleController {
 			rb.setArticle_no(Integer.parseInt(ArticleNoS));
 
 			service.addReply(rb);
+			session.setAttribute("reply", rb);
 
 			List<ReplyBean> art = service.getReplysByArticle(no);
 			model.addAttribute("arts", art);
@@ -655,6 +689,33 @@ public class ArticleController {
 		}
 
 	}
+	
+	@RequestMapping(value = "/getReplyPicture/{no}")
+	public ResponseEntity<byte[]> getReplyPicture(HttpServletRequest reponse, @PathVariable Integer no) {
+//		System.out.println("picture=" + no);
+
+		byte[] body = null;
+		ResponseEntity<byte[]> re = null;
+		MediaType mediaType = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		ReplyBean rb = service.getReplyById(no);
+		Blob blob = rb.getReplyImage();
+		if (blob != null) {
+			body = blobToByteArray(blob);
+
+		} else {
+			String path = null;
+			path = noImage;
+			body = fileToByteArray(path);
+
+		}
+		re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
+		return re;
+	}
+
+
+
 
 	@RequestMapping(value = "/addReportblog")
 	public String processAddReportForm(@ModelAttribute("ReportBean") ReportBean rb, @RequestParam("rpid") Integer no,

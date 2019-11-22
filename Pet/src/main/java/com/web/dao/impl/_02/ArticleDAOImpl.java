@@ -18,6 +18,7 @@ import com.web.model._02.LikeCountBean;
 import com.web.model._02.ReplyBean;
 import com.web.model._02.ReportBean;
 import com.web.model._02.StyleBean;
+import com.web.model._03.MyBlogBean;
 import com.web.model._07.MemberOrderBean;
 
 @Repository
@@ -375,6 +376,8 @@ public class ArticleDAOImpl implements ArtDAO {
 		session.update(sb);
 		
 	}
+
+
 	
 	
 	

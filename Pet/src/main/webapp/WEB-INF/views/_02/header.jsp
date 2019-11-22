@@ -13,7 +13,7 @@
 					<c:choose>
    						<c:when test="${empty LoginOK}">
    							<div class="sub_header_social_icon float-right" style="float:right">
-							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">Longin</a>
+							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">登入/註冊</a>
 							</div>
     					</c:when>
     

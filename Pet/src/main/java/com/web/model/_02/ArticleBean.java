@@ -47,7 +47,7 @@ public class ArticleBean implements Serializable{
 	private Boolean available;
 	@JsonIgnore
 	private Blob coverImage;	
-	private String fileName;
+	private Blob fileName;
 	private Integer categories;
 	
 //	@Transient
@@ -152,10 +152,10 @@ public class ArticleBean implements Serializable{
 	public void setCoverImage(Blob coverImage) {
 		this.coverImage = coverImage;
 	}
-	public String getFileName() {
+	public Blob getFileName() {
 		return fileName;
 	}
-	public void setFileName(String fileName) {
+	public void setFileName(Blob fileName) {
 		this.fileName = fileName;
 	}
 	public Integer getCategories() {

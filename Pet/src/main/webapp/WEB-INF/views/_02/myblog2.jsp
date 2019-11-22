@@ -241,13 +241,13 @@ $(document).ready(function() {
 
                         <div style=>
                             <div class="about-thumbnail" align="center">
-                                <img width='60' height='72' src='getPicture' />
+                                <img width='60' height='72' src='${pageContext.request.contextPath}/getAboutPicture/${art.no } ' />
 <!--                                 <img width='200' height='300' src="img/single_adopt_5.png" /> -->
                             </div>
                             <!-- Content -->
                             <div class="widget-content text-center" style="padding-bottom:40px">
                                 <img src="img/core-img/signature.png" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
+                                
                             </div>
                             </div>
                         
@@ -256,10 +256,10 @@ $(document).ready(function() {
                       <aside class="single_sidebar_widget post_category_widget">
                         <h4 class="widget_title">Category</h4>
                         <ul class="list cat-list">
-                            <li><a href="#" class="d-flex" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp美食</span> <span></span></a></li>
-                            <li><a href="#" class="d-flex" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp旅遊</span> <span></span></a></li>
-                            <li><a href="#" class="d-flex" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp保養</span> <span></span></a></li>
-                            <li><a href="#" class="d-flex" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp知識</span> <span></span></a></li>
+                                <li><a href="#" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>PET你&nbsp✿&nbsp寵物報報</span> <span></span></a></li>
+                                <li><a href="#" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>PET你&nbsp✿&nbsp寵物美容保養</span> <span></span></a></li>
+                                <li><a href="#" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>PET你&nbsp✿&nbsp寵物旅遊 </span> <span></span></a></li>
+                                <li><a href="#" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>PET你&nbsp✿&nbsp其他</span> <span></span></a></li>
                         </ul>
                       </aside>
 

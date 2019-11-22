@@ -8,6 +8,7 @@ import com.web.model._02.LikeCountBean;
 import com.web.model._02.ReplyBean;
 import com.web.model._02.ReportBean;
 import com.web.model._02.StyleBean;
+import com.web.model._03.MyBlogBean;
 
 public interface ArtDAO {
 	
@@ -83,6 +84,7 @@ public interface ArtDAO {
 	public void addStyle(StyleBean sb);
 	
 	public void editStyle(StyleBean sb);
+	
 
 
 }
