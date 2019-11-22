@@ -7,7 +7,7 @@
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <meta charset="utf-8">
   
-  <title>SB Admin 2 - Login</title>
+  <title>pET ʕ•ᴥ•ʔ 陪你</title>
 
   
   <!-- Custom styles for this template-->
@@ -36,19 +36,16 @@
                   </div>
                   <form:form modelAttribute="MemberBean" action='_01.loginMember' method='POST' class="user">
                     <div class="form-group">
-                      <form:input path='member_Id'  class="form-control form-control-user" placeholder="Enter Email Address..."/>
+                      <form:input path='member_Id'  class="form-control form-control-user" placeholder="Account"/>
                     </div>
                     <div class="form-group">
-                      <form:input path='password'  class="form-control form-control-user"  placeholder="Password"/>
+                      <form:input path='password' type="password" class="form-control form-control-user"  placeholder="Password"/>
                     </div>
                     <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
-                      </div>
+                      
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">
-                      Login
+                     	 登入
                     </button>
                     <hr>
                     <div  data-onsuccess="onSignIn" class="btn btn-google btn-user btn-block">
@@ -56,11 +53,9 @@
                     </div>
                   </form:form>
                   <hr>
+                  
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="_01.saveMemberPage">Create an Account!</a>
+                    <a class="small" href="_01.saveMemberPage">註冊</a>
                   </div>
                 </div>
               </div>

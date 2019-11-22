@@ -92,19 +92,22 @@ body {
 	<jsp:include page="header.jsp"></jsp:include>
 	<!-- Header part end-->
 	
+	 
 	 <div class="col-sm-10 col-sm-offset-1">
+	
          <div class="col-md-4 col-sm-6">
              <div class="card-container">
+            
                 <div class="card">
-               
+                  <c:forEach var='cont' items='${allcontents}'>
                     <div class="front">
-                     <c:forEach var='cont' items='${allcontents}'>
+                   
                         <div class="cover">
                             <img src="<c:url value='getContPicture/${cont.content_id}' />"/>
                         </div>
-                        <div class="user">
-                            <img class="img-circle" src="images/rotating_card_profile3.png"/>
-                        </div>
+<!--                         <div class="user"> -->
+<!--                             <img class="img-circle" src="images/rotating_card_profile3.png"/> -->
+<!--                         </div> -->
                         <div class="content">
                             <div class="main">
                                 <h3 class="name"><b style='font-size: 16px;'>${cont.content_title}</b></h3>
@@ -112,11 +115,13 @@ body {
 <!--                                 <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they love me everywhere"</p> -->
                             </div>
                             <div class="footer">
-                                <i class="fa fa-mail-forward"></i> Auto Rotation
+                                <i class="fa fa-mail-forward"></i>
                             </div>
                         </div>
-                        </c:forEach>
-                    </div> <!-- end front panel -->
+                       
+                    </div>
+                    </c:forEach>
+                   <!-- end front panel -->
                     <div class="back">
                         <div class="header">
                             <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
@@ -159,8 +164,12 @@ body {
                     </div> <!-- end back panel -->
                 </div> <!-- end card -->
             </div> <!-- end card-container -->
+        
+        
         </div> <!-- end col sm 3 -->
-
+        
+        </div>
+   
 
 
 <!-- 	<div style="height: 30px"></div> -->

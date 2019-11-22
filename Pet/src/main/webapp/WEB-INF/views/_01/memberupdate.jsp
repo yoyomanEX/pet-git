@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   
 
-  <title>SB Admin 2 - Register</title>
+  <title>pET ʕ•ᴥ•ʔ 陪你</title>
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@
                   	<form:errors path="password" cssStyle="color: red;"/>
                   </div>
                   <div class="col-sm-6">
-                    <form:input path='checkPassword' class="form-control form-control-user"  placeholder="Repeat Password"/>
+                    <form:input path='checkPassword' type="password" class="form-control form-control-user"  placeholder="Repeat Password"/>
                     <form:errors path="checkPassword" cssStyle="color: red;"/>                
                   </div>
                 </div>

@@ -146,7 +146,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="copyright_text">
-					<img src="img/about_icon.png" alt="#">
+					<img src="${pageContext.request.contextPath}/img/about_icon.png" alt="#">
 					<!-- 						<h3>pET ʕ•ᴥ•ʔ陪你</h3> -->
 					<p class="footer-text">
 						Copyright &copy;
