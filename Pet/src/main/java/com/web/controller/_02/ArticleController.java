@@ -159,11 +159,9 @@ public class ArticleController {
 //			sb.setNo(true);
 //			sb.setMemberId(sb.getMemberId());
 //			service.editStyle(sb);
-//		}
-		List<MyBlogBean> visit = myblogservice.getByUser(member);
+////		}
+		List<String> visit = myblogservice.getByUser(member);
 		model.addAttribute("visit", visit);
-		System.out.println("visitvisit=" + visit);
-		
 		List<ArticleBean> art = service.getArticlesByMemberNo2(member);
 		model.addAttribute("arts", art);
 
@@ -258,9 +256,14 @@ public class ArticleController {
 //		HttpSession session = request.getSession();
 //		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String member = bean.getMemberId();
+		HttpSession session = request.getSession();
+		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+		String userid = loginToken.getMember_Id();
+		
 
 		List<ArticleBean> arts = service.getArticleByDate(member);
 		model.addAttribute("artss", arts);
+		Noticeservice.deleteMeStatusByUser(userid,no);
 
 		return "_02/postblog";
 	}
@@ -644,8 +647,7 @@ public class ArticleController {
 			
 			NoticeBean nb=new NoticeBean();
 			nb.setOtherid(AuthorSS);
-			System.out.println("nb::"+art.get(0).getMemberId());
-			nb.setUserid(art.get(0).getMemberId());
+			nb.setUserid(ab.getMemberId());
 			nb.setArticleid(no);
 			Noticeservice.addMessageNotice(nb);
 			return "redirect:/postblog?id=" + ArticleNoS;

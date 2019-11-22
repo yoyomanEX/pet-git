@@ -42,8 +42,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 	@Transactional
 	@Override
-	public void deleteMeStatusByUser(String userid) {
-	
+	public void deleteMeStatusByUser(String userid,Integer articleid) {
+		dao.deleteMeStatusByUser(userid,articleid);
 	}
 	@Transactional
 	@Override

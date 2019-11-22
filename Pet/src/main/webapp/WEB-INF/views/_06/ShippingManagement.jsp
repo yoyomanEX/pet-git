@@ -31,6 +31,13 @@
 	rel="stylesheet" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/DataTables/datatables.min.css">
+	<!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+	
 <style>
 .btn-group .button {
 	background-color: #B8B8FF; /* Green */
@@ -120,16 +127,7 @@
 					<li class="nav-item dropdown"><a class="nav-link pr-0"
 						href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">
-							<div class="media align-items-center">
-								<span class="avatar avatar-sm rounded-circle"> <img
-									alt="Image placeholder"
-									src="${pageContext.request.contextPath}/assets/img/theme/team-4-800x800.jpg">
-								</span>
-								<div class="media-body ml-2 d-none d-lg-block">
-									<span class="mb-0 text-sm  font-weight-bold">Jessica
-										Jones</span>
-								</div>
-							</div>
+							
 					</a>
 						<div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
 							<div class=" dropdown-header noti-title">
@@ -349,6 +347,17 @@
 	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/DataTables/DataTables-1.10.20/js/jquery.dataTables.js"></script>
+	  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+	
+	
 	<script>
 		window.TrackJS && TrackJS.install({
 			token : "ee6fab19c5a04ac1a32a645abde4613a",

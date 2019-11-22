@@ -26,7 +26,7 @@ public class MyBlogServiceImpl implements MyBlogService {
 	}
 	@Transactional
 	@Override
-	public List<MyBlogBean> getByUser(String userid) {		
+	public List<String> getByUser(String userid) {		
 		return dao.getByUser(userid);
 	}
 

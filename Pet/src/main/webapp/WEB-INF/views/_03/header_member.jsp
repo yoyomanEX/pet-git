@@ -89,7 +89,7 @@
 					+ '</div><div class="font-weight-bold"><div class="text-truncate">'
 					+ data[i].otherid + '向您申請好友</div></div></a>';}
 			if(data[i].messagestatus!=null){
-			txt += '<a class="dropdown-item d-flex align-items-center" href="waiting"><div class="dropdown-list-image mr-3">'
+			txt += '<a class="dropdown-item d-flex align-items-center" href="postblog?id='+data[i].articleid+'"><div class="dropdown-list-image mr-3">'
 				+ '<img class="rounded-circle"'
 				+'width="60" height="60" src="'
 				+'getMbPicture/'+data[i].otherid+'">'

@@ -35,36 +35,6 @@
 	function myFunction() {
 		document.getElementById("frm1").submit();
 	}
-	function clickDelete() {
-		alert("删除成功");
-		//     	var msg = "請問確定要刪除嗎???刪除後無法回復";
-		//     	if (confirm(msg)==true){
-		//     	return true;
-		//     	}else{
-		//     	return false;
-		//     	}
-	}
-	function room() {
-		window
-				.open(
-						'dogroom',
-						'newwindow',
-						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
-	}
-	function catroom() {
-		window
-				.open(
-						'catroom',
-						'newwindow',
-						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
-	}
-	function petroom() {
-		window
-				.open(
-						'petroom',
-						'newwindow',
-						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
-	}
 </script>
 
 
