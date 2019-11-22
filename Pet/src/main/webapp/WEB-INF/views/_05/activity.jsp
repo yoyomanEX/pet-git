@@ -50,9 +50,17 @@
 				</c:if>
 				<p>活動時間： ${activity.end_date}</p>
 				<p>
-					<a href="<spring:url value='/products' />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span>返回
-					</a>
+<%-- 					<a href="<spring:url value='/products' />" class="btn btn-default"> --%>
+<!-- 						<span class="glyphicon-hand-left glyphicon"></span>返回 -->
+<!-- 					</a> -->
+ <iframe 
+      width="600" 
+      height="450" 
+      frameborder="0" 
+      style="border:0" 
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB0en-qV7XhFWwOPPqazsMhMV8j8RqdMqY&q=${activity.activity_add}" 
+      allowfullscreen>
+  </iframe>
 				</p>
 			</div>
 		</div>

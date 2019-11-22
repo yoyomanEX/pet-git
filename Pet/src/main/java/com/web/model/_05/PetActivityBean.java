@@ -34,10 +34,12 @@ public class PetActivityBean {
 	private Integer number_limit;
 	private Integer current_number;
 //	private Date save_date;
-	private String start_date;
+//	private String start_date;
+
+
 	private String end_date;
 	private String  filename;
-
+	private String activity_add;
 
 	@JsonIgnore
 	private Blob activity_image;
@@ -121,13 +123,13 @@ public class PetActivityBean {
 		this.filename = filename;
 	}
 
-	public String getStart_date() {
-		return start_date;
-	}
-
-	public void setStart_date(String start_date) {
-		this.start_date = start_date;
-	}
+//	public String getStart_date() {
+//		return start_date;
+//	}
+//
+//	public void setStart_date(String start_date) {
+//		this.start_date = start_date;
+//	}
 
 	public String getEnd_date() {
 		return end_date;
@@ -161,7 +163,13 @@ public class PetActivityBean {
 		this.members = members;
 	}
 
-	
+	public String getActivity_add() {
+		return activity_add;
+	}
+
+	public void setActivity_add(String activity_add) {
+		this.activity_add = activity_add;
+	}
 	
 
 }
