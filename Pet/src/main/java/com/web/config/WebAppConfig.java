@@ -23,8 +23,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-
-
+import com.web.viewresolver.ExcelViewResolver;
 
 @Configuration
 @EnableWebMvc
@@ -56,7 +55,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 //		resolvers.add(jsonViewResolver());
 		resolvers.add(jspViewResolver());
 //		resolvers.add(pdfViewResolver(context));
-	
+		resolvers.add(excelViewResolver());
 
 		cnvResolver.setViewResolvers(resolvers);
 		return cnvResolver;
@@ -87,7 +86,10 @@ public class WebAppConfig implements WebMvcConfigurer {
 	/*
 	 * 配置自行設計的 ExcelViewResolver
 	 */
-
+	@Bean
+	public ViewResolver excelViewResolver() {
+		return new ExcelViewResolver();
+	}
 	// 配置 Spring提供的 InternalResourceViewResolver
 	@Bean
 	public ViewResolver jspViewResolver() {

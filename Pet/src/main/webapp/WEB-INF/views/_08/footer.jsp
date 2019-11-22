@@ -7,6 +7,7 @@
 
 
 <!-- ##### Instagram Area Start ##### -->
+<<<<<<< HEAD
 <!-- <div class="follow-us-instagram"> -->
 <!-- 	<div class="container"> -->
 <!-- 		<div class="row"> -->
@@ -60,6 +61,61 @@
 <!-- 	</div> -->
 <!-- </div> -->
 <!-- <!-- ##### Instagram Area End ##### -->
+=======
+<div class="follow-us-instagram">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="section-heading">
+					<h2>Follow Us @pET-blog</h2>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12">
+				<div class="instagram-slides owl-carousel">
+					<!-- Single Instagram Slide -->
+					<div class="single-instagram-slide">
+						<img src="img/blog-img/pet1.jpg" alt=""> <a href="#"><i
+							class="fa fa-instagram"></i>Follow Me</a>
+					</div>
+					<!-- Single Instagram Slide -->
+					<div class="single-instagram-slide">
+						<img src="img/blog-img/pet5.jpg" alt=""> <a href="#"><i
+							class="fa fa-instagram"></i>Follow Me</a>
+					</div>
+					<!-- Single Instagram Slide -->
+					<div class="single-instagram-slide">
+						<img src="img/blog-img/pet2.jpg" alt=""> <a href="#"><i
+							class="fa fa-instagram"></i>Follow Me</a>
+					</div>
+
+					<!-- Single Instagram Slide -->
+					<div class="single-instagram-slide">
+						<img src="img/blog-img/pet4.jpg" alt=""> <a href="#"><i
+							class="fa fa-instagram"></i>Follow Me</a>
+					</div>
+
+
+					<!-- Single Instagram Slide -->
+					<div class="single-instagram-slide">
+						<img src="img/blog-img/pet6.jpg" alt=""> <a href="#"><i
+							class="fa fa-instagram"></i>Follow Me</a>
+					</div>
+
+					<!-- Single Instagram Slide -->
+					<div class="single-instagram-slide">
+						<img src="img/blog-img/pet3.jpg" alt=""> <a href="#"><i
+							class="fa fa-instagram"></i>Follow Me</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ##### Instagram Area End ##### -->
+>>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git
 
 
 <footer class="footer-area">
