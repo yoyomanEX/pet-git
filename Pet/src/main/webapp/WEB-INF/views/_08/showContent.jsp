@@ -86,7 +86,6 @@
 <!--                             <div class="main"> -->
 <!--                                 <h4 class="text-center">Job Description</h4> -->
 <!--                                 <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p> -->
-
 <!--                                 <div class="stats-container"> -->
 <!--                                     <div class="stats"> -->
 <!--                                         <h4>235</h4> -->
@@ -107,7 +106,6 @@
 <!--                                         </p> -->
 <!--                                     </div> -->
 <!--                                 </div> -->
-
 <!--                             </div> -->
 <!--                         </div> -->
 <!--                         <div class="footer"> -->
@@ -121,7 +119,7 @@
 <!--                 </div> end card -->
 <!--             </div> end card-container -->
 <!--         </div> end col sm 3 -->
-<!-- <!--         <div class="col-sm-1"></div> --> -->
+<!-- <!--         <div class="col-sm-1"></div> --> 
 <!--         <div class="col-md-4 col-sm-6"> -->
 <!--              <div class="card-container manual-flip"> -->
 <!--                 <div class="card"> -->
@@ -191,7 +189,7 @@
 <!--                 </div> end card -->
 <!--             </div> end card-container -->
 <!--         </div> end col sm 3 -->
-<!-- <!--         <div class="col-sm-1"></div> --> -->
+<!-- <!--         <div class="col-sm-1"></div> --> 
 <!--         <div class="col-md-4 col-sm-6"> -->
 <!--             <div class="card-container"> -->
 <!--                 <div class="card"> -->

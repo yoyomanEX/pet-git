@@ -39,7 +39,9 @@ public class AllInOneBase {
 //			doc = EcpayFunction.xmlParser(configPath);
 			/* when using testing code*/
 			//String paymentConfPath = "./src/main/resources/payment_conf.xml";
-			String paymentConfPath = "D:\\pet-git\\Pet\\src\\main\\resources\\payment_conf.xml";
+			String paymentConfPath = "C:\\git_repository2\\Pet\\src\\main\\resources\\payment_conf.xml";
+			
+			
 			doc = EcpayFunction.xmlParser(paymentConfPath);
 			
 			doc.getDocumentElement().normalize();
