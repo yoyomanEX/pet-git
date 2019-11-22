@@ -24,6 +24,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "member_order")
 public class MemberOrderBean implements Serializable {
 
+	@Override
+	public String toString() {
+		return "MemberOrderBean [order_id=" + order_id + ", member_id=" + member_id + ", total=" + total + ", address="
+				+ address + ", recipient=" + recipient + ", phone=" + phone + ", order_date=" + order_date
+				+ ", ship_date=" + ship_date + ", company_id=" + company_id + ", status=" + status + "]";
+	}
+
 	private static final long serialVersionUID = 1L;
 	private Long order_id;
 	private Integer member_id;

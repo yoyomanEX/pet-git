@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%> 
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,13 +66,12 @@
 			<!-- Nav Item - 前台頁面-->
 			<li class="nav-item">
 			<a href="<spring:url value='/'/>" class="nav-link collapsed"> 
-				<span style='margin-left: 10px;' class='btn btn-danger'>pET寵物網</span>
-			</a>
+				<span style='margin-left: 10px;' class='btn btn-danger'>pET寵物網</span></a>
 			
 			</li>
 			
 			<!-- Nav Item - 商品管理-->
-			<li class="nav-item active">
+			<li class="nav-item">
 			<a class="nav-link collapsed" href="CompanyManagement"
 				data-toggle="" data-target="#collapsePages"
 				aria-controls="collapsePages"> 
@@ -93,12 +92,14 @@
        		   <i class="fas fa-fw fa-chart-area"></i>
           	<span>銷售報表</span></a>
     		  </li>
-			<!-- Nav Item - Charts -->
-     		 <li class="nav-item">
+    		  
+    		  <!-- Nav Item - Charts -->
+     		 <li class="nav-item active">
        		 	<a class="nav-link" href="companyContent">
        		   <i class="fas fa-fw fa-wrench"></i>
           	<span>聯絡我們</span></a>
     		  </li>
+			
 
 			<!-- Divider -->
 			 <hr class="sidebar-divider d-none d-md-block">
@@ -269,19 +270,18 @@
             <!-- Nav Item - User Information -->
            <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">歡迎回來～${CompanyLoginOK.company_name}</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${CompanyLoginOK.company_name}～您已登入</span>
 <!--                 <img class="img-profile rounded-circle" src=""> -->
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 
                 <div class="dropdown-divider"></div>
-                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
               		  修改資料
                 </a>
-                
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
               		  登出
                 </a>
@@ -290,64 +290,18 @@
           </ul>
         </nav>
         <!-- End of Topbar -->
-
-        <!-- Begin Page Content內文開始 -->
-      
-      <!-- Begin Page Content -->
-				<div class="container-fluid" >
-
-					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">商品管理</h1>
-					<p class="mb-4">
-						PRODUCT MANAGEMENT 
-					<a target="_blank" href="https://datatables.net"></a>
-					</p>
-
-					<!-- DataTales Example -->
-					 <!-- Content Row -->
-         <div class="row" style="padding-left: 50px; padding-right: 50px;"> 
-
-           				 <!-- 內文開始  第一個框-->
-            <div class="col-xl-5 col-md-10 mb-4" >
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">ADD PRODUCT</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      	<a href='companyProductInsert1'>新增商品</a>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-xl-5 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">ON SALE PRODUCT</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      	<form method="post" action='companyProductQueryAll' id='allProduct'>
-                      		<a href='#' onclick="allProduct();">
-                      		商品列表                 	
-                      		<input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
-                      		</a>	
-                      		</form>
-                      	</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <h1 style="padding-left: 50px;">pETʕ•ᴥ•ʔ寵物網 與我們聯繫</h1>
+			<ul style='margin:50px;padding-top: 40px;border-radius:10px ;border:7px gray double;width:700px;height: 250px;'>
+				<li style='font-size: 20px;'>連絡人：林小美</li>
+				<li style='font-size: 20px;'>連絡電話：02-6631-6666</li>
+				<li style='font-size: 20px;'>連絡地址：106台北市大安區復興南路一段390號 2,3號15樓</li>
+				<li style='font-size: 20px;'>Email:<a href='mailto:eeit10931@outlook.com'>eeit10931@outlook.com</a></li>
+				
+				
+			
+			
+			</table>
+   		
           </div>
           <div class="row">
             <div class="col-lg-6">

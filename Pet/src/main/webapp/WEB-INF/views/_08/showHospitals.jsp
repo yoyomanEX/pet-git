@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -12,132 +12,141 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>pET ʕ•ᴥ•ʔ 陪你</title>
-<link rel="icon" href="${pageContext.request.contextPath}/img/about_icon.png">
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/about_icon.png">
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <!-- animate CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/animate.css">
 <!-- owl carousel CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/owl.carousel.min.css">
 <!-- themify CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/themify-icons.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/themify-icons.css">
 <!-- flaticon CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/flaticon.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/flaticon.css">
 <!-- font awesome CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/magnific-popup.css">
 <!-- style CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style.css">
 <!-- 自訂 - index CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/index.css">
 <!-- 瀑布流 CSS -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/waterfall.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/waterfall.css">
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		document.getElementById("check1").addEventListener("blur", check);
+	});
+	function check() {
+		var theName = document.getElementById("check1").value;
+		var reName = /^[\u4e00-\u9fff]$/;
+		if (theName == "") {
+			alert('請輸入中文');
+		} else if (reName.test(theName)) {
+			alert('輸入正確');
+		} else {
+			alert('輸入錯誤');
+		}
 
+	}
+</script>
 </head>
 
 <body>
 	<!--::header part start::-->
-	<header class="header_area">
-		<div class="sub_header">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-4 col-md-4 col-xl-6">
-						<div id="logo">
-							<a href="index.html"><img src="img/Logo.png" alt="" title="" /></a>
-						</div>
-					</div>
-					<div class="col-8 col-md-8 col-xl-6 ">
-						<div class="sub_header_social_icon float-right">
-							<a href="#"><i class="flaticon-phone"></i>02</a> <a
-								href="_01.memberloginPage"
-								class="btn_1 d-none d-md-inline-block">Longin</a> <a
-								href="friendlist" class="btn_1 d-none d-md-inline-block">account</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="main_menu">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<nav class="navbar navbar-expand-lg navbar-light">
-							<button class="navbar-toggler" type="button"
-								data-toggle="collapse" data-target="#navbarSupportedContent"
-								aria-controls="navbarSupportedContent" aria-expanded="false"
-								aria-label="Toggle navigation">
-								<i class="ti-menu"></i>
-							</button>
-
-							<div class="collapse navbar-collapse justify-content-center"
-								id="navbarSupportedContent">
-								<ul class="navbar-nav">
-									<li class="nav-item active"><a class="nav-link active"
-										href="${pageContext.request.contextPath}/">Home</a></li>
-									<li class="nav-item"><a href="_08/announcements__Front" class="nav-link">𨑨迌
-											食飯</a></li>
-									<li class="nav-item"><a href="#" class="nav-link">交朋友</a>
-									</li>
-									<li class="nav-item"><a
-										href="<spring:url value='/06/petProductSale'/>"
-										class="nav-link">PET陪你購物</a></li>
-									<li><a href="<spring:url value='/blogIndex'/>"
-										class="nav-link">blog</a></li>
-									<li class="nav-item dropdown"><a
-										class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-										role="button" data-toggle="dropdown" aria-haspopup="true"
-										aria-expanded="false">  PET PET 資訊欄 </a>
-										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-											<a class="dropdown-item" href="${pageContext.request.contextPath}/_08/hospitalsFront">醫院資訊</a>
-											<a class="dropdown-item" href="${pageContext.request.contextPath}/_08/hotelsFront">旅館資訊</a> 
-											<a class="dropdown-item" href="${pageContext.request.contextPath}/_08/resFront">餐廳資訊</a>    
-											<a class="dropdown-item" href="question.jsp">PET PET Q&A</a>
-										</div></li>
-									<li class="nav-item"><a href="contact.html"
-										class="nav-link">Contact</a></li>
-								</ul>
-							</div>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+	<jsp:include page="header.jsp"></jsp:include>
 	<!-- Header part end-->
-<body>
-	<p>
-	<hr>
+
+	<!-- banner part start-->
+	<section class="banner_part">
+		<div class="container">
+			<div class="row align-content-center">
+				<div class="col-lg-7 col-xl-6">
+					<div class="banner_text">
+						<h5>Welcome to pET ʕ•ᴥ•ʔ 陪你</h5>
+						<h1>PET pET ʕ•ᴥ•ʔ 資訊欄</h1>
+						<a href="#" class="btn_1">our service</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- about part start-->
+	<section class="about_part section_padding">
+		<div class="container">
+			<div class="row align-items-center justify-content-between">
+				<div class="col-md-6">
+					<div class="about_img">
+						<img src="" alt=""> <img
+							src="${pageContext.request.contextPath}/img/emergencyicon.png">
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="about_text">
+						<img src="img/about_icon.png" class="about_icon" alt="">
+						<h2>醫院資訊</h2>
+						<p>We care your pet as you care</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- about part start-->
 	<div align="center">
-		<h2>醫院資料</h2>
-		<c:if test='${empty allHospitals}'>
-		查無醫院資料<br>
-		</c:if>
-		<c:if test='${not empty allHospitals}'>
-			<c:forEach var='hospitals' varStatus='vs' items='${allHospitals}'>
-				<c:if test='${vs.first}'>
-					<c:out value="<table border='1'>" escapeXml='false' />
-					<c:out
-						value="<tr><td>ID</td><td>NAME</td><td>ADDRESS</td><td>TEL</td>"
-						escapeXml='false' />
-				</c:if>
+		<table style="margin: 80px;">
+			<tr>
+				<a href="hospitalsFront2"> <input class="btn_1" type="submit"
+					value="查詢全部" />
+				</a>
+				<a href="#"> <input type="text" id="check1" size:15
+					name="hosName" /> <input class="btn_1" type="submit" value="模糊查詢" />
+				</a>
 
-				<tr>
-					<td>${hospitals.hospital_id}</td>
-					<td>${hospitals.hospital_name}</td>
-					<td>${hospitals.hospital_address}</td>
-					<td>${hospitals.hospital_tel}</td>
-
-				</tr>
-				<c:if test='${vs.last }'>
-					<c:out value="</table>" escapeXml='false' />
-				</c:if>
-			</c:forEach>
-		</c:if>
-		<p />
-		<%-- <a href='${pageContext.request.contextPath}/'>回到index</a> --%>
+			</tr>
+		</table>
 	</div>
-	<hr>
+	<p>
+		<!-- 	<hr> -->
+		<!-- 	<div align="center"> -->
+		<!-- 		<h2>醫院資料</h2> -->
+		<%-- 		<c:if test='${empty allHospitals}'> --%>
+		<!-- 		查無醫院資料<br> -->
+		<%-- 		</c:if> --%>
+		<%-- 		<c:if test='${not empty allHospitals}'> --%>
+		<%-- 			<c:forEach var='hospitals' varStatus='vs' items='${allHospitals}'> --%>
+		<%-- 				<c:if test='${vs.first}'> --%>
+		<%-- 					<c:out value="<table border='1'>" escapeXml='false' /> --%>
+		<%-- 					<c:out --%>
+		<%-- 						value="<tr><td>ID</td><td>NAME</td><td>ADDRESS</td><td>TEL</td>" --%>
+		<%-- 						escapeXml='false' /> --%>
+		<%-- 				</c:if> --%>
 
-	<!-- footer part start-->
+		<!-- 				<tr> -->
+		<%-- 					<td>${hospitals.hospital_id}</td> --%>
+		<%-- 					<td>${hospitals.hospital_name}</td> --%>
+		<%-- 					<td>${hospitals.hospital_address}</td> --%>
+		<%-- 					<td>${hospitals.hospital_tel}</td> --%>
+
+		<!-- 				</tr> -->
+		<%-- 				<c:if test='${vs.last }'> --%>
+		<%-- 					<c:out value="</table>" escapeXml='false' /> --%>
+		<%-- 				</c:if> --%>
+		<%-- 			</c:forEach> --%>
+		<%-- 		</c:if> --%>
+		<!-- 		<p /> -->
+		<%-- 		<%-- <a href='${pageContext.request.contextPath}/'>回到index</a> --%>
+		<!-- 	</div> -->
+		<!-- 	<hr> -->
+
+		<!-- footer part start-->
 	<footer class="footer_area padding_top">
 		<div class="container">
 			<div class="row justify-content-center ">
@@ -221,17 +230,20 @@
 
 	<!-- jquery plugins here-->
 	<!-- jquery -->
-	<script src="${pageContext.request.contextPath}/js/jquery-1.12.1.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/js/jquery-1.12.1.min.js"></script>
 	<!-- popper js -->
 	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
 	<!-- bootstrap js -->
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<!-- counterup js -->
-	<script src="${pageContext.request.contextPath}/js/jquery.counterup.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.counterup.min.js"></script>
 	<!-- waypoints js -->
 	<script src="${pageContext.request.contextPath}/js/waypoints.min.js"></script>
 	<!-- easing js -->
-	<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/js/jquery.magnific-popup.js"></script>
 	<!-- particles js -->
 	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
 	<!-- custom js -->
@@ -239,7 +251,8 @@
 	<!-- 瀑布流 js -->
 	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
 
 
 

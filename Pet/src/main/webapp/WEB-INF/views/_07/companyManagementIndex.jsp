@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,6 +64,13 @@
 
 
 			<!-- Nav Item - Pages Collapse Menu -->
+			<!-- Nav Item - 前台頁面-->
+			<li class="nav-item">
+			<a href="<spring:url value='/'/>" class="nav-link collapsed"> 
+				<span style='margin-left: 10px;' class='btn btn-danger'>pET寵物網</span></a>
+			
+			</li>
+			
 			<!-- Nav Item - 商品管理-->
 			<li class="nav-item">
 			<a class="nav-link collapsed" href="CompanyManagement"
@@ -84,36 +93,14 @@
        		   <i class="fas fa-fw fa-chart-area"></i>
           	<span>銷售報表</span></a>
     		  </li>
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-cog"></i> <span>廠商資料修改</span>
-			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Components:</h6>
-						<a class="collapse-item" href="buttons.html">Buttons</a> <a
-							class="collapse-item" href="cards.html">Cards</a>
-					</div>
-				</div></li>
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>聯絡我們</span>
-			</a>
-				<div id="collapseUtilities" class="collapse"
-					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Utilities:</h6>
-						<a class="collapse-item" href="utilities-color.html">Colors</a> <a
-							class="collapse-item" href="utilities-border.html">Borders</a> <a
-							class="collapse-item" href="utilities-animation.html">Animations</a>
-						<a class="collapse-item" href="utilities-other.html">Other</a>
-					</div>
-				</div></li>
+    		  
+    		  <!-- Nav Item - Charts -->
+     		 <li class="nav-item">
+       		 	<a class="nav-link" href="companyContent">
+       		   <i class="fas fa-fw fa-wrench"></i>
+          	<span>聯絡我們</span></a>
+    		  </li>
+			
 
 			<!-- Divider -->
 			 <hr class="sidebar-divider d-none d-md-block">
@@ -291,6 +278,11 @@
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 
                 <div class="dropdown-divider"></div>
+                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+              		  修改資料
+                </a>
+                
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
               		  登出

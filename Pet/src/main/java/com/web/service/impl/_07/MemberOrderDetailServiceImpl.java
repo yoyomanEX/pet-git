@@ -33,9 +33,10 @@ public class MemberOrderDetailServiceImpl implements MemberOrderDetailService {
 		return eDao.queryOrderProductTotalAmount(p1, p2,p3);
 		
 	}
-	@Override
-	public ArrayList<MemberOrderDetailBean> queryOrderChartsList(String p1, String p2, String p3) {
-		return eDao.queryOrderChartsList(p1, p2, p3);
-	}
+//	@Override
+//	@Transactional
+//	public ArrayList<MemberOrderDetailBean> queryOrderChartsList(String p1, String p2, String p3) {
+//		return eDao.queryOrderChartsList(p1, p2, p3);
+//	}
 
 }

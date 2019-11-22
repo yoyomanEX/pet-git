@@ -41,13 +41,30 @@
 <!-- 瀑布流 CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/waterfall.css">
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+       document.getElementById("check1").addEventListener("blur",check);
+   });
+   function check(){
+       var theName = document.getElementById("check1").value;
+       var reName = /^[\u4e00-\u9fff]$/;
+       if(theName==""){
+           alert('請輸入中文');
+       }else if(reName.test(theName)){
+               alert('輸入正確');
+       }else{
+          alert('輸入錯誤');
+       }
 
+   }  
+   </script>
 </head>
 
 <body>
 	<!--::header part start::-->
 	<jsp:include page="header.jsp"></jsp:include>
 	<!-- Header part end-->
+
 	<!-- banner part start-->
 	<section class="banner_part">
 		<div class="container">
@@ -62,19 +79,19 @@
 			</div>
 		</div>
 	</section>
-<body>
 	<p>
+	<hr>
 	<div align="center">
-		<p style="height:80px;">
-		<h1 align="center">PET你ʕ•ᴥ•ʔ去旅行</h1>
+	<p style="height:80px;">
+	<h1 align="center">PET你ʕ•ᴥ•ʔ去旅行</h1>
 		<p>
 		<div align="center">
-		<h2 style="margin:30px;">旅館資料</h2>
-		<c:if test='${empty allHotels}'>
+		<h2 style="margin:30px;">醫院資料</h2>
+		<c:if test='${empty allHospitals}'>
 		查無醫院資料<br>
 		</c:if>
-		<c:if test='${not empty allHotels}'>
-			<c:forEach var='hotels' varStatus='vs' items='${allHotels}'>
+		<c:if test='${not empty allHospitals}'>
+			<c:forEach var='hospitals' varStatus='vs' items='${allHospitals}'>
 				<c:if test='${vs.first}'>
 					<c:out value="<table border='1'>" escapeXml='false' />
 					<c:out
@@ -83,10 +100,10 @@
 				</c:if>
 
 				<tr>
-					<td>${hotels.hotel_id}</td>
-					<td>${hotels.hotel_name}</td>
-					<td>${hotels.hotel_address}</td>
-					<td>${hotels.hotel_tel}</td>
+					<td>${hospitals.hospital_id}</td>
+					<td>${hospitals.hospital_name}</td>
+					<td>${hospitals.hospital_address}</td>
+					<td>${hospitals.hospital_tel}</td>
 
 				</tr>
 				<c:if test='${vs.last }'>
@@ -95,9 +112,9 @@
 			</c:forEach>
 		</c:if>
 		<p style="height:80px;"/>
-		<%-- 			<a href='${pageContext.request.contextPath}/_08/admin0123'>回到_08---管理</a> --%>
+		</div>
 	</div>
-	</div>
+	<hr>
 
 	<!-- footer part start-->
 	<footer class="footer_area padding_top">
