@@ -43,21 +43,22 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col">
-										<h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
-										<span class="h2 font-weight-bold mb-0">350,897</span>
+										<h5 class="card-title text-uppercase text-muted mb-0">Hospital</h5>
+										<span class="h2 font-weight-bold mb-0"> <a
+											href='hospitals'>管理醫院資料</a></span> 
+											<p>
+											<span
+											class="h2 font-weight-bold mb-0"> <a
+											href='getEmptyHospitalForm'>醫院資料新增</a>
+										</span>
 									</div>
 									<div class="col-auto">
 										<div
 											class="icon icon-shape bg-danger text-white rounded-circle shadow">
-											<i class="fas fa-chart-bar"></i>
+											<!-- 											<i class="fas fa-chart-bar"></i> -->
 										</div>
 									</div>
 								</div>
-								<p class="mt-3 mb-0 text-muted text-sm">
-									<span class="text-success mr-2"><i
-										class="fa fa-arrow-up"></i> 3.48%</span> <span class="text-nowrap">Since
-										last month</span>
-								</p>
 							</div>
 						</div>
 					</div>
@@ -66,22 +67,19 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col">
-										<h5 class="card-title text-uppercase text-muted mb-0">New
-											users</h5>
-										<span class="h2 font-weight-bold mb-0">2,356</span>
+										<h5 class="card-title text-uppercase text-muted mb-0">Hotel</h5>
+										<span class="h2 font-weight-bold mb-0"><a href='hotels'>管理旅館資料</a></span>
+										<p>
+										<span class="h2 font-weight-bold mb-0"><a
+											href='getEmptyHotelForm'>旅館資料新增</a></span>
 									</div>
 									<div class="col-auto">
 										<div
 											class="icon icon-shape bg-warning text-white rounded-circle shadow">
-											<i class="fas fa-chart-pie"></i>
+											<!-- 											<i class="fas fa-chart-pie"></i> -->
 										</div>
 									</div>
 								</div>
-								<p class="mt-3 mb-0 text-muted text-sm">
-									<span class="text-danger mr-2"><i
-										class="fas fa-arrow-down"></i> 3.48%</span> <span class="text-nowrap">Since
-										last week</span>
-								</p>
 							</div>
 						</div>
 					</div>
@@ -90,21 +88,21 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col">
-										<h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-										<span class="h2 font-weight-bold mb-0">924</span>
+										<h5 class="card-title text-uppercase text-muted mb-0">Restaurant</h5>
+										<span class="h2 font-weight-bold mb-0"><a
+											href='restaurants'>餐廳資料管理</a></span> 
+											<p>
+											<span
+											class="h2 font-weight-bold mb-0"><a
+											href='getEmptyResForm'>餐廳資料新增</a></span>
 									</div>
 									<div class="col-auto">
 										<div
 											class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-											<i class="fas fa-users"></i>
+											<!-- 											<i class="fas fa-users"></i> -->
 										</div>
 									</div>
 								</div>
-								<p class="mt-3 mb-0 text-muted text-sm">
-									<span class="text-warning mr-2"><i
-										class="fas fa-arrow-down"></i> 1.10%</span> <span class="text-nowrap">Since
-										yesterday</span>
-								</p>
 							</div>
 						</div>
 					</div>
@@ -113,21 +111,20 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col">
-										<h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-										<span class="h2 font-weight-bold mb-0">49,65%</span>
+										<h5 class="card-title text-uppercase text-muted mb-0">Announcement</h5>
+										<span class="h2 font-weight-bold mb-0"><a
+											href='announcements'>公告資料管理 </a></span> 
+											<p>
+											<span
+											class="h2 font-weight-bold mb-0"><a href='contents'>站方文章管理</a></span>
 									</div>
 									<div class="col-auto">
 										<div
 											class="icon icon-shape bg-info text-white rounded-circle shadow">
-											<i class="fas fa-percent"></i>
+											<!-- 											<i class="fas fa-percent"></i> -->
 										</div>
 									</div>
 								</div>
-								<p class="mt-3 mb-0 text-muted text-sm">
-									<span class="text-success mr-2"><i
-										class="fas fa-arrow-up"></i> 12%</span> <span class="text-nowrap">Since
-										last month</span>
-								</p>
 							</div>
 						</div>
 					</div>
@@ -135,32 +132,31 @@
 			</div>
 		</div>
 	</div>
-	<div align="center">
-		<h2>_08---管理</h2>
-		<br> <a href='getEmptyHospitalForm'>醫院資料新增</a><br> <a
-			href='hospitals'>醫院資料查詢</a><br> <br>
-		<!-- -------------------------------------------------------- -->
-		<a href='getEmptyHotelForm'>Hotel資料新增</a><br> <a href='hotels'>Hotel資料查詢</a><br>
-		<br>
-		<!-- -------------------------------------------------------- -->
-		<a href='getEmptyResForm'>restaurants資料新增</a><br> <a
-			href='restaurants'>restaurants資料查詢</a><br> <br>
-		<!-- -------------------------------------------------------- -->
-		<a href='contents/add'>contents資料新增</a><br> <a href='contents'>contents資料查詢</a><br>
-		<br>
-		<!-- -------------------------------------------------------- -->
-		<a href='announcements/add'>announcements資料新增</a><br> <a
-			href='announcements'>announcements資料查詢</a><br> <br>
-		<!-- -------------------------------------------------------- -->
-		<a href='${pageContext.request.contextPath}'>回前頁</a>
-	</div>
-	</div>
+<!-- 	<div align="center"> -->
+<!-- 		<!-- 		<h2>_08---管理</h2> --> 
+<!-- 		<br> <a href='getEmptyHospitalForm'>醫院資料新增</a><br> <a -->
+<!-- 			href='hospitals'>醫院資料查詢</a><br> <br> -->
+<!-- 		<!-- -------------------------------------------------------- --> 
+<!-- 		<a href='getEmptyHotelForm'>Hotel資料新增</a><br> <a href='hotels'>Hotel資料查詢</a><br> -->
+<!-- 		<br> -->
+<!-- 		<!-- -------------------------------------------------------- --> 
+<!-- 		<a href='getEmptyResForm'>restaurants資料新增</a><br> <a -->
+<!-- 			href='restaurants'>restaurants資料查詢</a><br> <br> -->
+<!-- 		<!-- -------------------------------------------------------- --> 
+<!-- 		<a href='contents/add'>contents資料新增</a><br> <a href='contents'>contents資料查詢</a><br> -->
+<!-- 		<br> -->
+<!-- 		<!-- -------------------------------------------------------- --> 
+<!-- 		<a href='announcements/add'>announcements資料新增</a><br> <a -->
+<!-- 			href='announcements'>announcements資料查詢</a><br> <br> -->
+<!-- 		<!-- -------------------------------------------------------- --> 
+<%-- 		<a href='${pageContext.request.contextPath}/_01.loginAdminPage'>回前頁</a> --%>
+<!-- 	</div> -->
 
 	<!-- Footer -->
 	<footer class="footer">
 		<div class="row align-items-center justify-content-xl-between">
 			<div class="col-xl-6">
-				<div class="copyright text-center text-xl-left text-muted">
+				<div "copyright text-center text-xl-left text-muted">
 					&copy; 2019 <a href="#" class="font-weight-bold ml-1"
 						target="_blank">pET ʕ•ᴥ•ʔ 陪你</a>
 				</div>
@@ -168,8 +164,6 @@
 
 		</div>
 	</footer>
-	</div>
-	</div>
 	<!--   Core   -->
 	<script
 		src="${pageContext.request.contextPath}/assets/js/plugins/jquery/dist/jquery.min.js"></script>

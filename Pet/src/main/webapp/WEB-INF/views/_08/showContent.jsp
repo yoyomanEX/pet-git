@@ -48,42 +48,7 @@
 
 <script
 	src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
-<style>
-body {
-	margin-top: 100px;
-}
 
-.navbar-default .navbar-nav>li>a {
-	padding: 15px 15px;
-	margin: 5px 0;
-}
-
-.navbar-default {
-	padding: 10px 0;
-	background-color: rgba(255, 255, 255, 0.95);
-	border-color: transparent;
-	box-shadow: 0 0px 13px rgba(0, 0, 0, .2);
-}
-
-.btn-info, .btn-info:hover, .btn-info:focus {
-	color: #FFF !important;
-	background-color: #00bbff !important;
-	border-color: #00bbff !important;
-}
-
-.btn-info {
-	opacity: .8;
-	transition: all 0.1s;
-	-webkit-transition: all 0.1s;
-}
-
-.btn-info:hover, .btn-info:focus {
-	opacity: 1;
-}
-</style>
-<!-- 瀑布流 CSS -->
-<!-- <link rel="stylesheet" -->
-<%-- 	href="${pageContext.request.contextPath}/waterfall.css"> --%>
 
 </head>
 
@@ -91,91 +56,226 @@ body {
 	<!--::header part start::-->
 	<jsp:include page="header.jsp"></jsp:include>
 	<!-- Header part end-->
-	
-	 <div class="col-sm-10 col-sm-offset-1">
-         <div class="col-md-4 col-sm-6">
-             <div class="card-container">
-                <div class="card">
-               
-                    <div class="front">
-                     <c:forEach var='cont' items='${allcontents}'>
-                        <div class="cover">
-                            <img src="<c:url value='getContPicture/${cont.content_id}' />"/>
-                        </div>
-                        <div class="user">
-                            <img class="img-circle" src="images/rotating_card_profile3.png"/>
-                        </div>
-                        <div class="content">
-                            <div class="main">
-                                <h3 class="name"><b style='font-size: 16px;'>${cont.content_title}</b></h3>
-                                <p class="profession">${cont.content_sub}</p>
+<!-- 	 <div class="col-sm-10 col-sm-offset-1"> -->
+<!--          <div class="col-md-4 col-sm-6"> -->
+<!--              <div class="card-container"> -->
+<!--                 <div class="card"> -->
+<!--                     <div class="front"> -->
+<!--                         <div class="cover"> -->
+<!--                             <img src="images/rotating_card_thumb2.png"/> -->
+<!--                         </div> -->
+<!--                         <div class="user"> -->
+<!--                             <img class="img-circle" src="images/rotating_card_profile3.png"/> -->
+<!--                         </div> -->
+<!--                         <div class="content"> -->
+<!--                             <div class="main"> -->
+<!--                                 <h3 class="name">John Marvel</h3> -->
+<!--                                 <p class="profession">CEO</p> -->
 <!--                                 <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they love me everywhere"</p> -->
-                            </div>
-                            <div class="footer">
-                                <i class="fa fa-mail-forward"></i> Auto Rotation
-                            </div>
-                        </div>
-                        </c:forEach>
-                    </div> <!-- end front panel -->
-                    <div class="back">
-                        <div class="header">
-                            <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
-                        </div>
-                        <div class="content">
-                            <div class="main">
-                                <h4 class="text-center">Job Description</h4>
-                                <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p>
+<!--                             </div> -->
+<!--                             <div class="footer"> -->
+<!--                                 <i class="fa fa-mail-forward"></i> Auto Rotation -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> end front panel -->
+<!--                     <div class="back"> -->
+<!--                         <div class="header"> -->
+<!--                             <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5> -->
+<!--                         </div> -->
+<!--                         <div class="content"> -->
+<!--                             <div class="main"> -->
+<!--                                 <h4 class="text-center">Job Description</h4> -->
+<!--                                 <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p> -->
 
-                                <div class="stats-container">
-                                    <div class="stats">
-                                        <h4>235</h4>
-                                        <p>
-                                            Followers
-                                        </p>
-                                    </div>
-                                    <div class="stats">
-                                        <h4>114</h4>
-                                        <p>
-                                            Following
-                                        </p>
-                                    </div>
-                                    <div class="stats">
-                                        <h4>35</h4>
-                                        <p>
-                                            Projects
-                                        </p>
-                                    </div>
-                                </div>
+<!--                                 <div class="stats-container"> -->
+<!--                                     <div class="stats"> -->
+<!--                                         <h4>235</h4> -->
+<!--                                         <p> -->
+<!--                                             Followers -->
+<!--                                         </p> -->
+<!--                                     </div> -->
+<!--                                     <div class="stats"> -->
+<!--                                         <h4>114</h4> -->
+<!--                                         <p> -->
+<!--                                             Following -->
+<!--                                         </p> -->
+<!--                                     </div> -->
+<!--                                     <div class="stats"> -->
+<!--                                         <h4>35</h4> -->
+<!--                                         <p> -->
+<!--                                             Projects -->
+<!--                                         </p> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
 
-                            </div>
-                        </div>
-                        <div class="footer">
-                            <div class="social-links text-center">
-                                <a href="https://creative-tim.com" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
-                                <a href="https://creative-tim.com" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
-                                <a href="https://creative-tim.com" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
-                            </div>
-                        </div>
-                    </div> <!-- end back panel -->
-                </div> <!-- end card -->
-            </div> <!-- end card-container -->
-        </div> <!-- end col sm 3 -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="footer"> -->
+<!--                             <div class="social-links text-center"> -->
+<!--                                 <a href="#" class="facebook"><i class="fa fa-facebook fa-fw"></i></a> -->
+<!--                                 <a href="#" class="google"><i class="fa fa-google-plus fa-fw"></i></a> -->
+<!--                                 <a href="#" class="twitter"><i class="fa fa-twitter fa-fw"></i></a> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> end back panel -->
+<!--                 </div> end card -->
+<!--             </div> end card-container -->
+<!--         </div> end col sm 3 -->
+<!-- <!--         <div class="col-sm-1"></div> --> -->
+<!--         <div class="col-md-4 col-sm-6"> -->
+<!--              <div class="card-container manual-flip"> -->
+<!--                 <div class="card"> -->
+<!--                     <div class="front"> -->
+<!--                         <div class="cover"> -->
+<!--                             <img src="images/rotating_card_thumb.png"/> -->
+<!--                         </div> -->
+<!--                         <div class="user"> -->
+<!--                             <img class="img-circle" src="images/rotating_card_profile2.png"/> -->
+<!--                         </div> -->
+<!--                         <div class="content"> -->
+<!--                             <div class="main"> -->
+<!--                                 <h3 class="name">Andrew Mike</h3> -->
+<!--                                 <p class="profession">Web Developer</p> -->
+<!--                                 <p class="text-center">"Lamborghini Mercy <br>Your chick she so thirsty <br>I'm in that two seat Lambo"</p> -->
+<!--                             </div> -->
+<!--                             <div class="footer"> -->
+<!--                                 <button class="btn btn-simple" onclick="rotateCard(this)"> -->
+<!--                                     <i class="fa fa-mail-forward"></i> Manual Rotation -->
+<!--                                 </button> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> end front panel -->
+<!--                     <div class="back"> -->
+<!--                         <div class="header"> -->
+<!--                             <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5> -->
+<!--                         </div> -->
+<!--                         <div class="content"> -->
+<!--                             <div class="main"> -->
+<!--                                 <h4 class="text-center">Job Description</h4> -->
+<!--                                 <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p> -->
 
+<!--                                 <div class="stats-container"> -->
+<!--                                     <div class="stats"> -->
+<!--                                         <h4>235</h4> -->
+<!--                                         <p> -->
+<!--                                             Followers -->
+<!--                                         </p> -->
+<!--                                     </div> -->
+<!--                                     <div class="stats"> -->
+<!--                                         <h4>114</h4> -->
+<!--                                         <p> -->
+<!--                                             Following -->
+<!--                                         </p> -->
+<!--                                     </div> -->
+<!--                                     <div class="stats"> -->
+<!--                                         <h4>35</h4> -->
+<!--                                         <p> -->
+<!--                                             Projects -->
+<!--                                         </p> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
 
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="footer"> -->
+<!--                             <button class="btn btn-simple" rel="tooltip" title="Flip Card" onclick="rotateCard(this)"> -->
+<!--                                 <i class="fa fa-reply"></i> Back -->
+<!--                             </button> -->
+<!--                             <div class="social-links text-center"> -->
+<!--                                 <a href="https://creative-tim.com" class="facebook"><i class="fa fa-facebook fa-fw"></i></a> -->
+<!--                                 <a href="https://creative-tim.com" class="google"><i class="fa fa-google-plus fa-fw"></i></a> -->
+<!--                                 <a href="https://creative-tim.com" class="twitter"><i class="fa fa-twitter fa-fw"></i></a> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> end back panel -->
+<!--                 </div> end card -->
+<!--             </div> end card-container -->
+<!--         </div> end col sm 3 -->
+<!-- <!--         <div class="col-sm-1"></div> --> -->
+<!--         <div class="col-md-4 col-sm-6"> -->
+<!--             <div class="card-container"> -->
+<!--                 <div class="card"> -->
+<!--                     <div class="front"> -->
+<!--                         <div class="cover"> -->
+<!--                             <img src="images/rotating_card_thumb3.png"/> -->
+<!--                         </div> -->
+<!--                         <div class="user"> -->
+<!--                             <img class="img-circle" src="images/rotating_card_profile.png"/> -->
+<!--                         </div> -->
+<!--                         <div class="content"> -->
+<!--                             <div class="main"> -->
+<!--                                 <h3 class="name">Inna Corman</h3> -->
+<!--                                 <p class="profession">Product Manager</p> -->
 
-<!-- 	<div style="height: 30px"></div> -->
-<!-- 	<div class="container"> -->
-<!-- 		<div class="row"> -->
-<%-- 			<c:forEach var='cont' items='${allcontents}'> --%>
-<!-- 				<div class="col-sm-6 col-md-3"> -->
-<!-- 					<div class="thumbnail"> -->
-<%-- 						<img src="<c:url value='getContPicture/${cont.content_id}' />" /> --%>
-<!-- 						<div class="caption"> -->
-<!-- 							<p> -->
-<%-- 								<b style='font-size: 16px;'>${cont.content_title}</b> --%>
-<!-- 							</p> -->
-<%-- 							<p>${cont.content_sub}</p> --%>
-<!-- 							<p> -->
+<!--                                 <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they love me everywhere"</p> -->
+<!--                             </div> -->
+<!--                             <div class="footer"> -->
+<!--                                 <div class="rating"> -->
+<!--                                     <i class="fa fa-mail-forward"></i> Auto Rotation -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> end front panel -->
+<!--                     <div class="back"> -->
+<!--                         <div class="header"> -->
+<!--                             <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5> -->
+<!--                         </div> -->
+<!--                         <div class="content"> -->
+<!--                             <div class="main"> -->
+<!--                                 <h4 class="text-center">Job Description</h4> -->
+<!--                                 <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p> -->
+
+<!--                                 <div class="stats-container"> -->
+<!--                                     <div class="stats"> -->
+<!--                                         <h4>235</h4> -->
+<!--                                         <p> -->
+<!--                                             Followers -->
+<!--                                         </p> -->
+<!--                                     </div> -->
+<!--                                     <div class="stats"> -->
+<!--                                         <h4>114</h4> -->
+<!--                                         <p> -->
+<!--                                             Following -->
+<!--                                         </p> -->
+<!--                                     </div> -->
+<!--                                     <div class="stats"> -->
+<!--                                         <h4>35</h4> -->
+<!--                                         <p> -->
+<!--                                             Projects -->
+<!--                                         </p> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="footer"> -->
+<!--                             <div class="social-links text-center"> -->
+<!--                                 <a href="#" class="facebook"><i class="fa fa-facebook fa-fw"></i></a> -->
+<!--                                 <a href="#" class="google"><i class="fa fa-google-plus fa-fw"></i></a> -->
+<!--                                 <a href="#" class="twitter"><i class="fa fa-twitter fa-fw"></i></a> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> end back panel -->
+<!--                 </div> end card -->
+<!--             </div> end card-container -->
+<!--         </div> end col-sm-3 -->
+<!--         </div> end col-sm-10 -->
+<!--     <div class="space-200"></div> -->
+    
+
+	<div style="height: 30px"></div>
+	<div class="container">
+		<div class="row">
+			<c:forEach var='cont' items='${allcontents}'>
+				<div class="col-sm-6 col-md-3">
+					<div class="thumbnail">
+						<img src="<c:url value='getContPicture/${cont.content_id}' />" />
+						<div class="caption">
+							<p>
+								<b style='font-size: 16px;'>${cont.content_title}</b>
+							</p>
+							<p>${cont.content_sub}</p>
+							<p>
 <%-- 																<a href="<spring:url value='/announcement?id=${ann.announce_id}' />" --%>
 <!-- 																	class="btn btn-primary"> <span -->
 <!-- 																	class="glyphicon-info-sigh glyphicon"></span>詳細資料 -->
@@ -183,13 +283,13 @@ body {
 <%-- 																	href="<spring:url value='/product.json?id=${ann.announce_id}' />" --%>
 <!-- 																	class="btn btn-primary">  -->
 <!-- 																</a> -->
-<!-- 							</p> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<%-- 			</c:forEach> --%>
-<!-- 		</div> -->
-<!-- 	</div> -->
+							</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
 
 	<!-- footer part start-->
 	<jsp:include page="footer.jsp"></jsp:include>
@@ -220,7 +320,36 @@ body {
 	<%-- 	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script> --%>
 	<!-- 	<script -->
 	<%-- 		src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script> --%>
+<!-- 	<script src="js/jquery-1.10.2.js" type="text/javascript"></script> -->
+<!-- 	<script src="js/bootstrap.min.js" type="text/javascript"></script> -->
 
+<!-- <script type="text/javascript"> -->
+//     $().ready(function(){
+//         $('[rel="tooltip"]').tooltip();
+
+//         $('a.scroll-down').click(function(e){
+//             e.preventDefault();
+//             scroll_target = $(this).data('href');
+//              $('html, body').animate({
+//                  scrollTop: $(scroll_target).offset().top - 60
+//              }, 1000);
+//         });
+
+//     });
+
+//     function rotateCard(btn){
+//         var $card = $(btn).closest('.card-container');
+//         console.log($card);
+//         if($card.hasClass('hover')){
+//             $card.removeClass('hover');
+//         } else {
+//             $card.addClass('hover');
+//         }
+//     }
+
+
+<!-- </script> -->
+	
 
 
 

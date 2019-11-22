@@ -29,6 +29,11 @@
 <link
 	href="${pageContext.request.contextPath}/assets/css/argon-dashboard.css?v=1.1.0"
 	rel="stylesheet" />
+<style>
+label{
+	font-size:24px;
+}
+</style>
 </head>
 
 <body class="">
@@ -45,21 +50,22 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col">
-										<h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
-										<span class="h2 font-weight-bold mb-0">350,897</span>
+										<h5 class="card-title text-uppercase text-muted mb-0">Hospital</h5>
+										<span class="h2 font-weight-bold mb-0"> <a
+											href='hospitals'>管理醫院資料</a></span> 
+											<p>
+											<span
+											class="h2 font-weight-bold mb-0"> <a
+											href='getEmptyHospitalForm'>醫院資料新增</a>
+										</span>
 									</div>
 									<div class="col-auto">
 										<div
 											class="icon icon-shape bg-danger text-white rounded-circle shadow">
-											<i class="fas fa-chart-bar"></i>
+											<!-- 											<i class="fas fa-chart-bar"></i> -->
 										</div>
 									</div>
 								</div>
-								<p class="mt-3 mb-0 text-muted text-sm">
-									<span class="text-success mr-2"><i
-										class="fa fa-arrow-up"></i> 3.48%</span> <span class="text-nowrap">Since
-										last month</span>
-								</p>
 							</div>
 						</div>
 					</div>
@@ -68,22 +74,19 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col">
-										<h5 class="card-title text-uppercase text-muted mb-0">New
-											users</h5>
-										<span class="h2 font-weight-bold mb-0">2,356</span>
+										<h5 class="card-title text-uppercase text-muted mb-0">Hotel</h5>
+										<span class="h2 font-weight-bold mb-0"><a href='hotels'>管理旅館資料</a></span>
+										<p>
+										<span class="h2 font-weight-bold mb-0"><a
+											href='getEmptyHotelForm'>旅館資料新增</a></span>
 									</div>
 									<div class="col-auto">
 										<div
 											class="icon icon-shape bg-warning text-white rounded-circle shadow">
-											<i class="fas fa-chart-pie"></i>
+											<!-- 											<i class="fas fa-chart-pie"></i> -->
 										</div>
 									</div>
 								</div>
-								<p class="mt-3 mb-0 text-muted text-sm">
-									<span class="text-danger mr-2"><i
-										class="fas fa-arrow-down"></i> 3.48%</span> <span class="text-nowrap">Since
-										last week</span>
-								</p>
 							</div>
 						</div>
 					</div>
@@ -92,21 +95,21 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col">
-										<h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-										<span class="h2 font-weight-bold mb-0">924</span>
+										<h5 class="card-title text-uppercase text-muted mb-0">Restaurant</h5>
+										<span class="h2 font-weight-bold mb-0"><a
+											href='restaurants'>餐廳資料管理</a></span> 
+											<p>
+											<span
+											class="h2 font-weight-bold mb-0"><a
+											href='getEmptyResForm'>餐廳資料新增</a></span>
 									</div>
 									<div class="col-auto">
 										<div
 											class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-											<i class="fas fa-users"></i>
+											<!-- 											<i class="fas fa-users"></i> -->
 										</div>
 									</div>
 								</div>
-								<p class="mt-3 mb-0 text-muted text-sm">
-									<span class="text-warning mr-2"><i
-										class="fas fa-arrow-down"></i> 1.10%</span> <span class="text-nowrap">Since
-										yesterday</span>
-								</p>
 							</div>
 						</div>
 					</div>
@@ -115,21 +118,20 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col">
-										<h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-										<span class="h2 font-weight-bold mb-0">49,65%</span>
+										<h5 class="card-title text-uppercase text-muted mb-0">Announcement</h5>
+										<span class="h2 font-weight-bold mb-0"><a
+											href='announcements'>公告資料管理 </a></span> 
+											<p>
+											<span
+											class="h2 font-weight-bold mb-0"><a href='contents'>站方文章管理</a></span>
 									</div>
 									<div class="col-auto">
 										<div
 											class="icon icon-shape bg-info text-white rounded-circle shadow">
-											<i class="fas fa-percent"></i>
+											<!-- 											<i class="fas fa-percent"></i> -->
 										</div>
 									</div>
 								</div>
-								<p class="mt-3 mb-0 text-muted text-sm">
-									<span class="text-success mr-2"><i
-										class="fas fa-arrow-up"></i> 12%</span> <span class="text-nowrap">Since
-										last month</span>
-								</p>
 							</div>
 						</div>
 					</div>
@@ -138,12 +140,7 @@
 		</div>
 	</div>
 	<div align="center">
-		<p>
-		<hr>
-		<div class="container">
-			<h1 style="text-align: center">新增Content資料</h1>
-		</div>
-		<hr>
+		<h1 style="margin:30px;" align="center">新增文章</h1>
 		<div class="container">
 			<!--       三個地方要完全一樣 -->
 			<form:form method='POST' modelAttribute="ContentBean"
@@ -153,7 +150,7 @@
 						<label class="control-label col-lg-2 col-lg-2" for='content_title'>
 							標題 </label>
 						<div class="col-lg-10">
-							<form:input id="content_title" path="content_title" type='text'
+							<form:input style="width:500px;" id="content_title" path="content_title" type='text'
 								class='form:input-large' />
 						</div>
 					</div>
@@ -162,7 +159,7 @@
 						<label class="control-label col-lg-2 col-lg-2" for='content_sub'>
 							內容 </label>
 						<div class="col-lg-10">
-							<form:input id="content_sub" path="content_sub" type='text'
+							<form:input style="width:500px; height:300px;" id="content_sub" path="content_sub" type='text'
 								class='form:input-large' />
 						</div>
 					</div>

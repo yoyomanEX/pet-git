@@ -360,6 +360,8 @@
 	<!-- 						</div> -->
 
 	<!-- waterfall content end -->
+    
+	
 	<!--Announcement part start::-->
 	<div style="height: 30px"></div>
 	<section class="container">
@@ -501,7 +503,7 @@
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/masonry.pkgd.min.js"></script>
 	<script src="js/imagesloaded.pkgd.min.js"></script>
-<!--11111111111111111111111111  -->
+
 
 
 
