@@ -86,17 +86,26 @@ public class FriendController {
 		return "_03/404";
 	}
 
-	@RequestMapping("/memberblog/{member_Id}")
+	@RequestMapping(value = "/memberblog/{member_Id}", method = RequestMethod.POST)
 	public String getProductsByCategory(@PathVariable("member_Id") String member_Id, Model model,HttpServletRequest request) {
-		List<ArticleBean> art = Artservice.getArticlesByMemberNo(member_Id);
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		MemberBean mid = (MemberBean) session.getAttribute("LoginOK");
+
 		String mid1 = mid.getMember_Id();
 		MyBlogBean mbb=new MyBlogBean();
 		mbb.setUserid(member_Id);
 		mbb.setOtherid(mid1);
 		Myblogservice.comehome(mbb);
+
+		List<ArticleBean> art = Artservice.getArticlesByMemberNo2(mid1);
 		model.addAttribute("arts", art);
+
+		List<ArticleBean> arts = Artservice.getArticleByDate(mid1);
+		model.addAttribute("artss", arts);
+
+		List<ArticleBean> artss = Artservice.getArticlelikeByMember(mid1);
+		model.addAttribute("artsss", arts);
+		
 		return "_02/myblog";
 	}
 

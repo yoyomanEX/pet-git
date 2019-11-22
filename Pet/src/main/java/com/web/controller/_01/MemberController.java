@@ -59,7 +59,6 @@ public class MemberController {
 
 	}
 
-
 	@RequestMapping(value = "/")
 	public String home(Model model) {
 		model.addAttribute("MemberBean", new MemberBean());
@@ -67,7 +66,7 @@ public class MemberController {
 //		return "_01/memberinsert";
 		// 會員登入
 //		return "_01/memberlogin";
-		
+
 		return "index";
 
 	}
@@ -91,7 +90,7 @@ public class MemberController {
 		MemberBean b1 = memberService.checkIDPassword(userId, password);
 		System.out.println(b1);
 
-		if (b1!=null) {
+		if (b1 != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("LoginOK", b1);
 			return "redirect: login";// 登入成功
@@ -281,7 +280,7 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		session.setAttribute("LoginOK", mb);
 
-		return "_01/ttt";
+		return "index";
 	}
 
 	String noImage = "/images/NoImage.png";
@@ -345,7 +344,8 @@ public class MemberController {
 		return result;
 
 	}
-	//會員登出
+
+	// 會員登出
 	@RequestMapping(value = "/_01.getLogout")
 	public String getLogout(Model model, HttpServletRequest request) {
 		model.addAttribute("MemberBean", new MemberBean());
@@ -354,14 +354,13 @@ public class MemberController {
 		return "index";
 
 	}
-	
-	@RequestMapping("/_01.memberManagement")
-	 public String friendlist(String mid1, Model model, HttpServletRequest request) {
-	  HttpSession session = request.getSession();
-	  session.getAttribute("LoginOK");
-	  
-	  return "_01/memberManagement";
-	 }
 
+	@RequestMapping("/_01.memberManagement")
+	public String friendlist(String mid1, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.getAttribute("LoginOK");
+
+		return "_01/memberManagement";
+	}
 
 }

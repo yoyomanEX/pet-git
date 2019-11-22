@@ -63,13 +63,13 @@ $(document).ready(function(){
 	
 })
 
-// $(document).ready(function(){
-// 	$("#showmessage2").click(function(){
-// 		$("#hidemessage2").toggle();
+$(document).ready(function(){
+	$("#showmessage2").click(function(){
+		$("#hidemessage2").toggle();
 		
-// 	})
+	})
 	
-// })
+})
 
 function  confirmDelete(no) {
 	alert("Blog ID===" + no)
@@ -97,7 +97,8 @@ function myFunction() {
 
 function countdown() {
 	var s = document.getElementById('timer');
-	s.innerHTML = s.innerHTML - 1;
+	if(s.innerHTML!="") s.innerHTML = s.innerHTML - 1;
+	
 	if (s.innerHTML == 0)
 	window.location = "<spring:url value='/blogIndex'/>";
 	else
@@ -359,7 +360,7 @@ $(document).ready(function() {
                                     <div class="comment-wrapper d-flex">
                                         <!-- Comment Meta -->
                                         <div class="comment-author">
-                                            <img src="img/blog-img/15.jpg" alt="">
+                                             <img width='600' height='500' src='<c:url value="/getPicture"/>'/>
                                         </div>
                                         <!-- Comment Content -->
                                         <div class="comment-content">

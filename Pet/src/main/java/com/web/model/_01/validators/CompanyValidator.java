@@ -23,39 +23,10 @@ public class CompanyValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "company_email", "company_email.not.empty","email欄不能空白");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "company_password", "company_password.not.empty","密碼欄不能空白");
 		if(!companyBean.getCompany_id().isEmpty()) {
-			if(companyBean.getCompany_id().length()<6 || companyBean.getCompany_id().length()>12) {
-				errors.rejectValue("company_id","", "帳號欄須介於6~12個字元");
+			if(companyBean.getCompany_id().length()<8 || companyBean.getCompany_id().length()>8) {
+				errors.rejectValue("company_id","", "帳號欄須8個字元");
 			}
-			String[] list1 = new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-			String[] list2 = new String[] {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
-			String[] list3 = new String[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-			boolean f1 = false;
-			for(String s1:list1) {
-				if(companyBean.getCompany_id().contains(s1)) {
-					f1=true;
-				}
-			}
-			if(!f1) {
-				errors.rejectValue("company_id","", "帳號欄須包含數字");
-			}
-			boolean f2 = false;
-			for(String s2:list2) {
-				if(companyBean.getCompany_id().contains(s2)) {
-					f2=true;
-				}
-			}
-			if(!f2) {
-				errors.rejectValue("company_id","", "帳號欄須包含小寫英文字母");
-			}
-			boolean f3 = false;
-			for(String s3:list3) {
-				if(companyBean.getCompany_id().contains(s3)) {
-					f3=true;
-				}
-			}
-			if(!f3) {
-				errors.rejectValue("company_id","", "帳號欄須包含大寫英文字母");
-			}
+			
 		}
 		if(!companyBean.getCompany_password().isEmpty()) {
 			if(companyBean.getCompany_password().length()<8 || companyBean.getCompany_password().length()>16) {

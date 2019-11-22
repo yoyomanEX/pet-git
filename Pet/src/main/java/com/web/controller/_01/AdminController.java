@@ -156,7 +156,7 @@ public class AdminController {
 		adminService.updataAdmin(ab);
 		HttpSession session = request.getSession();
 		session.setAttribute("AdminLoginOK", ab);
-		return "_01/ttt";
+		return "_01/adminManagement";
 
 	}
 	//管理員登出

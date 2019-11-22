@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.web.model._01.AdminBean;
 import com.web.model._01.CompanyBean;
 import com.web.model._01.validators.CompanyValidator;
 import com.web.service.impl._01.CompanyService;
@@ -153,10 +152,13 @@ public class CompanyController {
 			}
 			return "_01/companyupdate";
 		}
-		companyService.updataCompany(cb);
 		HttpSession session = request.getSession();
+		CompanyBean b1 = (CompanyBean)session.getAttribute("CompanyLoginOK");
+		cb.setId(b1.getId());
+		companyService.updataCompany(cb);
+		
 		session.setAttribute("CompanyLoginOK", cb);
-		return "_01/ttt";
+		return "_07/companyManagementIndex";
 
 	}
 	//廠商登出

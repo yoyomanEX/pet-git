@@ -7,7 +7,8 @@
 
   <meta charset="utf-8">
   
-  <title>SB Admin 2 - Login</title>
+ 	<title>pET ʕ•ᴥ•ʔ 陪你</title>
+<link rel="icon" href="img/about_icon.png">
 
   
   <!-- Custom styles for this template-->
@@ -36,17 +37,12 @@
                   </div>
                   <form:form modelAttribute="AdminBean" action='_01.loginAdmin' method='POST' class="user">
                     <div class="form-group">
-                      <form:input path='admin_Id'  class="form-control form-control-user" placeholder="Enter Email Address..."/>
+                      <form:input path='admin_Id'  class="form-control form-control-user" placeholder="Account"/>
                     </div>
                     <div class="form-group">
                       <form:input path='password'  class="form-control form-control-user"  placeholder="Password"/>
                     </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
-                      </div>
-                    </div>
+                    
                     <button type="submit" class="btn btn-primary btn-user btn-block">
                       Login
                     </button>
@@ -56,11 +52,9 @@
                     </a>
                   </form:form>
                   <hr>
+                  
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="_01.saveAdminPage">Create an Account!</a>
+                    <a class="small" href="_01.saveAdminPage">註冊</a>
                   </div>
                 </div>
               </div>

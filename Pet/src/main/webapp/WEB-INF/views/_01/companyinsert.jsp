@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   
 
-  <title>SB Admin 2 - Register</title>
+  <title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -51,7 +51,7 @@
                     <form:errors path="company_password" cssStyle="color: red;"/>
                   </div>
                   <div class="col-sm-6">
-                    <form:input path='checkPassword' class="form-control form-control-user"  placeholder="Repeat Password"/>
+                    <form:input path='checkPassword' type="password" class="form-control form-control-user"  placeholder="Repeat Password"/>
                     <form:errors path="checkPassword" cssStyle="color: red;"/>
                   </div>
                 </div>
@@ -67,7 +67,7 @@
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block">
-                  Register Account
+                  	送出
                	</button>
                 
               </form:form>
