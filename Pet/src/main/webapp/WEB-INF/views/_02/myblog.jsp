@@ -320,7 +320,7 @@ $(document).ready(function() {
 							<ol class="popular-tags d-flex flex-wrap" >
 								<c:forEach var='visit' items='${visit}'>
                             <li>
-                                  <img src="getMbPicture/${visit.otherid}" width="80" height="80" alt="">&nbsp&nbsp
+                                  <img src="getMbPicture/${visit}" width="80" height="80" alt="">&nbsp&nbsp
                             </li>
                  	      		</c:forEach>
                         </ol>

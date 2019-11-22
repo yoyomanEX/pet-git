@@ -6,5 +6,5 @@ import com.web.model._03.MyBlogBean;
 
 public interface MyBlogService {
 	void comehome(MyBlogBean Mybolgbean);
-	public List<MyBlogBean> getByUser(String userid);
+	public List<String> getByUser(String userid);
 }

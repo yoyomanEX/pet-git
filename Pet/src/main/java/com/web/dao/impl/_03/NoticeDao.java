@@ -9,6 +9,6 @@ public interface NoticeDao {
 	void addFriendNotice(NoticeBean Noticebean);
 	void addMessageNotice(NoticeBean Noticebean);
 	public List<NoticeBean> findStatusByUser(String userid);
-	void deleteMeStatusByUser(String userid);
+	void deleteMeStatusByUser(String userid,Integer articleid);
 	void deleteFrStarusByUser(String userid);
 }

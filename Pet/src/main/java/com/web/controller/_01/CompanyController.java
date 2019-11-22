@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.web.model._01.AdminBean;
 import com.web.model._01.CompanyBean;
 import com.web.model._01.validators.CompanyValidator;
 import com.web.service.impl._01.CompanyService;

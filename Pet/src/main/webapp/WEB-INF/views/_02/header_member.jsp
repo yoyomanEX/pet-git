@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!-- Page Wrapper -->
+
 <script>
 	function room() {
 		window
@@ -50,8 +51,7 @@
 				success : function(data) {
 					console.log("ok");
 					if(data.length!=0){
-						$(".fa-bell").addClass("fa-2x");
-						$(".fa-bell").addClass("text-danger");
+						$(".fa-bell").addClass("text-warning");
 					}
 					showNotice(data);
 				}
@@ -59,11 +59,13 @@
 		}
 	function NoticeClick(){
 		clearInterval(Stop);
-		$(".fa-bell").removeClass("fa-2x");
-		$(".fa-bell").removeClass("text-danger");
+		$("#dataTotal").removeClass("badge badge-danger badge-counter").html("");
+		$(".fa-bell").removeClass("text-warning");
 	}
 
 	function showNotice(data) {
+		document.getElementById("dataTotal").innerHTML = data.length
+		
 		var txt = "";
 		for (i = 0; i < data.length; i++) {
 			if(data[i].friendstatus!=null){
@@ -79,7 +81,7 @@
 				+'width="60" height="60" src="'
 				+'getMbPicture/'+data[i].otherid+'">'
 				+ '</div><div class="font-weight-bold"><div class="text-truncate">'
-				+'您的文章有新留言</div></div></a>';		
+				+'您的文章'+data[i].articlebean.title+'有新留言</div></div></a>';		
 		}}
 		document.getElementById("test1").innerHTML = txt;
 	}
@@ -168,7 +170,7 @@
 						<h6 class="collapse-header">&nbsp&nbsp好友清單</h6>
 						<a class="collapse-item" href="friendlist"><i class="fa fa-users"></i>&nbsp&nbsp好友列表</a> <a
 							class="collapse-item" href="application"><i class="fa fa-user-plus"></i>&nbsp&nbsp申請列表</a> <a
-							class="collapse-item" href="waiting"><i class="fa fa-bell"></i>&nbsp&nbsp等候回覆</a>
+							class="collapse-item" href="waiting"><i class="fab fa-android"></i>&nbsp&nbsp等候回覆</a>
 					</div>
 				</div></li>
 
@@ -275,7 +277,7 @@
 							class="nav-link dropdown-toggle" href="#" id="alertsDropdown" onclick="NoticeClick()"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
-<!-- 								<span class="badge badge-danger badge-counter">3+</span> -->
+								<span id="dataTotal" class="badge badge-danger badge-counter"></span>
 						</a> <!-- Dropdown - Alerts -->
 							<div
 								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
