@@ -191,6 +191,10 @@
 					</div>
 				</div></li>
 				
+			<li class="nav-item"><a class="nav-link"
+			href="<spring:url value='/memberjoinactivity'/>"> <i
+				class="fas fa-paw"></i> <span>查詢已參與活動</span></a></li>
+				
 						<!-- Nav Item - Utilities Collapse Menu -->
 
 			<li class="nav-item"><a class="nav-link collapsed" href="${pageContext.request.contextPath}/06/PetOrderAll"> <i class="fas fa-bone"></i> <span>會員訂單</span></a></li>
@@ -322,7 +326,7 @@
 								class="nav-link dropdown-toggle" href="#" id="userDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> <span
-									class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:20px">你好，${LoginOK.member_Id }</span>
+									class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:20px">你好，${LoginOK.name }</span>
 									<img class="img-profile rounded-circle" width='60' height='60' src='getPicture' />
 							</a> <!-- Dropdown - User Information -->
 								<div

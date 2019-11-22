@@ -46,7 +46,7 @@
 					<c:choose>
    						<c:when test="${empty LoginOK}">
    							<div class="sub_header_social_icon float-right">
-							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">Longin</a>
+							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">登入/註冊</a>
 							</div>
     					</c:when>
     
@@ -60,7 +60,7 @@
 								class="nav-link dropdown-toggle" href="#" id="userDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> <span
-									class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:20px">你好，${LoginOK.member_Id }</span>
+									class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:20px">你好，${LoginOK.name }</span>
 									<img class="img-profile rounded-circle" width='60' height='60' src='getPicture' />
 							</a> <!-- Dropdown - User Information -->
 								<div
@@ -132,7 +132,7 @@
 									<li class="nav-item"><a
 										href="<spring:url value='/_08/contents_Front'/>"
 										class="nav-link">𨑨迌 食飯</a></li>
-									<li class="nav-item"><a href="#" class="nav-link">寵物跑跳碰</a>
+									<li class="nav-item"><a href="<spring:url value='/allactivity'/>" class="nav-link">寵物跑跳碰</a>
 									</li>
 									<li class="nav-item"><a
 										href="<spring:url value='/06/petProductSale'/>"
