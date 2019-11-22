@@ -360,7 +360,7 @@ $(document).ready(function() {
                                     <div class="comment-wrapper d-flex">
                                         <!-- Comment Meta -->
                                         <div class="comment-author">
-                                            <img src="img/blog-img/15.jpg" alt="">
+                                             <img width='600' height='500' src='<c:url value="/getPicture"/>'/>
                                         </div>
                                         <!-- Comment Content -->
                                         <div class="comment-content">

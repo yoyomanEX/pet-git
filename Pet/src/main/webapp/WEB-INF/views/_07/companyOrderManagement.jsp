@@ -51,26 +51,17 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
-			<!-- Nav Item - Dashboard -->
-<!-- 			<li class="nav-item"><a class="nav-link" href="index.html"> -->
-<!-- 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span> -->
-<!-- 			</a></li> -->
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
 			<!-- Heading -->
-<!-- 			<div class="sidebar-heading">XXXXXXX</div> -->
 
-
-			<!-- Nav Item - Pages Collapse Menu -->
 			<!-- Nav Item - 前台頁面-->
 			<li class="nav-item">
 			<a href="<spring:url value='/'/>" class="nav-link collapsed"> 
 				<span style='margin-left: 10px;' class='btn btn-danger'>pET寵物網</span></a>
 			
 			</li>
-			
-			
 			<!-- Nav Item - 商品管理-->
 			<li class="nav-item">
 			<a class="nav-link collapsed" href="CompanyManagement"
@@ -157,8 +148,7 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content內文開始 -->
-      
-      <!-- Begin Page Content -->
+
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
