@@ -281,11 +281,11 @@
 
                 <div class="dropdown-divider"></div>
                 
-                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                 <a class="dropdown-item" href="_01.updataCompanyPage" >
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
               		  修改資料
                 </a>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="_01.getCompanyLogout" >
                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
               		  登出
                 </a>
@@ -394,24 +394,7 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">確定要登出嗎?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">您真的要離開 PET陪你寵物網 廠商管理系統嗎Q_Q</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
-          <a class="btn btn-primary" href="${pageContext.request.contextPath}/login.jsp">登出</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

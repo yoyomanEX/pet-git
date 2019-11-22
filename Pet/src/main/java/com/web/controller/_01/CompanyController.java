@@ -153,10 +153,13 @@ public class CompanyController {
 			}
 			return "_01/companyupdate";
 		}
-		companyService.updataCompany(cb);
 		HttpSession session = request.getSession();
+		CompanyBean b1 = (CompanyBean)session.getAttribute("CompanyLoginOK");
+		cb.setId(b1.getId());
+		companyService.updataCompany(cb);
+		
 		session.setAttribute("CompanyLoginOK", cb);
-		return "_01/ttt";
+		return "_07/companyManagementIndex";
 
 	}
 	//廠商登出

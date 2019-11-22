@@ -6,7 +6,7 @@
 
   <meta charset="utf-8">
   
-  <title>SB Admin 2 - Login</title>
+  <title>pET ʕ•ᴥ•ʔ廠商後台管理</title>
 
   
   <!-- Custom styles for this template-->
@@ -35,28 +35,21 @@
                   </div>
                   <form:form modelAttribute="CompanyBean" action='_01.loginCompany' method='POST' class="user">
                     <div class="form-group">
-                      <form:input path='company_id'  class="form-control form-control-user" placeholder="Enter Email Address..."/>
+                      <form:input path='company_id'  class="form-control form-control-user" placeholder="Account"/>
                     </div>
                     <div class="form-group">
-                      <form:input path='company_password'  class="form-control form-control-user"  placeholder="Password"/>
+                      <form:input path='company_password' type="password" class="form-control form-control-user"  placeholder="Password"/>
                     </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
-                      </div>
-                    </div>
+                    
                     <button type="submit" class="btn btn-primary btn-user btn-block">
                       Login
                     </button>
                     
                   </form:form>
                   <hr>
+                  
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
+                    <a class="small" href="_01.saveCompanyPage">註冊</a>
                   </div>
                 </div>
               </div>

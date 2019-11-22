@@ -281,7 +281,7 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		session.setAttribute("LoginOK", mb);
 
-		return "_01/ttt";
+		return "index";
 	}
 
 	String noImage = "/images/NoImage.png";

@@ -9,7 +9,8 @@
   <meta charset="utf-8">
   
 
-  <title>SB Admin 2 - Register</title>
+  <title>pET ʕ•ᴥ•ʔ 陪你</title>
+<link rel="icon" href="img/about_icon.png">
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
