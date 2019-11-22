@@ -31,8 +31,6 @@
 <link rel="stylesheet" href="css/index.css">
 <!-- 瀑布流 CSS -->
 <link rel="stylesheet" href="waterfall.css">
-<!-- 111111111111111111111111111111111111 -->
-
 
 </head>
 
@@ -48,7 +46,7 @@
 					<c:choose>
    						<c:when test="${empty LoginOK}">
    							<div class="sub_header_social_icon float-right">
-							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">登入/註冊</a>
+							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">Longin</a>
 							</div>
     					</c:when>
     
@@ -62,7 +60,7 @@
 								class="nav-link dropdown-toggle" href="#" id="userDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> <span
-									class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:20px">你好，${LoginOK.name }</span>
+									class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:20px">你好，${LoginOK.member_Id }</span>
 									<img class="img-profile rounded-circle" width='60' height='60' src='getPicture' />
 							</a> <!-- Dropdown - User Information -->
 								<div
@@ -89,7 +87,29 @@
 					
 
 				</nav>
-				
+				<!-- End of Topbar -->
+	
+<!-- 		<div class="sub_header"> -->
+<!-- 			<div class="container"> -->
+<!-- 				<div class="row align-items-center"> -->
+<!-- 					<div class="col-4 col-md-4 col-xl-6"> -->
+<!-- 						<div id="logo"> -->
+<!-- 							<a href="index.html"><img src="img/Logo.png" alt="" title="" /></a> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-8 col-md-8 col-xl-6 "> -->
+<%-- 						<c:if test="${empty LoginOK}"> --%>
+<!-- 							<div class="sub_header_social_icon float-right"> -->
+<!-- 							<a href="#"><i class="flaticon-phone"></i>02</a> -->
+<!-- 							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">Longin</a> -->
+<!-- 							<a href="friendlist" class="btn_1 d-none d-md-inline-block">account</a> -->
+<!-- 						</div> -->
+<%-- 						</c:if> --%>
+						
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
 
 		<div class="main_menu">
@@ -272,10 +292,74 @@
 				src="img/icon/chat-g.svg" href="#" /></li>
 		</ul>
 	</div>
-	
+	<!-- Toolbar part end -->
+
+	<!-- 瀑布流文章 waterfall content here -->
+
+	<!-- 						<div id="#"> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/1"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/2"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/3"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/4"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/5"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/6"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/7"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/8"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/9"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/10"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/11"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/12"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/13"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/14"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/15"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/16"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/17"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/18"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/19"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/20"> -->
+	<!-- 							</div> -->
+	<!-- 						</div> -->
+
 	<!-- waterfall content end -->
-    
-	
 	<!--Announcement part start::-->
 	<div style="height: 30px"></div>
 	<section class="container">
@@ -417,7 +501,7 @@
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/masonry.pkgd.min.js"></script>
 	<script src="js/imagesloaded.pkgd.min.js"></script>
-
+<!--11111111111111111111111111  -->
 
 
 
