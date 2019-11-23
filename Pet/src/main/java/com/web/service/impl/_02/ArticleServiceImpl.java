@@ -226,7 +226,12 @@ public class ArticleServiceImpl implements ArticleService{
 		dao.editStyle(sb);	
 	}
 
-
+	@Transactional
+	@Override
+	public void DeletComm(ReplyBean replyno) {
+		dao.DeletComm(replyno);
+		
+	}
 
 
 

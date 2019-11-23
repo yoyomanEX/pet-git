@@ -142,7 +142,21 @@ public class ArticleController {
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 //		System.out.println(loginToken);
 		String member = loginToken.getMember_Id();
-		System.out.println("member::"+member);
+//		System.out.println("member::"+member);
+		
+		List<String> visit = myblogservice.getByUser(member);
+		model.addAttribute("visit", visit);
+		List<ArticleBean> art = service.getArticlesByMemberNo2(member);
+		model.addAttribute("arts", art);
+
+		List<ArticleBean> arts = service.getArticleByDate(member);
+		model.addAttribute("artss", arts);
+
+		List<ArticleBean> artss = service.getArticlelikeByMember(member);
+		model.addAttribute("artsss", arts);
+		
+
+		return "_02/myblog";
 //		StyleBean sb = new StyleBean();
 //		sb.setNo(false);
 //		sb.setMemberId(member);
@@ -160,19 +174,6 @@ public class ArticleController {
 //			sb.setMemberId(sb.getMemberId());
 //			service.editStyle(sb);
 ////		}
-		List<String> visit = myblogservice.getByUser(member);
-		model.addAttribute("visit", visit);
-		List<ArticleBean> art = service.getArticlesByMemberNo2(member);
-		model.addAttribute("arts", art);
-
-		List<ArticleBean> arts = service.getArticleByDate(member);
-		model.addAttribute("artss", arts);
-
-		List<ArticleBean> artss = service.getArticlelikeByMember(member);
-		model.addAttribute("artsss", arts);
-
-		return "_02/myblog";
-
 	}
 
 	@RequestMapping("/myblog2")
@@ -677,6 +678,7 @@ public class ArticleController {
 			session.setAttribute("reply", rb);
 
 			List<ReplyBean> art = service.getReplysByArticle(no);
+			System.out.println("artart="+art);
 			model.addAttribute("arts", art);
 			
 			NoticeBean nb=new NoticeBean();
@@ -888,6 +890,31 @@ public class ArticleController {
 			System.out.println("test excel="+art);
 			model.addAttribute("artCharts", art);
 			return "_02/admin_article";
+		}
+		
+		
+		@RequestMapping(value = "/deletReplyblog")
+		public String getdeletReply(@RequestParam("idid") Integer no, Model model,
+				@ModelAttribute("ReplyBean") ReplyBean rb, HttpServletRequest request, HttpServletResponse response,HttpSession session)
+				throws ParseException, SQLException {
+            System.out.println("idid::"+ no);
+			ArticleBean ab = service.getArticleById(no);
+			model.addAttribute("art", ab);
+
+			String ArticleNoS = Integer.toString(ab.getNo());
+			MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+			
+			String commid = request.getParameter("reno");
+			
+			try {
+			rb.setNo(Integer.parseInt(commid));
+			service.DeletComm(rb);
+			} catch (Exception e) {
+				System.out.println("刪除過了");
+			}
+
+			return "redirect:/postblog?id=" + ArticleNoS;
+
 		}
 
 }

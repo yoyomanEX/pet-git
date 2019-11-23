@@ -377,8 +377,11 @@ public class ArticleDAOImpl implements ArtDAO {
 		
 	}
 
+	@Override
+	public void DeletComm(ReplyBean replyno){
+		Session session = factory.getCurrentSession();
+		session.delete(replyno);
+	}
 
-	
-	
 	
 }

@@ -78,6 +78,7 @@ public interface ArticleService {
 	public void addStyle(StyleBean sb);
 	
 	public void editStyle(StyleBean sb);
-	
+
+	public void DeletComm(ReplyBean replyno);
 
 }
