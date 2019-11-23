@@ -195,10 +195,10 @@ $(document).ready(function() {
     <section class="breadcrumb breadcrumb_bg">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-8">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h1>blog</h1>
+                            <h1 style="color:red"><marquee behavior="slide">welcome to myblog</marquee></h1>
                         </div>
                     </div>
                 </div>

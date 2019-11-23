@@ -124,10 +124,10 @@ $(document).ready(function() {
     <section class="breadcrumb breadcrumb_bg">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h1>blog</h1>
+                            <h1 style="color:red"><marquee behavior="slide">welcome to myblog</marquee></h1>
                         </div>
                     </div>
                 </div>
@@ -241,7 +241,7 @@ $(document).ready(function() {
 
                         <div style=>
                             <div class="about-thumbnail" align="center">
-                                <img width='60' height='72' src='${pageContext.request.contextPath}/getAboutPicture/${art.no } ' />
+                                <img width='300' height='300' src='getPicture' />
 <!--                                 <img width='200' height='300' src="img/single_adopt_5.png" /> -->
                             </div>
                             <!-- Content -->
@@ -254,12 +254,12 @@ $(document).ready(function() {
                       </aside>
 
                       <aside class="single_sidebar_widget post_category_widget">
-                        <h4 class="widget_title">Category</h4>
+                        <h4 class="widget_title"><i class="fa fa-book"></i>&nbsp&nbsp文章分類</h4>
                         <ul class="list cat-list">
-                                <li><a href="#" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>PET你&nbsp✿&nbsp寵物報報</span> <span></span></a></li>
-                                <li><a href="#" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>PET你&nbsp✿&nbsp寵物美容保養</span> <span></span></a></li>
-                                <li><a href="#" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>PET你&nbsp✿&nbsp寵物旅遊 </span> <span></span></a></li>
-                                <li><a href="#" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>PET你&nbsp✿&nbsp其他</span> <span></span></a></li>
+                                <li><a href="#" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp寵物報報</span> <span></span></a></li>
+                                <li><a href="#" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp寵物美容保養</span> <span></span></a></li>
+                                <li><a href="#" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp寵物旅遊 </span> <span></span></a></li>
+                                <li><a href="#" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp其他</span> <span></span></a></li>
                         </ul>
                       </aside>
 
@@ -274,7 +274,7 @@ $(document).ready(function() {
                                 </c:when>
                               <c:otherwise>
                                 <div class="post-thumb">
-                                    <img width="50" height="50" src='<c:url value="/getArtPicture/${art.no }"/>'/>
+                                    <img width="100" height="100" src='<c:url value="/getArtPicture/${art.no }"/>'/>
                                 </div>
                               </c:otherwise>
                               </c:choose>
