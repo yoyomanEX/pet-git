@@ -11,7 +11,8 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Admin Backstage</title>
+<title>pET ʕ•ᴥ•ʔ 陪你</title>
+   <link rel="icon" href="img/about_icon.png">
 <!-- Favicon -->
 <%--   <link href="${pageContext.request.contextPath}/assets/img/brand/favicon.png" rel="icon" type="image/png"> --%>
 <!-- Fonts -->

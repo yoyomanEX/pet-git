@@ -14,7 +14,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - 404</title>
+<title>pET ʕ•ᴥ•ʔ 陪你</title>
+<link rel="icon" href="img/about_icon.png">
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"

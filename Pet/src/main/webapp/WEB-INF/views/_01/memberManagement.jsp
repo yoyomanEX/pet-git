@@ -70,6 +70,7 @@
 
 
 <title>pET ʕ•ᴥ•ʔ 陪你</title>
+<link rel="icon" href="img/about_icon.png">
 
 <!-- Custom fonts for this template-->
 <link

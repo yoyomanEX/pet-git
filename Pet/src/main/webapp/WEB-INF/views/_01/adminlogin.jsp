@@ -40,7 +40,7 @@
                       <form:input path='admin_Id'  class="form-control form-control-user" placeholder="Account"/>
                     </div>
                     <div class="form-group">
-                      <form:input path='password'  class="form-control form-control-user"  placeholder="Password"/>
+                      <form:input path='password' type='password' class="form-control form-control-user"  placeholder="Password"/>
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-user btn-block">
