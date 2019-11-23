@@ -50,6 +50,19 @@ background-attachment: fixed;
 	<!--::header part start::-->
      <jsp:include page="header.jsp" />
     <!-- Header part end-->
+    
+    <!-- banner part start-->
+	<section class="banner_part">
+		<div class="container">
+			<div class="row align-content-center">
+					<div class="banner_text">
+						<h5>Welcome to</h5>
+						<h1>PET ʕ•ᴥ•ʔ Blog</h1>
+					</div>
+			</div>
+		</div>
+	</section>
+
 
 <!-- Headline -->
 	<div class="container">
@@ -735,6 +748,7 @@ background-attachment: fixed;
 		</div>
 	</div>
 	
+	                 
 	                     <!--  -->
 						<div class="p-t-50" style="padding-top:30px">
 							<div class="how2 how2-cl4 flex-s-c">
@@ -750,6 +764,19 @@ background-attachment: fixed;
 						    </div>
 						</div>
 						
+<!-- 						<aside class="single_sidebar_widget search_widget" style="padding-top:30px"> -->
+               
+<!--                             <div class="form-group"> -->
+<!--                               <div class="input-group mb-3"> -->
+<!--                                 <input type="text" class="form-control" placeholder = 'Search Blog' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'"> -->
+<!--                                 <div class="input-group-append"> -->
+<!--                                   <button class="btn" type="button"><i class="ti-search"></i></button> -->
+<!--                                 </div> -->
+<!--                               </div> -->
+<!--                             </div> -->
+<!--                             <button class="button rounded-0 primary-bg text-white w-100" type="submit">Search</button> -->
+<!--                           </form> -->
+<!--                        </aside> -->
 						
 						<div style="padding-top:30px">
 							<div class="how2 how2-cl4 flex-s-c" >

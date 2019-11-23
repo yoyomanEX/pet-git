@@ -33,7 +33,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/util.min.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">  
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css"> 
+	
+	<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> 
 	   
 <style>
 section {
@@ -73,7 +75,11 @@ $(document).ready(function(){
 
 function  confirmDelete(no) {
 	alert("Blog ID===" + no)
-	
+// 	if (confirm("確定刪除留言 ? ") ) {
+// 		document.forms[0].action="<c:url value='/deletReplyblog?commid=" + no +"' />" ;
+// 		document.forms[0].method="POST";
+// 		document.forms[0].submit();
+		
 }
 </script>
 
@@ -189,10 +195,10 @@ $(document).ready(function() {
     <section class="breadcrumb breadcrumb_bg">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-8">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h1>blog</h1>
+                            <h1 style="color:red"><marquee behavior="slide">welcome to myblog</marquee></h1>
                         </div>
                     </div>
                 </div>
@@ -284,16 +290,9 @@ $(document).ready(function() {
                             </div>
                         </div>
 
-                        <!-- Post Tags & Share -->
-                        <div class="post-tags-share d-flex justify-content-between align-items-center"></div>
-                        
-<!--     Modal      -->
-<div>
-<div style="float:right">
-  
-<!--   <button style="padding:3px;margin-bottom:7px" class="btn btn-primary" >留言</button> -->
 
-<span>
+<div style="float:right">
+  <span>
    <c:forEach items="${arts }" var="art" varStatus="s" >
    <c:set var="count" value="${s.count }"/>
    </c:forEach>
@@ -309,8 +308,12 @@ $(document).ready(function() {
        </c:choose>
    
   </span>
-
-</div>  
+</div>
+                        <!-- Post Tags & Share -->
+                        <div class="post-tags-share d-flex justify-content-between align-items-center"></div>
+                        
+<!--     Modal      -->
+<div>  
   <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -348,8 +351,8 @@ $(document).ready(function() {
 
                             
                         <!-- Comment Area Start -->
-<!--                         <div id="hidemessage" class="comment_area clearfix" style="display:none"> -->
-                        <div  class="comment_area clearfix" >
+                        <div id="hidemessage" class="comment_area clearfix" style="display:none">
+<!--                         <div  class="comment_area clearfix" > -->
                         
                             <c:forEach items="${arts }" var="art" varStatus="s" >
                             <c:set var="count" value="${s.count }"/>
@@ -360,7 +363,7 @@ $(document).ready(function() {
                                     <div class="comment-wrapper d-flex">
                                         <!-- Comment Meta -->
                                         <div class="comment-author">
-                                             <img width='600' height='500' src='<c:url value="/getPicture"/>'/>
+                                             <img width='600' height='500' src='<c:url value="/getReplyPicture/${art.no }"/>'/>
                                         </div>
                                         <!-- Comment Content -->
                                         <div class="comment-content">
@@ -372,21 +375,21 @@ $(document).ready(function() {
                                             
 						<form action="${pageContext.request.contextPath}/articlelike" method="post">
                                     <input type="hidden" class="form-control" id="memberId" name="memberId" placeholder="memberId" readonly="true" value="${LoginOK.member_Id }">
-                                    <input type="hidden" value="${art.no}" name="no">
-<!--                                     <button type="button"  class="btn foode-btn btn-sm" id="showmessage2">回覆</button>  -->
-<!--                                     <input type="text" class="form-control" id="hidemessage2"  style="display:none" name="inputcomm" placeholder="留言...."> -->
+<%--                                     <input type="hidden" value="${art.no}" name="no"> --%>
+<%--                                     <button type="button"  class="btn foode-btn btn-sm" id="showmessage${reply.no }">回覆</button>  --%>
+<!--                                          <input type="text" class="form-control" id="hidemessage"  style="display:none" name="inputcomm" placeholder="留言...."> -->
                         </form>                
                         
-<%--                                    <c:if test="${LoginOK.member_Id == art.memberId }">如果登入帳號和留言帳號一樣才會出現修改和刪除 --%>
-<!-- 										<div style="float:right"> -->
-												
+                        <!--  如果登入帳號和留言帳號一樣才會出現修改和刪除 -->
+                                   <c:if test="${LoginOK.member_Id == art.memberId }">
 <%-- 										<button type="button" id="update${art.no}" class="btn btn-outline-info " onclick="modifyComm(${cb.commNo},${mb.articleNo},${cb.memberId})">修改</button> --%>
-<%-- 										<button type="button" name="delete"  class="btn btn-outline-danger " onclick="confirmDelete('${art.no}')">刪除</button> --%>
-															
-<!-- 										</div> -->
-<%-- 							       </c:if> --%>
-                                            
-                                        </div>
+                                   <form action="${pageContext.request.contextPath}/deletReplyblog" method="post">
+                                        <input type="hidden" value="${art.article_no}" id="idid" name="idid">
+										<input type="hidden" value="${art.no}" id="reno" name="reno">
+										<button type="submit" name="delete"  class="btn btn-outline-danger " onclick="confirmDelete('${art.no}')">刪除</button>
+								   </form>		
+										</div>
+							       </c:if>
                                     </div>
                                     
                                 </li>
@@ -412,7 +415,7 @@ $(document).ready(function() {
                                         <div class="col-12">
                                             <div class="form-group">
 <%--                                                 <input type="text" class="form-control" id="Name" name="Name" placeholder="Name" value="${param.Name}"> --%>
-                                                <input type="text" class="form-control" id="member_Id" name="member_Id" placeholder="member_Id" readonly="true" value="${LoginOK.member_Id }">
+                                                <input type="text" class="form-control" id="member_Id" name="member_Id" placeholder="member_Id" readonly="true" value="${LoginOK.name }">
                                                 <input type="hidden" value="${art.no}" id="id" name="id">
                                             </div>
                                         </div>
@@ -460,12 +463,12 @@ $(document).ready(function() {
                             <!-- Thumbnail -->
                             <div style="padding-top:40px">
                             <div class="about-thumbnail">
-                                <img width='60' height='72' src='getPicture' />
+                                <img width='60' height='72' src='${pageContext.request.contextPath}/getAboutPicture/${art.no } ' />
                             </div>
                             <!-- Content -->
                             <div class="widget-content text-center" style="padding-bottom:20px">
                                 <img src="img/core-img/signature.png" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
+                                
                             </div>
                             </div>
                         </div>
@@ -480,11 +483,10 @@ $(document).ready(function() {
 							</div>
 							<div style="padding-top:20px">
 							<ol >
-<!-- 							<button id="button1">按我</button> -->
-                                <li><a href="#" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp美食</span> <span></span></a></li>
-                                <li><a href="#" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp旅遊</span> <span></span></a></li>
-                                <li><a href="#" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp保養</span> <span></span></a></li>
-                                <li><a href="#" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp知識</span> <span></span></a></li>
+                                <li><a href="#" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp寵物報報</span> <span></span></a></li>
+                                <li><a href="#" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp寵物美容保養</span> <span></span></a></li>
+                                <li><a href="#" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp寵物旅遊 </span> <span></span></a></li>
+                                <li><a href="#" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp其他</span> <span></span></a></li>
                             </ol>
 							</div>
 						</div>

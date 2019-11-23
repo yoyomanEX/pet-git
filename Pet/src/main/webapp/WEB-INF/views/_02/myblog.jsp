@@ -126,14 +126,15 @@ $(document).ready(function() {
     <!-- Header part end-->
     
     
-    <!--::breadcrumb part start::-->
+     <!--::breadcrumb part start::-->
     <section class="breadcrumb breadcrumb_bg">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-8">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h1>blog</h1>
+                            <h1 style="color:red"><marquee behavior="slide">welcome to myblog</marquee></h1>
+
                         </div>
                     </div>
                 </div>
@@ -246,7 +247,7 @@ $(document).ready(function() {
                             <!-- Content -->
                             <div class="widget-content text-center" style="padding-bottom:40px">
                                 <img src="img/core-img/signature.png" alt="">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
+                                
                             </div>
                             </div>
                         </div>
@@ -261,10 +262,10 @@ $(document).ready(function() {
 							</div>
 							<div style="padding-top:20px">
 							<ol >
-                                <li><a href="#" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp美食</span> <span></span></a></li>
-                                <li><a href="#" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp旅遊</span> <span></span></a></li>
-                                <li><a href="#" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp保養</span> <span></span></a></li>
-                                <li><a href="#" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbsp&nbspPET&nbsp✿&nbsp知識</span> <span></span></a></li>
+                                <li><a href="#" id="button1"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp寵物報報</span> <span></span></a></li>
+                                <li><a href="#" id="button2"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp寵物美容保養</span> <span></span></a></li>
+                                <li><a href="#" id="button3"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp寵物旅遊 </span> <span></span></a></li>
+                                <li><a href="#" id="button4"><span style="font-size:18px"><i class="fa fa-stop" aria-hidden="true"></i>&nbspPET你&nbsp✿&nbsp其他</span> <span></span></a></li>
                             </ol>
 							</div>
 						</div>
