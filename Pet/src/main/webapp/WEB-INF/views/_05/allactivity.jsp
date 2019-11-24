@@ -58,7 +58,7 @@ background-attachment: fixed;
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h1>blog</h1>
+                            <h1>活動資訊</h1>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@ background-attachment: fixed;
 	<section class="container" style="padding-top:100px">
 		<div class="row">
 			<c:forEach var='activity' items='${allactivity}'>
-				<div class="col-sm-6 col-md-3" style="width: 360px; height: 360px;border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;margin:10px">
+				<div class="col-sm-6 col-md-3" style="width: 360px; height: 500px;border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;margin:10px">
 					<div  class="thumbnail" style="width: 320px; height: 340px">
 						<div>
 						<img width="200px" height="100px"

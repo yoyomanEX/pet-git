@@ -155,9 +155,9 @@
           </ul>
         </nav>
         <!-- End of Topbar -->
-        <h1 style="padding-left: 50px;">pETʕ•ᴥ•ʔ寵物網 與我們聯繫</h1>
+        <h1 style="padding-left: 50px;">pETʕ•ᴥ•ʔ寵物網聯繫方式</h1>
 			<ul style='margin:50px;padding-top: 40px;border-radius:10px ;border:7px gray double;width:700px;height: 250px;'>
-				<li style='font-size: 20px;'>連絡人：林小美</li>
+				<li style='font-size: 20px;'>連絡人：王小晴</li>
 				<li style='font-size: 20px;'>連絡電話：02-6631-6666</li>
 				<li style='font-size: 20px;'>連絡地址：106台北市大安區復興南路一段390號 2,3號15樓</li>
 				<li style='font-size: 20px;'>Email:<a href='mailto:eeit10931@outlook.com'>eeit10931@outlook.com</a></li>

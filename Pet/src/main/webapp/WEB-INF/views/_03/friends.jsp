@@ -20,7 +20,9 @@
 	font-size: 18px;
 }
 </style>
-<title>friends</title>
+<title>pET ʕ•ᴥ•ʔ 陪你</title>
+<link rel="icon" href="img/about_icon.png">
+
 <script>
 	function myFunction() {
 		document.getElementById("frm1").submit();

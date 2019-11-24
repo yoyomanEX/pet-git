@@ -4,22 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!-- Page Wrapper -->
-<script>
-	//     $(document).ready(function(){   //button的id不能相同，所以如果用迴圈增加刪除紐，只會有一個有反應
-	// 		$("#button2").click(function(){
-	// 			alert("删除成功");
 
-	// 		});
-	//     });
-	function clickDelete() {
-		alert("删除成功");
-		//     	var msg = "請問確定要刪除嗎???刪除後無法回復";
-		//     	if (confirm(msg)==true){
-		//     	return true;
-		//     	}else{
-		//     	return false;
-		//     	}
-	}
+<script>
 	function room() {
 		window
 				.open(
@@ -65,8 +51,7 @@
 				success : function(data) {
 					console.log("ok");
 					if(data.length!=0){
-						$(".fa-bell").addClass("fa-2x");
-						$(".fa-bell").addClass("text-danger");
+						$(".fa-bell").addClass("text-warning");
 					}
 					showNotice(data);
 				}
@@ -74,11 +59,13 @@
 		}
 	function NoticeClick(){
 		clearInterval(Stop);
-		$(".fa-bell").removeClass("fa-2x");
-		$(".fa-bell").removeClass("text-danger");
+		$("#dataTotal").removeClass("badge badge-danger badge-counter").html("");
+		$(".fa-bell").removeClass("text-warning");
 	}
 
 	function showNotice(data) {
+		document.getElementById("dataTotal").innerHTML = data.length
+		
 		var txt = "";
 		for (i = 0; i < data.length; i++) {
 			if(data[i].friendstatus!=null){
@@ -89,7 +76,7 @@
 					+ '</div><div class="font-weight-bold"><div class="text-truncate">'
 					+ data[i].otherid + '向您申請好友</div></div></a>';}
 			if(data[i].messagestatus!=null){
-			txt += '<a class="dropdown-item d-flex align-items-center" href="waiting"><div class="dropdown-list-image mr-3">'
+			txt += '<a class="dropdown-item d-flex align-items-center" href="postblog?id='+data[i].articleid+'"><div class="dropdown-list-image mr-3">'
 				+ '<img class="rounded-circle"'
 				+'width="60" height="60" src="'
 				+'getMbPicture/'+data[i].otherid+'">'
@@ -143,8 +130,10 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active"><a class="nav-link"
-				href="index.html"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>PET首頁</span></a>
+
+			<li class="nav-item active"><a href="<spring:url value='/'/>" class="nav-link"> 
+			 <i class="fas fa-fw fa-tachometer-alt"></i> <span>PET首頁</span></a>
+
 			</li>
 
 			<!-- Divider -->
@@ -183,7 +172,7 @@
 						<h6 class="collapse-header">&nbsp&nbsp好友清單</h6>
 						<a class="collapse-item" href="friendlist"><i class="fa fa-users"></i>&nbsp&nbsp好友列表</a> <a
 							class="collapse-item" href="application"><i class="fa fa-user-plus"></i>&nbsp&nbsp申請列表</a> <a
-							class="collapse-item" href="waiting"><i class="fa fa-bell"></i>&nbsp&nbsp等候回覆</a>
+							class="collapse-item" href="waiting"><i class="fab fa-android"></i>&nbsp&nbsp等候回覆</a>
 					</div>
 				</div></li>
 
@@ -203,6 +192,10 @@
 							class="fas fa-hippo"></i>&nbsp&nbspPET聊天室</a>
 					</div>
 				</div></li>
+				
+				<li class="nav-item"><a class="nav-link"
+			href="<spring:url value='/memberjoinactivity'/>"> <i
+				class="fas fa-paw"></i> <span>查詢已參與活動</span></a></li>
 				
 						<!-- Nav Item - Utilities Collapse Menu -->
 
@@ -290,7 +283,7 @@
 							class="nav-link dropdown-toggle" href="#" id="alertsDropdown" onclick="NoticeClick()"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
-<!-- 								<span class="badge badge-danger badge-counter">3+</span> -->
+								<span id="dataTotal" class="badge badge-danger badge-counter"></span>
 						</a> <!-- Dropdown - Alerts -->
 							<div
 								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -335,7 +328,7 @@
 								class="nav-link dropdown-toggle" href="#" id="userDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> <span
-									class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:20px">你好，${LoginOK.member_Id }</span>
+									class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:20px">你好，${LoginOK.name }</span>
 									<img class="img-profile rounded-circle" width='60' height='60' src='getPicture' />
 							</a> <!-- Dropdown - User Information -->
 								<div
@@ -363,3 +356,5 @@
 
 				</nav>
 				<!-- End of Topbar -->
+				
+		

@@ -31,8 +31,6 @@
 <link rel="stylesheet" href="css/index.css">
 <!-- 瀑布流 CSS -->
 <link rel="stylesheet" href="waterfall.css">
-<!-- 111111111111111111111111111111111111 -->
-
 
 </head>
 
@@ -89,7 +87,29 @@
 					
 
 				</nav>
-				
+				<!-- End of Topbar -->
+	
+<!-- 		<div class="sub_header"> -->
+<!-- 			<div class="container"> -->
+<!-- 				<div class="row align-items-center"> -->
+<!-- 					<div class="col-4 col-md-4 col-xl-6"> -->
+<!-- 						<div id="logo"> -->
+<!-- 							<a href="index.html"><img src="img/Logo.png" alt="" title="" /></a> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-8 col-md-8 col-xl-6 "> -->
+<%-- 						<c:if test="${empty LoginOK}"> --%>
+<!-- 							<div class="sub_header_social_icon float-right"> -->
+<!-- 							<a href="#"><i class="flaticon-phone"></i>02</a> -->
+<!-- 							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">Longin</a> -->
+<!-- 							<a href="friendlist" class="btn_1 d-none d-md-inline-block">account</a> -->
+<!-- 						</div> -->
+<%-- 						</c:if> --%>
+						
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
 
 		<div class="main_menu">
@@ -112,7 +132,7 @@
 									<li class="nav-item"><a
 										href="<spring:url value='/_08/contents_Front'/>"
 										class="nav-link">𨑨迌 食飯</a></li>
-									<li class="nav-item"><a href="#" class="nav-link">寵物跑跳碰</a>
+									<li class="nav-item"><a href="<spring:url value='/allactivity'/>" class="nav-link">寵物跑跳碰</a>
 									</li>
 									<li class="nav-item"><a
 										href="<spring:url value='/06/petProductSale'/>"
@@ -272,7 +292,73 @@
 				src="img/icon/chat-g.svg" href="#" /></li>
 		</ul>
 	</div>
-	
+	<!-- Toolbar part end -->
+
+	<!-- 瀑布流文章 waterfall content here -->
+
+	<!-- 						<div id="#"> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/1"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/2"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/3"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/4"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/5"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/6"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/7"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/8"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/9"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/10"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/11"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/12"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/13"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/14"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/15"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/16"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/17"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/18"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/19"> -->
+	<!-- 							</div> -->
+	<!-- 							<div class="#"> -->
+	<!-- 								<img src="img/waterfall/20"> -->
+	<!-- 							</div> -->
+	<!-- 						</div> -->
+
 	<!-- waterfall content end -->
 	<!--Announcement part start::-->
 	<div style="height: 30px"></div>

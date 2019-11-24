@@ -1,6 +1,7 @@
 package com.web.model._02;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.web.model._01.MemberBean;
 
 
@@ -21,6 +24,8 @@ import com.web.model._01.MemberBean;
 public class ReplyBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@Transient
+	private MultipartFile artreplyImage;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "reply_no")
@@ -30,6 +35,7 @@ public class ReplyBean implements Serializable{
 	private String memberId;
 	private Integer article_no;
 	private String message;
+	private Blob replyImage;
 	
 //	@Transient
 //	private String rnoString;
@@ -112,6 +118,15 @@ public class ReplyBean implements Serializable{
 		this.message = message;
 	}
 
+
+	public Blob getReplyImage() {
+		return replyImage;
+	}
+
+	public void setReplyImage(Blob replyImage) {
+		this.replyImage = replyImage;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -125,11 +140,22 @@ public class ReplyBean implements Serializable{
 		builder.append(memberId);
 		builder.append(", article_no=");
 		builder.append(article_no);
+		builder.append(", message=");
+		builder.append(message);
+		builder.append(", replyImage=");
+		builder.append(replyImage);
 		builder.append("]");
 		return builder.toString();
 	}
 
+	public MultipartFile getArtreplyImage() {
+		return artreplyImage;
+	}
 
-	
+	public void setArtreplyImage(MultipartFile artreplyImage) {
+		this.artreplyImage = artreplyImage;
+	}
+
+
 
 }

@@ -11,6 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>pET ʕ•ᴥ•ʔ 陪你</title>
+<link rel="icon" href="img/about_icon.png">
 <!-- Custom fonts for this template -->
 <link
 	href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css"

@@ -10,7 +10,8 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Admin Backstage</title>
+<title>pET ʕ•ᴥ•ʔ 陪你</title>
+   <link rel="icon" href="${pageContext.request.contextPath}/img/about_icon.png">
 <!-- Favicon -->
 <%--   <link href="${pageContext.request.contextPath}/assets/img/brand/favicon.png" rel="icon" type="image/png"> --%>
 <!-- Fonts -->
@@ -33,168 +34,173 @@
 <body class="">
 	<!-- Navigation -->
 	<jsp:include page="header_admin.jsp"></jsp:include>
-		<!-- Header -->
-		<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-			<div class="container-fluid">
-				<div class="header-body">
-					<!-- Card stats -->
-					<div class="row">
-						<div class="col-xl-3 col-lg-6">
-							<div class="card card-stats mb-4 mb-xl-0">
-								<div class="card-body">
-									<div class="row">
-										<div class="col">
-											<h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
-											<span class="h2 font-weight-bold mb-0">350,897</span>
-										</div>
-										<div class="col-auto">
-											<div
-												class="icon icon-shape bg-danger text-white rounded-circle shadow">
-												<i class="fas fa-chart-bar"></i>
-											</div>
+	<!-- Header -->
+	<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+		<div class="container-fluid">
+			<div class="header-body">
+				<!-- Card stats -->
+				<div class="row">
+					<div class="col-xl-3 col-lg-6">
+						<div class="card card-stats mb-4 mb-xl-0">
+							<div class="card-body">
+								<div class="row">
+									<div class="col">
+										<h5 class="card-title text-uppercase text-muted mb-0">Hospital</h5>
+										<span class="h2 font-weight-bold mb-0"> <a
+											href='hospitals'>管理醫院資料</a></span> 
+											<p> 
+											<span
+											class="h2 font-weight-bold mb-0"> <a
+											href='getEmptyHospitalForm'>醫院資料新增</a>
+										</span>
+									</div>
+									<div class="col-auto">
+										<div
+											class="icon icon-shape bg-danger text-white rounded-circle shadow">
+											<!-- 											<i class="fas fa-chart-bar"></i> -->
 										</div>
 									</div>
-									<p class="mt-3 mb-0 text-muted text-sm">
-										<span class="text-success mr-2"><i
-											class="fa fa-arrow-up"></i> 3.48%</span> <span class="text-nowrap">Since
-											last month</span>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-6">
-							<div class="card card-stats mb-4 mb-xl-0">
-								<div class="card-body">
-									<div class="row">
-										<div class="col">
-											<h5 class="card-title text-uppercase text-muted mb-0">New
-												users</h5>
-											<span class="h2 font-weight-bold mb-0">2,356</span>
-										</div>
-										<div class="col-auto">
-											<div
-												class="icon icon-shape bg-warning text-white rounded-circle shadow">
-												<i class="fas fa-chart-pie"></i>
-											</div>
-										</div>
-									</div>
-									<p class="mt-3 mb-0 text-muted text-sm">
-										<span class="text-danger mr-2"><i
-											class="fas fa-arrow-down"></i> 3.48%</span> <span
-											class="text-nowrap">Since last week</span>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-6">
-							<div class="card card-stats mb-4 mb-xl-0">
-								<div class="card-body">
-									<div class="row">
-										<div class="col">
-											<h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-											<span class="h2 font-weight-bold mb-0">924</span>
-										</div>
-										<div class="col-auto">
-											<div
-												class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-												<i class="fas fa-users"></i>
-											</div>
-										</div>
-									</div>
-									<p class="mt-3 mb-0 text-muted text-sm">
-										<span class="text-warning mr-2"><i
-											class="fas fa-arrow-down"></i> 1.10%</span> <span
-											class="text-nowrap">Since yesterday</span>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-lg-6">
-							<div class="card card-stats mb-4 mb-xl-0">
-								<div class="card-body">
-									<div class="row">
-										<div class="col">
-											<h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-											<span class="h2 font-weight-bold mb-0">49,65%</span>
-										</div>
-										<div class="col-auto">
-											<div
-												class="icon icon-shape bg-info text-white rounded-circle shadow">
-												<i class="fas fa-percent"></i>
-											</div>
-										</div>
-									</div>
-									<p class="mt-3 mb-0 text-muted text-sm">
-										<span class="text-success mr-2"><i
-											class="fas fa-arrow-up"></i> 12%</span> <span class="text-nowrap">Since
-											last month</span>
-									</p>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<c:forEach var='ann' items='${allAnnouncements}'>
-					<div class="col-sm-6 col-md-3">
-						<div class="thumbnail">
-						<div style="height:30px;"></div>
-							<img style="width:250px;" src="<c:url value='getAnnPicture/${ann.announce_id}' />" />
-							<div class="caption">
-								<p>
-									<b style='font-size: 16px;'>${ann.announce_title}</b>
-								</p>
-								<p>${ann.announce_sub}</p>
-								<p>
-									<%-- 								<a href="<spring:url value='/announcement?id=${ann.announce_id}' />" --%>
-									<!-- 									class="btn btn-primary"> <span -->
-									<!-- 									class="glyphicon-info-sigh glyphicon"></span>詳細資料 -->
-									<!-- 								</a> <a -->
-									<%-- 									href="<spring:url value='/product.json?id=${ann.announce_id}' />" --%>
-									<!-- 									class="btn btn-primary">  -->
-									<!-- 								</a> -->
-								</p>
+					<div class="col-xl-3 col-lg-6">
+						<div class="card card-stats mb-4 mb-xl-0">
+							<div class="card-body">
+								<div class="row">
+									<div class="col">
+										<h5 class="card-title text-uppercase text-muted mb-0">Hotel</h5>
+										<span class="h2 font-weight-bold mb-0"><a href='hotels'>管理旅館資料</a></span>
+										<p> 
+										<span class="h2 font-weight-bold mb-0"><a
+											href='getEmptyHotelForm'>旅館資料新增</a></span>
+									</div>
+									<div class="col-auto">
+										<div
+											class="icon icon-shape bg-warning text-white rounded-circle shadow">
+											<!-- 											<i class="fas fa-chart-pie"></i> -->
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</c:forEach>
-			</div>
-		</div>
+					<div class="col-xl-3 col-lg-6">
+						<div class="card card-stats mb-4 mb-xl-0">
+							<div class="card-body">
+								<div class="row">
+									<div class="col">
+										<h5 class="card-title text-uppercase text-muted mb-0">Restaurant</h5>
+										<span class="h2 font-weight-bold mb-0"><a
+											href='restaurants'>餐廳資料管理</a></span> 
+											<p> 
+											<span
+											class="h2 font-weight-bold mb-0"><a
+											href='getEmptyResForm'>餐廳資料新增</a></span>
+									</div>
+									<div class="col-auto">
+										<div
+											class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+											<!-- 											<i class="fas fa-users"></i> -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-6">
+						<div class="card card-stats mb-4 mb-xl-0">
+							<div class="card-body">
+								<div class="row">
+									<div class="col">
+										<h5 class="card-title text-uppercase text-muted mb-0">Announcement</h5>
+										<span class="h2 font-weight-bold mb-0"><a href='announcements'>公告資料管理 </a></span>
+										<p> 
+										<span class="h2 font-weight-bold mb-0"><a href='contents'>站方文章管理</a></span>
 
-		<!-- Footer -->
-		<footer class="footer">
-			<div class="row align-items-center justify-content-xl-between">
-				<div class="col-xl-6">
-					<div class="copyright text-center text-xl-left text-muted">
-						&copy; 2019 <a href="#" class="font-weight-bold ml-1"
-							target="_blank">pET ʕ•ᴥ•ʔ 陪你</a>
+									</div>
+									<div class="col-auto">
+										<div
+											class="icon icon-shape bg-info text-white rounded-circle shadow">
+											<!-- 											<i class="fas fa-percent"></i> -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</footer>
-		<!--   Core   -->
-		<script
-			src="${pageContext.request.contextPath}/assets/js/plugins/jquery/dist/jquery.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-		<!--   Optional JS   -->
-		<script
-			src="${pageContext.request.contextPath}/assets/js/plugins/chart.js/dist/Chart.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
-		<!--   Argon JS   -->
-		<script
-			src="${pageContext.request.contextPath}/assets/js/argon-dashboard.min.js?v=1.1.0"></script>
-		<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-		<script>
-			window.TrackJS && TrackJS.install({
-				token : "ee6fab19c5a04ac1a32a645abde4613a",
-				application : "argon-dashboard-free"
-			});
-		</script>
+		</div>
+	</div>
+	<div align="center">
+	<h1 style="margin:30px;" align="center">公告資料管理</h1>
+	<div style="width:300px;  margin:15px;">
+		<button><a href='${pageContext.request.contextPath}/_08/announcements/add'>新增公告</a><br></button>
+	</div>
+		<div align="center">
+		<c:if test='${empty allAnnouncements}'>
+		查無公告資料<br>
+		</c:if>
+		<c:if test='${not empty allAnnouncements}'>
+			<c:forEach var='ann' varStatus='vs' items='${allAnnouncements}'>
+				<c:if test='${vs.first}'>
+					<c:out value="<table border='1'>" escapeXml='false' />
+					<c:out
+						value="<tr><td>IMG</td><td>ID</td><td>TITLE</td><td>SUB</td><td>FILE_NAME</td><td>編輯</td>"
+						escapeXml='false' />
+				</c:if>
+
+				<tr>
+					<td width='100'><img width='200' height='300'
+						src="<c:url value='getAnnPicture/${ann.announce_id}' />" /></td>
+					<td>${ann.announce_id}</td>
+					<td>${ann.announce_title}</td>
+					<td>${ann.announce_sub}</td>
+					<td>${ann.announce_fileName}</td>
+					<td><a href='announcements/${ann.announce_id}'> Update </a></td>
+
+				</tr>
+				<c:if test='${vs.last }'>
+					<c:out value="</table>" escapeXml='false' />
+				</c:if>
+			</c:forEach>
+		</c:if>
+		<p />
+	</div>
+	<hr>
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="row align-items-center justify-content-xl-between">
+			<div class="col-xl-6">
+				<div class="copyright text-center text-xl-left text-muted">
+					&copy; 2019 <a href="#" class="font-weight-bold ml-1"
+						target="_blank">pET ʕ•ᴥ•ʔ 陪你</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--   Core   -->
+	<script
+		src="${pageContext.request.contextPath}/assets/js/plugins/jquery/dist/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<!--   Optional JS   -->
+	<script
+		src="${pageContext.request.contextPath}/assets/js/plugins/chart.js/dist/Chart.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
+	<!--   Argon JS   -->
+	<script
+		src="${pageContext.request.contextPath}/assets/js/argon-dashboard.min.js?v=1.1.0"></script>
+	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+	<script>
+		window.TrackJS && TrackJS.install({
+			token : "ee6fab19c5a04ac1a32a645abde4613a",
+			application : "argon-dashboard-free"
+		});
+	</script>
 </body>
 
 </html>
