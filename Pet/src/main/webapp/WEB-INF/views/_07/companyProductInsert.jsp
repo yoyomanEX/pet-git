@@ -260,11 +260,27 @@ document.addEventListener("DOMContentLoaded",
         <!-- Nested Row within Card Body -->
         <div class="row">
           <div class=""></div>
-          <div class="col-lg-7">
+          <div class="col-lg-8">
             <div class="p-5">
               <form class="user" method="post" action="${pageContext.request.contextPath}/companyProductInsert2"
 				enctype="multipart/form-data" id='insertPro'>
         			<input type="hidden" name="company_id" value='${CompanyLoginOK.company_id}'>
+                  
+                  
+                 <div style='float: right;'>
+                  	<div class="col-sm-6 mb-3 mb-sm-0">
+                   		 <span>商品圖片</span><input type="file" id="file" name='file' accept="image/gif, image/jpeg, image/png">
+               		 </div>
+               		 <div>
+                 <br>
+                    <span>選擇圖片：</span>
+                	<td><img style="width: 280px;height:300px;box-shadow: 5px 10px 5px #888888;" id='exImg' class="img1"src="${pageContext.request.contextPath}/downloadFile/${product_id.product_id}.jpg"></td>
+                </div>
+                </div>
+             
+                  
+                  
+                  <div style='float: left;'>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                    <span>商品名稱</span> <input type="text" class="form-control form-control-user" name='product_name' id="product_name" placeholder="PRODUCT NAME">
                   <span style='float: right;' id="pName"></span>
@@ -293,22 +309,19 @@ document.addEventListener("DOMContentLoaded",
                 		</select>
 				</div>
                  <br>
-                  	<div class="col-sm-6 mb-3 mb-sm-0">
-                   		 <span>商品圖片</span><input type="file" id="file" name='file' accept="image/gif, image/jpeg, image/png">
-               		 </div>
-               		 <div>
-                 <br>
-                    <span>圖片：</span>
-                	<td><img id='exImg' class="img1"src="${pageContext.request.contextPath}/downloadFile/${product_id.product_id}.jpg">
-                </div>
+                 
                    <br>
+                <div style='float: left;'>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <span>商品描述</span>
                    <textarea rows="10" cols="50" name="describe" id="describe" placeholder="EX.日本進口無添加~天然寵物飼料"></textarea>
                 </div>
+                
 				<input type="hidden" name="status" value="1" id="status">
                 <br>
-                <a class="btn btn-primary btn-user btn-block" onclick='insertPro();' style='color:white;'>送出 </a>
+                <a class="btn btn-primary btn-user btn-block" onclick='insertPro();' style='color:white;margin-bottom: 40px;'>送出 </a>
+              	</div>
+              	</div>
               </form>
             </div>
           </div>
@@ -359,7 +372,9 @@ document.addEventListener("DOMContentLoaded",
 <!-- 新增商品送出submit -->
 <script>
 	function insertPro() {
+		if(confirm("是否確定新增商品呢？")){
 		$('#insertPro').submit();
+		}
 	}
 	
 	 $("#file").change(function(){

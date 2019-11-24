@@ -177,7 +177,7 @@
              <form method="post" action='nonSaleProductList' id='nonSale'>
               <h6  class="m-0 font-weight-bold text-primary" > 
               	<a href='companyProductInsert1' class='btn btn-info'>新增商品</a>
-              	<a class='btn-default' onclick="nonSale();" style="padding-left: 800px;" href='#'>
+              	<a class='btn-default' onclick="nonSale();" style="padding-left: 1100px;" href='#'>
               	下架商品區</a>
               	<input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
               </h6>

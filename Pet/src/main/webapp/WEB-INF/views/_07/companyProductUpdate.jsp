@@ -268,13 +268,27 @@ document.addEventListener("DOMContentLoaded",
         <!-- Nested Row within Card Body -->
         <div class="row">
           <div class=""></div>
-          <div class="col-lg-7">
+          <div class="col-lg-8">
             <div class="p-5">
               
 <%--              <jsp:useBean id="product_id" scope="application" class="com.web.model._07.CompanyProductBean"/> --%>
               <form class="user" id='updatePro' method="post" action="${pageContext.request.contextPath}/companyProductUpdate2" enctype="multipart/form-data">
                   <input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
                   
+                   <div style='float: right;'>
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <span>商品圖片：</span><input type="file" id="file" name='file' accept="image/gif, image/jpeg, image/png">
+                </div>
+                <br>
+                <div>
+                    <span>選擇圖片：</span>
+                	<td><img style="width: 280px;height:300px;box-shadow: 5px 10px 5px #888888;" id='exImg' class="img1"src="${pageContext.request.contextPath}/downloadFile/${product_id.product_id}.jpg"></td>
+                </div>
+                </div>
+                  
+                  
+                  
+                  <div style='float: left;'>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                    <span>商品編號</span> <input  type="text" value="${product_id.product_id}" class="form-control form-control-user" name='product_id' id="product_id" readonly="readonly">
                   </div>
@@ -316,42 +330,7 @@ document.addEventListener("DOMContentLoaded",
                 						
                 						</c:choose>
                 						</select>
-                  
-                  
-<!--                     <label class="t1">適用寵物類別</label> -->
-<!--                							 <select name="category"> -->
-<%--                							 <c:choose> --%>
-<%--                							 <c:when test="${product_id.category==1}"> --%>
-<!--                							  <option value="1" selected>狗</option> -->
-<!--                    						  <option value="2">貓</option> -->
-<!--                     					  <option value="3">其他</option> -->
-<%--                 						</c:when> --%>
-<%--                 						 <c:when test="${product_id.category==2}"> --%>
-<!--                							  <option value="1">狗</option> -->
-<!--                    						  <option value="2"selected>貓</option> -->
-<!--                     					  <option value="3">其他</option> -->
-<%--                 						</c:when> --%>
-<%--                 						 <c:when test="${product_id.category==3}"> --%>
-<!--                							  <option value="1">狗</option> -->
-<!--                    						  <option value="2">貓</option> -->
-<!--                     					  <option value="3" selected>其他</option> -->
-<%--                 						</c:when> --%>
-<%--                 						</c:choose> --%>
-<!--                 						</select> -->
-                </div>
-                 <br>
-                 
-                 
-                 <form action="/somewhere/to/upload" enctype="multipart/form-data">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <span>商品圖片：</span><input type="file" id="file" name='file' accept="image/gif, image/jpeg, image/png">
-                </div>
-                </form>
-                <br>
-                <div>
-                    <span>選擇圖片：</span>
-                	<td><img id='exImg' class="img1"src="${pageContext.request.contextPath}/downloadFile/${product_id.product_id}.jpg">
-                </div>
+                </div>            
                    <br>
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <span>商品描述</span>
@@ -359,7 +338,8 @@ document.addEventListener("DOMContentLoaded",
                 </div>
 				<input type="hidden" name="status" value="1" id="status">
                 <br>
-                <a class="btn btn-primary btn-user btn-block" onclick='updatePro();' style='color:white;'>送出 </a>
+                <a class="btn btn-primary btn-user btn-block" onclick='updatePro();' style='color:white; margin-bottom: 40px;'>送出 </a>
+              </div>
               </form>
             </div>
           </div>
@@ -409,7 +389,9 @@ document.addEventListener("DOMContentLoaded",
 <!-- 新增商品送出submit -->
 <script>
 	function updatePro() {
+		if(confirm("是否確定修改商品資訊呢？")){
 		$('#updatePro').submit();
+		}
 	}
 	function allProduct() {
 		$('#allProduct').submit();
