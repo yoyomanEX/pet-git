@@ -135,6 +135,12 @@
 	text-align: center;
 }
 
+.cartext{
+overflow:hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
+
 .dataTables_wrapper .dataTables_paginate .paginate_button {
 	box-sizing: border-box;
 	display: inline-block;
@@ -270,7 +276,6 @@
 								</tr>
 								</c:if>
 							</c:forEach>
-							
 						</tbody>
 					</table>
 				</div>

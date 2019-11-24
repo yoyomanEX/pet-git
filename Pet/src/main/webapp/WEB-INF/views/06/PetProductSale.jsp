@@ -161,7 +161,6 @@
 		//按下ENTER搜尋商品
 		$("#productSearch").keypress(function() {
 			var productSearch = $("#productSearch").val();
-
 			$.ajax({
 				url : '${pageContext.request.contextPath}/06/productSearch',
 				type : 'post',

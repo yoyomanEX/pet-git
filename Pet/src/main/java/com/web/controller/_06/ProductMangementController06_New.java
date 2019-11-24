@@ -137,7 +137,6 @@ public class ProductMangementController06_New {
 		PetBean06 petBean = new PetBean06();
 
 		String productId = request.getParameter("productId");
-		
 		String productName = request.getParameter("productName");
 		String amount = request.getParameter("amount");
 		String cost = request.getParameter("cost");
@@ -145,6 +144,7 @@ public class ProductMangementController06_New {
 		String describe = request.getParameter("describe");
 		String status = request.getParameter("status");
 		String category = request.getParameter("category");
+		String companyId = request.getParameter("companyId");
 		logger.info("category="+category);
 		
 		
@@ -156,6 +156,7 @@ public class ProductMangementController06_New {
 		petBean.setDescribe(describe);
 		petBean.setStatus(Integer.parseInt(status));
 		petBean.setCategory(Integer.parseInt(category));
+		petBean.setCompany_id(companyId);
 
 		petDao.updateProduct(petBean);
 
@@ -201,7 +202,6 @@ public class ProductMangementController06_New {
 		petBean.setDescribe(describe);
 		petBean.setStatus(Integer.parseInt(status));
 		petBean.setCategory(Integer.parseInt(category));
-		petDao.insert(petBean);
 		int productId = petDao.insert(petBean);
 		System.out.println("productId=" + productId);
 		if (!file.isEmpty()) {

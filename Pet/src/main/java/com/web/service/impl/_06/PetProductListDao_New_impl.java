@@ -130,7 +130,7 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 
 		// 整理資料,並放入集合
 		for (Map<String, Object> row : rows) {
-			
+			System.out.println(row);
 			PetProductListBean product = new PetProductListBean();
 			products.add(product);
 			product.setProduct_id((int) row.get("product_id"));
