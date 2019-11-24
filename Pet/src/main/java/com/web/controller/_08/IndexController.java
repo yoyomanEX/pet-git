@@ -42,6 +42,10 @@ public class IndexController {
 	public String backstage() {
 		return "_08/AdminBackstage";
 	}
+	@RequestMapping(value = "/qandaPage")
+	public String qanda() {
+		return "_08/qanda";
+	}
 	
 	AnnouncementService annService;
 	ContentService contService;
@@ -71,7 +75,7 @@ public class IndexController {
 	public String showAnnounceFront(Model model) {
 	List<AnnouncementBean> list = annService.qryAllAnnouncement();
 	model.addAttribute("allAnnouncements", list);
-	return "index";
+	return "_08/showAnnounce";
 }
 	@RequestMapping(value = "/announcements/{title}", method = RequestMethod.GET)
 	public String getAnnByTitle(@PathVariable("title") String title, Model model) {
@@ -292,6 +296,7 @@ public class IndexController {
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 		return responseEntity;
 	}
+	
 
 //------	Content Table Controller End	-----//
 }

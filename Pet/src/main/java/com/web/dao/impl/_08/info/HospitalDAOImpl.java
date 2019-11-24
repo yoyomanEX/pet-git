@@ -46,7 +46,6 @@ public class HospitalDAOImpl implements HospitalDAO {
 		if (!list.isEmpty()) 
 			hosBean = list.get(0);
 		return list;
-		
 	}
 
 	@Override

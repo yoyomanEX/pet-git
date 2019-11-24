@@ -38,9 +38,34 @@
 <!-- 自訂 - index CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/index.css">
-<!-- 瀑布流 CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/waterfall.css">
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		document.getElementById("check1").addEventListener("blur", check);
+	});
+	function check() {
+		var theName = document.getElementById("check1").value;
+		var reName = /^[\u4e00-\u9fff]$/;
+		if (theName == "") {
+			alert('請輸入中文');
+		} else if (reName.test(theName)) {
+			alert('輸入正確');
+		} else {
+			alert('輸入錯誤');
+		}
+
+	}
+</script>
+<style>
+* {
+	font-family: 微軟正黑體;
+}
+
+td {
+	font-size: 15px;
+	text-align: center;
+}
+</style>
+
 
 </head>
 
@@ -62,156 +87,104 @@
 			</div>
 		</div>
 	</section>
-<body>
-	<p>
-	<div align="center">
-	<p style="height:80px;">
-		<h1 align="center">PET你ʕ•ᴥ•ʔ食飯</h1>
-		<p>
-		<div align="center">
-			<h2 style="margin:30px;">餐廳資料</h2>
-			<c:if test='${empty allrestaurants}'>
-		查無restaurants資料<br>
-			</c:if>
-			<c:if test='${not empty allrestaurants}'>
-				<c:forEach var='restaurants' varStatus='vs'
-					items='${allrestaurants}'>
-					<c:if test='${vs.first}'>
-						<c:out value="<table border='1'>" escapeXml='false' />
-						<c:out
-							value="<tr><td>ID</td><td>NAME</td><td>ADDRESS</td><td>TEL</td>"
-							escapeXml='false' />
-					</c:if>
-
-					<tr>
-						<td>${restaurants.restaurant_id}</td>
-						<td>${restaurants.restaurant_name}</td>
-						<td>${restaurants.restaurant_address}</td>
-						<td>${restaurants.restaurant_tel}</td>
-
-					</tr>
-					<c:if test='${vs.last }'>
-						<c:out value="</table>" escapeXml='false' />
-					</c:if>
-				</c:forEach>
-			</c:if>
-			<p style="height:80px;"/>
-<%-- 			<a href='${pageContext.request.contextPath}/_08/admin0123'>回到_08---管理</a> --%>
-		</div>
-	
-	</div>
-
-
-	<!-- footer part start-->
-	<footer class="footer_area padding_top">
+	<!-- about part start-->
+	<section class="about_part section_padding">
 		<div class="container">
-			<div class="row justify-content-center ">
-				<div class="col-lg-8 col-xl-6">
-					<div class="subscribe_part_text text-center">
-						<h2>Subscribe Newsletter</h2>
-						<p>We strictly follow the State Board’s sanitary and
-							disinfection guidelines.</p>
-						<div class="subscribe_form">
-							<form action="#" name="#">
-								<div class="input-group align-items-center">
-									<input type="email" class="form-control"
-										placeholder="enter your email">
-									<div class="subscribe_btn input-group-append">
-										<div class="btn_1">free trail</div>
-									</div>
-								</div>
-							</form>
-						</div>
+			<div class="row align-items-center justify-content-between">
+				<div class="col-md-6">
+					<div class="about_img">
+						<img style="width: 300px; height: 300px;" src="${pageContext.request.contextPath}/img/08_img/fork.svg">
 					</div>
 				</div>
-			</div>
-			<div class="row justify-content-between section_padding">
-				<div
-					class="col-xl-2 col-sm-6 col-md-3 mb-4 mb-xl-0 single-footer-widget">
-					<h4>Menu</h4>
-					<ul>
-						<li><a href="#">home</a></li>
-						<li><a href="#">Travel & Food</a></li>
-						<li><a href="#">Activity</a></li>
-						<li><a href="#">Shopping</a></li>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Information</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</div>
-				<div
-					class="col-xl-2 col-sm-6 col-md-3 mb-4 mb-xl-0 single-footer-widget">
-					<h4>Company</h4>
-					<ul>
-						<li><a href="<spring:url value='/_01.loginCompanyPage'/>">Login</a></li>
-						<li><a href="#">Application</a></li>
-					</ul>
-				</div>
-				<div
-					class="col-xl-2 col-sm-6 col-md-3 mb-4 mb-xl-0 single-footer-widget">
-					<h4>Policy</h4>
-					<ul>
-						<li><a href="#">Private Policy</a></li>
-						<li><a href="#">Shiiping Policy</a></li>
-						<li><a href="#">Return Policy</a></li>
-					</ul>
-				</div>
-				<div
-					class="col-xl-2 col-sm-6 col-md-3 mb-4 mb-xl-0 single-footer-widget">
-					<h4>Member</h4>
-					<ul>
-						<li><a href="#">Member Centre</a></li>
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Track My Package</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="copyright_text">
-						<img src="img/about_icon.png" alt="#">
-						<!-- 						<h3>pET ʕ•ᴥ•ʔ陪你</h3> -->
-						<p class="footer-text">
-							Copyright &copy;
-							<script>
-								document.write(new Date().getFullYear());
-							</script>
-							All rights reserved by pET ʕ•ᴥ•ʔ 陪你
+				<div class="col-md-5">
+					<div class="about_text">
+						<img src="${pageContext.request.contextPath}/img/about_icon.png"
+							class="about_icon" alt="">
+						<h2>餐廳資訊</h2>
+						<p>We care your pet as you care</p>
 					</div>
 				</div>
 			</div>
 		</div>
-	</footer>
-	<!-- footer part end-->
+	</section>
+	<!-- about part end-->
+	<!-- 地圖 part end-->
+	<div align="left">
+	<iframe align="left" src="https://www.google.com/maps/d/embed?mid=1u1CN19FX_qHU7e-JqtgG9Iy_I0wHn34i" width="600" height="600" frameborder="0" style="margin-left: 80px; border:0;" allowfullscreen=""></iframe>
+	</div>
+	<!-- 地圖 part end-->
+	<div align="right" style="margin-right: 80px; height: 900px;">
+		<div align="right" style="margin-right: 100px;">
+<!-- 			<table style="margin: 10px;"> -->
+<!-- 				<tr> -->
+<!-- 					<a href="resFront2"> <input class="btn_1" type="submit" -->
+<!-- 						value="查詢地址" /> -->
+<!-- 					</a> -->
+<!-- 					<a href="#"> <input type="text" id="check1" size="15" -->
+<!-- 						name="restaurant_name" /> <input class="btn_1" type="submit" -->
+<!-- 						value="名稱搜尋" /> -->
+<!-- 					</a> -->
+<!-- 				</tr> -->
+<!-- 			</table> -->
+		</div>
+		<c:if test='${not empty allrestaurants}'>
+			<c:forEach var='restaurants' varStatus='vs' items='${allrestaurants}'>
+				<c:if test='${vs.first}'>
+					<c:out value="<table border='1'>" escapeXml='false' />
+					<c:out value="<tr><td>編號</td><td>餐廳名稱</td><td>地址</td><td>電話</td>"
+						escapeXml='false' />
+				</c:if>
 
-	<!-- jquery plugins here-->
-	<!-- jquery -->
-	<script
-		src="${pageContext.request.contextPath}/js/jquery-1.12.1.min.js"></script>
-	<!-- popper js -->
-	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
-	<!-- bootstrap js -->
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<!-- counterup js -->
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.counterup.min.js"></script>
-	<!-- waypoints js -->
-	<script src="${pageContext.request.contextPath}/js/waypoints.min.js"></script>
-	<!-- easing js -->
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.magnific-popup.js"></script>
-	<!-- particles js -->
-	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
-	<!-- custom js -->
-	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-	<!-- 瀑布流 js -->
-	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
+				<tr>
+					<td>${restaurants.restaurant_id}</td>
+					<td>${restaurants.restaurant_name}</td>
+					<td>${restaurants.restaurant_address}</td>
+					<td>${restaurants.restaurant_tel}</td>
+
+				</tr>
+				<c:if test='${vs.last }'>
+					<c:out value="</table>" escapeXml='false' />
+				</c:if>
+			</c:forEach>
+		</c:if>
+		<%-- 		<c:if test='${empty allrestaurants}'> --%>
+		<!-- 				查無餐廳資料<br> -->
+		<%-- 		</c:if> --%>
+	</div>
+	<p style="margin: 50px;">
 
 
+		<!-- footer part start-->
+		<jsp:include page="footer.jsp"></jsp:include>
+		<!-- footer part end-->
 
-
+		<!-- jquery plugins here-->
+		<!-- jquery -->
+		<script
+			src="${pageContext.request.contextPath}/js/jquery-1.12.1.min.js"></script>
+		<!-- popper js -->
+		<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+		<!-- bootstrap js -->
+		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+		<!-- counterup js -->
+		<script
+			src="${pageContext.request.contextPath}/js/jquery.counterup.min.js"></script>
+		<!-- waypoints js -->
+		<script src="${pageContext.request.contextPath}/js/waypoints.min.js"></script>
+		<!-- easing js -->
+		<script
+			src="${pageContext.request.contextPath}/js/jquery.magnific-popup.js"></script>
+		<!-- particles js -->
+		<script
+			src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+		<!-- custom js -->
+		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+		<!-- 瀑布流 js -->
+		<script
+			src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
 </body>
 </html>
