@@ -179,67 +179,14 @@ fieldset {
 </style>
 </head>
 <body bgcolor="#fdf5e6">
-<!--::header part start::-->
-<!-- 	<header class="header_area"> -->
-<!-- 		<div class="sub_header"> -->
-<!-- 			<div class="container"> -->
-<!-- 				<div class="row align-items-center"> -->
-<!-- 					<div class="col-4 col-md-4 col-xl-6"> -->
-<!-- 						<div id="logo"> -->
-<!-- 							<a href="index.html"> -->
-<!-- 								<img src="img/Logo.png" alt="" title="" /> -->
-<!-- 							</a> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="col-8 col-md-8 col-xl-6 "> -->
-<!-- 						<div class="sub_header_social_icon float-right"> -->
-<!-- 							<a href="#"> -->
-<!-- 								<i class="flaticon-phone"></i> -->
-<!-- 								+02 213 - 256 (365) -->
-<!-- 							</a> -->
-<!-- 							<a href="#" class="btn_1 d-none d-md-inline-block">Become a Volunteer</a> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 		<div class="main_menu"> -->
-<!-- 			<div class="container"> -->
-<!-- 				<div class="row"> -->
-<!-- 					<div class="col-lg-12"> -->
-<!-- 						<nav class="navbar navbar-expand-lg navbar-light"> -->
-<!-- 							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" -->
-<!-- 								aria-label="Toggle navigation"> -->
-<!-- 								<i class="ti-menu"></i> -->
-<!-- 							</button> -->
-<!-- 							<div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent"> -->
-<!-- 								<ul class="navbar-nav"> -->
-<!-- 									<li></li> -->
-<!-- 									<li></li> -->
-<!-- 									<li></li> -->
-<!-- 									<li></li> -->
-<!-- 									<li></li> -->
-<!-- 									<li></li> -->
-<!-- 									<li class="nav-item"> -->
-<!-- 										<a href="contact.html" class="nav-link"></a> -->
-<!-- 									</li> -->
-<!-- 								</ul> -->
-<!-- 							</div> -->
-<!-- 						</nav> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-		
-<!-- 	</header> -->
-	<!-- Header part end-->
+
 			<jsp:include page="header.jsp" />
 	
 	<div id="sidebar_left">
 		<h3>pETʕ•ᴥ•ʔ 陪你購物</h3>
 		<p >
-		<h2 style = "color: red">注意！！！！！</h2>
-		<img src="img/noImg.jpg" style="width: 220px; height: 220px">
+		<h2 style = "color: red">本月活動(｡◕∀◕｡)</h2>
+		<img src="img/saleBanner01.png" style="width: 220px; height: 220px">
 		<h4>可愛貓咪出沒(๑• . •๑) </h4>
 		</p>
 	</div>
