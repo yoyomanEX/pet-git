@@ -115,17 +115,17 @@ td {
 	<!-- Map part end-->
 	<div align="right" style="margin-right: 80px; height: 1100px;">
 		<div align="right" style="margin-right: 170px;">
-<!-- 			<table style="margin: 10px;"> -->
-<!-- 				<tr> -->
-<!-- 					<a href="hotelsFront2"> <input class="btn_1" type="submit" -->
-<!-- 						value="查詢地址" /> -->
-<!-- 					</a> -->
-<!-- 					<a href="#"> <input type="text" id="check1" size="15" -->
-<!-- 						name="hotel_name" /> <input class="btn_1" type="submit" -->
-<!-- 						value="名稱搜尋" /> -->
-<!-- 					</a> -->
-<!-- 				</tr> -->
-<!-- 			</table> -->
+			<table style="margin: 10px;">
+				<tr>
+					<a href="hotelsFront2"> <input class="btn_1" type="submit"
+						value="查詢地址" />
+					</a>
+					<a href="#"> <input type="text" id="check1" size="15"
+						name="hotel_name" /> <input class="btn_1" type="submit"
+						value="名稱搜尋" />
+					</a>
+				</tr>
+			</table>
 		</div>
 		<c:if test='${not empty allHotels}'>
 			<c:forEach var='hotels' varStatus='vs' items='${allHotels}'>

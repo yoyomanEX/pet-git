@@ -115,17 +115,17 @@ td {
 	<!-- 地圖 part end-->
 	<div align="right" style="margin-right: 80px; height: 900px;">
 		<div align="right" style="margin-right: 100px;">
-<!-- 			<table style="margin: 10px;"> -->
-<!-- 				<tr> -->
-<!-- 					<a href="resFront2"> <input class="btn_1" type="submit" -->
-<!-- 						value="查詢地址" /> -->
-<!-- 					</a> -->
-<!-- 					<a href="#"> <input type="text" id="check1" size="15" -->
-<!-- 						name="restaurant_name" /> <input class="btn_1" type="submit" -->
-<!-- 						value="名稱搜尋" /> -->
-<!-- 					</a> -->
-<!-- 				</tr> -->
-<!-- 			</table> -->
+			<table style="margin: 10px;">
+				<tr>
+					<a href="resFront2"> <input class="btn_1" type="submit"
+						value="查詢地址" />
+					</a>
+					<a href="#"> <input type="text" id="check1" size="15"
+						name="restaurant_name" /> <input class="btn_1" type="submit"
+						value="名稱搜尋" />
+					</a>
+				</tr>
+			</table>
 		</div>
 		<c:if test='${not empty allrestaurants}'>
 			<c:forEach var='restaurants' varStatus='vs' items='${allrestaurants}'>

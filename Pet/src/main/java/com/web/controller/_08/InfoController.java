@@ -64,8 +64,8 @@ public class InfoController {
 	// 本方法可以html格式傳回所有Hospital紀錄
 	@RequestMapping(value = "/hospitalsFront", method = RequestMethod.GET, produces = "text/html")
 	public String qryHospitalsFront(Model model, HttpServletRequest req) {
-		List<HospitalBean> hospitals = hosService.qryAllHospital();
-		model.addAttribute("allHospitals", hospitals);
+//		List<HospitalBean> hospitals = hosService.qryAllHospital();
+//		model.addAttribute("allHospitals", hospitals);
 		return "_08/showHospitals";
 	}
 
@@ -74,8 +74,8 @@ public class InfoController {
 	// 本方法可以html格式傳回所有Hospital紀錄
 	@RequestMapping(value = "/hospitalsFront2", method = RequestMethod.GET, produces = "text/html")
 	public String qryAllHospitalsFront(Model model, HttpServletRequest req) {
-//		List<HospitalBean> hospitals = hosService.qryAllHospital();
-//		model.addAttribute("allHospitals", hospitals);
+		List<HospitalBean> hospitals = hosService.qryAllHospital();
+		model.addAttribute("allHospitals", hospitals);
 		return "_08/showHospitals";
 	}
 //	// 以HTML格式顯示單筆Hospital資料
@@ -190,14 +190,14 @@ public class InfoController {
 	// 本方法可以html格式傳回所有hotels紀錄
 	@RequestMapping(value = "/hotelsFront", method = RequestMethod.GET, produces = "text/html")
 	public String queryAllHotelFront(Model model, HttpServletRequest req) {
-		List<HotelBean> hotels = hotService.qryAllHotel();
-		model.addAttribute("allHotels", hotels);
+//		List<HotelBean> hotels = hotService.qryAllHotel();
+//		model.addAttribute("allHotels", hotels);
 		return "_08/showHotels";
 	}
 	@RequestMapping(value = "/hotelsFront2", method = RequestMethod.GET, produces = "text/html")
 	public String queryAllHotelFront2(Model model, HttpServletRequest req) {
-//		List<HotelBean> hotels = hotService.qryAllHotel();
-//		model.addAttribute("allHotels", hotels);
+		List<HotelBean> hotels = hotService.qryAllHotel();
+		model.addAttribute("allHotels", hotels);
 		return "_08/showHotels";
 	}
 
@@ -293,14 +293,14 @@ public class InfoController {
 	// 本方法可以html格式傳回所有restaurants紀錄
 	@RequestMapping(value = "/resFront", method = RequestMethod.GET, produces = "text/html")
 	public String queryAllResFront(Model model, HttpServletRequest req) {
-		List<RestaurantBean> restaurants = resService.qryAllRestaurant();
-		model.addAttribute("allrestaurants", restaurants);
+//		List<RestaurantBean> restaurants = resService.qryAllRestaurant();
+//		model.addAttribute("allrestaurants", restaurants);
 		return "_08/showRes";
 	}
 	@RequestMapping(value = "/resFront2", method = RequestMethod.GET, produces = "text/html")
 	public String queryAllResFront2(Model model, HttpServletRequest req) {
-//		List<RestaurantBean> restaurants = resService.qryAllRestaurant();
-//		model.addAttribute("allrestaurants", restaurants);
+		List<RestaurantBean> restaurants = resService.qryAllRestaurant();
+		model.addAttribute("allrestaurants", restaurants);
 		return "_08/showRes";
 	}
 

@@ -119,18 +119,18 @@ td {
 	<!-- map part start-->
 	<div align="right" style="margin-right: 80px; height: 1500px;">
 		<div align="right" style="margin-right: 80px;" >
-<!-- 			<table style="margin: 10px;"> -->
-<!-- 				<tr> -->
-<!-- 					<a href="hospitalsFront2"> <input class="btn_1" type="submit" -->
-<!-- 						value="查詢地址" /> -->
-<!-- 					</a> -->
-<!-- 					<a href="#"> <input type="text" id="check1" size="15" -->
-<!-- 						name="hospital_name" /> <input class="btn_1" type="submit" -->
-<!-- 						value="名稱搜尋" /> -->
-<!-- 					</a> -->
+			<table style="margin: 10px;">
+				<tr>
+					<a href="hospitalsFront2"> <input class="btn_1" type="submit"
+						value="查詢地址" />
+					</a>
+					<a href="#"> <input type="text" id="check1" size="15"
+						name="hospital_name" /> <input class="btn_1" type="submit"
+						value="名稱搜尋" />
+					</a>
 
-<!-- 				</tr> -->
-<!-- 			</table> -->
+				</tr>
+			</table>
 		</div>
 		<c:if test='${not empty allHospitals}'>
 			<c:forEach var='hospitals' varStatus='vs' items='${allHospitals}'>
