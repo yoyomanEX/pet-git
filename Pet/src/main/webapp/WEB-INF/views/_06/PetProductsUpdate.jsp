@@ -142,6 +142,8 @@ title>產品資料 </title> <script src ="http: //code.jquery.com /jquery-1.12.4
 							</td>
 							<td>
 								<input type="hidden" value="${pb.product_id}" name="productId">
+								<input type="hidden" value="${pb.company_id}" name="companyId">
+								
 							</td>
 						<tr>
 							<td>商品名稱</td>
