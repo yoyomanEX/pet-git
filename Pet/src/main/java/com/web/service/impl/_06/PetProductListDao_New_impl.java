@@ -21,8 +21,6 @@ import com.web.model._06.OrderBean;
 import com.web.model._06.OrderDetailBean;
 import com.web.model._06.PetProductListBean;
 
-
-
 @Service
 public class PetProductListDao_New_impl implements PetProductListDao {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -51,7 +49,7 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 			product.setProduct_name((String) row.get("product_name"));
 			product.setAmount((int) row.get("amount"));
 			product.setPrice((int) row.get("price"));
-			product.setStatus((int)row.get("status"));
+			product.setStatus((int) row.get("status"));
 		}
 		return products;
 	}
@@ -79,7 +77,7 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 			product.setProduct_name((String) row.get("product_name"));
 			product.setAmount((int) row.get("amount"));
 			product.setPrice((int) row.get("price"));
-			product.setStatus((int)row.get("status"));
+			product.setStatus((int) row.get("status"));
 
 		}
 		return products;
@@ -107,13 +105,12 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 			product.setProduct_name((String) row.get("product_name"));
 			product.setAmount((int) row.get("amount"));
 			product.setPrice((int) row.get("price"));
-			product.setStatus((int)row.get("status"));
+			product.setStatus((int) row.get("status"));
 
 		}
 		return products;
 	}
 
-	
 	/**
 	 * 取得狗狗分類商品
 	 * 
@@ -126,21 +123,23 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 
 		// 使用SQL模糊查詢，條件為包含輸入字串的所有商品
 		String qryStmt = "select * from product where product_name like ?";
-		List<Map<String, Object>> rows = jdbcTemplate.queryForList(qryStmt, "%"+searchName+"%");
+		List<Map<String, Object>> rows = jdbcTemplate.queryForList(qryStmt, "%" + searchName + "%");
 
 		// 整理資料,並放入集合
 		for (Map<String, Object> row : rows) {
-			
+			//logger.info(row.toString());
+			System.out.println(row);
 			PetProductListBean product = new PetProductListBean();
 			products.add(product);
 			product.setProduct_id((int) row.get("product_id"));
 			product.setProduct_name((String) row.get("product_name"));
 			product.setAmount((int) row.get("amount"));
 			product.setPrice((int) row.get("price"));
+			product.setStatus((int) row.get("status"));
 		}
 		return products;
 	}
-	
+
 	/**
 	 * 加入商品頁面中單樣~多樣商品至購物車
 	 * 
@@ -241,8 +240,10 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 	public OrderBean confirmOrder(OrderBean orderBean) throws SQLException {
 		OrderBean ob = new OrderBean();
 		Timestamp now = new Timestamp(System.currentTimeMillis());
-		String setOrder = "Insert into member_order_admin(order_id,member_id,total,address, " + "recipient,phone,order_date,payment_status,status) values(?,?,?,?,?,?,?,?,?)";
-		jdbcTemplate.update(setOrder, orderBean.getOrder_id(), orderBean.getMember_id(), orderBean.getTotal(), orderBean.getAddress(), orderBean.getRecipient(), orderBean.getPhone(), now, 1,1);
+		String setOrder = "Insert into member_order_admin(order_id,member_id,total,address, "
+				+ "recipient,phone,order_date,payment_status,status) values(?,?,?,?,?,?,?,?,?)";
+		jdbcTemplate.update(setOrder, orderBean.getOrder_id(), orderBean.getMember_id(), orderBean.getTotal(),
+				orderBean.getAddress(), orderBean.getRecipient(), orderBean.getPhone(), now, 1, 1);
 		String sql = "Select * from member_order_admin where order_id =?";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql, orderBean.getOrder_id());
 		for (Map<String, Object> row : rows) {
@@ -258,12 +259,15 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 	 * @return
 	 */
 	@Override
-	public List<OrderDetailBean> confirmOrderDetail(OrderBean orderBean, String[] product_ids, String[] product_names, String[] amounts, String[] prices) throws SQLException {
-		String setOrderDeatil = "Insert into member_order_detail_admin(product_id,product_name," + "amount,total,order_id) values(?,?,?,?,?) ";
+	public List<OrderDetailBean> confirmOrderDetail(OrderBean orderBean, String[] product_ids, String[] product_names,
+			String[] amounts, String[] prices) throws SQLException {
+		String setOrderDeatil = "Insert into member_order_detail_admin(product_id,product_name,"
+				+ "amount,total,order_id) values(?,?,?,?,?) ";
 		for (int i = 0; i < product_ids.length; i++) {
 			// 價格*數量正確金額
 			int p = Integer.parseInt(prices[i]) * Integer.parseInt(amounts[i]);
-			jdbcTemplate.update(setOrderDeatil, product_ids[i], product_names[i], amounts[i], p, orderBean.getOrder_id());
+			jdbcTemplate.update(setOrderDeatil, product_ids[i], product_names[i], amounts[i], p,
+					orderBean.getOrder_id());
 		}
 		List<OrderDetailBean> orderDetail = new ArrayList<>();
 		String sql = "Select * from member_order_detail_admin where order_id =?";
@@ -305,7 +309,6 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 		return null;
 	}
 
-	
 	/**
 	 * 更新綠界成功後回傳訂單編號 及訂單狀態改為已付款
 	 */
@@ -315,14 +318,14 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 		String sql = "update member_order_admin set payment_status = ? , merchant_no=? where order_id=?";
 		jdbcTemplate.update(sql, 2, TradeNo, orderN);
 	}
-	
+
 	/**
 	 * 更新綠界失敗後回傳訂單編號 及訂單狀態改為付款失敗
 	 */
-	
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void updateECpayErr(String RtnCode,String TradeNo, String orderN) {
+	public void updateECpayErr(String RtnCode, String TradeNo, String orderN) {
 		String sql = "update member_order_admin set payment_status = ? , merchant_no=? where order_id=?";
 		jdbcTemplate.update(sql, RtnCode, TradeNo, orderN);
 	}
@@ -336,7 +339,7 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 	public List<OrderBean> orderAll(String Member_id) {
 		// 準備好傳出去的集合
 		List<OrderBean> orderList = new ArrayList<OrderBean>();
-		System.out.println("Member_id="+Member_id);
+		System.out.println("Member_id=" + Member_id);
 		// 查詢指定用戶ID的所有訂單並搜尋後回傳
 		String getMemberdOrder = "select * from member_order_admin where Member_id=?";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(getMemberdOrder, Member_id);
@@ -366,7 +369,6 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 		}
 
 		String ids = StringUtils.join(newOrderList, ",");
-		
 
 		String getOrderDetail = "select * from member_order_detail_admin where order_id in(" + ids + ")";
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(getOrderDetail);
@@ -374,7 +376,7 @@ public class PetProductListDao_New_impl implements PetProductListDao {
 			OrderDetailBean o = new OrderDetailBean();
 			orderDetail.add(o);
 			o.setOrder_id(String.valueOf(row.get("order_id")));
-			o.setProduct_id((int)row.get("product_id"));
+			o.setProduct_id((int) row.get("product_id"));
 			o.setProduct_name((String) row.get("product_name"));
 			o.setAmount((int) row.get("amount"));
 			o.setTotal((int) row.get("total"));

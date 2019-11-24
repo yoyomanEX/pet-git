@@ -8,12 +8,13 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Argon Dashboard - Free Dashboard for Bootstrap 4 by
-	Creative Tim</title>
+<title>pET ʕ•ᴥ•ʔ 陪你</title>
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/about_icon.png">
 <!-- Favicon -->
-<link
-	href="${pageContext.request.contextPath}/assets/img/brand/favicon.png"
-	rel="icon" type="image/png">
+<!-- <link -->
+<%-- 	href="${pageContext.request.contextPath}/assets/img/brand/favicon.png" --%>
+<!-- 	rel="icon" type="image/png"> -->
 <!-- Fonts -->
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -31,13 +32,16 @@
 	rel="stylesheet" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/DataTables/datatables.min.css">
-	<!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<!-- Custom fonts for this template-->
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
 
-  <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
-	
+<!-- Custom styles for this template-->
+<link href="css/sb-admin-2.min.css" rel="stylesheet">
+
 <style>
 .btn-group .button {
 	background-color: #B8B8FF; /* Green */
@@ -126,9 +130,7 @@
 				<ul class="navbar-nav align-items-center d-none d-md-flex">
 					<li class="nav-item dropdown"><a class="nav-link pr-0"
 						href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">
-							
-					</a>
+						aria-expanded="false"> </a>
 						<div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
 							<div class=" dropdown-header noti-title">
 								<h6 class="text-overflow m-0">Welcome!</h6>
@@ -216,10 +218,13 @@
 		<div class="card shadow mb-4">
 			<div id="content">
 				<br>
-				<table
-					style="text-align: center; width: 80%; font-family: Microsoft JhengHei; font-size: 20px; font-weight: bold;"
-					border=1">
 
+				<table
+					style="text-align: center; width: 90%; font-family: Microsoft JhengHei; font-size: 20px; font-weight: bold;"
+					border=1">
+<%-- 					<c:if test="${empty orderList}"> --%>
+<!-- 						<h2 style="text-align: center;">目前沒有要處理的訂單</h2> -->
+<%-- 					</c:if> --%>
 					<c:forEach var='list' items='${orderList}'>
 						<tr>
 							<th>訂單日期</th>
@@ -326,7 +331,6 @@
 							</c:choose>
 						</tr>
 					</c:forEach>
-
 				</table>
 			</div>
 			<div class="card-body">
@@ -347,17 +351,17 @@
 	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/DataTables/DataTables-1.10.20/js/jquery.dataTables.js"></script>
-	  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-	
-	
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin-2.min.js"></script>
+
+
 	<script>
 		window.TrackJS && TrackJS.install({
 			token : "ee6fab19c5a04ac1a32a645abde4613a",

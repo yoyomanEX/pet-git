@@ -8,6 +8,7 @@
   <meta charset="utf-8">
   
   <title>pET ʕ•ᴥ•ʔ 陪你</title>
+<link rel="icon" href="img/about_icon.png">
 
   
   <!-- Custom styles for this template-->

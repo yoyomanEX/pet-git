@@ -103,7 +103,7 @@ jq1(document).ready(function(){
 function processedOrder(data) {
 	 	
 		var unprocess=JSON.parse(data);
-		var txt ="<tr><th>訂單日期</th><th>訂單編號</th><th>訂購人</th><th>收貨人</th><th>地址</th><th>總金額</th><th>出貨日期</th>";
+		var txt ="<tr><th>訂單日期</th><th>訂單編號</th><th>訂購會員</th><th>收貨人</th><th>地址</th><th>總金額</th><th>出貨日期</th>";
 		for(i=0;i<unprocess.length;i++){
 			var order_date = "";
 			if(unprocess[i].order_date != '' && typeof unprocess[i].order_date != 'undefined'){
@@ -122,7 +122,7 @@ function processedOrder(data) {
 			txt +="<td>"+unprocess[i].recipient;
 			txt +="<td>"+unprocess[i].address;
 			txt +="<td>"+unprocess[i].total;
-			txt +="<td>"+ship_date+"<a style='padding-left: 100px;' href='#' onclick='queryDetail(" +i+ ")'>訂單明細<input type='hidden' id='order_id"+i+"' value=\""+unprocess[i].order_id+"\"><img src='img/arrowdown.png'></a>";
+			txt +="<td>"+ship_date+"<a style='padding-left: 50px;' href='#' onclick='queryDetail(" +i+ ")'>訂單明細<input type='hidden' id='order_id"+i+"' value=\""+unprocess[i].order_id+"\"><img src='img/arrowdown.png'></a>";
 			txt +="<tr>";
 		}
 		document.getElementById("dataTable").innerHTML=txt;
@@ -224,16 +224,16 @@ function showDetail(data,p) {
 		          width:500,
 		          height:500,
 		          is3D: true,
-		          chartArea:{left:60,top:60,width:'100%',height:'100%'}
+		          chartArea:{left:60,top:60,width:'120%',height:'120%'}
 		        };
 		        var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
 		         piechart.draw(data,piechart_options);
 		         
 		         var barchart_options ={
 		        	title:'銷售紀錄(長條圖)',
-		        	width:500,
+		        	width:1000,
 		        	height:500,
-		        	chartArea:{left:60,top:60,width:'60%',height:'60%'}
+		        	chartArea:{left:80,top:60,width:'60%',height:'60%'}
 		         };
 		         var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
 				 barchart.draw(data, barchart_options);
@@ -276,7 +276,7 @@ function showDetail(data,p) {
 					<i class=""></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-					Petʕ•ᴥ•ʔ<br> 廠商後台系統
+					Pet ʕ•ᴥ•ʔ<br> 廠商後台管理
 				</div>
 			</a>
 			<!-- Divider -->
@@ -413,11 +413,11 @@ function showDetail(data,p) {
 				</div>
 				<div id="tabs">
   			<ul>
-    			<li><a href="#tabs-1">銷售報表</a></li>
-    			<li><a href="#tabs-2">銷售圖表</a></li>
+    			<li><a href="#tabs-1">銷售圖表</a></li>
+    			<li><a href="#tabs-2">銷售報表</a></li>
     			
   			</ul>
-  			<div id="tabs-1">
+  			<div id="tabs-2">
     			
     		<div class="card shadow mb-4">
 			<div class="card-body">
@@ -429,7 +429,7 @@ function showDetail(data,p) {
     		</div>
     			
   			</div>
-  			<div id="tabs-2">
+  			<div id="tabs-1">
    				<table class='columns'>
 				 	<tr>
 				 		<td style='padding-right: 60px;'><div  id='piechart_div' style="border:1px solid #ccc;"></div></td>

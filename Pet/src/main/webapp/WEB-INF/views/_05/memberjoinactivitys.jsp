@@ -22,8 +22,6 @@
 	src="<c:url value="/js/jquery/jquery-2.2.4.min.js"/>">
 	
 </script>
-
-<%-- <script src="${pageContext.request.contextPath}/js/jquery.js"></script> --%>
 <script src="${pageContext.request.contextPath}/js/ckeditor/ckeditor.js"></script>
 
 
@@ -36,36 +34,6 @@
 	//     });
 	function myFunction() {
 		document.getElementById("frm1").submit();
-	}
-	function clickDelete() {
-		alert("删除成功");
-		//     	var msg = "請問確定要刪除嗎???刪除後無法回復";
-		//     	if (confirm(msg)==true){
-		//     	return true;
-		//     	}else{
-		//     	return false;
-		//     	}
-	}
-	function room() {
-		window
-				.open(
-						'dogroom',
-						'newwindow',
-						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
-	}
-	function catroom() {
-		window
-				.open(
-						'catroom',
-						'newwindow',
-						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
-	}
-	function petroom() {
-		window
-				.open(
-						'petroom',
-						'newwindow',
-						'height=600,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
 	}
 </script>
 
@@ -89,8 +57,7 @@
 
 <body id="page-top">
 
-	<jsp:include page="header_member.jsp" />
-
+<jsp:include page="header_member.jsp" />
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
@@ -98,63 +65,46 @@
 					<section>
 						<div class='text-center'>
 							<div class="container" style="text-align: center">
-								<h1>好友清單</h1>
+								<h1>參與活動清單</h1>
 							</div>
-							<form action='select' method="post" id="frm1"
-								class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-								<div class="input-group">
-									<input type="text" name='friendid'
-										class="form-control bg-light border-0 small"
-										placeholder="Search for..." aria-label="Search"
-										aria-describedby="basic-addon2">
-									<div class="input-group-append">
-										<button class="btn btn-primary" type="button"
-											onclick="myFunction()">
-											<i class="fas fa-search fa-sm"></i>
-										</button>
-									</div>
-								</div>
-							</form>
-							<br> <a href="friendlist">好友列表</a> <a href="application">申請列表</a>
-							<a href="waiting">等候回覆</a>
-						</div>
+							
 					</section>
 					<hr
 						style="height: 1px; border: none; color: #333; background-color: #333;">
-					<div class="row">
-						<c:forEach var='friend' items='${friends}'>
-							<c:set var='status' scope='session' value='${friend.status}' />
-							<c:if test='${status=="application"}'>
-								<div class="col-xl-4 col-md-6 mb-4">
-									<div class="card border-left-primary shadow py-2">
-										<div class="card-body">
-											<div class="row no-gutters align-items-center">
-												<div class="col mr-2">
-													<div
-														class="text-xs font-weight-bold text-primary text-uppercase mb-1 " style='font-size: 18px'>${friend.name}</div>
-													<div class="h5 mb-0 font-weight-bold text-gray-800">${friend.mid}</div>
-												</div>
-												<table>
-													<tr>
-														<td><form action='cancelapplication' method="post">
-																<input type="hidden" name='friendid'
-																	value='${friend.mid}'> <input type="submit"
-																	value="取消申請" />
-															</form></td>
-													</tr>
-												</table>
-												<div class="col-auto">
-													<img class="rounded-circle" width="60" height="60"
-											src="getMbPicture/${friend.mid}" alt="">
-												</div>
 
-											</div>
-										</div>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
+					<section class="container">
+		<div class="row">
+			<c:forEach var='memberjoin' items='${memberjoinactivity}'>
+				<div class="col-sm-6 col-md-3" style="width: 360px; height: 360px ">
+					<div  class="thumbnail" style="width: 320px; height: 340px">
+						<div>
+						<img width="200px" height="100px"
+							src="<c:url value='/activitypicture/${memberjoin.activity_id}' /> " />
+							</div>
+						<div class="caption">
+							<p><b style='font-size: 20px;'>${memberjoin.activity_title}</b></p>
+							<p>${memberjoin.end_date}</p>
+<%-- 							<p>${activity.activity_content}</p> --%>
+<%-- 							<p>人數：${activity.current_number}/${activity.number_limit}</p> --%>
+
+							<p>
+							
+								<a href="<spring:url value='/memberactivity?activity_id=${memberjoin.activity_id}' />"
+									class="btn btn-primary"> <span
+									class="glyphicon-info-sigh glyphicon"></span>詳細資料
+								</a> 
+<!-- 								<a -->
+<%-- 									href="<spring:url value='product.json?id=${product.bookId}' />" --%>
+<!-- 									class="btn btn-primary"> <span -->
+<!-- 									class="glyphicon-info-sigh glyphicon"></span>JSON -->
+<!-- 								</a> -->
+							</p>
+						</div>
 					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</section>
 
 				</div>
 				<!-- End of Content Wrapper -->

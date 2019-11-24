@@ -57,6 +57,8 @@ public class ProductInfoController {
 	@RequestMapping("/productSearch")
 	public String productSearch(Model model, HttpServletRequest request) {
 		String searchName = request.getParameter("productSearch");
+		//logger.info(searchName);
+		System.out.println(searchName);
 		List<PetProductListBean> products = petProductDao.productSearch(searchName);
 		model.addAttribute("products", products);
 		return "06/ProductInfo";

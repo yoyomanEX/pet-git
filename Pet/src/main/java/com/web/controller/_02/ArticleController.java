@@ -142,7 +142,21 @@ public class ArticleController {
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 //		System.out.println(loginToken);
 		String member = loginToken.getMember_Id();
-		System.out.println("member::"+member);
+//		System.out.println("member::"+member);
+		
+		List<String> visit = myblogservice.getByUser(member);
+		model.addAttribute("visit", visit);
+		List<ArticleBean> art = service.getArticlesByMemberNo2(member);
+		model.addAttribute("arts", art);
+
+		List<ArticleBean> arts = service.getArticleByDate(member);
+		model.addAttribute("artss", arts);
+
+		List<ArticleBean> artss = service.getArticlelikeByMember(member);
+		model.addAttribute("artsss", arts);
+		
+
+		return "_02/myblog";
 //		StyleBean sb = new StyleBean();
 //		sb.setNo(false);
 //		sb.setMemberId(member);
@@ -160,19 +174,6 @@ public class ArticleController {
 //			sb.setMemberId(sb.getMemberId());
 //			service.editStyle(sb);
 ////		}
-		List<String> visit = myblogservice.getByUser(member);
-		model.addAttribute("visit", visit);
-		List<ArticleBean> art = service.getArticlesByMemberNo2(member);
-		model.addAttribute("arts", art);
-
-		List<ArticleBean> arts = service.getArticleByDate(member);
-		model.addAttribute("artss", arts);
-
-		List<ArticleBean> artss = service.getArticlelikeByMember(member);
-		model.addAttribute("artsss", arts);
-
-		return "_02/myblog";
-
 	}
 
 	@RequestMapping("/myblog2")
@@ -345,6 +346,7 @@ public class ArticleController {
 		HttpSession session = request.getSession();
 		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
 		String member = loginToken.getMember_Id();
+		Blob aboutme = loginToken.getMemberImage();
 		HashMap<String, String> errorMessage = new HashMap<>();
 		request.setAttribute("ErrMsg", errorMessage);
 
@@ -383,6 +385,7 @@ public class ArticleController {
 			bean.setReport(false);
 			bean.setLikeCount(0);
 			bean.setAvailable(true);
+			bean.setFileName(aboutme);
 
 			MultipartFile picture = bean.getArticleImage();
 			System.out.println("picturepicture=" + picture);
@@ -429,6 +432,30 @@ public class ArticleController {
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 		ArticleBean bean = service.getArticleById(no);
 		Blob blob = bean.getCoverImage();
+		if (blob != null) {
+			body = blobToByteArray(blob);
+
+		} else {
+			String path = null;
+			path = noImage;
+			body = fileToByteArray(path);
+
+		}
+		re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
+		return re;
+	}
+	
+	@RequestMapping(value = "/getAboutPicture/{no}")
+	public ResponseEntity<byte[]> getAboutmePicture(HttpServletRequest reponse, @PathVariable Integer no) {
+//		System.out.println("picture=" + no);
+
+		byte[] body = null;
+		ResponseEntity<byte[]> re = null;
+		MediaType mediaType = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		ArticleBean bean = service.getArticleById(no);
+		Blob blob = bean.getFileName();
 		if (blob != null) {
 			body = blobToByteArray(blob);
 
@@ -631,6 +658,13 @@ public class ArticleController {
 			return "redirect:/postblog?id=" + ArticleNoS;
 
 		} else {
+			
+			
+			Blob blob = loginToken.getMemberImage();
+			rb.setReplyImage(blob);
+			
+			
+			
 			String AuthorSS = (loginToken.getMember_Id());
 			String content = request.getParameter("content");
 
@@ -641,8 +675,10 @@ public class ArticleController {
 			rb.setArticle_no(Integer.parseInt(ArticleNoS));
 
 			service.addReply(rb);
+			session.setAttribute("reply", rb);
 
 			List<ReplyBean> art = service.getReplysByArticle(no);
+			System.out.println("artart="+art);
 			model.addAttribute("arts", art);
 			
 			NoticeBean nb=new NoticeBean();
@@ -655,6 +691,33 @@ public class ArticleController {
 		}
 
 	}
+	
+	@RequestMapping(value = "/getReplyPicture/{no}")
+	public ResponseEntity<byte[]> getReplyPicture(HttpServletRequest reponse, @PathVariable Integer no) {
+//		System.out.println("picture=" + no);
+
+		byte[] body = null;
+		ResponseEntity<byte[]> re = null;
+		MediaType mediaType = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		ReplyBean rb = service.getReplyById(no);
+		Blob blob = rb.getReplyImage();
+		if (blob != null) {
+			body = blobToByteArray(blob);
+
+		} else {
+			String path = null;
+			path = noImage;
+			body = fileToByteArray(path);
+
+		}
+		re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
+		return re;
+	}
+
+
+
 
 	@RequestMapping(value = "/addReportblog")
 	public String processAddReportForm(@ModelAttribute("ReportBean") ReportBean rb, @RequestParam("rpid") Integer no,
@@ -827,6 +890,31 @@ public class ArticleController {
 			System.out.println("test excel="+art);
 			model.addAttribute("artCharts", art);
 			return "_02/admin_article";
+		}
+		
+		
+		@RequestMapping(value = "/deletReplyblog")
+		public String getdeletReply(@RequestParam("idid") Integer no, Model model,
+				@ModelAttribute("ReplyBean") ReplyBean rb, HttpServletRequest request, HttpServletResponse response,HttpSession session)
+				throws ParseException, SQLException {
+            System.out.println("idid::"+ no);
+			ArticleBean ab = service.getArticleById(no);
+			model.addAttribute("art", ab);
+
+			String ArticleNoS = Integer.toString(ab.getNo());
+			MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+			
+			String commid = request.getParameter("reno");
+			
+			try {
+			rb.setNo(Integer.parseInt(commid));
+			service.DeletComm(rb);
+			} catch (Exception e) {
+				System.out.println("刪除過了");
+			}
+
+			return "redirect:/postblog?id=" + ArticleNoS;
+
 		}
 
 }

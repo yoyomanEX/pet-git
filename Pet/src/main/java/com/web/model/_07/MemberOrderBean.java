@@ -24,6 +24,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "member_order")
 public class MemberOrderBean implements Serializable {
 
+
+
 	@Override
 	public String toString() {
 		return "MemberOrderBean [order_id=" + order_id + ", member_id=" + member_id + ", total=" + total + ", address="
@@ -33,7 +35,7 @@ public class MemberOrderBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Long order_id;
-	private Integer member_id;
+	private String member_id;
 	private Integer total;
 	private String address;
 	private String recipient;
@@ -54,7 +56,7 @@ public class MemberOrderBean implements Serializable {
 		super();
 	}
 
-	public MemberOrderBean(Long order_id, Integer member_id, Integer total, String address, String recipient,
+	public MemberOrderBean(Long order_id, String member_id, Integer total, String address, String recipient,
 			String phone, Date order_date, Date ship_date, String company_id, int status) {
 		super();
 		this.order_id = order_id;
@@ -81,11 +83,11 @@ public class MemberOrderBean implements Serializable {
 		this.order_id = order_id;
 	}
 	@Column(name="MEMBER_ID")
-	public Integer getMember_id() {
+	public String getMember_id() {
 		return member_id;
 	}
 
-	public void setMember_id(Integer member_id) {
+	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
 	@Column(name="TOTAL")

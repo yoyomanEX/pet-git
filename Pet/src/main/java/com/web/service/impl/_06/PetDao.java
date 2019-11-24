@@ -37,8 +37,8 @@ public class PetDao implements PetInterface {
 		List<PetBean06> PBs = new ArrayList<PetBean06>();
 
 		// 執行SQL敘述 List<Map<String, Object>>存放資料(kev跟value型態)
-		String qryStmt = "SELECT * FROM product";
-		List<Map<String, Object>> rows = jdbcTemplate.queryForList(qryStmt);
+		String qryStmt = "SELECT * FROM product where company_id = ?";
+		List<Map<String, Object>> rows = jdbcTemplate.queryForList(qryStmt,"66668888");
 		for (Map<String, Object> row : rows) {
 			PetBean06 PB = new PetBean06();
 			PB.setProduct_id((int) row.get("product_id"));
@@ -73,8 +73,8 @@ public class PetDao implements PetInterface {
 
 	public List<PetBean06> queryAllName(String productName) {
 		List<PetBean06> PBs = new ArrayList<>();
-		String qryStmt = "select * from product where product_name LIKE ?";
-		List<Map<String, Object>> rows = jdbcTemplate.queryForList(qryStmt, "%" + productName + "%");
+		String qryStmt = "select * from product where product_name LIKE ?  and company_id =?";
+		List<Map<String, Object>> rows = jdbcTemplate.queryForList(qryStmt, "%" + productName + "%" ,"66668888");
 		for (Map<String, Object> row : rows) {
 			PetBean06 PB = new PetBean06();
 			PB.setProduct_id((int) row.get("product_id"));
@@ -119,8 +119,8 @@ public class PetDao implements PetInterface {
 	public List<PetBean06> queryProduct(String productSearch) {
 
 		List<PetBean06> pbs = new ArrayList<>();
-		String qryStmt = "select * from product where product_name like ? or product_id like ?";
-		List<Map<String, Object>> rows = jdbcTemplate.queryForList(qryStmt, "%" + productSearch + "%", "%" + productSearch + "%");
+		String qryStmt = "select * from product where product_name like ? or product_id like ? and company_id =?";
+		List<Map<String, Object>> rows = jdbcTemplate.queryForList(qryStmt, "%" + productSearch + "%", "%" + productSearch + "%" ,"66668888");
 		for (Map<String, Object> row : rows) {
 			PetBean06 petBean = new PetBean06();
 			petBean.setProduct_id((int) row.get("product_id"));
@@ -197,7 +197,7 @@ public class PetDao implements PetInterface {
 
 	@Override
 	public int insert(PetBean06 PB) throws SQLException {
-		String insertSql = "insert into product (product_name,price,cost_price,amount,describe,status,category) values(?,?,?,?,?,?,?)";
+		String insertSql = "insert into product (product_name,price,cost_price,amount,describe,status,category,company_id) values(?,?,?,?,?,?,?,?)";
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 
 		// 獲取自動產生的PRIMARY KEY
@@ -212,6 +212,7 @@ public class PetDao implements PetInterface {
 				ps.setString(5, PB.getDescribe());
 				ps.setInt(6, PB.getStatus());
 				ps.setInt(7, PB.getCategory());
+				ps.setString(8, "66668888");
 				return ps;
 			}
 		}, keyHolder);

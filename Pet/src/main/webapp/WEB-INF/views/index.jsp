@@ -39,18 +39,17 @@
 	<header class="header_area">
 		<!--::header part end::-->
 
-		<!-- Topbar -->
-		<nav
-			class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-			<c:choose>
-				<c:when test="${empty LoginOK}">
-					<div class="sub_header_social_icon float-right">
-						<a href="_01.memberloginPage"
-							class="btn_1 d-none d-md-inline-block">Longin</a>
-					</div>
-				</c:when>
-
+	
+	<!-- Topbar -->
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					
+					<c:choose>
+   						<c:when test="${empty LoginOK}">
+   							<div class="sub_header_social_icon float-right">
+							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">登入/註冊</a>
+							</div>
+    					</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav ml-auto">
 
@@ -135,7 +134,7 @@
 									<li class="nav-item"><a
 										href="<spring:url value='/_08/contents_Front'/>"
 										class="nav-link">𨑨迌 食飯</a></li>
-									<li class="nav-item"><a href="#" class="nav-link">寵物跑跳碰</a>
+									<li class="nav-item"><a href="<spring:url value='/allactivity'/>" class="nav-link">寵物跑跳碰</a>
 									</li>
 									<li class="nav-item"><a
 										href="<spring:url value='/06/petProductSale'/>"

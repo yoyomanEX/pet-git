@@ -205,6 +205,8 @@ public class CompanyProductController {
 		String category = request.getParameter("category");
 		Integer category1 = Integer.parseInt(category);
 
+		System.out.println("describe===>"+describe);
+		
 		CompanyProductBean bean = new CompanyProductBean();
 		bean.setProduct_id(product1);
 		bean.setProduct_name(product_name);

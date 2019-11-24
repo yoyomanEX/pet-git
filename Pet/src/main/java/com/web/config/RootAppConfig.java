@@ -1,4 +1,4 @@
-package com.web.config;
+﻿package com.web.config;
 
 import java.beans.PropertyVetoException;
 import java.util.Properties;
@@ -48,9 +48,8 @@ public class RootAppConfig {
     public DataSource dataSource() {
         ComboPooledDataSource ds = new ComboPooledDataSource();
         ds.setUser("sa");
-        ds.setPassword("P@ssw0rd");
-
-        try {
+        ds.setPassword("password");
+	try {
             ds.setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         } catch (PropertyVetoException e) {
             e.printStackTrace();

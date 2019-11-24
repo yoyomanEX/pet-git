@@ -131,7 +131,7 @@ public class ActivityController {
 		List<PetActivityBean> list2=activityService.queryMemberPetActivity(list);
 		System.out.println("哈哈"+list2);
 		model.addAttribute("memberjoinactivity",list2);
-		return "_05/memberjoinactivity";
+		return "_05/memberjoinactivitys";
 	}
 	//查詢全部活動
 	@RequestMapping(value="/allactivity")
@@ -239,5 +239,27 @@ public class ActivityController {
 		model.addAttribute("activity",activityService.getActivityById(activity_id));
 		model.addAttribute("memberactivity",list2);
 		return "_05/activity";
+	}
+	
+	@RequestMapping("/memberactivity")
+	public String getActivityByMemberId(@RequestParam("activity_id") Integer activity_id,Model model
+			,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberBean member_Id = (MemberBean) session.getAttribute("LoginOK");
+		ModelAndView mv = new ModelAndView();
+		List<ActivityPeopleBean> list2=ActivityPeople.queryMemberActivity(member_Id.getMember_Id());
+	    for(int i=0;i<list2.size();i++) {
+	    	int a=list2.get(i).getActivity_id();
+	    	if(a==activity_id) {
+	    		model.addAttribute("already",1);
+	    	}
+	    }
+//	    if (list2.contains()) {
+//	    	System.out.println("帥哥金城武");
+//	    	model.addAttribute("already",1);
+//		}
+		model.addAttribute("activity",activityService.getActivityById(activity_id));
+		model.addAttribute("memberactivity",list2);
+		return "_05/memberactivity";
 	}
 }
