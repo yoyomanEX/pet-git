@@ -309,6 +309,29 @@ public class MemberController {
 		re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
 		return re;
 	}
+	
+//	@RequestMapping(value = "memberblog/getPicture", method = RequestMethod.GET)
+//	public ResponseEntity<byte[]> getPicture2(HttpServletRequest request) {
+//		byte[] body = null;
+//		ResponseEntity<byte[]> re = null;
+//		MediaType mediaType = null;
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+//		HttpSession session = request.getSession();
+//		MemberBean loginToken = (MemberBean) session.getAttribute("LoginOK");
+//		Blob blob = loginToken.getMemberImage();
+//		if (blob != null) {
+//			body = blobToByteArray(blob);
+//
+//		} else {
+//			String path = null;
+//			path = noImage;
+//			body = fileToByteArray(path);
+//
+//		}
+//		re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
+//		return re;
+//	}
 
 	@Autowired
 	ServletContext context;
