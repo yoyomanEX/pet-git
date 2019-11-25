@@ -4,74 +4,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-
-
-<!-- ##### Instagram Area Start ##### -->
-<div class="follow-us-instagram">
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<div class="section-heading">
-					<h2>Follow Us @pET-blog</h2>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-12">
-				<div class="instagram-slides owl-carousel">
-					<!-- Single Instagram Slide -->
-					<div class="single-instagram-slide">
-						<img src="img/blog-img/pet1.jpg" alt=""> <a href="#"><i
-							class="fa fa-instagram"></i>Follow Me</a>
-					</div>
-					<!-- Single Instagram Slide -->
-					<div class="single-instagram-slide">
-						<img src="img/blog-img/pet5.jpg" alt=""> <a href="#"><i
-							class="fa fa-instagram"></i>Follow Me</a>
-					</div>
-					<!-- Single Instagram Slide -->
-					<div class="single-instagram-slide">
-						<img src="img/blog-img/pet2.jpg" alt=""> <a href="#"><i
-							class="fa fa-instagram"></i>Follow Me</a>
-					</div>
-
-					<!-- Single Instagram Slide -->
-					<div class="single-instagram-slide">
-						<img src="img/blog-img/pet4.jpg" alt=""> <a href="#"><i
-							class="fa fa-instagram"></i>Follow Me</a>
-					</div>
-
-
-					<!-- Single Instagram Slide -->
-					<div class="single-instagram-slide">
-						<img src="img/blog-img/pet6.jpg" alt=""> <a href="#"><i
-							class="fa fa-instagram"></i>Follow Me</a>
-					</div>
-
-					<!-- Single Instagram Slide -->
-					<div class="single-instagram-slide">
-						<img src="img/blog-img/pet3.jpg" alt=""> <a href="#"><i
-							class="fa fa-instagram"></i>Follow Me</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- ##### Instagram Area End ##### -->
-
-
 <footer class="footer-area">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<!-- Footer Curve Line -->
-				<img class="footer-curve" src="img/core-img/foo-curve.png" alt="">
-				<!-- Footer Social Info -->
 
-				<!-- Footer Curve Line -->
-				<img class="footer-curve" src="img/core-img/foo-curve.png" alt="">
 			</div>
 		</div>
 
@@ -146,7 +83,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="copyright_text">
-					<img src="img/about_icon.png" alt="#">
+					<img src="${pageContext.request.contextPath}/img/about_icon.png" alt="#">
 					<!-- 						<h3>pET ʕ•ᴥ•ʔ陪你</h3> -->
 					<p class="footer-text">
 						Copyright &copy;
