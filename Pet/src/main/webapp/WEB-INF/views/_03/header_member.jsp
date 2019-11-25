@@ -90,7 +90,7 @@
 	function showfriends(data) {
 		var txt = "";
 		for (i = 0; i < data.length; i++) {
-			txt += '<a class="dropdown-item d-flex align-items-center" onclick="talk('+data[i].mid+')" >'
+			txt += '<a class="dropdown-item d-flex align-items-center" onclick="talk(\''+data[i].mid+'\')" >'
 			+'<div class="dropdown-list-image mr-3">'
 				+ '<img class="rounded-circle"'
 				+'width="60" height="60" src="'

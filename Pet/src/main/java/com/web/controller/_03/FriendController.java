@@ -87,7 +87,7 @@ public class FriendController {
 		return "_03/404";
 	}
 
-	@RequestMapping(value = "/memberblog/{member_Id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/memberblog/{member_Id}")
 	public String getProductsByCategory(@PathVariable("member_Id") String member_Id, Model model,HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		MemberBean mid = (MemberBean) session.getAttribute("LoginOK");
@@ -226,6 +226,7 @@ public class FriendController {
 		MemberBean mid = (MemberBean) session.getAttribute("LoginOK");
 		userid = mid.getMember_Id();
 		service.deleteByMid(userid, friendid);
+		Noticeservice.deleteFrStarusByUser(userid);
 		return "redirect:/application";
 	}
 

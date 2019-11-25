@@ -181,7 +181,7 @@ $(document).ready(function() {
                                 </c:when>
                               <c:otherwise>
                                 <div class="post-thumbnail mb-50">
-                                    <img width='450' height='500' src='<c:url value="/getArtPicture/${art.no }"/>'/>
+                                    <img width='300' height='400' src='<c:url value="/getArtPicture/${art.no }"/>'/>
                                 </div>
                               </c:otherwise>
                               </c:choose>

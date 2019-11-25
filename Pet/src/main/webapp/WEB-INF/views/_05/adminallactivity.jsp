@@ -61,13 +61,13 @@
 				
     <!--::breadcrumb part start::-->
 
-	<section class="container" style="padding-top:100px">
-		<div class="row">
+	<section class="container" style="padding-top:100px; margin-left: 100px;">
+		<div class="row" >
 			<c:forEach var='activity' items='${allactivity}'>
-				<div class="col-sm-6 col-md-3" style="width: 360px; height: 500px;border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;margin:10px">
-					<div  class="thumbnail" style="width: 320px; height: 340px">
+				<div class="col-sm-6 col-md-3" style="width: 360px; height: 360px;border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;margin:10px">
+					<div class="thumbnail" style="width: 320px; height: 340px">
 						<div>
-						<img width="200px" height="100px"
+						<img width="250px" height="200px"
 							src="<c:url value='/activitypicture/${activity.activity_id}' /> " />
 							</div>
 						<div class="caption">

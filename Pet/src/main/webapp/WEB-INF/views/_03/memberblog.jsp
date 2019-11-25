@@ -189,7 +189,7 @@ $(document).ready(function() {
                             <div class="post-content mb-50">
                                 <p class="post-date">${fn:substring(art.postTime, 0 ,20)}</p>                       
                                 <div class="post-title">
-                                    <a href="<spring:url value='postblog?id=${art.no}' />" class="post-title">
+                                    <a href="${pageContext.request.contextPath}/postblog?id=${art.no}" class="read-more-btn">
                                         <h4>${art.title}</h4>
                                     </a>
                                 </div>
@@ -198,7 +198,7 @@ $(document).ready(function() {
                                     <a href="#"><i class="fa fa-thumbs-up"></i>&nbsp&nbsp${art.likeCount}</a>
                                 </div>
                                 <p class="post-excerpt">${fn:substring(art.content, 0 ,20)}</p>                         
-                                <a href="<spring:url value='postblog?id=${art.no}' />" class="read-more-btn">Continue Reading  
+                                <a href="${pageContext.request.contextPath}/postblog?id=${art.no}" class="read-more-btn">Continue Reading  
                                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                                 </a>
                             </div>

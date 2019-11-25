@@ -362,9 +362,9 @@ public class ArticleController {
 			errorMessage.put("titleOver", "字數超過25字");
 		}
 
-		if (bean.getContent() == null || bean.getContent().trim().length() == 0) {
-			errorMessage.put("ContentNull", "請輸入內容");
-		}
+//		if (bean.getContent() == null || bean.getContent().trim().length() == 0) {
+//			errorMessage.put("ContentNull", "請輸入內容");
+//		}
 
 		if (errorMessage.isEmpty()) {
 
@@ -882,7 +882,7 @@ public class ArticleController {
 	     // URL為 /members, 搭配 GET方法可以傳回所有紀錄。
 		// produces屬性說明產生之資料的格式: produces = "application/vnd.ms-excel"
 		// 本方法可以Excel格式傳回所有Member紀錄
-		@RequestMapping(value = "/blogXML", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
+		@RequestMapping(value = "/blog", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
 		public String queryArticleExcel(Model model, HttpServletRequest request,HttpServletResponse response) throws IOException {
 			request.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html;charset=UTF-8");
@@ -909,6 +909,7 @@ public class ArticleController {
 			try {
 			rb.setNo(Integer.parseInt(commid));
 			service.DeletComm(rb);
+			Noticeservice.deleteMeStatusByUser(loginToken.getMember_Id(), no);
 			} catch (Exception e) {
 				System.out.println("刪除過了");
 			}
