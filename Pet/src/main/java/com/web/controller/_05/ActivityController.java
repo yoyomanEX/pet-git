@@ -96,7 +96,7 @@ public class ActivityController {
 			e.printStackTrace();
 			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 		}
-		return "redirect:/allactivity";
+		return "redirect:/adminallactivity";
 	}
 //	//刪除活動
 //	@RequestMapping(value = "/_05.deletePetActivity", method = RequestMethod.POST)
@@ -133,9 +133,9 @@ public class ActivityController {
 		model.addAttribute("memberjoinactivity",list2);
 		return "_05/memberjoinactivitys";
 	}
-	//查詢全部活動
+	//會員查詢全部活動
 	@RequestMapping(value="/allactivity")
-	public String AllActivity(Model model,HttpServletRequest request){
+	public String MemberAllActivity(Model model,HttpServletRequest request){
 		HttpSession session = request.getSession();
 //		MemberBean member_Id = (MemberBean) session.getAttribute("LoginOK");
 		List<PetActivityBean> list1=activityService.queryAllPetActivity();
@@ -143,6 +143,17 @@ public class ActivityController {
 		model.addAttribute("allactivity",list1);
 //		model.addAttribute("memberactivity",list2);
 		return "_05/allactivity";
+	}
+	
+	@RequestMapping(value="/adminallactivity")
+	public String adminAllActivity(Model model,HttpServletRequest request){
+		HttpSession session = request.getSession();
+//		MemberBean member_Id = (MemberBean) session.getAttribute("LoginOK");
+		List<PetActivityBean> list1=activityService.queryAllPetActivity();
+//		List<ActivityPeopleBean> list2=ActivityPeople.queryMemberActivity(member_Id.getMember_Id());
+		model.addAttribute("allactivity",list1);
+//		model.addAttribute("memberactivity",list2);
+		return "_05/adminallactivity";
 	}
 	
 //	//參加活動
@@ -239,6 +250,16 @@ public class ActivityController {
 		model.addAttribute("activity",activityService.getActivityById(activity_id));
 		model.addAttribute("memberactivity",list2);
 		return "_05/activity";
+	}
+	
+	@RequestMapping("/adminactivity")
+	public String getAdminActivityById(@RequestParam("activity_id") Integer activity_id,Model model
+			,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+
+		model.addAttribute("activity",activityService.getActivityById(activity_id));
+	
+		return "_05/adminactivity";
 	}
 	
 	@RequestMapping("/memberactivity")
