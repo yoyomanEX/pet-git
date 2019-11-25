@@ -13,7 +13,7 @@
 					<c:choose>
    						<c:when test="${empty LoginOK}">
    							<div class="sub_header_social_icon float-right" style="float:right">
-							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">Longin</a>
+							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">登入/註冊</a>
 							</div>
     					</c:when>
     
@@ -28,7 +28,7 @@
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> <span
 									class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:20px">你好，${LoginOK.name }</span>
-									<img class="img-profile rounded-circle" width='60' height='60' src='${pageContext.request.contextPath}/getPicture' />
+									<img class="img-profile rounded-circle" width='60' height='60' src='getPicture' />
 							</a> <!-- Dropdown - User Information -->
 								<div
 									class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

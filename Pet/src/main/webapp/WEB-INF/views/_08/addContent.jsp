@@ -161,8 +161,9 @@ label{
 						<label class="control-label col-lg-2 col-lg-2" for='content_sub'>
 							內容 </label>
 						<div class="col-lg-10">
-							<form:input style="width:500px; height:300px;" id="content_sub" path="content_sub" type='text'
-								class='form:input-large' />
+							<textarea rows="20" cols="60" class='form:input-large' name="content_sub" id="content_sub" placeholder="請輸入內文"></textarea>
+<%-- 							<form:input style="width:500px; height:300px;" id="content_sub" path="content_sub" type='text' --%>
+<%-- 								class='form:input-large' /> --%>
 						</div>
 					</div>
 					<div class="form-group">
@@ -185,7 +186,7 @@ label{
 	</div>
 
 	<!-- Footer -->
-	
+
 	<!--   Core   -->
 	<script
 		src="${pageContext.request.contextPath}/assets/js/plugins/jquery/dist/jquery.min.js"></script>

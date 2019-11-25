@@ -173,7 +173,6 @@
 	<hr>
 
 	<!-- Footer -->
-	
 
 	<!--   Core   -->
 	<script

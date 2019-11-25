@@ -173,7 +173,6 @@
 	</div>
 
 	<!-- Footer -->
-	
 	<!--   Core   -->
 	<script
 		src="${pageContext.request.contextPath}/assets/js/plugins/jquery/dist/jquery.min.js"></script>
