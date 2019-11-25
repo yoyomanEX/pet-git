@@ -52,6 +52,12 @@ public class InfoController {
 		model.addAttribute("allHospitals", hospitals);
 		return "_08/hospitals";
 	}
+//	@RequestMapping(value = "/qryHosByName/{hospital_name}", method = RequestMethod.POST , produces = "text/html")
+//	public String getHospitalByName(@PathVariable String name, Model model, HttpServletRequest req) {
+//		List<HospitalBean> hospitals = hosService.qryHosByName(name);
+//		model.addAttribute("hosName", hospitals);
+//		return "redirect: " + req.getContextPath() + "/08/showHospitals";
+//	}
 
 	// URL為 /hospitals, 搭配 GET方法可以傳回所有hospital紀錄。
 	// produces屬性說明產生之資料的格式: produces ="text/html"
@@ -70,7 +76,7 @@ public class InfoController {
 	public String qryAllHospitalsFront(Model model, HttpServletRequest req) {
 		List<HospitalBean> hospitals = hosService.qryAllHospital();
 		model.addAttribute("allHospitals", hospitals);
-		return "_08/showHospitals2";
+		return "_08/showHospitals";
 	}
 //	// 以HTML格式顯示單筆Hospital資料
 //		@RequestMapping(value = "/hospitals_name", method = RequestMethod.GET, produces = "text/html")
@@ -154,12 +160,6 @@ public class InfoController {
 		return "redirect: " + req.getContextPath() + "/_08/hospitals";
 	}
 
-//	// 送回本子功能的首頁
-//	@RequestMapping(value = { "/", "/hospitalIndex" }, method = RequestMethod.GET)
-//	public String index() {
-//		return "_08/index_hospital";
-//	}
-
 //------	Hospital Table Controller End	-----//
 
 //------	Hotel Table Controller Start	-----//
@@ -190,6 +190,12 @@ public class InfoController {
 	// 本方法可以html格式傳回所有hotels紀錄
 	@RequestMapping(value = "/hotelsFront", method = RequestMethod.GET, produces = "text/html")
 	public String queryAllHotelFront(Model model, HttpServletRequest req) {
+//		List<HotelBean> hotels = hotService.qryAllHotel();
+//		model.addAttribute("allHotels", hotels);
+		return "_08/showHotels";
+	}
+	@RequestMapping(value = "/hotelsFront2", method = RequestMethod.GET, produces = "text/html")
+	public String queryAllHotelFront2(Model model, HttpServletRequest req) {
 		List<HotelBean> hotels = hotService.qryAllHotel();
 		model.addAttribute("allHotels", hotels);
 		return "_08/showHotels";
@@ -287,6 +293,12 @@ public class InfoController {
 	// 本方法可以html格式傳回所有restaurants紀錄
 	@RequestMapping(value = "/resFront", method = RequestMethod.GET, produces = "text/html")
 	public String queryAllResFront(Model model, HttpServletRequest req) {
+//		List<RestaurantBean> restaurants = resService.qryAllRestaurant();
+//		model.addAttribute("allrestaurants", restaurants);
+		return "_08/showRes";
+	}
+	@RequestMapping(value = "/resFront2", method = RequestMethod.GET, produces = "text/html")
+	public String queryAllResFront2(Model model, HttpServletRequest req) {
 		List<RestaurantBean> restaurants = resService.qryAllRestaurant();
 		model.addAttribute("allrestaurants", restaurants);
 		return "_08/showRes";

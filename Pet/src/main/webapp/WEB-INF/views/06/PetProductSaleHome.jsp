@@ -162,6 +162,7 @@
 				}
 			});
 		});
+	
 		
 		//按下ENTER搜尋商品
 		$("#productSearch").keypress(function() {

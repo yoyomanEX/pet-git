@@ -9,7 +9,8 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>pET ʕ•ᴥ•ʔ 陪你</title>
-   <link rel="icon" href="${pageContext.request.contextPath}/img/about_icon.png">
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/about_icon.png">
 <!-- Favicon -->
 <!-- <link -->
 <%-- 	href="${pageContext.request.contextPath}/assets/img/brand/favicon.png" --%>
@@ -217,12 +218,13 @@
 		<div class="card shadow mb-4">
 			<div id="content">
 				<br>
-				<c:if test="${empty orderList}">
-					<h2 style="text-align: center;">目前沒有要處理的訂單</h2>
-				</c:if>
+
 				<table
 					style="text-align: center; width: 90%; font-family: Microsoft JhengHei; font-size: 20px; font-weight: bold;"
 					border=1">
+<%-- 					<c:if test="${empty orderList}"> --%>
+<!-- 						<h2 style="text-align: center;">目前沒有要處理的訂單</h2> -->
+<%-- 					</c:if> --%>
 					<c:forEach var='list' items='${orderList}'>
 						<tr>
 							<th>訂單日期</th>

@@ -103,7 +103,7 @@ jq1(document).ready(function(){
 function processedOrder(data) {
 	 	
 		var unprocess=JSON.parse(data);
-		var txt ="<tr><th>訂單日期</th><th>訂單編號</th><th>訂購人</th><th>收貨人</th><th>地址</th><th>總金額</th><th>出貨日期</th>";
+		var txt ="<tr><th>訂單日期</th><th>訂單編號</th><th>訂購會員</th><th>收貨人</th><th>地址</th><th>總金額</th><th>出貨日期</th>";
 		for(i=0;i<unprocess.length;i++){
 			var order_date = "";
 			if(unprocess[i].order_date != '' && typeof unprocess[i].order_date != 'undefined'){
@@ -224,16 +224,16 @@ function showDetail(data,p) {
 		          width:500,
 		          height:500,
 		          is3D: true,
-		          chartArea:{left:60,top:60,width:'100%',height:'100%'}
+		          chartArea:{left:60,top:60,width:'120%',height:'120%'}
 		        };
 		        var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
 		         piechart.draw(data,piechart_options);
 		         
 		         var barchart_options ={
 		        	title:'銷售紀錄(長條圖)',
-		        	width:500,
+		        	width:1000,
 		        	height:500,
-		        	chartArea:{left:60,top:60,width:'60%',height:'60%'}
+		        	chartArea:{left:80,top:60,width:'60%',height:'60%'}
 		         };
 		         var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
 				 barchart.draw(data, barchart_options);

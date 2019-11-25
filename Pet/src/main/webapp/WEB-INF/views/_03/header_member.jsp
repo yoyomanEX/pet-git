@@ -191,11 +191,9 @@
 					</div>
 				</div></li>
 				
-				<li class="nav-item"><a class="nav-link collapsed" href="<spring:url value='/memberjoinactivity'/>"
-				data-toggle="collapse" data-target="#collapseOne"
-				aria-expanded="true" aria-controls="collapseOne"> <i
-					class="fas fa-paw"></i> <span>查詢已參與活動</span>
-			</a></li>
+				<li class="nav-item"><a class="nav-link"
+			href="<spring:url value='/memberjoinactivity'/>"> <i
+				class="fas fa-paw"></i> <span>查詢已參與活動</span></a></li>
 				
 						<!-- Nav Item - Utilities Collapse Menu -->
 

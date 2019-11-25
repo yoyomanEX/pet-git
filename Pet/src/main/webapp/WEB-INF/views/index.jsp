@@ -29,14 +29,15 @@
 <link rel="stylesheet" href="css/style.css">
 <!-- 自訂 - index CSS -->
 <link rel="stylesheet" href="css/index.css">
-<!-- 瀑布流 CSS -->
-<link rel="stylesheet" href="waterfall.css">
+<!-- <!-- 瀑布流 CSS -->
+<!-- <link rel="stylesheet" href="waterfall.css"> -->
 
 </head>
 
 <body>
 	<!--::header part start::-->
 	<header class="header_area">
+		<!--::header part end::-->
 
 	
 	<!-- Topbar -->
@@ -45,7 +46,7 @@
 					
 					<c:choose>
    						<c:when test="${empty LoginOK}">
-   							<div class="sub_header_social_icon float-right">
+   							<div class="sub_header_social_icon float-right" style="float:right">
 							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">登入/註冊</a>
 							</div>
     					</c:when>
@@ -111,7 +112,6 @@
 <!-- 			</div> -->
 <!-- 		</div> -->
 
-
 		<div class="main_menu">
 			<div class="container">
 				<div class="row">
@@ -148,10 +148,8 @@
 												class="dropdown-item" href="_08/hotelsFront">旅館資訊</a> <a
 												class="dropdown-item" href="_08/resFront">餐廳資訊</a>
 										</div></li>
-
 									<li class="nav-item"><a href="#" class="nav-link">PET
 											PET Q&A</a></li>
-
 								</ul>
 							</div>
 						</nav>
@@ -170,13 +168,27 @@
 					<div class="banner_text">
 						<h5>Welcome to pET ʕ•ᴥ•ʔ 陪你</h5>
 						<h1>陪伴你每一天</h1>
-						<a href="#" class="btn_1">our service</a>
+						<a href="#service" class="btn_1">our service</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- banner part start-->
+	<!-- Toolbar part start -->
+	<div>
+		<ul class="toolbar_r">
+			<li class="vnb"><img id="vnb_fb" alt=""
+				src="img/icon/facebook-g.svg" href="https://www.facebook.com/" /></li>
+			<li class="vnb"><img id="vnb_youtube" alt=""
+				src="img/icon/youtube-g.svg" href="https://www.youtube.com/" /></li>
+			<li class="vnb"><img id="vnb_robot" alt=""
+				src="img/icon/robot-g.svg" href="#" /></li>
+			<li class="vnb"><img id="vnb_chat" alt=""
+				src="img/icon/chat-g.svg" href="#" /></li>
+		</ul>
+	</div>
+	<!-- Toolbar part end -->
 
 	<!-- about part start-->
 	<section class="about_part section_padding">
@@ -191,15 +203,54 @@
 					<div class="about_text">
 						<img src="img/about_icon.png" class="about_icon" alt="">
 						<h2>We care your pet As you care</h2>
-						<p>網站簡介</p>
-						<a href="#" class="btn_1">About Us</a>
+						<p style="font-size: 30px;">讓pET ʕ•ᴥ•ʔ 陪你和你一起陪著你的毛孩子！</p>
+<!-- 						<a href="#" class="btn_1">About Us</a> -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- about part start-->
+	<!-- service part start-->
+	<section id="service" class="service_part section_padding services_bg">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8">
+					<div class="section_tittle text-center">
+						<img src="img/about_icon.png" alt="">
+						<h2>We Provide Best Services</h2>
+<!-- 						<p>#####</p> -->
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-sm-6">
+					<div class="single_service_part">
+						<img class="provide-service" src="img/animal_friend.jpg" alt="#">
+						<h3>Friend & Activity</h3>
+						<p style="font-size: 24px;">豐富的交友活動等著您與您的毛孩子來參加！</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-sm-6">
+					<div class="single_service_part">
+						<img class="provide-service" src="img/cat_write.jpg" alt="#">
+						<h3>Blog</h3>
+						<p style="font-size: 24px;">提供個人化的部落格紀錄毛孩子的每一天！</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-sm-6">
+					<div class="single_service_part">
+						<img class="provide-service" src="img/animal_shopping.jpg" alt="#">
+						<h3>Shopping</h3>
+						<p style="font-size: 24px;">最棒最豐富的商品等著您帶回家！</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- service part end-->
 	<!-- 網站廣告輪播 part here -->
+	<div style="height: 100px;"></div>
 	<section class="client_review">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -209,24 +260,24 @@
 							<img class="carousel_icon" src="img/carousel_knowledge.svg"
 								alt="#">
 							<h1 class="chinese">貓也會得糖尿病嗎？</h1>
-							<p class="chinese">- 你知道嗎？貓咪也像人一樣，會得糖尿病喔！</p>
+							<p class="chinese" style="color: black;">- 你知道嗎？貓咪也像人一樣，會得糖尿病喔！</p>
 						</div>
 						<div class="singke_client_review">
 							<img class="carousel_icon" src="img/carousel_promotion_1.svg"
 								alt="#">
 							<h1 class="chinese">渴望飼料6.4折</h1>
-							<p class="chinese">- pET ʕ•ᴥ•ʔ 陪你商城 - 會員專屬優惠！</p>
+							<p class="chinese" style="color: black;">- pET ʕ•ᴥ•ʔ 陪你商城 - 會員專屬優惠！</p>
 						</div>
 						<div class="singke_client_review">
 							<img class="carousel_icon" src="img/carousel_news.svg" alt="#">
 							<h1 class="chinese">雪貂愛上狼犬…以為彼此是同類</h1>
-							<p class="chinese">- 主人無奈：雙眼每天被閃瞎</p>
+							<p class="chinese" style="color: black;">- 主人無奈：雙眼每天被閃瞎</p>
 						</div>
 						<div class="singke_client_review">
 							<img class="carousel_icon" src="img/carousel_carnival_2.png"
 								alt="#">
 							<h1 class="chinese">2019台北寵物節—毛孩友善聖誕城</h1>
-							<p class="chinese">- 活動日期 : 2019-12-01 ~ 2019-12-21 活動地點 :
+							<p class="chinese" style="color: black;">- 活動日期 : 2019-12-01 ~ 2019-12-21 活動地點 :
 								信義廣場（台北市信義區信義路五段11號，台北101對面）</p>
 						</div>
 					</div>
@@ -234,167 +285,34 @@
 			</div>
 		</div>
 	</section>
+	<div style="height: 200px;"></div>
 	<!-- client review part end -->
-
-
-	<!-- service part start-->
-	<section class="service_part section_padding services_bg">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-8">
-					<div class="section_tittle text-center">
-						<img src="img/about_icon.png" alt="">
-						<h2>We Provide Best Services</h2>
-						<p>#####</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-4 col-sm-6">
-					<div class="single_service_part">
-						<img class="provide-service" src="img/cat_write.jpg" alt="#">
-						<h3>Blog</h3>
-						<p>Personal Blog for you and your pet!</p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6">
-					<div class="single_service_part">
-						<img class="provide-service" src="img/animal_friend.jpg" alt="#">
-						<h3>Friend & Activity</h3>
-						<p>交友活動</p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-sm-6">
-					<div class="single_service_part">
-						<img class="provide-service" src="img/animal_shopping.jpg" alt="#">
-						<h3>Shopping</h3>
-						<p>We provide best item for your pet!</p>
-					</div>
-
-				</div>
-			</div>
-	</section>
-	<!-- service part end-->
-
-	<!-- Toolbar part start -->
-	<div>
-		<ul class="toolbar_r">
-			<!-- 									<li class="vnb"> -->
-			<!-- 									<img id="vnb_instagram" alt="" src="img/icon/instagram-g.svg" href="https://www.instagram.com/"/> -->
-			<!-- 									</li> -->
-			<li class="vnb"><img id="vnb_fb" alt=""
-				src="img/icon/facebook-g.svg" href="https://www.facebook.com/" /></li>
-			<li class="vnb"><img id="vnb_youtube" alt=""
-				src="img/icon/youtube-g.svg" href="https://www.youtube.com/" /></li>
-			<li class="vnb"><img id="vnb_robot" alt=""
-				src="img/icon/robot-g.svg" href="#" /></li>
-			<li class="vnb"><img id="vnb_chat" alt=""
-				src="img/icon/chat-g.svg" href="#" /></li>
-		</ul>
-	</div>
-	<!-- Toolbar part end -->
-
-	<!-- 瀑布流文章 waterfall content here -->
-
-	<!-- 						<div id="#"> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/1"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/2"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/3"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/4"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/5"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/6"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/7"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/8"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/9"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/10"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/11"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/12"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/13"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/14"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/15"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/16"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/17"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/18"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/19"> -->
-	<!-- 							</div> -->
-	<!-- 							<div class="#"> -->
-	<!-- 								<img src="img/waterfall/20"> -->
-	<!-- 							</div> -->
-	<!-- 						</div> -->
-
-	<!-- waterfall content end -->
+	 <!-- about part start-->
+    <section style="margin-bottom: 200px;">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md-6">
+                    <div class="about_img">
+                        <img src="img/gallery-06.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="about_text">
+                        <img src="img/about_icon.png" class="about_icon" alt="">
+                        <h1 class="chinese" style="font-size: 45px;">陪伴你與你的毛小孩</h1>
+                        <p style="height: 30px;">
+                        <p style="font-size: 24px;">pET ʕ•ᴥ•ʔ 陪你團隊將盡最大的努力提供您與您的毛孩子最新的資訊與最好的商品！</p>
+                        <div style="height: 30px;"></div>
+                        <a href="_08/contents_Front" class="btn_1">閱讀更多資訊</a>
+                        <span style="margin: 50px;"></span>
+                        <a href="06/petProductSale" class="btn_1">進入購物商城</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- about part end-->
 	<!--Announcement part start::-->
-	<div style="height: 30px"></div>
-	<section class="container">
-		<div class="row">
-			<c:forEach var='ann' items='${allAnnouncements}'>
-				<div class="col-sm-6 col-md-3">
-					<div class="thumbnail">
-						<%-- 						<c:choose> --%>
-						<%-- 						<c:when test="${announce_img==null }"> --%>
-						<!-- 						123 -->
-						<%-- 						</c:when> --%>
-						<%-- 						<c:otherwise> --%>
-						<img src="<c:url value='getAnnPicture/${ann.announce_id}' />" />
-						<%-- 						</c:otherwise> --%>
-						<%-- 						</c:choose> --%>
-						<div class="caption">
-							<p>
-								<b style='font-size: 16px;'>${ann.announce_title}</b>
-							</p>
-							<p>${ann.announce_sub}</p>
-							<p>
-								<%-- 								<a href="<spring:url value='/announcement?id=${ann.announce_id}' />" --%>
-								<!-- 									class="btn btn-primary"> <span -->
-								<!-- 									class="glyphicon-info-sigh glyphicon"></span>詳細資料 -->
-								<!-- 								</a> <a -->
-								<%-- 									href="<spring:url value='/product.json?id=${ann.announce_id}' />" --%>
-								<!-- 									class="btn btn-primary">  -->
-								<!-- 								</a> -->
-							</p>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-	</section>
 	<!-- Announcement part end-->
 
 	<!-- footer part start-->
@@ -496,12 +414,6 @@
 	<script src="js/owl.carousel.min.js"></script>
 	<!-- custom js -->
 	<script src="js/custom.js"></script>
-
-	<!-- 瀑布流 js -->
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/masonry.pkgd.min.js"></script>
-	<script src="js/imagesloaded.pkgd.min.js"></script>
-<!--11111111111111111111111111  -->
 
 
 

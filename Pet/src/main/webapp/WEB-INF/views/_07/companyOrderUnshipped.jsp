@@ -59,7 +59,7 @@ function detail(index) {
 	}
 	function showDetail(data, index) {
 		var empss=JSON.parse(data);
-		var txt ="<tr class='title" + index + "'><th></th><th>產品編號</th><th>產品名稱</th><th>數量</th><th>單價</th></tr>";
+		var txt ="<tr class='title" + index + "'><th></th><th>產品編號</th><th>產品名稱</th><th>數量</th><th>金額</th></tr>";
 		for(i=0;i<empss.length;i++){	
 			txt +="<tr class='title" + index + "'><td>";
 			txt +="<td>"+empss[i].product_id+"</td>";
@@ -236,7 +236,7 @@ function detail(index) {
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>訂單編號</th><th>訂購日期</th><th>訂購人</th><th>收件人</th>
+                      <th>訂單編號</th><th>訂購日期</th><th>訂購會員</th><th>收件人</th>
                       <th>寄送地址</th><th>總金額</th><th>出貨</th>
                     </tr>
                   </thead>

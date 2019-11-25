@@ -172,7 +172,7 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3">
             <form method="post" action='companyProductQueryAll' id='allProduct'>
-              <h6 class="m-0 font-weight-bold text-primary" style='text-align: right'>
+              <h6 class="m-0 font-weight-bold text-primary" style="padding-left: 1200px;">
               	<a onclick="allProduct();" href="#">返回商品列表</a>
               <input  type="hidden" value='${CompanyLoginOK.company_id}'  name='company_id' id="company_id" >
               </h6>

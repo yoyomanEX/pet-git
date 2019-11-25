@@ -110,9 +110,9 @@
 										role="button" data-toggle="dropdown" aria-haspopup="true"
 										aria-expanded="false"> PET PET 資訊欄 </a>
 										<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-											<a class="dropdown-item" href="hospitalsFront">醫院資訊</a> <a
-												class="dropdown-item" href="hotelsFront">旅館資訊</a> <a
-												class="dropdown-item" href="resFront">餐廳資訊</a>
+											<a class="dropdown-item" href="${pageContext.request.contextPath}/_08/hospitalsFront">醫院資訊</a> <a
+												class="dropdown-item" href="${pageContext.request.contextPath}/_08/hotelsFront">旅館資訊</a> <a
+												class="dropdown-item" href="${pageContext.request.contextPath}/_08/resFront">餐廳資訊</a>
 										</div></li>
 									<li class="nav-item"><a href="#" class="nav-link">PET
 											PET Q&A</a></li>
