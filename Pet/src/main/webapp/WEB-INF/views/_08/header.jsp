@@ -28,14 +28,14 @@
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> <span
 									class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:20px">你好，${LoginOK.name }</span>
-									<img class="img-profile rounded-circle" width='60' height='60' src='getPicture' />
+									<img class="img-profile rounded-circle" width='60' height='60' src='${pageContext.request.contextPath}/getPicture' />
 							</a> <!-- Dropdown - User Information -->
 								<div
 									class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 									aria-labelledby="userDropdown">
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/_01.memberManagement"> <i
 										class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 會員中心
-									</a> <a class="dropdown-item" href="_01.updataMemberPage"> <i
+									</a> <a class="dropdown-item" href="${pageContext.request.contextPath}/_01.updataMemberPage"> <i
 										class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
 										修改會員
 									</a>
