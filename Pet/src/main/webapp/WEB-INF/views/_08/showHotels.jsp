@@ -38,9 +38,33 @@
 <!-- 自訂 - index CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/index.css">
-<!-- 瀑布流 CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/waterfall.css">
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		document.getElementById("check1").addEventListener("blur", check);
+	});
+	function check() {
+		var theName = document.getElementById("check1").value;
+		var reName = /^[\u4e00-\u9fff]$/;
+		if (theName == "") {
+			alert('請輸入中文');
+		} else if (reName.test(theName)) {
+			alert('輸入正確');
+		} else {
+			alert('輸入錯誤');
+		}
+
+	}
+</script>
+<style>
+* {
+	font-family: 微軟正黑體;
+}
+
+td {
+	font-size: 15px;
+	text-align: center;
+}
+</style>
 
 </head>
 
@@ -62,23 +86,52 @@
 			</div>
 		</div>
 	</section>
-<body>
-	<p>
-	<div align="center">
-		<p style="height:80px;">
-		<h1 align="center">PET你ʕ•ᴥ•ʔ去旅行</h1>
-		<p>
-		<div align="center">
-		<h2 style="margin:30px;">旅館資料</h2>
-		<c:if test='${empty allHotels}'>
-		查無醫院資料<br>
-		</c:if>
+	<!-- banner part end-->
+	<!-- about part start-->
+	<section class="about_part section_padding">
+		<div class="container">
+			<div class="row align-items-center justify-content-between">
+				<div class="col-md-6">
+					<div class="about_img">
+						<img style="width: 300px; height: 300px;" src="${pageContext.request.contextPath}/img/08_img/hotel.jpg">
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="about_text">
+						<img src="${pageContext.request.contextPath}/img/about_icon.png"
+							class="about_icon" alt="">
+						<h2>旅館資訊</h2>
+						<p>We care your pet as you care</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- about part end-->
+	<!-- Map part end-->
+	<div align="left">
+	<iframe align="left" src="https://www.google.com/maps/d/embed?mid=1prcCjV5B2K1aSLdC_mtEWg9PBxLA8ZIY" width="600" height="600" frameborder="0" style="margin-left: 40px; border:0;" allowfullscreen=""></iframe>
+	</div>
+	<!-- Map part end-->
+	<div align="right" style="margin-right: 80px; height: 1100px;">
+		<div align="right" style="margin-right: 170px;">
+			<table style="margin: 10px;">
+				<tr>
+					<a href="hotelsFront2"> <input class="btn_1" type="submit"
+						value="查詢地址" />
+					</a>
+					<a href="#"> <input type="text" id="check1" size="15"
+						name="hotel_name" /> <input class="btn_1" type="submit"
+						value="名稱搜尋" />
+					</a>
+				</tr>
+			</table>
+		</div>
 		<c:if test='${not empty allHotels}'>
 			<c:forEach var='hotels' varStatus='vs' items='${allHotels}'>
 				<c:if test='${vs.first}'>
 					<c:out value="<table border='1'>" escapeXml='false' />
-					<c:out
-						value="<tr><td>ID</td><td>NAME</td><td>ADDRESS</td><td>TEL</td>"
+					<c:out value="<tr><td>編號</td><td>旅館名稱</td><td>地址</td><td>電話</td>"
 						escapeXml='false' />
 				</c:if>
 
@@ -94,121 +147,44 @@
 				</c:if>
 			</c:forEach>
 		</c:if>
-		<p style="height:80px;"/>
-		<%-- 			<a href='${pageContext.request.contextPath}/_08/admin0123'>回到_08---管理</a> --%>
+		<%-- 		<c:if test='${empty allHotels}'> --%>
+		<!-- 					查無旅館資料<br> -->
+		<%-- 		</c:if> --%>
 	</div>
-	</div>
-
-	<!-- footer part start-->
-	<footer class="footer_area padding_top">
-		<div class="container">
-			<div class="row justify-content-center ">
-				<div class="col-lg-8 col-xl-6">
-					<div class="subscribe_part_text text-center">
-						<h2>Subscribe Newsletter</h2>
-						<p>We strictly follow the State Board’s sanitary and
-							disinfection guidelines.</p>
-						<div class="subscribe_form">
-							<form action="#" name="#">
-								<div class="input-group align-items-center">
-									<input type="email" class="form-control"
-										placeholder="enter your email">
-									<div class="subscribe_btn input-group-append">
-										<div class="btn_1">free trail</div>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row justify-content-between section_padding">
-				<div
-					class="col-xl-2 col-sm-6 col-md-3 mb-4 mb-xl-0 single-footer-widget">
-					<h4>Menu</h4>
-					<ul>
-						<li><a href="#">home</a></li>
-						<li><a href="#">Travel & Food</a></li>
-						<li><a href="#">Activity</a></li>
-						<li><a href="#">Shopping</a></li>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Information</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</div>
-				<div
-					class="col-xl-2 col-sm-6 col-md-3 mb-4 mb-xl-0 single-footer-widget">
-					<h4>Company</h4>
-					<ul>
-						<li><a href="<spring:url value='/_01.loginCompanyPage'/>">Login</a></li>
-						<li><a href="#">Application</a></li>
-					</ul>
-				</div>
-				<div
-					class="col-xl-2 col-sm-6 col-md-3 mb-4 mb-xl-0 single-footer-widget">
-					<h4>Policy</h4>
-					<ul>
-						<li><a href="#">Private Policy</a></li>
-						<li><a href="#">Shiiping Policy</a></li>
-						<li><a href="#">Return Policy</a></li>
-					</ul>
-				</div>
-				<div
-					class="col-xl-2 col-sm-6 col-md-3 mb-4 mb-xl-0 single-footer-widget">
-					<h4>Member</h4>
-					<ul>
-						<li><a href="#">Member Centre</a></li>
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Track My Package</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="copyright_text">
-						<img src="img/about_icon.png" alt="#">
-						<!-- 						<h3>pET ʕ•ᴥ•ʔ陪你</h3> -->
-						<p class="footer-text">
-							Copyright &copy;
-							<script>
-								document.write(new Date().getFullYear());
-							</script>
-							All rights reserved by pET ʕ•ᴥ•ʔ 陪你
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- footer part end-->
-
-	<!-- jquery plugins here-->
-	<!-- jquery -->
-	<script
-		src="${pageContext.request.contextPath}/js/jquery-1.12.1.min.js"></script>
-	<!-- popper js -->
-	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
-	<!-- bootstrap js -->
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<!-- counterup js -->
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.counterup.min.js"></script>
-	<!-- waypoints js -->
-	<script src="${pageContext.request.contextPath}/js/waypoints.min.js"></script>
-	<!-- easing js -->
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.magnific-popup.js"></script>
-	<!-- particles js -->
-	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
-	<!-- custom js -->
-	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
-	<!-- 瀑布流 js -->
-	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
+	<p style="margin: 50px;">
 
 
+		<!-- footer part start-->
+		<jsp:include page="footer.jsp"></jsp:include>
+		<!-- footer part end-->
 
-
+		<!-- jquery plugins here-->
+		<!-- jquery -->
+		<script
+			src="${pageContext.request.contextPath}/js/jquery-1.12.1.min.js"></script>
+		<!-- popper js -->
+		<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+		<!-- bootstrap js -->
+		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+		<!-- counterup js -->
+		<script
+			src="${pageContext.request.contextPath}/js/jquery.counterup.min.js"></script>
+		<!-- waypoints js -->
+		<script src="${pageContext.request.contextPath}/js/waypoints.min.js"></script>
+		<!-- easing js -->
+		<script
+			src="${pageContext.request.contextPath}/js/jquery.magnific-popup.js"></script>
+		<!-- particles js -->
+		<script
+			src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+		<!-- custom js -->
+		<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+		<!-- 瀑布流 js -->
+		<script
+			src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/js/masonry.pkgd.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
 </body>
 </html>

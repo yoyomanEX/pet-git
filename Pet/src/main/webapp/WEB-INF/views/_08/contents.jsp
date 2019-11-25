@@ -39,6 +39,7 @@
 		<div class="container-fluid">
 			<div class="header-body">
 				<!-- Card stats -->
+				<!-- Card stats -->
 				<div class="row">
 					<div class="col-xl-3 col-lg-6">
 						<div class="card card-stats mb-4 mb-xl-0">
@@ -47,11 +48,11 @@
 									<div class="col">
 										<h5 class="card-title text-uppercase text-muted mb-0">Hospital</h5>
 										<span class="h2 font-weight-bold mb-0"> <a
-											href='hospitals'>管理醫院資料</a></span> 
+											href='${pageContext.request.contextPath}/_08/hospitals'>管理醫院資料</a></span> 
 											<p>
 											<span
 											class="h2 font-weight-bold mb-0"> <a
-											href='getEmptyHospitalForm'>醫院資料新增</a>
+											href='${pageContext.request.contextPath}/_08/getEmptyHospitalForm'>醫院資料新增</a>
 										</span>
 									</div>
 									<div class="col-auto">
@@ -70,10 +71,10 @@
 								<div class="row">
 									<div class="col">
 										<h5 class="card-title text-uppercase text-muted mb-0">Hotel</h5>
-										<span class="h2 font-weight-bold mb-0"><a href='hotels'>管理旅館資料</a></span>
+										<span class="h2 font-weight-bold mb-0"><a href='${pageContext.request.contextPath}/_08/hotels'>管理旅館資料</a></span>
 										<p>
 										<span class="h2 font-weight-bold mb-0"><a
-											href='getEmptyHotelForm'>旅館資料新增</a></span>
+											href='${pageContext.request.contextPath}/_08/getEmptyHotelForm'>旅館資料新增</a></span>
 									</div>
 									<div class="col-auto">
 										<div
@@ -92,11 +93,11 @@
 									<div class="col">
 										<h5 class="card-title text-uppercase text-muted mb-0">Restaurant</h5>
 										<span class="h2 font-weight-bold mb-0"><a
-											href='restaurants'>餐廳資料管理</a></span> 
+											href='${pageContext.request.contextPath}/_08/restaurants'>餐廳資料管理</a></span> 
 											<p>
 											<span
 											class="h2 font-weight-bold mb-0"><a
-											href='getEmptyResForm'>餐廳資料新增</a></span>
+											href='${pageContext.request.contextPath}/_08/getEmptyResForm'>餐廳資料新增</a></span>
 									</div>
 									<div class="col-auto">
 										<div
@@ -115,10 +116,10 @@
 									<div class="col">
 										<h5 class="card-title text-uppercase text-muted mb-0">Announcement</h5>
 										<span class="h2 font-weight-bold mb-0"><a
-											href='announcements'>公告資料管理 </a></span> 
+											href='${pageContext.request.contextPath}/_08/announcements'>公告資料管理 </a></span> 
 											<p>
 											<span
-											class="h2 font-weight-bold mb-0"><a href='contents'>站方文章管理</a></span>
+											class="h2 font-weight-bold mb-0"><a href='${pageContext.request.contextPath}/_08/contents'>站方文章管理</a></span>
 									</div>
 									<div class="col-auto">
 										<div
