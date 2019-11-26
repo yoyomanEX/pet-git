@@ -20,20 +20,6 @@
     					<c:otherwise>
     						<ul class="navbar-nav ml-auto">
 
-	<nav
-		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-		<c:choose>
-			<c:when test="${empty LoginOK}">
-				<div class="sub_header_social_icon float-right" style="float: right">
-					<a href="_01.memberloginPage"
-						class="btn_1 d-none d-md-inline-block">Longin</a>
-				</div>
-			</c:when>
-
-			<c:otherwise>
-				<ul class="navbar-nav ml-auto">
-
 					<div class="topbar-divider d-none d-sm-block"></div>
 
 					<!-- Nav Item - User Information -->
