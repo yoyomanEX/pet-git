@@ -82,9 +82,9 @@ public class FriendController {
 	}
 
 
-	@RequestMapping("/404")
+	@RequestMapping("/index.html")
 	public String test() {
-		return "_03/404";
+		return "_01/memberManagement";
 	}
 
 	@RequestMapping(value = "/memberblog/{member_Id}")

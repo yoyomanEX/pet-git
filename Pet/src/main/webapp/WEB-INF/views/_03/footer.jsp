@@ -22,36 +22,36 @@
 				<div class="instagram-slides owl-carousel">
 					<!-- Single Instagram Slide -->
 					<div class="single-instagram-slide">
-						<img src="img/blog-img/pet1.jpg" alt=""> <a href="#"><i
+						<img src="${pageContext.request.contextPath}/img/blog-img/pet1.jpg" alt=""> <a href="#"><i
 							class="fa fa-instagram"></i>Follow Me</a>
 					</div>
 					<!-- Single Instagram Slide -->
 					<div class="single-instagram-slide">
-						<img src="img/blog-img/pet5.jpg" alt=""> <a href="#"><i
+						<img src="${pageContext.request.contextPath}/img/blog-img/pet5.jpg" alt=""> <a href="#"><i
 							class="fa fa-instagram"></i>Follow Me</a>
 					</div>
 					<!-- Single Instagram Slide -->
 					<div class="single-instagram-slide">
-						<img src="img/blog-img/pet2.jpg" alt=""> <a href="#"><i
-							class="fa fa-instagram"></i>Follow Me</a>
-					</div>
-
-					<!-- Single Instagram Slide -->
-					<div class="single-instagram-slide">
-						<img src="img/blog-img/pet4.jpg" alt=""> <a href="#"><i
-							class="fa fa-instagram"></i>Follow Me</a>
-					</div>
-
-
-					<!-- Single Instagram Slide -->
-					<div class="single-instagram-slide">
-						<img src="img/blog-img/pet6.jpg" alt=""> <a href="#"><i
+						<img src="${pageContext.request.contextPath}/img/blog-img/pet2.jpg" alt=""> <a href="#"><i
 							class="fa fa-instagram"></i>Follow Me</a>
 					</div>
 
 					<!-- Single Instagram Slide -->
 					<div class="single-instagram-slide">
-						<img src="img/blog-img/pet3.jpg" alt=""> <a href="#"><i
+						<img src="${pageContext.request.contextPath}/img/blog-img/pet4.jpg" alt=""> <a href="#"><i
+							class="fa fa-instagram"></i>Follow Me</a>
+					</div>
+
+
+					<!-- Single Instagram Slide -->
+					<div class="single-instagram-slide">
+						<img src="${pageContext.request.contextPath}/img/blog-img/pet6.jpg" alt=""> <a href="#"><i
+							class="fa fa-instagram"></i>Follow Me</a>
+					</div>
+
+					<!-- Single Instagram Slide -->
+					<div class="single-instagram-slide">
+						<img src="${pageContext.request.contextPath}/img/blog-img/pet3.jpg" alt=""> <a href="#"><i
 							class="fa fa-instagram"></i>Follow Me</a>
 					</div>
 				</div>
@@ -67,11 +67,11 @@
 		<div class="row">
 			<div class="col-12">
 				<!-- Footer Curve Line -->
-				<img class="footer-curve" src="img/core-img/foo-curve.png" alt="">
+				<img class="footer-curve" src="${pageContext.request.contextPath}/img/core-img/foo-curve.png" alt="">
 				<!-- Footer Social Info -->
 
 				<!-- Footer Curve Line -->
-				<img class="footer-curve" src="img/core-img/foo-curve.png" alt="">
+				<img class="footer-curve" src="${pageContext.request.contextPath}/img/core-img/foo-curve.png" alt="">
 			</div>
 		</div>
 

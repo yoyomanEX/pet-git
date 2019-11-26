@@ -42,7 +42,7 @@
 	});
 	var Stop;
 	$(document).ready(function() {
-		Stop = setInterval(cartnumber, 5000)//預設5000毫秒自動重複執行cartnumber()函數
+		Stop = setInterval(cartnumber, 2000)//預設5000毫秒自動重複執行cartnumber()函數
 	})
 	function cartnumber() {
 		$.ajax({

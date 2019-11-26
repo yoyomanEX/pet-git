@@ -7,7 +7,7 @@
 
   <meta charset="utf-8">
   
- 	<title>pET ʕ•ᴥ•ʔ 陪你</title>
+ 	<title>pET ʕ•ᴥ•ʔ 陪你 站方後台管理</title>
 <link rel="icon" href="img/about_icon.png">
 
   

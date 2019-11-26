@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <title>pET ʕ•ᴥ•ʔ 陪你</title>
-    <link rel="icon" href="img/about_icon.png">
+    <link rel="icon" href="${pageContext.request.contextPath}/img/about_icon.png">
     
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
@@ -148,7 +148,7 @@ $(document).ready(function() {
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <img src="img/core-img/breadcrumb-line.png" alt="">
+                    <img src="${pageContext.request.contextPath}/img/core-img/breadcrumb-line.png" alt="">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
 <!--                             <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li> -->
@@ -204,7 +204,7 @@ $(document).ready(function() {
                             </div>
                              </c:forEach>
                             <!-- Post Curve Line -->
-                            <img class="post-curve-line" src="img/core-img/post-curve-line.png" alt="">
+                            <img class="post-curve-line" src="${pageContext.request.contextPath}/img/core-img/post-curve-line.png" alt="">
                         </div>
 
 
@@ -241,12 +241,12 @@ $(document).ready(function() {
                             <!-- Thumbnail -->
                             <div style="padding-top:20px">
                             <div class="about-thumbnail">
-                                <img width='60' height='72' src='/Pet/getMbPicture/${people}' />
+                                <img width='60' height='72' src='${pageContext.request.contextPath}/getMbPicture/${people}' />
 <!--                                 <img width='200' height='300' src="img/single_adopt_5.png" /> -->
                             </div>
                             <!-- Content -->
                             <div class="widget-content text-center" style="padding-bottom:40px">
-                                <img src="img/core-img/signature.png" alt="">
+                                <img src="${pageContext.request.contextPath}/img/core-img/signature.png" alt="">
                                 
                             </div>
                             </div>
@@ -321,7 +321,7 @@ $(document).ready(function() {
 							<ol class="popular-tags d-flex flex-wrap" >
 								<c:forEach var='visit' items='${visit}'>
                             <li>
-                                  <img src="getMbPicture/${visit}" width="80" height="80" alt="">&nbsp&nbsp
+                                  <img src="${pageContext.request.contextPath}/getMbPicture/${visit}" width="80px" height="80px" alt="">&nbsp&nbsp
                             </li>
                  	      		</c:forEach>
                         </ol>
