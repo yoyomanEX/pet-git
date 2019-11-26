@@ -117,7 +117,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.html"  style="font-size:20px"> <!--         <div class="sidebar-brand-icon rotate-n-15"> -->
+				href="${pageContext.request.contextPath}/index.html"  style="font-size:20px"> <!--         <div class="sidebar-brand-icon rotate-n-15"> -->
 				<!--           <i class="fas fa-laugh-wink"></i> --> <!--         </div> -->
 				<div class="sidebar-brand-text mx-3">pETʕ•ᴥ•ʔ陪你</div>
 			</a>
