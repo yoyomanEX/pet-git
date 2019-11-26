@@ -46,7 +46,7 @@
 		})
 		function cartnumber() {
 			$.ajax({
-				url : "notice",
+				url : "${pageContext.request.contextPath}/notice",
 				type : "post",
 				success : function(data) {
 					console.log("ok");
