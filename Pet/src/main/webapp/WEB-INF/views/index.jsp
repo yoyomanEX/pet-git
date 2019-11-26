@@ -178,14 +178,29 @@
 	<!-- Toolbar part start -->
 	<div>
 		<ul class="toolbar_r">
-			<li class="vnb"><img id="vnb_fb" alt=""
-				src="img/icon/facebook-g.svg" href="https://www.facebook.com/" /></li>
-			<li class="vnb"><img id="vnb_youtube" alt=""
-				src="img/icon/youtube-g.svg" href="https://www.youtube.com/" /></li>
-			<li class="vnb"><img id="vnb_robot" alt=""
-				src="img/icon/robot-g.svg" href="#" /></li>
-			<li class="vnb"><img id="vnb_chat" alt=""
-				src="img/icon/chat-g.svg" href="#" /></li>
+			<li class="vnb">
+			<a href="https://www.facebook.com/">
+			<img id="vnb_fb" alt="" src="img/icon/facebook-g.svg" href="#" />
+			</a>
+			</li>
+			<li class="vnb">
+			<a href="https://www.youtube.com/?gl=TW">
+			<img id="vnb_youtube" alt=""
+				src="img/icon/youtube-g.svg" href="#" />
+			</a>
+			</li>
+			<li class="vnb">
+			<a href="http://localhost:8080/Pet/_01.memberloginPage">
+			<img id="vnb_robot" alt=""
+				src="img/icon/robot-g.svg" href="#" />
+			</a>
+			</li>
+			<li class="vnb">
+			<a href="http://localhost:8080/Pet/_01.memberloginPage">
+			<img id="vnb_chat" alt=""
+				src="img/icon/chat-g.svg" href="#" />
+			</a>
+			</li>
 		</ul>
 	</div>
 	<!-- Toolbar part end -->

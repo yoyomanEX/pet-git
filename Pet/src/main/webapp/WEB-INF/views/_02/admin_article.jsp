@@ -62,7 +62,7 @@
       <div id="content">
              <div class="card-header py-3">
 				<div style="float:right">
-					<a href="<spring:url value='blogXML'/>" class="far fa-file-alt btn btn-success" style="font-size:20px"> 
+					<a href="<spring:url value='blog.xls'/>" class="far fa-file-alt btn btn-success" style="font-size:20px"> 
 						 <span class="glyphicon-info-sigh glyphicon" style="font-size:20px"></span>備份資料(Excel)
 					</a>
 				</div>

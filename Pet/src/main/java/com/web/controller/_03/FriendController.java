@@ -22,6 +22,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -86,7 +87,7 @@ public class FriendController {
 		return "_03/404";
 	}
 
-	@RequestMapping(value = "/memberblog/{member_Id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/memberblog/{member_Id}")
 	public String getProductsByCategory(@PathVariable("member_Id") String member_Id, Model model,HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		MemberBean mid = (MemberBean) session.getAttribute("LoginOK");
@@ -96,18 +97,24 @@ public class FriendController {
 		mbb.setUserid(member_Id);
 		mbb.setOtherid(mid1);
 		Myblogservice.comehome(mbb);
-
-		List<ArticleBean> art = Artservice.getArticlesByMemberNo2(mid1);
+		model.addAttribute("people",member_Id);
+		List<ArticleBean> art = Artservice.getArticlesByMemberNo2(member_Id);
 		model.addAttribute("arts", art);
 
-		List<ArticleBean> arts = Artservice.getArticleByDate(mid1);
+		List<ArticleBean> arts = Artservice.getArticleByDate(member_Id);
 		model.addAttribute("artss", arts);
 
-		List<ArticleBean> artss = Artservice.getArticlelikeByMember(mid1);
+		List<ArticleBean> artss = Artservice.getArticlelikeByMember(member_Id);
 		model.addAttribute("artsss", arts);
 		
-		return "_02/myblog";
+		return "_03/memberblog";
 	}
+	
+//	@RequestMapping(value = "texttt123")
+//	public String loginErr() {
+//		return "_03/memberblog";
+//
+//	}
 
 	@RequestMapping("/friendlist")
 	public String friendlist(String mid1, Model model, HttpServletRequest request) {
@@ -219,6 +226,7 @@ public class FriendController {
 		MemberBean mid = (MemberBean) session.getAttribute("LoginOK");
 		userid = mid.getMember_Id();
 		service.deleteByMid(userid, friendid);
+		Noticeservice.deleteFrStarusByUser(userid);
 		return "redirect:/application";
 	}
 

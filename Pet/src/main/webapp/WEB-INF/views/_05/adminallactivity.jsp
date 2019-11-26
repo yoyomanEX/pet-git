@@ -58,100 +58,87 @@
 			<!-- Begin Page Content -->
 			<div class="container-fluid">
 
+
 				<!-- Page Heading -->
 				<br>
 				<h1 class="m-0 font-weight-bold text-primary"
 					style='font-size: 40px;'>活動列表</h1>
 				<br>
 				<!--     內文位置 -->
-				<div class="container">
 
-					<div class="card o-hidden border-0 shadow-lg my-5">
-						<div class="card-body p-0">
-							<!-- Nested Row within Card Body -->
+				<!-- Nested Row within Card Body -->
 
-							<!--::breadcrumb part start::-->
+				<!--::breadcrumb part start::-->
 
-							<section class="container" style="padding-top: 100px">
-								<div class="row" style="padding-left: 140px">
-									<c:forEach var='activity' items='${allactivity}'>
-										<div class="col-md-3"
-											style="width: 400px; height: 380px; border-width: 3px; border-style: dashed; border-color: #FFAC55; padding: 5px; margin: 10px">
-											<div
-												style="width: 400px; height: 380px; padding: 5px; margin: 10px">
-												<div>
-													<img width="200px" height="200px"
-														src="<c:url value='/activitypicture/${activity.activity_id}' /> "
-														style="padding-right: 16px" />
-												</div>
-												<div class="caption">
-													<p>
-														<b style='font-size: 20px;'>${activity.activity_title}</b>
-													</p>
-													<p>${activity.end_date}</p>
-													<%-- 							<p>${activity.activity_content}</p> --%>
-													<%-- 							<p>人數：${activity.current_number}/${activity.number_limit}</p> --%>
+				<section class="container" style="padding-top: 20px">
+					<div class="row" style="padding-left: 140px">
+						<c:forEach var='activity' items='${allactivity}'>
+							<div class="col-md-3"
+								style="width: 400px; height: 380px; border-width: 3px; border-style: dashed; border-color: #FFAC55; padding: 5px; margin: 10px">
 
-													<p>
-
-														<a
-															href="<spring:url value='/adminactivity?activity_id=${activity.activity_id}' />"
-															class="btn btn-primary"> <span
-															class="glyphicon-info-sigh glyphicon"></span>詳細資料
-														</a>
-														<!-- 								<a -->
-														<%-- 									href="<spring:url value='product.json?id=${product.bookId}' />" --%>
-														<!-- 									class="btn btn-primary"> <span -->
-														<!-- 									class="glyphicon-info-sigh glyphicon"></span>JSON -->
-														<!-- 								</a> -->
-													</p>
-												</div>
-											</div>
-										</div>
-									</c:forEach>
+								<div align="center">
+									<img width="220px" height="200px"
+										src="<c:url value='/activitypicture/${activity.activity_id}' /> " />
 								</div>
-							</section>
+								<div class="caption" align="center">
+									<p style="padding-top: 5px">
+										<b style='font-size: 20px;'>${activity.activity_title}</b>
+									</p>
+									<p>${activity.end_date}</p>
+									<p>
+										<a
+											href="<spring:url value='/adminactivity?activity_id=${activity.activity_id}' />"
+											class="btn btn-primary"> <span
+											class="glyphicon-info-sigh glyphicon"></span>詳細資料
+										</a>
+									</p>
+								</div>
 
-						</div>
+							</div>
+						</c:forEach>
 					</div>
-				</div>
-
-
-
-
-
-
-
-
-
-
+				</section>
 
 			</div>
-			<!-- End of Main Content -->
 		</div>
-		<!-- End of Content Wrapper -->
+	</div>
 
-		<!--   Core   -->
-		<script
-			src="${pageContext.request.contextPath}/assets/js/plugins/jquery/dist/jquery.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-		<!--   Optional JS   -->
-		<script
-			src="${pageContext.request.contextPath}/assets/js/plugins/chart.js/dist/Chart.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
-		<!--   Argon JS   -->
-		<script
-			src="${pageContext.request.contextPath}/assets/js/argon-dashboard.min.js?v=1.1.0"></script>
-		<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 
-		<script>
-			window.TrackJS && TrackJS.install({
-				token : "ee6fab19c5a04ac1a32a645abde4613a",
-				application : "argon-dashboard-free"
-			});
-		</script>
+
+
+
+
+
+
+
+
+
+	</div>
+	<!-- End of Main Content -->
+	</div>
+	<!-- End of Content Wrapper -->
+
+	<!--   Core   -->
+	<script
+		src="${pageContext.request.contextPath}/assets/js/plugins/jquery/dist/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<!--   Optional JS   -->
+	<script
+		src="${pageContext.request.contextPath}/assets/js/plugins/chart.js/dist/Chart.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
+	<!--   Argon JS   -->
+	<script
+		src="${pageContext.request.contextPath}/assets/js/argon-dashboard.min.js?v=1.1.0"></script>
+	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+
+	<script>
+		window.TrackJS && TrackJS.install({
+			token : "ee6fab19c5a04ac1a32a645abde4613a",
+			application : "argon-dashboard-free"
+		});
+	</script>
 </body>
 
 </html>

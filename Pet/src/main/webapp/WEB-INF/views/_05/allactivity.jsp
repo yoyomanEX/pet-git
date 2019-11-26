@@ -79,36 +79,27 @@ body {
 	</section>
 	<!--::breadcrumb part start::-->
 
-	<section class="container" style="padding-top: 100px">
+	<section class="container" style="padding-top: 20px">
 		<div class="row" style="padding-left: 140px">
 			<c:forEach var='activity' items='${allactivity}'>
 				<div class="col-sm-6 col-md-3"
-					style="width: 360px; height: 300px; border-width: 3px; border-style: dashed; border-color: #FFAC55; padding: 5px; margin: 10px">
+					style="width: 400px; height: 300px; border-width: 3px; border-style: dashed; border-color: #FFAC55; padding: 5px; margin: 10px">
 					<div align="center">
-						<img width="200px" height="200px"
+						<img width="220px" height="200px"
 							src="<c:url value='/activitypicture/${activity.activity_id}' /> "
 							 />
 					</div>
-					<div class="caption">
-						<p>
+					<div class="caption" align="center">
+						<p style="padding-top: 5px">
 							<b style='font-size: 20px;'>${activity.activity_title}</b>
 						</p>
 						<p>${activity.end_date}</p>
-						<%-- 							<p>${activity.activity_content}</p> --%>
-						<%-- 							<p>人數：${activity.current_number}/${activity.number_limit}</p> --%>
-
 						<p>
-
 							<a
 								href="<spring:url value='/activity?activity_id=${activity.activity_id}' />"
 								class="btn btn-primary"> <span
 								class="glyphicon-info-sigh glyphicon"></span>詳細資料
 							</a>
-							<!-- 								<a -->
-							<%-- 									href="<spring:url value='product.json?id=${product.bookId}' />" --%>
-							<!-- 									class="btn btn-primary"> <span -->
-							<!-- 									class="glyphicon-info-sigh glyphicon"></span>JSON -->
-							<!-- 								</a> -->
 						</p>
 					</div>
 				</div>

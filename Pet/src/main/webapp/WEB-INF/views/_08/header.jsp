@@ -13,7 +13,7 @@
 					<c:choose>
    						<c:when test="${empty LoginOK}">
    							<div class="sub_header_social_icon float-right" style="float:right">
-							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">Longin</a>
+							<a href="_01.memberloginPage" class="btn_1 d-none d-md-inline-block">登入/註冊</a>
 							</div>
     					</c:when>
     
@@ -35,7 +35,7 @@
 									aria-labelledby="userDropdown">
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/_01.memberManagement"> <i
 										class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 會員中心
-									</a> <a class="dropdown-item" href="_01.updataMemberPage"> <i
+									</a> <a class="dropdown-item" href="${pageContext.request.contextPath}/_01.updataMemberPage"> <i
 										class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
 										修改會員
 									</a>

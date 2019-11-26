@@ -1,6 +1,7 @@
+//_07廠商用 excel表下載
 package com.web.view;
 
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,8 +21,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.web.servlet.view.document.AbstractXlsView;
 
 import com.web.model._02.ArticleBean;
-import com.web.model._07.MemberOrderBean;
-
 
 
 public class MultipleArticleExcelView extends AbstractXlsView {
@@ -120,12 +119,12 @@ public class MultipleArticleExcelView extends AbstractXlsView {
 //		styleDate.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
 //		styleDate.setAlignment(CellStyle.ALIGN_CENTER);
 		
-//        List<MemberOrderDetailBean> detailBean = (List<MemberOrderDetailBean>) model.get("orderCharts"); //model.addAttribute的key在controller裡
-        List<ArticleBean> detailBean = (List<ArticleBean>) model.get("artCharts"); //model.addAttribute的key在controller裡
+		List<ArticleBean> detailBean = (List<ArticleBean>) model.get("artCharts"); //model.addAttribute的key在controller裡
         
 		Set<String> set = model.keySet();
 		Row row = null;
 		Cell cell = null;
+		
 		for(ArticleBean m : detailBean) {
 			colCount = 0;
 			row = sheet.createRow(rowCount++);
@@ -142,6 +141,7 @@ public class MultipleArticleExcelView extends AbstractXlsView {
 			cell.setCellValue(m.getContent());
 			
 		}
+		
 		int columnCount = sheet.getRow(0).getLastCellNum();
 		for (int i=0; i < columnCount; i++){
 			sheet.autoSizeColumn(i);
