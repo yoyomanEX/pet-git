@@ -90,16 +90,20 @@
 	function showfriends(data) {
 		var txt = "";
 		for (i = 0; i < data.length; i++) {
+<<<<<<< HEAD
+			txt += '<a class="dropdown-item d-flex align-items-center" onclick="talk(\''+data[i].mid+ '\')" >'
+=======
 			txt += '<a class="dropdown-item d-flex align-items-center" onclick="talk(\''+data[i].mid+'\')" >'
+>>>>>>> branch 'master' of https://github.com/yoyomanEX/pet-git.git
 			+'<div class="dropdown-list-image mr-3">'
 				+ '<img class="rounded-circle"'
 				+'width="60" height="60" src="'
 				+'getMbPicture/'+data[i].mid+'">'
 				+ '</div><div class="font-weight-bold"><div class="text-truncate">'
-				+ '向'+data[i].mid + '道聲招呼，開始你們的聊天吧!</div></div></a>';
+				+ '向'+data[i].name + '道聲招呼，開始你們的聊天吧!</div></div></a>';
 		document.getElementById("test2").innerHTML = txt;
 	}}
-	
+	var id="";
 	function talk(id){
 		window
 		.open(

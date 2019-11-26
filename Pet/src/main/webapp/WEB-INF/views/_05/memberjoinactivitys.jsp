@@ -72,8 +72,8 @@
 					<hr
 						style="height: 1px; border: none; color: #333; background-color: #333;">
 
-					<section class="container">
-		<div class="row">
+					<section align="center">
+		<div class="row" >
 			<c:forEach var='memberjoin' items='${memberjoinactivity}'>
 				<div class="col-sm-6 col-md-3" style="width: 360px; height: 360px ">
 					<div  class="thumbnail" style="width: 320px; height: 340px">
@@ -81,23 +81,15 @@
 						<img width="200px" height="100px"
 							src="<c:url value='/activitypicture/${memberjoin.activity_id}' /> " />
 							</div>
-						<div class="caption">
+						<div class="caption" >
 							<p><b style='font-size: 20px;'>${memberjoin.activity_title}</b></p>
 							<p>${memberjoin.end_date}</p>
-<%-- 							<p>${activity.activity_content}</p> --%>
-<%-- 							<p>人數：${activity.current_number}/${activity.number_limit}</p> --%>
-
 							<p>
 							
 								<a href="<spring:url value='/memberactivity?activity_id=${memberjoin.activity_id}' />"
 									class="btn btn-primary"> <span
 									class="glyphicon-info-sigh glyphicon"></span>詳細資料
 								</a> 
-<!-- 								<a -->
-<%-- 									href="<spring:url value='product.json?id=${product.bookId}' />" --%>
-<!-- 									class="btn btn-primary"> <span -->
-<!-- 									class="glyphicon-info-sigh glyphicon"></span>JSON -->
-<!-- 								</a> -->
 							</p>
 						</div>
 					</div>

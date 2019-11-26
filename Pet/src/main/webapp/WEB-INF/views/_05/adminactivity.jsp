@@ -59,7 +59,7 @@
 				<!-- Page Heading -->
 				<br>
 				<h1 class="m-0 font-weight-bold text-primary"
-					style='font-size: 40px;'>活動訊息</h1>
+					style='font-size: 40px;'>活動資訊</h1>
 				<br>
 				<!--     內文位置 -->
 				<div class="container">
@@ -115,7 +115,7 @@
 
 
 
-
+</div>
 			</div>
 			<!-- End of Main Content -->
 		</div>
