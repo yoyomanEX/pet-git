@@ -106,10 +106,26 @@
 		$("#addToCar")
 				.click(
 						function() {
-							$('#orderSubmit')
-									.attr('action',
-											"${pageContext.request.contextPath}/06/addProductsToCar");
-							$('#orderSubmit').submit();
+
+							var totalBuySum = 0;
+							$(".textNum").each(
+									function() {
+										var buySum = $(this).val();
+										totalBuySum = parseInt(buySum)
+												+ parseInt(totalBuySum);
+										console.log("totalBuySum1="
+												+ totalBuySum);
+									});
+							if (totalBuySum == 0) {
+								alert("您還沒選購商品唷!");
+								return;
+							} else {
+								$('#orderSubmit')
+										.attr('action',
+												"${pageContext.request.contextPath}/06/addProductsToCar");
+								$('#orderSubmit').submit();
+							}
+
 						});
 		$("#clearCar")
 				.click(
@@ -135,10 +151,10 @@
 	text-align: center;
 }
 
-.cartext{
-overflow:hidden;
-white-space: nowrap;
-text-overflow: ellipsis;
+.cartext {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
@@ -240,40 +256,40 @@ text-overflow: ellipsis;
 						<tbody>
 							<%--items=表示處理的陣列跟集合 要循環的訊息 var=用來儲存目前元素的值--%>
 							<c:forEach items="${products}" var="pro">
-							<c:if test="${pro.status==1}">
-								<tr>
-									<td><img alt="ʕ•ᴥ•ʔ" class='productImg'
-										src="${pageContext.request.contextPath}/06/downloadFile/${pro.product_id}.jpg">
-									</td>
-									<td><a class="checkPro" productId="${pro.product_id}"
-										href="">${pro.product_name}</a></td>
-									<td>$${pro.price}</td>
-									<td><c:choose>
-											<c:when test="${pro.amount==0}">
-												<input type="hidden" name="amount" value="0" class="textNum"
-													style="text-align: center;" />
-												<input type="hidden" name="productId"
-													value="${pro.product_id}">
-												<h4>商品目前補貨中ʕ•ᴥ•ʔ</h4>
-											</c:when>
-											<c:otherwise>
-												<input type="button" name="minus" class='buttonMinus'
-													value='-'>
-												<input type="number" readonly name="amount" value="0"
-													min="0" max="10" class="textNum"
-													style="text-align: center;" />
-												<input type="button" name="add" class='buttonAdd' value='+'
-													amount="${pro.amount}">
-												<input type='hidden' class='cartProductItemSumPrice'
-													price="${pro.price}">
-												<input type='hidden' productId="${pro.product_id}"
-													class='productName' text="${pro.product_name}">
-												<input type="hidden" name="productId"
-													value="${pro.product_id}">
+								<c:if test="${pro.status==1}">
+									<tr>
+										<td><img alt="ʕ•ᴥ•ʔ" class='productImg'
+											src="${pageContext.request.contextPath}/06/downloadFile/${pro.product_id}.jpg">
+										</td>
+										<td><a class="checkPro" productId="${pro.product_id}"
+											href="">${pro.product_name}</a></td>
+										<td>$${pro.price}</td>
+										<td><c:choose>
+												<c:when test="${pro.amount==0}">
+													<input type="hidden" name="amount" value="0"
+														class="textNum" style="text-align: center;" />
+													<input type="hidden" name="productId"
+														value="${pro.product_id}">
+													<h4>商品目前補貨中ʕ•ᴥ•ʔ</h4>
+												</c:when>
+												<c:otherwise>
+													<input type="button" name="minus" class='buttonMinus'
+														value='-'>
+													<input type="number" readonly name="amount" value="0"
+														min="0" max="10" class="textNum"
+														style="text-align: center;" />
+													<input type="button" name="add" class='buttonAdd' value='+'
+														amount="${pro.amount}">
+													<input type='hidden' class='cartProductItemSumPrice'
+														price="${pro.price}">
+													<input type='hidden' productId="${pro.product_id}"
+														class='productName' text="${pro.product_name}">
+													<input type="hidden" name="productId"
+														value="${pro.product_id}">
 
-											</c:otherwise>
-										</c:choose></td>
-								</tr>
+												</c:otherwise>
+											</c:choose></td>
+									</tr>
 								</c:if>
 							</c:forEach>
 						</tbody>

@@ -110,11 +110,11 @@ td {
 	<!-- about part end-->
 	<!-- 地圖 part end-->
 	<div align="left">
-	<iframe align="left" src="https://www.google.com/maps/d/embed?mid=1u1CN19FX_qHU7e-JqtgG9Iy_I0wHn34i" width="600" height="600" frameborder="0" style="margin-left: 80px; border:0;" allowfullscreen=""></iframe>
+	<iframe align="left" src="https://www.google.com/maps/d/embed?mid=1u1CN19FX_qHU7e-JqtgG9Iy_I0wHn34i" width="600" height="600" frameborder="0" style="margin-left: 100px; border:0;" allowfullscreen=""></iframe>
 	</div>
 	<!-- 地圖 part end-->
 	<div align="right" style="margin-right: 80px; height: 900px;">
-		<div align="right" style="margin-right: 150px;">
+		<div align="right" style="margin-right: 100px;">
 			<table style="margin: 10px;">
 				<tr>
 					<a href="resFront2"> <input class="btn_1" type="submit"

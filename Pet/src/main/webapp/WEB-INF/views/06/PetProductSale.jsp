@@ -201,13 +201,29 @@
 							$('#orderSubmit').submit();
 						});
 		//點選商品加入購物車
-		$("#addToCar")
+			$("#addToCar")
 				.click(
 						function() {
-							$('#orderSubmit')
-									.attr('action',
-											"${pageContext.request.contextPath}/06/addProductsToCar");
-							$('#orderSubmit').submit();
+
+							var totalBuySum = 0;
+							$(".textNum").each(
+									function() {
+										var buySum = $(this).val();
+										totalBuySum = parseInt(buySum)
+												+ parseInt(totalBuySum);
+										console.log("totalBuySum1="
+												+ totalBuySum);
+									});
+							if (totalBuySum == 0) {
+								alert("您還沒選購商品唷!");
+								return;
+							} else {
+								$('#orderSubmit')
+										.attr('action',
+												"${pageContext.request.contextPath}/06/addProductsToCar");
+								$('#orderSubmit').submit();
+							}
+
 						});
 		//清空購物車
 		$("#clearCar")
@@ -439,14 +455,14 @@
 				action="${pageContext.request.contextPath}/06/petOrder">
 				<input type="hidden" id="selectPrdId" name="selectPrdId" value="">
 				<table id="myTable"
-					style="text-align: center; width: 850px; font-family: Microsoft JhengHei; font-size: 18px; font-weight: bold;"
+					style="text-align: center; width:850px; font-family: Microsoft JhengHei; font-size: 18px; font-weight: bold;"
 					border=1>
 					<thead>
 						<tr>
-							<th>商品圖片</th>
-							<th>商品名稱</th>
-							<th>價格</th>
-							<th>選購數量</th>
+							<th >商品圖片</th>
+							<th >商品名稱</th>
+							<th >價格</th>
+							<th >選購數量</th>
 						</tr>
 					</thead>
 					<%--items=表示處理的陣列跟集合 要循環的訊息 var=用來儲存目前元素的值--%>

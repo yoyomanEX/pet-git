@@ -110,11 +110,11 @@ td {
 	<!-- about part end-->
 	<!-- Map part end-->
 	<div align="left">
-	<iframe align="left" src="https://www.google.com/maps/d/embed?mid=1prcCjV5B2K1aSLdC_mtEWg9PBxLA8ZIY" width="600" height="600" frameborder="0" style="margin-left: 40px; border:0;" allowfullscreen=""></iframe>
+	<iframe align="left" src="https://www.google.com/maps/d/embed?mid=1prcCjV5B2K1aSLdC_mtEWg9PBxLA8ZIY" width="600" height="600" frameborder="0" style="margin-left: 100px; border:0;" allowfullscreen=""></iframe>
 	</div>
 	<!-- Map part end-->
 	<div align="right" style="margin-right: 80px; height: 1100px;">
-		<div align="right" style="margin-right: 220px;">
+		<div align="right" style="margin-right: 100px;">
 			<table style="margin: 10px;">
 				<tr>
 					<a href="hotelsFront2"> <input class="btn_1" type="submit"

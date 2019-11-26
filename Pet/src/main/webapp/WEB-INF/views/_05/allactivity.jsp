@@ -82,12 +82,10 @@ body {
 	<section class="container" style="padding-top: 20px">
 		<div class="row" style="padding-left: 140px">
 			<c:forEach var='activity' items='${allactivity}'>
-				<div class="col-sm-6 col-md-3"
-					style="width: 400px; height: 300px; border-width: 3px; border-style: dashed; border-color: #FFAC55; padding: 5px; margin: 10px">
+				<div class="col-md-3"
+					style="width: 400px; height: 380px; border-width: 3px; border-style: dashed; border-color: #FFAC55; padding: 5px; margin: 10px">
 					<div align="center">
-						<img width="220px" height="200px"
-							src="<c:url value='/activitypicture/${activity.activity_id}' /> "
-							 />
+						<img style="width:220px; height:200px;" src="<c:url value='/activitypicture/${activity.activity_id}' /> "  />
 					</div>
 					<div class="caption" align="center">
 						<p style="padding-top: 5px">

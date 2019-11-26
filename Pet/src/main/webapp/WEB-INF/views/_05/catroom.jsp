@@ -18,7 +18,7 @@
     <c:set var="tel" value="${ LoginOK.tel }" />
 
     <div class="chat-wrap">
-        <h1>Pet你即時通</h1>
+        <h1>喵喵聊天室</h1>
         <div class="chat-con clearfix"></div>
         <div class="bottom">
             <input type="text" id="content">

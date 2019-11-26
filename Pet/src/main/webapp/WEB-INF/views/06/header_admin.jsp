@@ -99,7 +99,7 @@
   
         <!-- User -->
 
-        <ul class="navbar-nav align-items-center d-none d-md-flex">
+           <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
@@ -116,7 +116,7 @@
 <!--               <a class="dropdown-item" href="friendlist">  -->
 <!--               <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 會員中心</a>  -->
 			  <a class="dropdown-item" href="_01.updataAdminPage"> 
-			  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>修改管理員資料</a>
+			  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>修改資料</a>
               <a class="dropdown-item" href="${pageContext.request.contextPath}/_01.getAdminLogout"> 
               <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout</a>
               

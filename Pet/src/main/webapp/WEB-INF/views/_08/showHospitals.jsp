@@ -114,11 +114,11 @@ td {
 		<iframe align="left"
 			src="https://www.google.com/maps/d/embed?mid=1LQVVFCLS8HnY91rYddi5e2PeAg1zkUfg"
 			width="600" height="600" frameborder="0"
-			style="margin-left: 80px; border: 0;" allowfullscreen=""></iframe>
+			style="margin-left: 100px; border: 0;" allowfullscreen=""></iframe>
 	</div>
 	<!-- map part start-->
 	<div align="right" style="margin-right: 80px; height: 1500px;">
-		<div align="right" style="margin-right: 120px;" >
+		<div align="right" style="margin-right: 100px;" >
 			<table style="margin: 10px;">
 				<tr>
 					<a href="hospitalsFront2"> <input class="btn_1" type="submit"
